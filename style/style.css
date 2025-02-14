@@ -1,5 +1,6 @@
 * {
     margin: 0;
+    font-family: "Figtree", serif;
 }
 
 body {
@@ -15,22 +16,28 @@ body {
 
 .header_login {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
-    padding-top: 48px;
-    padding-left: 48px;
-    padding-right: 60px;
+    padding-top: 67px;
+    padding-left: 77px;
+    padding-right: 77px;
+}
+
+.logo {
+    width: 103.03px;
+    height: 121.97px;
 }
 
 .sign_up_div {
     display: flex;
     flex-direction: row;
-    gap: 36px;
+    gap: 35px;
     align-items: center;
+    padding-right: 24px;
 }
 
 .login_content {
-    min-height: calc(100vh - 186px);
+    min-height: calc(100vh - 288.97px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -51,6 +58,10 @@ body {
     padding-top: 36px;
     padding-bottom:24px;
     gap: 12px;
+}
+
+.heading_login {
+    font-size: 52px;
 }
 
 .seperator_log_in {
