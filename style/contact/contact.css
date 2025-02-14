@@ -11,14 +11,44 @@ body {
 }
 
 .contact_List {
+  display: flex;
+  justify-content: center;
   background-color: azure;
-  width: 20%;
+  width: 100%;
   height: 100vh;
 
 }
 
 .contact_Detail {
   background-color: blue;
-  width: 80%;
+  width: 100%;
   height: 100vh;
+}
+
+.btn_New_Cont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: white;
+  width: 325px;
+  height: 56px;
+  background-color: #2A3647;
+  border-radius: 10px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.btn_New_Cont p {
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.btn_New_Cont img {
+  width: 32px;
+  height: 32px;
+}
+
+.btn_hover :hover {
+  cursor: pointer;
 }
