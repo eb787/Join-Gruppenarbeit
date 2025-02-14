@@ -51,7 +51,6 @@ body {
 .contac_List_Sec_Header {
   position: fixed;
   top: 0;
-  z-index: 1000;
 }
 
 
@@ -59,11 +58,17 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 900px;
+  height: 100vh;
   width: 400px;
   background-color: #FFFFFF;
   overflow-y: scroll;
 }
+
+/*
+.contact_scroll>* {
+  min-height: 150vh;
+}
+*/
 
 .contact_scroll::-webkit-scrollbar {
   width: 6px;
@@ -87,16 +92,53 @@ hr {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.testCard {
-  margin-top: 10px;
-  height: 200px;
-  width: 100%;
-  background-color: #d1d1d1;
+
+.contact_Detail_List {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  height: 48px;
+  padding: 15px 24px;
   border-radius: 10px;
+  background-color: #FFFFFF;
+
+}
+
+.contact_Detail_List:hover {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.01) 0%, #00000014 100%);
+  cursor: pointer;
+
+
+
+}
+
+
+.contact_abbreviation {
+  display: flex;
+  background-color: red;
+  width: 42px;
+  height: 42px;
+  font-size: 12px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.contact_name {
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 2px;
+}
+
+.contact_mail {
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 0;
+
 }
 
 
 .contact_Detail {
-  background-color: antiquewhite;
   width: 100%;
+  margin-left: 20px;
 }
