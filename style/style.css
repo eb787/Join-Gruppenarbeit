@@ -43,6 +43,37 @@ body {
     border-radius: 20px;
 }
 
+.login_heading_div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 36px;
+    padding-bottom:24px;
+    gap: 12px;
+}
+
+.seperator_log_in {
+    width: 120px;
+    height: 2px;
+    background-color: rgb(41, 171, 226);
+}
+
+.login_inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.login_btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 .login_footer {
     height: 100px;
 }
