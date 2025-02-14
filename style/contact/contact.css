@@ -1,31 +1,25 @@
 body {
   margin: 0;
   padding: 0;
-
 }
 
 
 .session_Card {
+  position: fixed;
   display: flex;
-
 }
 
-.contact_List {
+.contact_List_Sec {
   display: flex;
   justify-content: center;
   background-color: azure;
-  width: 100%;
+  width: 400px;
   height: 100vh;
-
-}
-
-.contact_Detail {
-  background-color: blue;
-  width: 100%;
-  height: 100vh;
+  overflow-y: scroll;
 }
 
 .btn_New_Cont {
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,9 +28,12 @@ body {
   width: 325px;
   height: 56px;
   background-color: #2A3647;
+  border-style: none;
   border-radius: 10px;
   padding-top: 12px;
   padding-bottom: 12px;
+
+
 }
 
 .btn_New_Cont p {
@@ -49,6 +46,28 @@ body {
   height: 32px;
 }
 
-.btn_hover :hover {
+.btn_hover:hover {
   cursor: pointer;
+  background-color: rgb(41, 171, 226);
+  color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.contact_Enty_List {
+  top: 100px;
+
+  margin-top: 80px;
+  width: 100%;
+  background-color: aquamarine;
+
+
+}
+
+
+
+.contact_Detail {
+  background-color: #76a833;
+  width: 1440px;
+
 }
