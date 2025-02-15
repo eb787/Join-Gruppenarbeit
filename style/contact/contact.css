@@ -126,7 +126,6 @@ hr {
 }
 
 .contact_name {
-  font-family: Inter;
   font-size: 20px;
   font-weight: 400;
   margin-bottom: 2px;
@@ -143,4 +142,20 @@ hr {
 .contact_Detail {
   width: 100%;
   margin-left: 20px;
+}
+
+
+.con_Detail_Header {
+  display: flex;
+  align-items: center;
+  gap: 20px
+}
+
+
+.line_Vertikal {
+  border-radius: 6px;
+  height: 50px;
+  width: 4px;
+  background-color: rgb(41, 171, 226);
+
 }
