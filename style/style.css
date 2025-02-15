@@ -26,6 +26,7 @@ body {
 .logo {
     width: 103.03px;
     height: 121.97px;
+    padding-top: 13px;
 }
 
 .sign_up_div {
@@ -45,9 +46,12 @@ body {
 
 .login_field {
     background-color: rgb(255, 255, 255);
-    height: 300px;
-    width: 420px;
-    border-radius: 20px;
+    border-radius: 30px;
+    padding: 48px 115px;
+    display: flex;
+    gap: 32px;
+    flex-direction: column;
+    align-items: center;
 }
 
 .login_heading_div {
@@ -55,18 +59,18 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 36px;
-    padding-bottom:24px;
-    gap: 12px;
+    gap: 16px;
+    width: 315px;
 }
 
 .heading_login {
-    font-size: 52px;
+    font-size: 61px;
+    font-weight: 700;
 }
 
 .seperator_log_in {
-    width: 120px;
-    height: 2px;
+    width: 150px;
+    height: 3px;
     background-color: rgb(41, 171, 226);
 }
 
@@ -75,7 +79,38 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 12px;
+    gap: 20px;
+    padding-bottom: 36px;
+}
+
+.input_login[type=text] {
+    height: 22px;
+    padding: 12px 21px;
+    width: 378px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+}
+
+.input_login::placeholder {
+    color: #D1D1D1;
+    font-size: 20px;
+    background-repeat: no-repeat;
+    width: 380px;
+    position: absolute;
+    top: 11px;
+    left: 21px;
+}
+
+.input_mail[type=text]::placeholder {
+    background-image: url(../assets/icon/mail.svg);
+    background-position: 354px 0px;
+    background-size: 24px;
+}
+
+.input_pw[type=text]::placeholder {
+    background-image: url(../assets/icon/lock.svg);
+    background-position: 359px 1px;
+    background-size: 17px;
 }
 
 .login_btns {
