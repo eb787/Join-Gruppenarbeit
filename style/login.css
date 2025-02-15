@@ -1,0 +1,155 @@
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+.bg_login {
+    background-color: rgb(246, 247, 248);
+    width: 100%;
+    height: 100%;
+}
+
+.header_login {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-top: 67px;
+    padding-left: 77px;
+    padding-right: 77px;
+}
+
+.logo {
+    width: 100.03px;
+    height: 121.97px;
+    padding-top: 13px;
+}
+
+.sign_up_div {
+    display: flex;
+    flex-direction: row;
+    gap: 35px;
+    align-items: center;
+    padding-right: 24px;
+}
+
+.login_content {
+    min-height: calc(100vh - 321.97px);
+    display: flex;
+    justify-content: center;
+    padding-top: 60px;
+}
+
+.login_field {
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;
+    padding: 48px 115px;
+    display: flex;
+    gap: 32px;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 0 14px 3px rgb(0, 0, 0, 0.04);
+    height: 353px;
+}
+
+.login_heading_div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 13px;
+    width: 315px;
+}
+
+.heading_login {
+    font-size: 61px;
+    font-weight: 700;
+}
+
+.seperator_log_in {
+    width: 150px;
+    height: 3px;
+    background-color: rgb(41, 171, 226);
+}
+
+.login_inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 36px;
+}
+
+.input_login[type=text] {
+    height: 22px;
+    padding: 12px 21px;
+    width: 378px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+}
+
+.input_login::placeholder {
+    color: #D1D1D1;
+    font-size: 20px;
+    background-repeat: no-repeat;
+    width: 380px;
+    position: absolute;
+    top: 11px;
+    left: 21px;
+}
+
+.input_mail[type=text]::placeholder {
+    background-image: url(../assets/icon/mail.svg);
+    background-position: 354px 0px;
+    background-size: 24px;
+}
+
+.input_pw[type=text]::placeholder {
+    background-image: url(../assets/icon/lock.svg);
+    background-position: 359px 1px;
+    background-size: 17px;
+}
+
+.login_btns {
+    display: flex;
+    gap: 35px;
+}
+
+.login_footer {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.links_footer_login {
+    display: flex;
+    width: 246px;
+}
+
+.links_footer {
+    font-weight: 400;
+    font-size: 16px;
+    color: #CDCDCD;
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    text-decoration: none;
+}
+
+.link_privacy_policy {
+    width: 121px;
+}
+
+.link_privacy_policy:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.link_legal_notice {
+    width: 109px;
+}
+
+.link_legal_notice:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
