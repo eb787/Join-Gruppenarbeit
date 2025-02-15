@@ -9,3 +9,36 @@
     font-size: 16px;
     padding: 15px 16px;
 }
+
+.login_btn {
+    height: 48px;
+    width: 110px;
+    border-radius: 8px;
+    border: 0;
+    background-color: rgb(42, 54, 71);
+    color: white;
+    padding: 15px 24px;
+    font-weight: 700;
+    font-size: 21px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.guest_login_btn {
+    height: 48px;
+    width: 177px;
+    border-radius: 8px;
+    border: 1px solid rgb(42, 54, 71);
+    background-color: white;
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 15px 24px;
+    color: rgb(42, 54, 71);
+    font-weight: 700;
+    font-size: 21px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}

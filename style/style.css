@@ -24,7 +24,7 @@ body {
 }
 
 .logo {
-    width: 103.03px;
+    width: 100.03px;
     height: 121.97px;
     padding-top: 13px;
 }
@@ -38,10 +38,10 @@ body {
 }
 
 .login_content {
-    min-height: calc(100vh - 288.97px);
+    min-height: calc(100vh - 321.97px);
     display: flex;
-    align-items: center;
     justify-content: center;
+    padding-top: 60px;
 }
 
 .login_field {
@@ -52,6 +52,8 @@ body {
     gap: 32px;
     flex-direction: column;
     align-items: center;
+    box-shadow: 0 0 14px 3px rgb(0, 0, 0, 0.04);
+    height: 353px;
 }
 
 .login_heading_div {
@@ -59,7 +61,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 16px;
+    gap: 13px;
     width: 315px;
 }
 
@@ -115,11 +117,44 @@ body {
 
 .login_btns {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    gap: 35px;
 }
 
 .login_footer {
-    height: 100px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.links_footer_login {
+    display: flex;
+    width: 246px;
+}
+
+.links_footer {
+    font-weight: 400;
+    font-size: 16px;
+    color: #CDCDCD;
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    text-decoration: none;
+}
+
+.link_privacy_policy {
+    width: 121px;
+}
+
+.link_privacy_policy:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.link_legal_notice {
+    width: 109px;
+}
+
+.link_legal_notice:hover {
+    text-decoration: none;
+    cursor: pointer;
 }
