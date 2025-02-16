@@ -196,12 +196,15 @@ hr {
   border-radius: 70%;
   font-size: 47px;
   font-weight: 500;
+  margin-bottom: 21px;
+  ;
 }
 
 
 .contact_name_Con {
   font-size: 47px;
   font-weight: 500;
+
 }
 
 .contact_Detail_Con_Name {
@@ -216,6 +219,7 @@ hr {
   gap: 20px;
   font-size: 16px;
   font-weight: 400;
+
 }
 
 
@@ -233,5 +237,14 @@ hr {
 .contact_name_Con_Menue span:hover {
   cursor: pointer;
   filter: invert(52%) sepia(97%) saturate(300%) hue-rotate(166deg);
-
 }
+
+
+
+.contact_Detail_Info_Header {
+  font-weight: 400;
+  margin-top: 21px;
+  margin-bottom: 21px;
+}
+
+.contact_Detail_Info_Mail {}
