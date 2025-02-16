@@ -80,34 +80,33 @@ body {
     padding-bottom: 36px;
 }
 
-.input_login[type=text] {
+.input_login {
     height: 22px;
     padding: 12px 21px;
     width: 378px;
     border: 1px solid #D1D1D1;
     border-radius: 10px;
+    font-size: 20px;
+    background-repeat: no-repeat;
 }
 
 .input_login::placeholder {
     color: #D1D1D1;
     font-size: 20px;
-    background-repeat: no-repeat;
     width: 380px;
-    position: absolute;
-    top: 11px;
-    left: 21px;
 }
 
-.input_mail[type=text]::placeholder {
+.input_mail[type=email] {
     background-image: url(../assets/icon/mail.svg);
-    background-position: 354px 0px;
     background-size: 24px;
+    background-position: 374px 11px;
 }
 
-.input_pw[type=text]::placeholder {
+.input_pw[type=password] {
     background-image: url(../assets/icon/lock.svg);
     background-position: 359px 1px;
     background-size: 17px;
+    background-position: 378px 12px;
 }
 
 .login_btns {
@@ -136,6 +135,11 @@ body {
     text-decoration: none;
 }
 
+.links_footer:hover {
+    color: #29ABE2;
+    font-weight: 700;
+}
+
 .link_privacy_policy {
     width: 121px;
 }
@@ -152,4 +156,37 @@ body {
 .link_legal_notice:hover {
     text-decoration: none;
     cursor: pointer;
+}
+
+.input_name {
+    background-image: url(../assets/icon/person.svg);
+    background-size: 24px;
+    background-position: 374px 11px;
+}
+
+.privacy_check {
+    display: flex;
+    min-width: 231px;
+    min-height: 24px;
+    align-items: center;
+    gap: 8px;
+}
+
+.pivacy_check_text {
+    display: flex;
+    align-items: center;
+    color: #A8A8A8;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.link_privacy {
+    color: #29ABE2;
+    text-decoration: none;
+}
+
+.link_privacy:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: 500;
 }

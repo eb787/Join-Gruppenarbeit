@@ -1,4 +1,4 @@
-.sign_up_btn {
+.btn_to_signup_page {
     height: 19px;
     width: 59px;
     border-radius: 8px;
@@ -11,9 +11,10 @@
     text-decoration: none;
 }
 
-.sign_up_btn:hover {
+.btn_to_signup_page:hover {
     cursor: pointer;
     text-decoration: none;
+    background-color: #29ABE2;
 }
 
 .login_btn {
@@ -29,6 +30,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.login_btn:hover {
+    background-color: #29ABE2;
+    cursor: pointer;
 }
 
 .guest_login_btn {
@@ -53,4 +59,34 @@
 .guest_login_btn:hover {
     cursor: pointer;
     text-decoration: none;
+    border: 1px solid #29ABE2;
+    color: #29ABE2;
+}
+
+.signup_btn {
+    width: 126px;
+    height: 55px;
+    border-radius: 8px;
+    padding: 15px 24px;
+    border: 0;
+    background-color: rgb(42, 54, 71);
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    font-weight: 700;
+    font-size: 21px;
+}
+
+.signup_btn:hover {
+    cursor: pointer;
+    text-decoration: none;
+    background-color: #29ABE2;
+}
+
+.check_btn {
+    width: 16px;
+}
+
+.check_btn:hover {
+    cursor: pointer;
 }
