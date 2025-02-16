@@ -182,9 +182,6 @@ hr {
   display: flex;
   align-items: center;
   gap: 54px;
-
-
-
 }
 
 
@@ -199,7 +196,6 @@ hr {
   border-radius: 70%;
   font-size: 47px;
   font-weight: 500;
-
 }
 
 
@@ -208,13 +204,11 @@ hr {
   font-weight: 500;
 }
 
-
 .contact_Detail_Con_Name {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
-
 
 
 .contact_name_Con_Menue {
@@ -234,4 +228,10 @@ hr {
 .contact_name_Con_Menue span img {
   width: 24px;
   height: 24px;
+}
+
+.contact_name_Con_Menue span:hover {
+  cursor: pointer;
+  filter: invert(52%) sepia(97%) saturate(300%) hue-rotate(166deg);
+
 }
