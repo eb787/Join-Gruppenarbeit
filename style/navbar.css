@@ -14,7 +14,6 @@ body {
     display: flex;
     justify-content: right;
     align-items: center;
-    max-width: 1440px;
     background-color: white;
     height: 96px;
 }
@@ -48,7 +47,6 @@ body {
 .navbar_seperator {
     height: 3px;
     background-color: rgb(227, 228, 229);
-    max-width: 1440px;
     display: flex;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
