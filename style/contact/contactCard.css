@@ -1,0 +1,63 @@
+.card_contact {
+  display: flex;
+  width: 1212px;
+  height: 592px;
+  z-index: 1;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: slide-in 0.5s ease-out forwards;
+}
+
+/* Animation */
+@keyframes slide-in {
+  from {
+    left: 100%;
+  }
+
+  to {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+
+.contact_Card_session {
+  display: flex;
+  flex-direction: column;
+  width: 453px;
+  height: 594;
+  background-color: #2A3647;
+  border-radius: 16px 0 0 16px;
+  padding-top: 66px;
+  padding-left: 46px;
+}
+
+.contact_Card_session img {
+  width: 53.93px;
+  height: 66.48px;
+}
+
+
+.contact_Card_session p {
+  width: 361px;
+  height: 73px;
+  font-size: 61px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.contact_Card_session l {
+  height: 20px;
+  width: 200px;
+  color: rgb(41, 171, 226);
+}
+
+
+.contact_Card_Input {
+  width: 759px;
+  height: 594;
+  background-color: #FFFFFF;
+  border-radius: 0 16px 16px 0;
+}
