@@ -25,10 +25,24 @@ body {
     left: 320px;
 }
 
-.headline_icons {
+.headline_logo_help {
     padding-right: 32px;
     display: flex;
-    gap: 32px;
+}
+
+.headline_logo_help:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.headline_logo_user_sign_in{
+    padding-right: 32px;
+    display: flex;
+}
+
+.headline_logo_user_sign_in:hover{
+    cursor: pointer;
+    transform: scale(1.2);
 }
 
 .navbar_seperator {
