@@ -6,6 +6,7 @@ body {
 
 .session_Card {
   display: flex;
+  background-color: rgb(245, 245, 245);
 }
 
 .contact_List_Sec {
@@ -143,8 +144,9 @@ hr {
 
 .contact_Detail {
   width: 100%;
-  margin-left: 20px;
+  margin-left: 54px;
   margin-top: 110px;
+
 }
 
 
@@ -175,6 +177,8 @@ hr {
 
 .contact_Detail_Adress_Container {
   display: flex;
+
+
 
 }
 
