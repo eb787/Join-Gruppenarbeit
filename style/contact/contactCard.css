@@ -1,7 +1,7 @@
 .card_contact {
-  display: none;
+  display: flex;
   width: 1212px;
-  height: 592px;
+  height: 594px;
   z-index: 1;
   position: fixed;
   top: 50%;
@@ -30,11 +30,51 @@
   width: 453px;
   height: 594;
   background-color: #2A3647;
-  border-radius: 16px 0 0 16px;
-  justify-content: center;
-  padding-left: 20px;
+  border-radius: 24px 0 0 24px;
+  padding-left: 48px;
+  padding-top: 150px;
+}
+
+
+.close_btn {
+  display: flex;
+  justify-content: end;
+  margin-top: 48px;
+  margin-right: 48px;
+}
+
+.close_btn img {
+  width: 13.5px;
+  height: 13.5px;
+}
+
+.container_contact_detail {
+  display: flex;
+  align-items: center;
+  margin-top: 110px;
+  gap: 100px;
 
 }
+
+.contact_Card_Input_abbreviation {
+  width: 120px;
+  height: 120px;
+
+}
+
+.contact_Card_Input_abbreviation p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 47px;
+  font-weight: 500;
+  background-color: aquamarine;
+  margin-left: 45px;
+  margin-right: 25px;
+
+}
+
+
 
 .contact_Card_session img {
   width: 53.93px;
@@ -43,8 +83,6 @@
 
 
 .contact_Card_session p {
-  width: 361px;
-  height: 73.2px;
   font-size: 61px;
   font-weight: 700;
   color: #FFFFFF;
@@ -63,7 +101,7 @@
   width: 759px;
   height: 594;
   background-color: #FFFFFF;
-  border-radius: 0 16px 16px 0;
+  border-radius: 0 24px 24px 0;
 }
 
 .contact_Card_Input_abbreviation p {
@@ -77,36 +115,34 @@
 .contact_Card_Input_Fields {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-}
+  gap: 32px;
 
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: #D1D1D1;
+    width: 422px;
+    height: 50px;
+  }
 
-.contact_Card_Input_Fields div {
-  display: flex;
-  justify-content: space-between;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 10px;
-  border-color: #D1D1D1;
-  width: 422px;
-  height: 50px;
-}
+  div:focus-within {
+    border-color: rgb(41, 171, 226);
+  }
 
-.contact_Card_Input_Fields div:focus-within {
-  border-color: rgb(41, 171, 226);
-}
+  input {
+    border: none;
+    outline: none;
+    font-size: 24px;
+  }
 
-.contact_Card_Input_Fields div input {
-  border: none;
-  outline: none;
-}
-
-
-
-
-.contact_Card_Input_Fieldimg img {
-  width: 24px;
-  height: 24px;
+  img {
+    width: 24px;
+    height: 24px;
+  }
 }

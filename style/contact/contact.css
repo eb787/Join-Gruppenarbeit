@@ -140,6 +140,7 @@ hr {
   font-weight: 400;
   margin-top: 0;
 
+
 }
 
 
@@ -178,10 +179,10 @@ hr {
 
 .contact_Detail_Adress_Container {
   display: flex;
-
-
-
+  height: 120px;
+  margin-top: 30px;
 }
+
 
 .contact_Detail_Con {
   display: flex;
@@ -245,11 +246,32 @@ hr {
 }
 
 
-
 .contact_Detail_Info_Header {
   font-weight: 400;
-  margin-top: 21px;
-  margin-bottom: 21px;
+  margin-top: 59px;
+  margin-bottom: 59px;
+
 }
 
-.contact_Detail_Info_Mail {}
+.contact_Detail_Info_Mail {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+
+.contact_Detail_Info_Phone {
+  display: flex;
+  flex-direction: column;
+  gap: 16px
+}
+
+
+.color_font {
+  color: rgb(41, 171, 226);
+}
+
+.font_weight_400 {
+  font-weight: 400;
+}
