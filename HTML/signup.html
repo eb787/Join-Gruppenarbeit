@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="../assets/icon/favicon.svg">
     <title>Join</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/login.css">
     <link rel="stylesheet" href="../style/buttons.css">
@@ -21,25 +19,28 @@
             <img class="logo" src="../assets/icon/logo.svg" alt="logo">
         </div>
 
-        <div class="login_content">
-            <div class="login_field">
-                <div class="login_heading_div">
-                    <h1 class="heading_login">Sign up</h1>
-                    <div class="seperator_log_in"></div>
+        <div class="login_content no_padding signup_content">
+            <div class="login_field signup_field">
+                <div class="signup_field_header">
+                    <a class="go_back_btn" href="../HTML/login.html"></a>
+                    <div class="login_heading_div">
+                        <h1 class="heading_login">Sign up</h1>
+                        <div class="seperator_log_in"></div>
+                    </div>
                 </div>
-                <div class="login_inputs">
+                <div class="login_inputs no_padding">
                     <input class="input_login input_name" type="text" placeholder="Name" alt="mail icon">
                     <input class="input_login input_mail" type="email" placeholder="Email" alt="mail icon">
                     <input class="input_login input_pw" type="password" placeholder="Password" alt="mail icon">
                     <input class="input_login input_pw" type="password" placeholder="Confirm Password" alt="mail icon"> 
-                </div>
-                <div class="privacy_check">
-                    <img class="check_btn" src="../assets/icon/Check_button.svg" alt="check button">
-                    <p class="pivacy_check_text">I accept the <a class="link_privacy" href="./policy.html" target="_blank">Privacy Policy</a></p>
-                    
+                
+                    <div class="privacy_check">
+                        <img class="check_btn" src="../assets/icon/Check_button.svg" alt="check button">
+                        <p class="pivacy_check_text">I accept the <a class="link_privacy" href="./policy.html" target="_blank">Privacy Policy</a></p>
+                    </div>    
                 </div>
                 <div class="login_btns">
-                    <button class="signup_btn">Sign up</button>
+                    <button type="button" class="signup_btn" disabled>Sign up</button>
                 </div>
             </div>
         </div>

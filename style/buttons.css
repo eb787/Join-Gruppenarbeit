@@ -39,13 +39,9 @@
 
 .guest_login_btn {
     height: 16px;
-    width: 127px;
     border-radius: 8px;
     border: 1px solid rgb(42, 54, 71);
     background-color: white;
-    color: white;
-    font-weight: 700;
-    font-size: 16px;
     padding: 15px 24px;
     color: rgb(42, 54, 71);
     font-weight: 700;
@@ -83,12 +79,20 @@
     background-color: #29ABE2;
 }
 
+.signup_btn:disabled {
+    cursor: unset;
+    background-color: rgb(42, 54, 71);
+}
+
 .check_btn {
-    width: 16px;
+    width: 24px;
 }
 
 .check_btn:hover {
     cursor: pointer;
+    background-image: url(../assets/icon/check.png);
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .button-clear-task{
@@ -174,4 +178,16 @@ button:hover {
         background-color: #FFA800;  
  
     }
+}
+
+.go_back_btn {
+    width: 32px;
+    height: 32px;
+    background-image: url(../assets/icon/arrow-left-line.svg);
+}
+
+.go_back_btn:hover {
+    cursor: pointer;
+    background-color: #EEEEEE;
+    border-radius: 50%;
 }
