@@ -41,6 +41,7 @@
   justify-content: end;
   margin-top: 48px;
   margin-right: 48px;
+
 }
 
 .close_btn img {
@@ -48,19 +49,18 @@
   height: 13.5px;
 }
 
+
+
+
+
 .container_contact_detail {
   display: flex;
   align-items: center;
   margin-top: 110px;
-  gap: 100px;
-
+  gap: 50px;
 }
 
-.contact_Card_Input_abbreviation {
-  width: 120px;
-  height: 120px;
 
-}
 
 .contact_Card_Input_abbreviation p {
   display: flex;
@@ -71,9 +71,10 @@
   background-color: aquamarine;
   margin-left: 45px;
   margin-right: 25px;
-
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
 }
-
 
 
 .contact_Card_session img {
@@ -104,31 +105,26 @@
   border-radius: 0 24px 24px 0;
 }
 
-.contact_Card_Input_abbreviation p {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-
-}
 
 
 .contact_Card_Input_Fields {
   display: flex;
   flex-direction: column;
   gap: 32px;
-
-
-  input {
-    border: none;
-    outline: none;
-    font-size: 24px;
-  }
-
-  img {
-    width: 24px;
-    height: 24px;
-  }
 }
+
+.contact_Card_Input_Fields input {
+  border: none;
+  outline: none;
+  font-size: 24px;
+}
+
+.contact_Card_Input_Fields img {
+  width: 24px;
+  height: 24px;
+}
+
+
 
 .contact_card--button {
   display: flex;
@@ -153,6 +149,7 @@
   flex-direction: row;
   width: 249px;
   gap: 25px;
+  margin-top: 20px;
 
 }
 
@@ -173,6 +170,7 @@
 
 .container_button1 {
   width: 113px;
+  background-color: #FFFFFF;
 }
 
 .container_button2 {
@@ -181,14 +179,9 @@
   width: 111px;
   background-color: #2A3647;
   color: white;
-
-  img {
-    height: 11.22px;
-    width: 15.49px;
-  }
 }
 
-.container_button1,
-.container_button2:hover {
-  cursor: pointer;
+.container_button2 img {
+  height: 11.22px;
+  width: 15.49px;
 }
