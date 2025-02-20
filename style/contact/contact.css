@@ -4,13 +4,13 @@
   font-family: "Inter", sans-serif;
 }
 
-
-.session_Card {
+.contact_Card {
   display: flex;
   background-color: rgb(245, 245, 245);
 }
 
-.contact_List_Sec {
+
+.contact_List {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +19,8 @@
   width: 400px;
 }
 
-.btn_New_Cont {
+
+.contact_Add_btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,15 +35,18 @@
   padding-bottom: 12px;
 }
 
-.btn_New_Cont p {
+
+.contact_Add_btn p {
   font-size: 21px;
   font-weight: 700;
 }
 
-.btn_New_Cont img {
+
+.contact_Add_btn img {
   width: 32px;
   height: 32px;
 }
+
 
 .contac_List_Sec_Header {
   position: fixed;
@@ -77,20 +81,30 @@
   border-radius: 3px;
 }
 
-
-
-
-.contact_Enty_List {
+.contact_Entry {
   margin-top: 60px;
   background-color: #FFFFFF;
   width: 325px;
-
 }
 
-hr {
+
+.contact_Register {
+  display: flex;
+  align-items: center;
+  width: 352px;
+  height: 58px;
+  padding-top: 17px;
+  padding-bottom: 17px;
+  padding-left: 36px;
+}
+
+.contact_Line {
+  width: 352px;
+  height: 16px;
   border: none;
-  height: 1px;
-  background-color: rgba(0, 0, 0, 0.1);
+  color: #D1D1D1;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 
@@ -102,15 +116,11 @@ hr {
   padding: 15px 24px;
   border-radius: 10px;
   background-color: #FFFFFF;
-
 }
 
 .contact_Detail_List:hover {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.01) 0%, #00000014 100%);
   cursor: pointer;
-
-
-
 }
 
 
