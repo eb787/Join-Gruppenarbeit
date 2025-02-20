@@ -1,0 +1,96 @@
+.board_page {
+    display: flex;
+}
+    
+.board_content {
+    width: calc(100vw - 232px);
+}
+
+.board_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 64px;
+    padding-right: 64px;
+    padding-top: 79.5px;
+}
+
+.board_options {
+    display: flex;
+    gap: 32px;
+}
+
+.board_heading {
+    font-size: 61px;
+}
+
+.add_icon {
+    width: 32px;
+}
+
+.input_board{
+    width: 278px;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid #A8A8A8;
+    padding: 8px 16px;  
+    background-color: white;
+    display: flex;
+}
+
+.inputfield_board {
+    border: 0;
+    padding: 0;
+    font-size: 20px;
+    font-weight: 400;
+    width: 230px;
+}
+
+.inputfield_board::placeholder {
+    color: #D1D1D1;
+}
+
+.inputfield_board:focus-visible {
+    outline: none;
+}
+
+.input_icons {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    width: 48px;
+}
+
+.seperator_icon {
+    height: 32px;
+ }
+
+.search_icon {
+   height: 17.58px;
+}
+
+.board_table_headings {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 64px;
+    padding-top: 55px;
+}
+
+.board_description_box{
+    width: 244px;
+    height: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Board_description_text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #42526E;
+}
+
+.add_task_icon {
+    width: 24px;
+}
+
