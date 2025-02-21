@@ -192,6 +192,17 @@ button:hover {
     border-radius: 50%;
 }
 
+.go_back_btn_help {
+    width: 37px;
+    height: 37px;
+}
+
+.go_back_btn_help:hover {
+    cursor: pointer;
+    background-color: #EEEEEE;
+    border-radius: 50%;
+}
+
 .add_task_btn {
     height: 48px;
     border: 1px solid #2A3647;
