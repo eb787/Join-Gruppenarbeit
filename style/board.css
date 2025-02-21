@@ -109,6 +109,10 @@
 
 .board_content_box {
     width: 246px;
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+    padding-top: 6px;
 }
 
 .no_tasks {
@@ -126,20 +130,18 @@
     color: #A8A8A8;
 }
 
-.card_a {
+.card {
     width: 220px;
     background-color: #FFFFFF;
     border-radius: 24px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 14px;
     box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.08);
     padding: 16px;
 }
 
-.user_story {
-    background-color: #0038FF;
-    width: 81px;
+.task_category {
     height: 19px;
     color: white;
     border-radius: 8px;
@@ -147,6 +149,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.user_story {
+    background-color: #0038FF;
+    width: 81px;
+}
+
+.technical_task {
+    background-color: #1FD7C1;
+    width: 114px;
 }
 
 .task_name {
@@ -160,9 +172,106 @@
 }
 
 .progress_box {
-    display: flex;
     width: 220px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.progress_bar {
+    background-color: #F4F4F4;
+    width: 128px;
+    height: 8px;
+    border-radius: 8px;
+
+}
+
+.progress {
+    background-color: #4589FF;
+    height: 8px;
+    border-radius: 16px;
+}
+
+.card_footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile_badges {
+    display: flex;
+}
+
+.profile_badge {
+    width: 32px;
+    height: 32px;
+    border-radius: 45px;
+    border: 1px solid white;
+    color: white;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.first_profile {
+    z-index: 1;
+    position: relative;
+}
+
+.second_profile {
+    z-index: 2;
+    position: relative;
+    left: -8px;
+}
+
+.third_profile {
+    z-index: 3;
+    position: relative;
+    left: -16px;
+}
+
+.profile_orange {
+    background-color: #FF7A00;
+}
+
+.profile_green {
+    background-color: #1FD7C1;
+}
+
+.profile_purple {
+    background-color: #462F8A;
+}
+
+.profile_pink {
+    background-color: #FC71FF;
+}
+
+.profile_blue {
+    background-color: #6E52FF;
+}
+
+.profile_lightpurple {
+    background-color: #9327FF;
+}
+
+.profile_yellow {
+    background-color: #FFBB2B;
+}
+
+.profile_red {
+    background-color: #FF4646;
+}
+
+.profile_turquoise {
+    background-color: #00BEE8;
+}
+
+.prio_icon {
+    width: 17px;
+    height: 6.33px;
+    padding: 13px 7.5px;
+}
+
+.prio_low {
+    height: 12px;
 }
