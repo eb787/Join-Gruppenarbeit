@@ -31,8 +31,10 @@
                 </div>
                 <div class="login_inputs">
                     <input class="input_login input_mail" type="email" placeholder="Email" alt="mail icon">
-                    <input class="input_login input_pw" type="password" placeholder="Password" alt="mail icon">
-                    
+                    <div style="display: flex; gap: 8px; flex-direction: column; height: 74px;">
+                        <input class="input_login input_pw" type="password" placeholder="Password" alt="mail icon">
+                        <div class="wrong_data_alert d_none">Check your email and password. Please try again.</div>
+                    </div>
                 </div>
                 <div class="login_btns">
                     <button class="login_btn">Log in</button>
