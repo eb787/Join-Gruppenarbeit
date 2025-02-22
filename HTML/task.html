@@ -6,17 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="/style/style.css">
     <link rel="stylesheet" href="/style/buttons.css">
     <link rel="stylesheet" href="/style/color.css">
     <link rel="stylesheet" href="/style/template.css">
     <link rel="stylesheet" href="/style/fonts.css">
     <link rel="stylesheet" href="/style/taskstyle.css">
+    <link rel="stylesheet" href="/style/navbar.css">
 </head>
 
 <body>
+    <div class="headline">
+        <span class="headline_title">Kanban Project Management Tool</span>
+        <div class="headline_logo_help">
+            <img src="../assets/icon/help.svg" alt="">
+        </div>
+        <div class="headline_logo_user_sign_in">
+            <img src="../assets/icon/group 5.svg">
+        </div>
+
+
+    </div>
+    <seperator class="navbar_seperator"></seperator>
+
+    <nav class="nav">
+        <div class="nav-icon-capa2">
+            <img src="../assets/icon/capa 2.svg">
+        </div>
+
+        <div class="div_nav_icons">
+            <div class="navbar_icon">
+                <img src="../assets/icon/summary.svg">
+            </div>
+            <div class="navbar_icon">
+                <img src="../assets/icon/add_task.svg">
+            </div>
+            <div class="navbar_icon">
+                <img src="../assets/icon/board.svg">
+            </div>
+            <div class="navbar_icon">
+                <img src="../assets/icon/contacts.svg">
+            </div>
+        </div>
+
+        <div class="div_impressum">
+            <div class="nav_impressum">
+                <img src="../assets/icon/privacy_policy.svg">
+            </div>
+            <div class="nav_impressum">
+                <img src="../assets/icon/legal_notice.svg">
+            </div>
+        </div>
+    </nav>
     <h1>Add Task</h1>
     <div class="section-title">
         <div class="section-title-div">
@@ -35,13 +79,16 @@
         </div>
 
         <div class="section-assigned">
-                <span class="assigned-title">Assigned to</span>
-                <select name="" id="">
-                    <option class="select-text" disabled selected>Select contacts to assign</option>
-                    <option value="1">Test 1</option>
-                    <option value="2">Test 2</option>
-                    <option value="3">Test 3</option>
-                </select>
+            <span class="assigned-title">Assigned to</span>
+            <div class="category-wrapper">
+            <select name="" id="">
+                <option class="select-text" disabled selected>Select contacts to assign</option>
+                <option value="1">Test 1</option>
+                <option value="2">Test 2</option>
+                <option value="3">Test 3</option>
+            </select>
+            <img src="/assets/icons/arrow_drop_down.png" alt="dropdown" class="custom-arrow">
+        </div>
         </div>
     </div>
     <hr>
@@ -53,34 +100,39 @@
         <div class="section-prio">
             <span>Prio</span>
             <div class="prio-buttons">
-                <button>Urgent <img src="/assets/icons/Prio alta.png" alt="urgent"></button>
+                <button class="button-urgent">Urgent <img src="/assets/icons/Prio alta.png" alt="urgent"></button>
                 <button class="button-medium">Medium <img src="/assets/icons/Prio media.png" alt="medium"></button>
-                <button>Low <img src="/assets/icons/Capa 2.png" alt="Low"></button>
+                <button class="button-low">Low <img src="/assets/icons/Capa 2.png" alt="Low"></button>
             </div>
         </div>
         <div class="section-category">
-            <span>Category <span class="star-red">*</span></span>
-            <select name="" id="">
-                <option value="" disabled selected>Select task category</option>
-                <option value="1">Technical Task</option>
-                <option value="2">User Story</option>
-            </select>
+            <span>Category<span class="star-red">*</span></span>
+            <div class="category-wrapper">
+                <select>
+                    <option value="" disabled selected>Select task category</option>
+                    <option value="1">Technical Task</option>
+                    <option value="2">User Story</option>
+                </select>
+                <img src="/assets/icons/arrow_drop_down.png" alt="dropdown" class="custom-arrow">
+            </div>
         </div>
         <div class="section-subtasks">
             <span>Subtasks</span>
-            <input type="text">
+            <div class="input-wrapper">
+                <input type="text">
+                <img src="/assets/icons/add.png" alt="add-icon" class="add-subtasks">
+            </div>
         </div>
     </div>
     <div class="button-bottom-task">
-        <button class="button-clear-task">Clear <img class = "cancel"src="/assets/icons/iconoir_cancel.png" alt=""></button>
+        <button class="button-clear-task">Clear <img class="cancel" src="/assets/icons/iconoir_cancel.png"
+                alt=""></button>
         <button class="button-create-task">Create Task <img src="/assets/icons/check.png" alt=""></button>
     </div>
     <div class="required-text">
         <span><span class="star-red">*</span>This field is requiered</span>
     </div>
-    <div></div>
-    <div></div>
-    <div></div>
+    
 </body>
 
 </html>
