@@ -15,6 +15,7 @@
     cursor: pointer;
     text-decoration: none;
     background-color: #29ABE2;
+    box-shadow: 0 0 4px 0 rgb(0, 0, 0, 0.02);
 }
 
 .login_btn {
@@ -35,17 +36,14 @@
 .login_btn:hover {
     background-color: #29ABE2;
     cursor: pointer;
+    box-shadow: 0 0 4px 0 rgb(0, 0, 0, 0.02);
 }
 
 .guest_login_btn {
     height: 16px;
-    width: 127px;
     border-radius: 8px;
     border: 1px solid rgb(42, 54, 71);
     background-color: white;
-    color: white;
-    font-weight: 700;
-    font-size: 16px;
     padding: 15px 24px;
     color: rgb(42, 54, 71);
     font-weight: 700;
@@ -61,6 +59,7 @@
     text-decoration: none;
     border: 1px solid #29ABE2;
     color: #29ABE2;
+    box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.02);
 }
 
 .signup_btn {
@@ -81,13 +80,23 @@
     cursor: pointer;
     text-decoration: none;
     background-color: #29ABE2;
+    box-shadow: 0 0 4px 0 rgb(0, 0, 0, 0.02);
 }
 
-.check_btn {
-    width: 16px;
+.signup_btn:disabled {
+    cursor: unset;
+    background-color: rgb(42, 54, 71);
 }
 
-.check_btn:hover {
+.check_box_btn {
+    width: 24px;
+    background-image: url(../assets/icon/Check_button.svg);
+    height: 24px;
+    background-repeat: no-repeat;
+}
+
+.check_box_btn:hover {
+    background-image: url(../assets/icon/checked_hover.png);
     cursor: pointer;
 }
 
@@ -200,9 +209,69 @@ button:hover {
     }
 }
 
-.button-low{
-    background-color: white;
+.go_back_btn {
+    width: 32px;
+    height: 32px;
+    background-image: url(../assets/icon/arrow-left-line.svg);
 }
-.button-urgent{
-    background-color: white;
+
+.go_back_btn:hover {
+    cursor: pointer;
+    background-color: #EEEEEE;
+    border-radius: 50%;
+}
+
+.go_back_btn_help {
+    width: 37px;
+    height: 37px;
+}
+
+.go_back_btn_help:hover {
+    cursor: pointer;
+    background-color: #EEEEEE;
+    border-radius: 50%;
+}
+
+.add_task_btn {
+    height: 48px;
+    border: 1px solid #2A3647;
+    border-radius: 10px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background-color: #2A3647;
+    font-weight: 700;
+    color: white;
+    font-size: 21px;
+}
+
+.successful_signin_btn {
+    width: 312px;
+    height: 74px;
+    box-shadow: 0 0 4px 0px rgb(0, 0, 0, 0.01);
+    background-color: #2A3647;
+    border-radius: 20px;
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    bottom: 0;
+    left: calc(50vw - 156px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation-name: signedUp;
+    animation-duration: 4s;
+    animation-delay: 800ms;
+}
+
+.successful_signin_btn:hover {
+    cursor: pointer;
+    background-color: #29ABE2;
+    box-shadow: 0 4px 4px 0px rgb(0, 0, 0, 0.02);
+}
+
+@keyframes signedUp {
+    from {bottom: 0;}
+    to {top: calc(50vh + 37px ); }
 }
