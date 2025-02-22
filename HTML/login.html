@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="../assets/icon/favicon.svg">
     <title>Join</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/login.css">
     <link rel="stylesheet" href="../style/buttons.css">
@@ -33,8 +31,10 @@
                 </div>
                 <div class="login_inputs">
                     <input class="input_login input_mail" type="email" placeholder="Email" alt="mail icon">
-                    <input class="input_login input_pw" type="password" placeholder="Password" alt="mail icon">
-                    
+                    <div style="display: flex; gap: 8px; flex-direction: column; height: 74px;">
+                        <input class="input_login input_pw" type="password" placeholder="Password" alt="mail icon">
+                        <div class="wrong_data_alert d_none">Check your email and password. Please try again.</div>
+                    </div>
                 </div>
                 <div class="login_btns">
                     <button class="login_btn">Log in</button>

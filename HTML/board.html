@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join</title>
+    <link rel="icon" type="image/x-icon" href="../assets/icon/favicon.svg">
+    <link rel="stylesheet" href="../style/navbar.css">
+    <link rel="stylesheet" href="../style/buttons.css">
+    <link rel="stylesheet" href="../style/color.css">
+    <link rel="stylesheet" href="../style/template.css">
+    <link rel="stylesheet" href="../style/fonts.css">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/board.css">
+
+
+</head>
+
+<body>
+    <div class="headline">
+        <span class="headline_title">Kanban Project Management Tool</span>
+        <div class="headline_logo_help">
+            <img src="../assets/icon/help.svg" alt="">
+        </div>
+        <div class="headline_logo_user_sign_in">
+            <img src="../assets/icon/group 5.svg">
+        </div>
+        
+
+    </div>
+    <seperator class="navbar_seperator"></seperator>
+
+   
+    <div class="board_page">
+        <nav class="nav">
+            <div class="nav-icon-capa2">
+                <img src="../assets/icon/capa 2.svg">
+            </div>
+
+            <div class="div_nav_icons">
+                <div class="navbar_icon">
+                    <img src="../assets/icon/summary.svg">
+                </div>
+                <div class="navbar_icon">
+                    <img src="../assets/icon/add_task.svg">
+                </div>
+                <div class="navbar_icon">
+                    <img src="../assets/icon/board.svg">
+                </div>
+                <div class="navbar_icon">
+                    <img src="../assets/icon/contacts.svg">
+                </div>
+            </div>
+
+            <div class="div_impressum">
+                <div class="nav_impressum">
+                    <img src="../assets/icon/privacy_policy.svg">
+                </div>
+                <div class="nav_impressum">
+                    <img src="../assets/icon/legal_notice.svg">
+                </div>
+            </div>
+        </nav>
+
+        <div class="board_content">
+            <div class="board_header">
+                <h1 class="board_heading">Board</h1>
+                <div class="board_options">
+                    <div class="input_board">
+                        <input class="inputfield_board" type="text" placeholder="Find Task" alt="input find task"> 
+                        <div class="input_icons">
+                            <img class="seperator_icon" src="../assets/icon/seperator.png" alt="seperator icon">
+                            <img class="search_icon" src="../assets/icon/search.png" alt="search icon">
+                        </div>
+                    </div>
+                    <button type="button" class="add_task_btn">Add task<img class="add_icon" src="../assets/icon/add.png" alt="add task"></button>
+                </div>
+            </div>
+                <div class="board_table">
+                    <div class="board_table_headings">
+                        <div class="board_description_box">
+                            <h2 class="Board_description_text">To do</h2>
+                            <img class="add_task_icon" src="../assets/icon/plus button.png" alt="plus icon">
+                        </div>
+                        <div class="board_description_box">
+                            <h2 class="Board_description_text">In progress</h2>
+                            <img class="add_task_icon" src="../assets/icon/plus button.png" alt="plus icon">
+                        </div><div class="board_description_box">
+                            <h2 class="Board_description_text">Await feedback</h2>
+                            <img class="add_task_icon" src="../assets/icon/plus button.png" alt="plus icon">
+                        </div>
+                        <div class="board_description_box">
+                            <h2 class="Board_description_text">Done</h2>
+                        </div>
+                    </div>
+                    <div class="board_table_content">
+                        <div class="board_content_box">
+                            <div class="no_tasks">No tasks To do</div>
+                        </div>
+                        <div class="board_content_box">
+                            <div class="card">
+                                <div class="task_category user_story">User story</div>
+                                <div>
+                                    <div class="task_name">Kochwelt Page & Recipe Recommender</div>
+                                    <div class="task_description">Build start page with recipe recommendation...</div>
+                                </div>
+                                <div class="progress_box">
+                                    <div class="progress_bar">
+                                        <div class="progress" style="width: 50%;"></div>
+                                    </div>
+                                    <div style="display: flex; flex-direction: row; gap: 1px; align-items: center;">
+                                        <h4 id="subtasks_done" style="font-weight: 400;">1</h4>
+                                        <h4 style="font-weight: 400;">/</h4>
+                                        <h4 id="subtasks_total" style="font-weight: 400;">2</h4><br><br>
+                                        <h4 style="font-weight: 400;">Subtasks</h4>
+                                    </div>
+                                    
+                                </div>
+                                <div class="card_footer">
+                                    <div class="profile_badges">
+                                        <div id="profile_orange" class="profile_badge profile_orange first_profile">AM</div>
+                                        <div id="profile_green" class="profile_badge profile_green second_profile">EM</div>
+                                        <div id="profile_purple" class="profile_badge profile_purple third_profile">MB</div>
+                                    </div>
+                                    <img class="prio_icon" src="..//assets/icon/medium_prio.png" alt="medium priority">
+                                </div>
+                                
+        
+                            </div>
+                        </div>
+                        <div class="board_content_box">
+                            <div class="card">
+                                <div class="task_category technical_task">Technical Task</div>
+                                <div>
+                                    <div class="task_name">HTML Base Template Creation</div>
+                                    <div class="task_description">Create reusable HTML base templates...</div>
+                                </div>
+                                <div class="card_footer">
+                                    <div class="profile_badges">
+                                        <div id="profile_pink" class="profile_badge profile_pink first_profile">DE</div>
+                                        <div id="profile_blue" class="profile_badge profile_blue second_profile">BZ</div>
+                                        <div id="profile_lightpurple" class="profile_badge profile_lightpurple third_profile">AS</div>
+                                    </div>
+                                    <img class="prio_icon prio_low" src="..//assets/icon/low_prio.png" alt="low priority">
+                                </div>
+                                
+        
+                            </div>
+                            <div class="card">
+                                <div class="task_category user_story">User story</div>
+                                <div>
+                                    <div class="task_name">Daily Kochwelt Recipe</div>
+                                    <div class="task_description">Implement daily recipe and portion calculator...</div>
+                                </div>
+                                <div class="card_footer">
+                                    <div class="profile_badges">
+                                        <div id="profile_yellow" class="profile_badge profile_yellow first_profile">EF</div>
+                                        <div id="profile_lightpurple" class="profile_badge profile_lightpurple second_profile">AS</div>
+                                        <div id="profile_red" class="profile_badge profile_red third_profile">TW</div>
+                                    </div>
+                                    <img class="prio_icon" src="..//assets/icon/medium_prio.png" alt="medium priority">
+                                </div>
+                                
+        
+                            </div>
+                        </div>
+                        <div class="board_content_box">
+                            <div class="card">
+                                <div class="task_category technical_task">Technical Task</div>
+                                <div>
+                                    <div class="task_name">CSS Architecture Planning</div>
+                                    <div class="task_description">Define CSS naming conversations and structure...</div>
+                                </div>
+                                <div class="progress_box">
+                                    <div class="progress_bar">
+                                        <div class="progress" style="width: 100%;"></div>
+                                    </div>
+                                    <div style="display: flex; flex-direction: row; gap: 1px; align-items: center;">
+                                        <h4 id="subtasks_done" style="font-weight: 400;">2</h4>
+                                        <h4 style="font-weight: 400;">/</h4>
+                                        <h4 id="subtasks_total" style="font-weight: 400;">2</h4><br><br>
+                                        <h4 style="font-weight: 400;">Subtasks</h4>
+                                    </div>
+                                    
+                                </div>
+                                <div class="card_footer">
+                                    <div class="profile_badges">
+                                        <div id="profile_turquoise" class="profile_badge profile_turquoise first_profile">SM</div>
+                                        <div id="profile_blue" class="profile_badge profile_blue second_profile">BZ</div>
+                                    </div>
+                                    <img class="prio_icon" src="..//assets/icon/medium_prio.png" alt="medium priority">
+                                </div>
+                                
+        
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                
+            </div>
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>

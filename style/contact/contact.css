@@ -1,15 +1,16 @@
-body {
+* {
   margin: 0;
   padding: 0;
-  font-family: Inter;
+  font-family: "Inter", sans-serif;
 }
 
-.session_Card {
+.contact_Card {
   display: flex;
   background-color: rgb(245, 245, 245);
 }
 
-.contact_List_Sec {
+
+.contact_List_Frame {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,7 +19,26 @@ body {
   width: 400px;
 }
 
-.btn_New_Cont {
+
+.contact_scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 400px;
+  background-color: #FFFFFF;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+
+.contac_List_Sec_Header {
+  position: fixed;
+  top: 0;
+}
+
+
+.contact_Add_btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,44 +53,17 @@ body {
   padding-bottom: 12px;
 }
 
-.btn_New_Cont p {
+
+.contact_Add_btn p {
   font-size: 21px;
   font-weight: 700;
 }
 
-.btn_New_Cont img {
+
+.contact_Add_btn img {
   width: 32px;
   height: 32px;
 }
-
-.btn_hover:hover {
-  cursor: pointer;
-  background-color: rgb(41, 171, 226);
-  color: white;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.contac_List_Sec_Header {
-  position: fixed;
-  top: 0;
-}
-
-
-.contact_scroll {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
-  width: 400px;
-  background-color: #FFFFFF;
-  overflow-y: scroll;
-}
-
-/*
-.contact_scroll>* {
-  min-height: 150vh;
-}
-*/
 
 
 .contact_scroll::-webkit-scrollbar {
@@ -78,25 +71,37 @@ body {
   width: 6px;
 }
 
+
 .contact_scroll::-webkit-scrollbar-thumb {
   background: #a8a8a8;
   border-radius: 3px;
 }
 
 
-
-
-.contact_Enty_List {
+.contact_Entry {
   margin-top: 60px;
   background-color: #FFFFFF;
   width: 325px;
-
 }
 
-hr {
+
+.contact_Register {
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  width: 352px;
+  padding-top: 17px;
+  padding-bottom: 17px;
+  padding-left: 36px;
+}
+
+.contact_Line {
+  width: 352px;
+  height: 16px;
   border: none;
-  height: 1px;
-  background-color: rgba(0, 0, 0, 0.1);
+  color: #D1D1D1;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 
@@ -108,15 +113,11 @@ hr {
   padding: 15px 24px;
   border-radius: 10px;
   background-color: #FFFFFF;
-
 }
 
 .contact_Detail_List:hover {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.01) 0%, #00000014 100%);
   cursor: pointer;
-
-
-
 }
 
 
@@ -130,15 +131,16 @@ hr {
   border-radius: 50%;
 }
 
+
 .contact_name {
   font-weight: 400;
   margin-bottom: 2px;
 }
 
+
 .contact_mail {
   font-weight: 400;
   margin-top: 0;
-
 }
 
 
@@ -146,24 +148,19 @@ hr {
   width: 100%;
   margin-left: 54px;
   margin-top: 110px;
-
 }
 
 
-.con_Detail_Header {
+.contact_Detail_Header {
   display: flex;
   align-items: center;
   gap: 20px
 }
 
-.con_Detail_Header p1 {
+
+.contact_header_1 {
   font-size: 61px;
   font-weight: 700;
-}
-
-.con_Detail_Header p2 {
-  font-size: 27px;
-  font-weight: 400;
 }
 
 
@@ -175,21 +172,21 @@ hr {
 }
 
 
-.contact_Detail_Adress_Container {
-  display: flex;
-
-
-
+.contact_header_2 {
+  font-size: 27px;
+  font-weight: 400;
 }
 
-.contact_Detail_Con {
+
+
+.contact_Detail_Frame {
   display: flex;
   align-items: center;
   gap: 54px;
 }
 
 
-.contact_abbreviation_Con {
+.contact_Detail_abbreviation {
   display: flex;
   background-color: red;
   margin-top: 30px;
@@ -205,50 +202,90 @@ hr {
 }
 
 
-.contact_name_Con {
-  font-size: 47px;
-  font-weight: 500;
-
-}
-
-.contact_Detail_Con_Name {
+.contact_Detail__Name_Frame {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
 
-.contact_name_Con_Menue {
-  display: flex;
-  gap: 20px;
-  font-size: 16px;
-  font-weight: 400;
+.contact_Detail_Name {
+  font-size: 47px;
+  font-weight: 500;
 
 }
 
 
-.contact_name_Con_Menue span {
+.contact_Detail_Menu {
+  display: flex;
+  gap: 20px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+
+.contact_Detail_Menu span {
   display: flex;
   gap: 13px;
   align-items: center;
 }
 
-.contact_name_Con_Menue span img {
+
+.contact_Detail_Menu span img {
   width: 24px;
   height: 24px;
 }
 
-.contact_name_Con_Menue span:hover {
+
+.contact_Detail_Menu span:hover {
   cursor: pointer;
   filter: invert(52%) sepia(97%) saturate(300%) hue-rotate(166deg);
 }
 
 
-
 .contact_Detail_Info_Header {
   font-weight: 400;
-  margin-top: 21px;
-  margin-bottom: 21px;
+  margin-top: 59px;
+  margin-bottom: 59px;
 }
 
-.contact_Detail_Info_Mail {}
+
+.contact_Detail_Info_Mail {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+
+.contact_Detail_Info_Phone {
+  display: flex;
+  flex-direction: column;
+  gap: 16px
+}
+
+
+.color_font {
+  color: rgb(41, 171, 226);
+}
+
+.font_weight_400 {
+  font-weight: 400;
+}
+
+
+.btn_hover_blue:hover {
+  cursor: pointer;
+  background-color: rgb(41, 171, 226);
+  color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.btn_hover_white:hover {
+  cursor: pointer;
+  background-color: white;
+  color: rgb(41, 171, 226);
+  border-color: rgb(41, 171, 226);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
