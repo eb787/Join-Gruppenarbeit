@@ -19,7 +19,7 @@
     height: 334.07px;
     position: fixed;
     transform: translate(-50%, -50%);
-    animation: slide-in 2.0s ease-out forwards;
+    animation: slide-in 1.0s ease-out forwards;
 }
 
 /* Animation inndex */
