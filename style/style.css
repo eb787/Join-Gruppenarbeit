@@ -18,17 +18,21 @@
     width: 274px;
     height: 334.07px;
     position: fixed;
-    top: 45%;
-    left: 50%;
     transform: translate(-50%, -50%);
-    animation: start 2.0s ease-out forwards;
+    animation: slide-in 2.0s ease-out forwards;
 }
 
-/* Animation index */
-@keyframes start {
-    to {
-        left: 10%;
-        top: 20%;
+/* Animation inndex */
+@keyframes slide-in {
+    from {
+        top: 45%;
+        left: 50%;
+    }
 
+    to {
+        left: 5%;
+        top: 8%;
+        width: 66px;
+        height: 80px;
     }
 }
