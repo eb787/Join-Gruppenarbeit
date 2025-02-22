@@ -21,17 +21,14 @@
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: slide-in 1.0s ease-out forwards;
+    animation: start 2.0s ease-out forwards;
 }
 
-/* Animation inndex */
-@keyframes slide-in {
-    from {
-        left: 100%;
-    }
-
+/* Animation index */
+@keyframes start {
     to {
-        left: 50%;
-        transform: translate(-50%, -50%);
+        left: 10%;
+        top: 20%;
+
     }
 }
