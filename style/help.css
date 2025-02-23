@@ -1,6 +1,11 @@
 .help_content {
     padding: 110px 96px;
-    width: 1014px;
+    overflow-y: auto;
+    height: 700px;
+}
+
+.display_none{
+    display: none;
 }
 
 .header_help {
