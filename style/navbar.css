@@ -1,21 +1,37 @@
 body {
     height: 100vh;
     background-color: rgb(246, 247, 249);
-    font-family: "Figtree", serif;
     margin: 0;
+    display: flex;
+    overflow: hidden;
 }
 
-.content_wrapper {
+.full_content {
     display: flex;
-    flex-direction: row-reverse;
+    flex: 1;
+}
+
+.content_right{
+    align-items: center;
+    background-color: white;
+    flex-grow: 1;
+    width: calc(100% - 232px);
+}
+
+.main_contant{
+    background-color: rgb(246, 247, 249);
+    height: 1000px;
 }
 
 .headline {
     display: flex;
-    justify-content: right;
     align-items: center;
     background-color: white;
     height: 96px;
+    width: 100%;
+    flex-grow: 1;
+    gap: 100px;
+    justify-content: right;
 }
 
 .headline_title {
@@ -25,7 +41,6 @@ body {
 }
 
 .headline_logo_help {
-    padding-right: 32px;
     display: flex;
 }
 
@@ -49,16 +64,18 @@ body {
     background-color: rgb(227, 228, 229);
     display: flex;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    top: 96px;
+    position: absolute;
+    flex-grow: 1;
+    width: calc(100% - 232px);
 }
 
 .nav {
     background-color: rgba(42, 54, 71);
     width: 232px;
-    height: 1024px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transform: translate(-0%, -10%);
 }
 
 .nav-icon-capa2 {
@@ -86,7 +103,7 @@ body {
 }
 
 .div_impressum {
-    padding-top: 310px;
+    padding-top: 180px;
 }
 
 .nav_impressum {
