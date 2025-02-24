@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
     <meta charset="UTF-8">
@@ -9,16 +9,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/style/style.css">
-    <link rel="stylesheet" href="/style/buttons.css">
-    <link rel="stylesheet" href="/style/color.css">
-    <link rel="stylesheet" href="/style/template.css">
-    <link rel="stylesheet" href="/style/fonts.css">
-    <link rel="stylesheet" href="/style/taskstyle.css">
-    <link rel="stylesheet" href="/style/navbar.css">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/buttons.css">
+    <link rel="stylesheet" href="../style/color.css">
+    <link rel="stylesheet" href="../style/template.css">
+    <link rel="stylesheet" href="../style/fonts.css">
+    <link rel="stylesheet" href="../style/taskstyle.css">
+    <link rel="stylesheet" href="../style/navbar.css">
+    <script src="../scripts/task/taskMain.js"></script>
+    <script src="../scripts/task/taskFirebase.js"></script>
+    <script src="../scripts/task/tastTemplate.js"></script>
 </head>
 
-<body>
+<body onload="init()">
     <div class="headline">
         <span class="headline_title">Kanban Project Management Tool</span>
         <div class="headline_logo_help">
@@ -87,7 +90,7 @@
                 <option value="2">Test 2</option>
                 <option value="3">Test 3</option>
             </select>
-            <img src="/assets/icons/arrow_drop_down.png" alt="dropdown" class="custom-arrow">
+            <img src="../assets/icons/arrow_drop_down.png" alt="dropdown" class="custom-arrow">
         </div>
         </div>
     </div>
@@ -100,9 +103,9 @@
         <div class="section-prio">
             <span>Prio</span>
             <div class="prio-buttons">
-                <button class="button-urgent">Urgent <img src="/assets/icons/Prio alta.png" alt="urgent"></button>
-                <button class="button-medium">Medium <img src="/assets/icons/Prio media.png" alt="medium"></button>
-                <button class="button-low">Low <img src="/assets/icons/Capa 2.png" alt="Low"></button>
+                <button class="button-urgent">Urgent <img src="../assets/icons/Prio alta.png" alt="urgent"></button>
+                <button class="button-medium">Medium <img src="../assets/icons/Prio media.png" alt="medium"></button>
+                <button class="button-low">Low <img src="../assets/icons/Capa 2.png" alt="Low"></button>
             </div>
         </div>
         <div class="section-category">
@@ -125,9 +128,9 @@
         </div>
     </div>
     <div class="button-bottom-task">
-        <button class="button-clear-task">Clear <img class="cancel" src="/assets/icons/iconoir_cancel.png"
+        <button class="button-clear-task">Clear <img class="cancel" src="../assets/icons/iconoir_cancel.png"
                 alt=""></button>
-        <button class="button-create-task">Create Task <img src="/assets/icons/check.png" alt=""></button>
+        <button class="button-create-task">Create Task <img src="../assets/icons/check.png" alt=""></button>
     </div>
     <div class="required-text">
         <span><span class="star-red">*</span>This field is requiered</span>
