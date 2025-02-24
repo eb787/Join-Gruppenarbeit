@@ -34,7 +34,7 @@
 
 .contac_List_Sec_Header {
   position: fixed;
-  top: 0;
+  top: 115px;
 }
 
 
@@ -79,7 +79,7 @@
 
 
 .contact_Entry {
-  margin-top: 60px;
+  margin-top: 100px;
   background-color: #FFFFFF;
   width: 325px;
 }
@@ -94,6 +94,7 @@
   padding-bottom: 17px;
   padding-left: 36px;
 }
+
 
 .contact_Line {
   width: 352px;
@@ -114,6 +115,7 @@
   border-radius: 10px;
   background-color: #FFFFFF;
 }
+
 
 .contact_Detail_List:hover {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.01) 0%, #00000014 100%);
