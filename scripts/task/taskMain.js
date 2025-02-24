@@ -8,6 +8,7 @@ let taskSubTaskArray=[];
 function init(){
     console.log("Starte task");
     loadDataFirebase();
+   taskRenderContact();
 }
 
 
@@ -30,3 +31,8 @@ function taskReadinArray(taskData){
 
 
 function contactReadinArray(){}
+
+
+
+
+
