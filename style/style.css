@@ -22,17 +22,21 @@
     animation: slide-in 1.0s ease-out forwards;
 }
 
-/* Animation inndex */
+/* Animation LogoJoin */
 @keyframes slide-in {
     from {
-        top: 45%;
+        top: 50%;
         left: 50%;
+      
     }
 
     to {
-        left: 5%;
-        top: 8%;
-        width: 66px;
-        height: 80px;
+       
+      width: 100.02px;
+      height: 134.97px;
+     
+      top:15%;
+      left :7%;
+      
     }
 }

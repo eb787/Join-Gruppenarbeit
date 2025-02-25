@@ -19,10 +19,13 @@ body {
 }
 
 .logo {
+     
     width: 100.03px;
     height: 121.97px;
     padding-top: 13px;
+    
 }
+
 
 .sign_up_div {
     display: flex;
