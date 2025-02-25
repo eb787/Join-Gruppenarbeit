@@ -31,14 +31,22 @@ span {
 
 .input-title {
     display: flex;
-    height: auto;
+    height: 48px;
     border-radius: 10px;
     border: 1px solid;
-    padding: 12px 21px 12px 21px;
+    padding: 12px 16px 12px 16px;
     gap: 10px;
     font-size: 20px;
     font-weight: 400;
     border-color: #D1D1D1;
+    margin-bottom: 20px;
+}
+
+.div-input-title {
+    height: 64px;
+    width: auto;
+    display: flex;
+    gap: 4px;
 }
 
 .section-title {
@@ -77,6 +85,7 @@ span {
     height: 136px;
 
     textarea {
+        resize: none;
         display: flex;
         width: 440px;
         height: 120px;
@@ -88,6 +97,14 @@ span {
         font-weight: 400;
         font-size: 20px;
     }
+}
+
+.textarea-icon {
+    height: 18.9px;
+    width: 18.0px;
+    position: absolute;
+    right: 5px;
+    top: 262px;
 }
 
 .section-assigned {
@@ -111,6 +128,19 @@ span {
     }
 }
 
+.icon-contact {
+    width: 32px;
+    height: 32px;
+    border-radius: 45px;
+    border: 1px solid white;
+    color: white;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #462F8A;
+}
+
 .assigned-title {
     height: 24px;
     width: 112px;
@@ -132,39 +162,31 @@ span {
     display: flex;
     gap: 4px;
     flex-direction: column;
-
-    span {
-        width: 96px;
-        height: 24px;
-    }
-
-    input {
-        background: url('/assets/icons/check.png') no-repeat right 10px center;
-        background-size: 20px;
-        padding: 12px 16px 12px 16px;
-        height: auto;
-        border-color: #D1D1D1;
-        border: 1px solid;
-        border-radius: 10px;
-        font-size: 20px;
-        line-height: 24px;
-
-    }
-
-    .input::-webkit-calendar-picker-indicator {
-        opacity: 0;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        cursor: pointer;
-    }
-
-    .date-icon {
-        position: absolute;
-        right: 10px;
-        top: 50%;
-    }
 }
+
+.date-input {
+    background-size: 20px;
+    padding: 12px 16px 12px 16px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    font-size: 20px;
+    line-height: 24px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.date-input::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+.date-icon {
+    position: absolute;
+    right: 10px;
+    top: 40px;
+}
+
 
 .section-prio {
     position: absolute;
@@ -217,21 +239,23 @@ span {
 
 /* Select-Feld stylen */
 .category-wrapper select {
-    appearance: none;  
+    appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
 
     cursor: pointer;
 }
 
+
+
 /* Custom Pfeil-Icon */
 .custom-arrow {
     position: absolute;
-    right: 25px; 
+    right: 25px;
     width: 7.21px;
     height: 4.6px;
     pointer-events: none;
-    color: #2A3647; 
+    color: #2A3647;
 }
 
 
@@ -243,28 +267,28 @@ span {
     display: flex;
     flex-direction: column;
     gap: 8px;
-
-    input {
-        width: 440px;
-        height: auto;
-        padding: 12px 16px 12px 16px;
-        border: 1px solid;
-        border-color: #D1D1D1;
-        border-radius: 10px;
-    }
 }
+
+.input-subtasks {
+    width: 440px;
+    height: 24px;
+    padding: 12px 16px 12px 16px;
+    border: 1px solid;
+    border-color: #D1D1D1;
+    border-radius: 10px;
+}
+
 .input-wrapper {
     position: relative;
     display: flex;
     align-items: center;
 }
 
-.add-subtasks{
-width: 14px;
-height: 14px;
-position: absolute;
-top: 15px;
-right: 20px;
+.add-subtasks {
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    right: 20px;
 }
 
 hr {
@@ -308,9 +332,15 @@ hr {
     top: 926px;
     left: 328px;
     height: 27px;
-    width: 170px;
     font-size: 16px;
     line-height: 19.2px;
 }
 
+input:hover {
+    cursor: pointer;
+}
 
+
+textarea:hover {
+    cursor: pointer;
+}

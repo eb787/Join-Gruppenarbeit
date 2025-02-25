@@ -15,7 +15,6 @@ hr {
 }
 
 .first-container {
-    width: 625px;
     height: 73px;
     position: absolute;
     top: 206px;
@@ -26,7 +25,6 @@ hr {
 
     span {
         height: 32px;
-        width: 301px;
         font-size: 27px;
         line-height: 32.4px;
         font-weight: 400;
@@ -126,7 +124,7 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 61px;
+    gap: 109px;
     background-color: white;
 }
 
@@ -178,10 +176,16 @@ hr {
     flex-direction: column;
 }
 
+.line-between-div {
+    
+    padding-left: 40px;
+}
+
 .line-between {
     border-width: 2px;
     height: 102.02px;
     border-color: #d1d1d1;
+    
 }
 
 .content-deadline-date {
@@ -194,7 +198,6 @@ hr {
 }
 
 .content-deadline-date-upcoming {
-    width: 148px;
     height: 19px;
     font-size: 16px;
     font-weight: 400;
@@ -212,7 +215,6 @@ hr {
 
 .container-task-one {
     width: 168px;
-    height: 168px;
     position: absolute;
     top: 1px;
     padding: 25px 0px 25px 0px;
@@ -239,6 +241,7 @@ hr {
     font-weight: 600;
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 
 .task-text-small {
@@ -252,7 +255,6 @@ hr {
 
 .container-task-two {
     width: 168px;
-    height: 168px;
     position: absolute;
     top: 1px;
     left: 196px;
@@ -266,7 +268,6 @@ hr {
 
 .container-task-three {
     width: 168px;
-    height: 168px;
     position: absolute;
     top: 1px;
     left: 392px;
@@ -312,27 +313,24 @@ hr {
     line-height: 76.8px;
     font-weight: 700;
 }
-
-
 /* Hover Effekter */
 
 
 .content-pen {
-    transition: all 0.3s ease-in-out; /* Sanfte Animation */
+    transition: all 0.3s ease-in-out;
     cursor: pointer;
 }
 
 .content-pen:hover {
-    background-color: #2A3647; /* Hintergrundfarbe ändern */
-    transform: scale(1.1); /* Größer werden */
+    background-color: #2A3647; 
+    transform: scale(1.1); 
 }
 
 .content-pen:hover .img-pen {
-    filter: brightness(0) invert(1); /* Bildfarbe zu Weiß ändern */
+    filter: invert(1) brightness(2);
 }
-
 .content-pen:hover .text-pen {
-    filter: brightness(0) invert(1); /* Bildfarbe zu Weiß ändern */
+    filter: brightness(0) invert(1); 
 }
 
 .content-success {
@@ -346,82 +344,43 @@ hr {
 }
 
 .content-success:hover .img-pen {
-    filter: brightness(0) invert(1); 
+    filter: invert(1) brightness(2);
 }
 
 .content-success:hover .text-pen {
     filter: brightness(0) invert(1); 
 }
 
-
 .content-date {
-    transition: all 0.3s ease-in-out;
-    cursor: pointer;
+    transition: all 0.3s ease-in-out; 
+
 }
 
 .content-date:hover {
-    background-color: #2A3647; 
-    transform: scale(1.1); 
+    background-color: #2A3647;
+    transform: scale(1.1);
+
 }
 
-.content-date:hover .img-pen {
-    filter: brightness(0) invert(1);
-}
-.content-date:hover .one-urgent .text-urgent {
-color: white;}
-
-.content-deadline {
+.content-date:hover .text-up span,
+.content-date:hover .content-deadline-date .text,
+.content-date:hover .content-deadline-date-upcoming .text {
+    color: white;
     transition: all 0.3s ease-in-out; 
+
 }
 
-.content-deadline:hover {
-    background-color: #2A3647; 
-    color: white;}
-
-
-.container-task-one {
+.container-task div {
     transition: all 0.3s ease-in-out; 
+
+}
+.container-task div:hover {
+    background-color: #2A3647;
+    transform: scale(1.1);
+
 }
 
-.container-task-one:hover {
-    background-color: #2A3647; /* Hintergrundfarbe ändern */
-    transform: scale(1.1); /* Größer werden */
-}
-
-.container-task-one:hover .img-pen {
-    filter: brightness(0) invert(1); /* Bildfarbe zu Weiß ändern */
-}
-.container-task-one:hover .one-urgent .text-urgent {
-    filter: brightness(0) invert(1); /* Bildfarbe zu Weiß ändern */
-}
-
-.container-task-two {
-    transition: all 0.3s ease-in-out; /* Sanfte Animation */
-}
-
-.container-task-two:hover {
-    background-color: #2A3647; /* Hintergrundfarbe ändern */
-    transform: scale(1.1); /* Größer werden */
-}
-
-.container-task-two:hover .img-pen {
-    filter: brightness(0) invert(1); /* Bildfarbe zu Weiß ändern */
-}
-.container-task-two:hover .text {
-color: white;}
-
-.container-task-three {
-    transition: all 0.3s ease-in-out; /* Sanfte Animation */
-}
-
-.container-task-three:hover {
-    background-color: #2A3647; /* Hintergrundfarbe ändern */
-    transform: scale(1.1); /* Größer werden */
-}
-
-.container-task-three:hover .img-pen {
-    filter: brightness(0) invert(1); /* Bildfarbe zu Weiß ändern */
-}
-.container-task-three:hover .one-urgent .text-urgent {
-    filter: brightness(0) invert(1); /* Bildfarbe zu Weiß ändern */
+.container-task div:hover .task-text-big,
+.container-task div:hover .task-text-small {
+    color: white;
 }
