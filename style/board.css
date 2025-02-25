@@ -108,11 +108,13 @@
 
 
 .board_content_box {
-    width: 246px;
+    width: 276px;
     display: flex;
     gap: 16px;
     flex-direction: column;
     padding-top: 6px;
+    overflow-y: auto;
+    height: 600px;
 }
 
 .no_tasks {
