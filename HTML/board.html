@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/board.css">
     <script src="../scripts/board.js"></script>
+    <script src="../scripts/templates.js"></script>
 
 
 </head>
@@ -96,11 +97,11 @@
                         </div>
                     </div>
                     <div class="board_table_content">
-                        <div class="board_content_box">
+                        <div class="board_content_box" id="toDo"  ondrop="moveTo(id)" ondragover="allowDrop(event)">
                             <div class="no_tasks">No tasks To do</div>
                         </div>
-                        <div class="board_content_box">
-                            <div class="card">
+                        <div class="board_content_box" id="inProgress" ondrop="moveTo(id)" ondragover="allowDrop(event)">
+                            <div class="card" draggable="true">
                                 <div class="task_category user_story">User story</div>
                                 <div>
                                     <div class="task_name">Kochwelt Page & Recipe Recommender</div>
@@ -130,8 +131,8 @@
         
                             </div>
                         </div>
-                        <div class="board_content_box">
-                            <div class="card">
+                        <div class="board_content_box" id="awaitFeedback" ondrop="moveTo(id)" ondragover="allowDrop(event)">
+                            <div class="card" draggable="true">
                                 <div class="task_category technical_task">Technical Task</div>
                                 <div>
                                     <div class="task_name">HTML Base Template Creation</div>
@@ -148,7 +149,7 @@
                                 
         
                             </div>
-                            <div class="card">
+                            <div class="card" draggable="true">
                                 <div class="task_category user_story">User story</div>
                                 <div>
                                     <div class="task_name">Daily Kochwelt Recipe</div>
@@ -166,8 +167,8 @@
         
                             </div>
                         </div>
-                        <div class="board_content_box">
-                            <div class="card">
+                        <div class="board_content_box" id="done" ondrop="moveTo(id)" ondragover="allowDrop(event)">
+                            <div class="card" draggable="true">
                                 <div class="task_category technical_task">Technical Task</div>
                                 <div>
                                     <div class="task_name">CSS Architecture Planning</div>

@@ -53,3 +53,17 @@ async function postTaskData(path = "", task) {
 }
 
 //!!!!Eine Delete-Funktion muss dann immer die Reihenfolge beachten also man muss dannn quasi alle Tasks noch mal neu auf den Server überschreiben, damit die nicht durcheinander geraten!!!!
+
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+function moveTo(category) {
+    document.getElementById(category).innerHTML += chooseRightCard("User Story");
+}
+
+function chooseRightCard(cardType) {
+    if (cardType == "User Story"){
+       return getUserStoryCard();
+    }
+}
