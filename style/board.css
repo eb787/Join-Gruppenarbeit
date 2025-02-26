@@ -271,10 +271,19 @@
 
 .prio_icon {
     width: 17px;
+}
+
+.low_prio {
+    height: 12px;
+    padding: 10px 7.5px;
+}
+
+.medium_prio {
     height: 6.33px;
     padding: 13px 7.5px;
 }
 
-.prio_low {
-    height: 12px;
+.high_prio {
+    height: 14px;
+    padding: 9px 7.5px;
 }
