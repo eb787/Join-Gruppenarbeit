@@ -240,18 +240,19 @@ body {
     min-height: calc(100vh - 261.97px);
 }
 
-.login_log{
-    opacity: 1;
-    
+.login_logo{
+    opacity: 1 !important;
+  
 }
 
 
-.login_img {
+.login_logo img {
     width: 274px;
     height: 334.07px;
     position: fixed;
     transform: translate(-50%, -50%);
     animation: slide-in 1.0s ease-out forwards;
+    z-index: 1000;
  
 }
 
