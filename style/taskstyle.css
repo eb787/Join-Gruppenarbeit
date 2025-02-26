@@ -344,3 +344,14 @@ input:hover {
 textarea:hover {
     cursor: pointer;
 }
+
+
+/*CSS Klassen die per JS aufgerufen werden*/
+
+.btn_lockout{
+      opacity: 0.6;
+      pointer-events: none; 
+   
+}
+
+

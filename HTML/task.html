@@ -21,7 +21,8 @@
 
 </head>
 
-<body onload="init()">
+<body>
+    
     <div class="full_content">
         <nav class="nav">
             <div class="nav-icon-capa2">
@@ -53,7 +54,6 @@
         </nav>
 
         <section class="content_right">
-
             <div class="headline">
                 <span class="headline_title font20">Kanban Project Management Tool</span>
                 <div class="headline_logo_help">
@@ -66,12 +66,14 @@
 
             <div class="main_contant">
                 <h1>Add Task</h1>
+          
                 <div class="section-title">
+                    <form>
                     <div class="section-title-div">
                         <span class="title">Title<span class="star-red">*</span></span>
-                        <input class="input-title" type="text" placeholder="Enter a title">
+                        <input class="input-title" type="text" placeholder="Enter a title" >
                     </div>
-
+                </form>
                     <div class="section-description">
                         <span>Description</span>
                         <div class="textarea-description">
@@ -79,7 +81,7 @@
                             <img src="../assets/icons/textarea.png" alt="" class="textarea-icon">
                         </div>
                     </div>
-
+               
 
                     <div class="section-assigned">
                         <span class="assigned-title">Assigned to</span>
@@ -133,9 +135,9 @@
                     </div>
                 </div>
                 <div class="button-bottom-task">
-                    <button class="button-clear-task">Clear <img class="cancel" src="../assets/icons/iconoir_cancel.png"
+                    <button id="btnClearTask" class="button-clear-task">Clear <img class="cancel" src="../assets/icons/iconoir_cancel.png"
                             alt=""></button>
-                    <button class="button-create-task">Create Task <img src="../assets/icons/check.png" alt=""></button>
+                    <button id="btnCreateTask" class="button-create-task">Create Task <img src="../assets/icons/check.png" alt=""></button>
                 </div>
                 <div class="required-text">
                     <span><span class="star-red ">*</span class="required-text">This field is requiered</span>
@@ -145,6 +147,7 @@
             </div>
         </section>
     </div>
+
 </body>
 
 </html>
