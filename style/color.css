@@ -6,3 +6,17 @@
 --white:#ffff;
 
 }
+
+
+
+
+:root {
+    --sideheader-main-color: #2A3647;
+    --sideheader-hover-color: #2A3D59;
+    --sideheader-active-color: #091931;
+    --content-main-color: #F6F7F8;
+    --sideheader-font-color: #CDCDCD;
+    --button-hover-color: #29ABE2;
+    --item-hover-color: #F8F8F8;
+    --details-font-color: #007CEE;
+}

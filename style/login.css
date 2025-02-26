@@ -240,34 +240,51 @@ body {
     min-height: calc(100vh - 261.97px);
 }
 
+.login_log{
+    opacity: 1;
+    
+}
 
-.login_Logo {
+
+.login_img {
     width: 274px;
     height: 334.07px;
     position: fixed;
     transform: translate(-50%, -50%);
     animation: slide-in 1.0s ease-out forwards;
-
+ 
 }
+
 
 /* Animation LogoJoin */
 @keyframes slide-in {
     from {
         top: 50%;
         left: 50%;
-        }
+             }
 
     to {
        
       width: 100.02px;
       height: 134.97px;
-     
       top:10%;
       left :7%;
-      
+           
     }
 }
 
 
 
+.main_container{
+    opacity: 0;
+    transition: 0.5s ease-in;
+    animation: fadeIn 1s ease-in 0.5s forwards;
+   
+}
 
+
+@keyframes fadeIn {
+    from { opacity:0; }
+    to { opacity:1; }
+   
+}
