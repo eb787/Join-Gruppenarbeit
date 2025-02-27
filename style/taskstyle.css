@@ -39,8 +39,10 @@ span {
     font-size: 20px;
     font-weight: 400;
     border-color: #D1D1D1;
-    margin-bottom: 20px;
+    
 }
+
+
 
 .div-input-title {
     height: 64px;
@@ -63,12 +65,14 @@ span {
     flex-direction: column;
     width: 440px;
     height: 96px;
+
 }
 
 .section-description {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    margin-top: 20px;
 
     span {
         font-weight: 400;
@@ -117,6 +121,7 @@ span {
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
+    margin-top: 40px;
 
     select {
         border-radius: 10px;
@@ -172,8 +177,10 @@ span {
     font-size: 20px;
     line-height: 24px;
     appearance: none;
+    pointer-events: none;
     -webkit-appearance: none;
     -moz-appearance: none;
+    
 }
 
 .date-input::-webkit-calendar-picker-indicator {
@@ -187,6 +194,10 @@ span {
     top: 40px;
 }
 
+.date-icon:hover{
+    cursor: pointer;
+}
+
 
 .section-prio {
     position: absolute;
@@ -196,7 +207,6 @@ span {
     gap: 8px;
     height: 88px;
     width: 440px;
-
     span {
         color: black;
     }
@@ -340,10 +350,17 @@ input:hover {
     cursor: pointer;
 }
 
-
 textarea:hover {
     cursor: pointer;
 }
+
+.error_Field{
+    font-size: 10px;
+    color: red;
+    margin-bottom: 10px;
+
+}
+
 
 
 /*CSS Klassen die per JS aufgerufen werden*/
@@ -351,7 +368,16 @@ textarea:hover {
 .btn_lockout{
       opacity: 0.6;
       pointer-events: none; 
-   
+  
 }
 
 
+.error_Msg_Input{
+    display: none;
+    border-color: red;
+}
+
+
+.prio_img_with{
+    filter: brightness(0) invert(1);
+ }
