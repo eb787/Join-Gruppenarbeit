@@ -362,13 +362,21 @@ textarea:hover {
 }
 
 
+.subtask_list{
+    display: flex;
+    flex-direction: column;
+  height: 300px;
+   background-color: #FF8190;
+
+}
+
+
 
 /*CSS Klassen die per JS aufgerufen werden*/
 
 .btn_lockout{
       opacity: 0.6;
       pointer-events: none; 
-  
 }
 
 

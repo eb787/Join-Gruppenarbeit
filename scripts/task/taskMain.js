@@ -23,10 +23,9 @@ function startAddTask(){
 }
 
 
-
 //Felder prüfen ob Eingabe erfolgte mit QuerySelector
 function  requiredInputAddTask(){
-  document.querySelectorAll(".input-field").forEach(input =>{
+   document.querySelectorAll(".input-field").forEach(input =>{
       input.addEventListener("blur",function(){
         let errorMsg= this.nextElementSibling;
         if (this.value.trim()===""){
@@ -47,22 +46,24 @@ function openDatePicker() {
     let dateInput = document.querySelector(".date-input");
            
     if (dateInput.showPicker) {
-        dateInput.showPicker(); // Moderne Browser
+        dateInput.showPicker(); 
     } else {
-        dateInput.focus(); // Fallback für ältere Browser
+        dateInput.focus(); //alte Browser
     }
     
 });
 }
 
 
+//Prio 
 function btnPrioSelect(btnPrio){
+  document.querySelectorAll(".prio_img").forEach(el=>{
+    el.classList.remove('prio_img_with')
+  });
   document.querySelectorAll('.btn_prio').forEach(button => {
     button.style.backgroundColor = "white";
     button.style.color="black";
 });
-
-
 if(btnPrio=="urgent"){
   btnPrioBtnSelect("button-urgent","#FF3D00",0)
 }
@@ -75,18 +76,15 @@ if(btnPrio=="low")  {
 }
 
 
-function btnPrioBtnSelect(auswahl,btnColor){
+
+
+function btnPrioBtnSelect(auswahl,btnColor,id){
   Object.assign(document.getElementsByClassName(auswahl)[0].style,{
     backgroundColor:btnColor,
     color:"white",
    })
-   //document.getElementsByClassName('prio_urgent_img')[id].style.filter = "brightness(0) invert(1)";
-
-   document.querySelectorAll(".prio_urgent_img").forEach(el=>{
-    el.classList.toggle('prio_img_with');
-   })
-
-}
+     document.getElementsByClassName("prio_img")[id].classList.add('prio_img_with');
+  }
 
 
 
@@ -106,6 +104,8 @@ function taskReadinArray(taskData){
      console.log("Kontakt 1" ,contactArray[0])
 
    } 
+
+
 
 
 
