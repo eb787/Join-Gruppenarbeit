@@ -1,5 +1,6 @@
 function getExampleCard(index, subtasks, progress) {
     return `<div class="card" draggable="true">
+    return `<div class="card" draggable="true" ondragstart="startDragging(${index})">
                                 <div id="category_${index}" class="task_category technical_task">${currentTasks[index].category}</div>
                                 <div>
                                     <div class="task_name">${currentTasks[index].title}</div>
@@ -22,6 +23,7 @@ function getExampleCard(index, subtasks, progress) {
                                         
                                     </div>
                                     <img class="prio_icon ${currentTasks[index].prio}" src="..//assets/icons/${currentTasks[index].prio}.png" alt="priority indicator">
+                                    <img class="prio_icon ${currentTasks[index].prio}" src="..//assets/icons/${currentTasks[index].prio}.svg" alt="priority indicator">
                                 </div>
                                 
         
@@ -34,6 +36,22 @@ function getContactIcon() {
                 <div id="profile_purple" class="profile_badge profile_purple third_profile">MB</div>
     `
 
+}
+
+function getNoTasksToDoCard() {
+    return `<div id="no_task_toDo" class="no_tasks">No tasks To do</div>`
+}
+
+function getNoTasksInProgressCard() {
+    return `<div id="no_task_inProgress" class="no_tasks">No tasks In progress</div>`
+}
+
+function getNoTasksAwaitFeedbackCard() {
+    return `<div id="no_task_awaitFeedback" class="no_tasks">No tasks Await feedback</div>`
+}
+
+function getNoTasksDoneCard() {
+    return `<div id="no_task_done" class="no_tasks">No tasks done</div>`
 }
 
 
