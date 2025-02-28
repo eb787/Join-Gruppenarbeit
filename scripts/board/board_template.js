@@ -1,5 +1,4 @@
 function getExampleCard(index, subtasks, progress) {
-    return `<div class="card" draggable="true">
     return `<div class="card" draggable="true" ondragstart="startDragging(${index})">
                                 <div id="category_${index}" class="task_category technical_task">${currentTasks[index].category}</div>
                                 <div>
@@ -22,7 +21,6 @@ function getExampleCard(index, subtasks, progress) {
                                     <div id="Profile_badges_${index}" class="profile_badges">
                                         
                                     </div>
-                                    <img class="prio_icon ${currentTasks[index].prio}" src="..//assets/icons/${currentTasks[index].prio}.png" alt="priority indicator">
                                     <img class="prio_icon ${currentTasks[index].prio}" src="..//assets/icons/${currentTasks[index].prio}.svg" alt="priority indicator">
                                 </div>
                                 
