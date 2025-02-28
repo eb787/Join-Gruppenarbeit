@@ -18,8 +18,9 @@ window.onload= function init(){
 
 /*Tasten Clear und Create Task sperren*/ 
 function startAddTask(){
-  document.getElementById('btnCreateTask').classList.add('btn_lockout');
-  document.getElementById('btnClearTask').classList.add('btn_lockout');
+  //document.getElementById('btnCreateTask').classList.add('btn_lockout');
+  //document.getElementById('btnClearTask').classList.add('btn_lockout');
+  document.getElementById('btnPrioGroup').classList.add('prio_img_with')
 }
 
 

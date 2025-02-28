@@ -201,31 +201,8 @@ button:hover {
     }
 }
 
-.button-urgent {
-    background-color: white;
-}
 
-.button-urgent:hover {
-    transform: translateY(-2px);
-    box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.3);
-}
 
-.button-medium {
-    background-color: #FFA800;
-    color: white;
-    img {
-        background-color: #FFA800;
-    }
-}
-
-.button-low {
-    background-color: white;
-}
-
-.button-low:hover {
-    transform: translateY(-2px);
-    box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.3);
-}
 
 .go_back_btn {
     width: 32px;
