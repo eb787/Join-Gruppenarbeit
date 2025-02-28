@@ -177,10 +177,7 @@ span {
     font-size: 20px;
     line-height: 24px;
     appearance: none;
-    pointer-events: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    
+ 
 }
 
 .date-input::-webkit-calendar-picker-indicator {
