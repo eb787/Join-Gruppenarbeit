@@ -180,3 +180,7 @@ function chooseRightCard(cardType) {
        return getUserStoryCard();
     }
 }
+
+function showCardOverlay(index) {
+    document.getElementById("full_content").innerHTML += getCardOverlay(index, 20, 10);
+}

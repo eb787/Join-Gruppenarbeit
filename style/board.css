@@ -25,7 +25,9 @@
 }
 
 .add_icon {
-    width: 32px;
+    width: 18.67px;
+    height: 18.67px;
+    padding: 6.66px;
 }
 
 .input_board{
@@ -69,6 +71,10 @@
    height: 17.58px;
 }
 
+.search_icon:hover {
+    cursor: pointer;
+}
+
 .board_table_headings {
     display: flex;
     justify-content: space-between;
@@ -94,6 +100,10 @@
 
 .add_task_icon {
     width: 24px;
+}
+
+.add_task_icon:hover {
+    cursor: pointer;
 }
 
 .board_table_content {
@@ -142,6 +152,10 @@
     gap: 14px;
     box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.08);
     padding: 16px;
+}
+
+.card:hover {
+    cursor: pointer;
 }
 
 .task_category {
@@ -286,4 +300,39 @@
 .high_prio {
     height: 14px;
     padding: 9px 7.5px;
+}
+
+.bg_overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card_overlay {
+    width: 525px !important;
+}
+
+.technical_task_overlay {
+    width: 160px !important;
+}
+
+.user_story_overlay {
+    width: 116px !important;
+    background-color: #0038FF;
+}
+
+.task_category_overlay {
+    height: 28px !important;
+    padding: 4px 24px !important;
+    font-size: 23px !important;
+}
+
+.task_description_overlay {
+    font-weight: 400;
+    font-size: 20px;
+    color: black;
 }
