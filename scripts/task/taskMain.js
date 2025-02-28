@@ -31,10 +31,13 @@ function requiredInputAddTask() {
       let errorMsg = this.nextElementSibling;
       if (this.value.trim() === "") {
         errorMsg.textContent = "This field is required";
+        console.log("Keine Eingabe");
       } else {
         if (this.type === "date" && !correctDateInput(this.value)) {
           errorMsg.textContent = "no valid date";
+              
         } else {
+          console.log("OK Eingabe");
           errorMsg.textContent = " ";
         }
       }
