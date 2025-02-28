@@ -200,8 +200,6 @@ span {
 
 
 .section-prio {
-    position: absolute;
-    top: 120px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -213,7 +211,12 @@ span {
 }
 
 
-
+.prio_img_group{
+   display: flex;
+   flex-direction: column;
+   gap: 3px;
+    filter: brightness(0) saturate(100%) invert(53%) sepia(98%) saturate(615%) hue-rotate(-15deg);
+}
 
 .section-category {
     position: absolute;
@@ -252,7 +255,6 @@ span {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-
     cursor: pointer;
 }
 

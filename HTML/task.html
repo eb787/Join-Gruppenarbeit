@@ -110,11 +110,26 @@
                      </div>
                     <div class="section-prio">
                         <span>Prio</span>
+
                         <div class="prio-buttons">
-                            <button onclick="btnPrioSelect('urgent')" class="btn_prio button-urgent">Urgent <img class="prio_img" src="../assets/icons/high_prio.svg" alt="urgent"></button>
-                            <button onclick="btnPrioSelect('medium')" class="btn_prio button-medium">Medium <img class="prio_img" src="../assets/icons/medium_prio.svg"  alt="medium"></button>
-                            <button onclick="btnPrioSelect('low')" class="btn_prio button-low">Low <img class="prio_img" src="../assets/icons/low_prio.svg" alt="Low"></button>
+                                <button onclick="btnPrioSelect('urgent')" class="btn_prio button-urgent">Urgent
+                                    <img class="prio_img" src="../assets/icons/high_prio.svg" alt="urgent">
+                                </button>
+                            
+                                               
+                                 <button onclick="btnPrioSelect('medium')" class="btn_prio button-medium">Medium
+                                    <div class="prio_img prio_img_group">
+                                    <img src="../assets/icons/linePrio.svg">
+                                    <img  src="../assets/icons/linePrio.svg" >   
+                                   </div>
+                                </button>
+                         
+
+                                 <button onclick="btnPrioSelect('low')" class="btn_prio button-low">Low
+                                 <img class="prio_img" src="../assets/icons/low_prio.svg" >
+                                 </button>
                         </div>
+                    
                     </div>
                     <div class="section-category">
                         <span>Category<span class="star-red">*</span></span>
