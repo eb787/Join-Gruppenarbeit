@@ -59,10 +59,49 @@ function getCardOverlay(index, subtasks, progress) {
                                     <h1 class="board_heading">${currentTasks[index].title}</h1>
                                     <div class="task_description_overlay">${currentTasks[index].description}</div>
                                     <div class="task_description_overlay">
-                                        Due Date:
-                                        10/05/2025
-                                    
+                                        <p class="color_blue">Due Date:</p>
+                                       <p>10/05/2025</p>
                                     </div>
+                                     <div class="task_description_overlay">
+                                        <p class="color_blue al_center">Priority:</p>
+                                       <p class="priority_div">Medium<img class="prio_icon ${currentTasks[index].prio}" src="..//assets/icons/${currentTasks[index].prio}.svg" alt="priority indicator"></p>
+                                       
+                                    </div>
+                                    <div class="task_description_overlay fd_column gap_8">
+                                        <p class="color_blue">Assigned To:</p>
+                                        <div>
+                                            <div class="contact_info">
+                                                <div class="profile_badge profile_badge_overlay profile_orange">AM</div>
+                                                <p class="font_19">Emanuel Macron</p>
+                                            </div>
+                                             <div class="contact_info">
+                                                <div class="profile_badge profile_badge_overlay profile_green">EM</div>
+                                                <p class="font_19">Boris Becker</p>
+                                             </div>
+                                             <div class="contact_info">
+                                                <div class="profile_badge profile_badge_overlay profile_purple">MB</div>
+                                                <p class="font_19">Angela Merkel</p>
+                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="task_description_overlay fd_column gap_8">
+                                        <p class="color_blue">Subtasks</p>
+                                        <div>
+                                            <div class="task_info">
+                                                <div class="check_box_btn"></div>
+                                                <p class="font_19">Emanuel Macron</p>
+                                            </div>
+                                             <div class="task_info">
+                                                <div class="check_box_btn"></div>
+                                                <p class="font_19">Boris Becker</p>
+                                             </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
                                 <div class="progress_box">
                                     <div class="progress_bar">
                                         <div class="progress" style="width: ${progress}%;"></div>
@@ -74,12 +113,6 @@ function getCardOverlay(index, subtasks, progress) {
                                         <h4 style="font-weight: 400;">Subtasks</h4>
                                     </div>
                                     
-                                </div>
-                                <div class="card_footer">
-                                    <div class="profile_badges">
-                                        
-                                    </div>
-                                    <img class="prio_icon ${currentTasks[index].prio}" src="..//assets/icons/${currentTasks[index].prio}.svg" alt="priority indicator">
                                 </div>
                                 
         </div>

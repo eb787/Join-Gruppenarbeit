@@ -310,6 +310,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 99;
 }
 
 .card_overlay {
@@ -335,4 +336,52 @@
     font-weight: 400;
     font-size: 20px;
     color: black;
+    display: flex;
+    gap: 25px;
+}
+
+.color_blue {
+    color: #2A3647;
+}
+
+.priority_div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 18px;
+}
+
+.fd_column {
+    flex-direction: column;
+}
+
+.al_center {
+    display: flex;
+    align-items: center;
+}
+
+.contact_info {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    padding: 7px 16px;
+}
+
+.profile_badge_overlay {
+    width: 38px !important;
+    height: 38px !important;
+    border: 2px solid white !important;
+}
+
+.font_19 {
+    font-size: 19px;
+}
+
+.gap_8 {
+    gap: 8px !important;;
+}
+
+.task_info {
+    display: flex;
+    gap: 16px;
 }

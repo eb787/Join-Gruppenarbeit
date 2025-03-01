@@ -90,13 +90,13 @@
 
 .check_box_btn {
     width: 24px;
-    background-image: url(../assets/icon/Check_button.svg);
+    background-image: url(../assets/icons/Check_button.svg);
     height: 24px;
     background-repeat: no-repeat;
 }
 
 .check_box_btn:hover {
-    background-image: url(../assets/icon/checked_hover.png);
+    background-image: url(../assets/icons/checked_hover.png) !important;
     cursor: pointer;
 }
 
