@@ -1,7 +1,7 @@
 let taskArray = [];
 let taskContacteArray = [];
 let taskSubTaskArray = [];
-
+let taskSubTaskList=[];
 
 
 //Start function
@@ -13,6 +13,7 @@ window.onload = function init() {
   //taskRenderContact();
   requiredInputAddTask();
   openDatePicker();
+  subTaskListRender();
 
 }
 
@@ -32,14 +33,16 @@ function requiredInputAddTask() {
     input.addEventListener("blur", function () {
       let errorMsg = this.nextElementSibling;
       if (this.value.trim() === "") {
+        this.classList.add('error_Msg_Input')
         errorMsg.textContent = "This field is required";
         console.log("Keine Eingabe");
       } else {
         if (this.type === "date" && !correctDateInput(this.value)) {
           errorMsg.textContent = "no valid date";
-
+      
         } else {
           console.log("OK Eingabe");
+          this.classList.remove('error_Msg_Input')
           errorMsg.textContent = " ";
         }
       }
@@ -114,8 +117,11 @@ function btnPrioBtnSelect(auswahl, btnColor, id) {
 
 function subTaskInputCheck(flag) {
   console.log("Input Check");
-  let subTaskInput = document.getElementById('inputSubtask').value;
-  if(flag){subTaskInput="o"};
+  let subTaskInput = document.getElementById('inputSubtask')
+  if(flag){
+    subTaskInput.value=""
+    subTaskInput.focus();
+    };
   if (subTaskInput) {
     console.log("es wurde was eigeben");
     document.getElementById('subTaskAddIcon').classList.add('ele_hide')
@@ -136,6 +142,32 @@ function subTaskClose(){
 }
 
 
+function taskCreateTaskbtn() {
+    let contents= document.getElementById('inputSubtask').value;
+    taskSubTaskList.push(contents);
+    subTaskClose();
+    subTaskListRender();
+    console.log("Array ",taskSubTaskList );
+}
+
+
+
+function editSubTask(index){
+  
+
+ 
+
+}
+
+
+
+function deleteSubTask(index){
+  taskSubTaskList.splice(index,1);
+  subTaskListRender();
+} 
+
+
+
 
 
 
@@ -152,14 +184,8 @@ function taskReadinArray(taskData) {
 }
 
 
-function taskClearbtn() { }
 
 
-function taskCreateTaskbtn() {
-
-
-
-}
 
 
 

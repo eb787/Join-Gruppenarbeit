@@ -3,47 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input mit Icon</title>
+    <title>Liste mit Icons und Index-Auswahl</title>
     <style>
-        .input-container {
-            position: relative;
-            display: inline-block;
+        .list-container {
+            width: 300px;
+            font-family: Arial, sans-serif;
         }
 
-        .input-container input {
-            width: 200px;
-            padding: 8px 35px 8px 10px; /* Platz für das Icon rechts */
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+        ul {
+            list-style-type: none; /* Entfernt die Standard-Aufzählungspunkte */
+            padding: 0;
         }
 
-        .input-container .icon {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
+        .list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .list-text {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Abstand zwischen Punkt und Name */
+        }
+
+        .bullet {
+            font-size: 20px;
+        }
+
+        .icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .icons img {
+            width: 20px;
+            height: 20px;
             cursor: pointer;
-            font-size: 18px;
-            color: #555;
         }
 
-        .input-container .icon:hover {
-            color: #007bff;
+        .icons img:hover {
+            opacity: 0.7;
         }
     </style>
 </head>
 <body>
 
-<div class="input-container">
-    <input type="text" placeholder="Text eingeben...">
-    <span class="icon" onclick="iconClick()">+</span>
+<div class="list-container">
+    <ul id="nameList">
+        <!-- Dynamische Liste wird hier eingefügt -->
+    </ul>
 </div>
 
 <script>
-    function iconClick() {
-        alert("Icon wurde geklickt!");
+    // Array mit Namen
+    let namen = ["Josef", "Paul", "Maria", "Anna"];
+
+    // Funktion, um die Liste zu rendern
+    function renderList() {
+        const listContainer = document.getElementById("nameList");
+
+        listContainer.innerHTML = namen.map((name, index) => `
+            <li class="list-item">
+                <div class="list-text">
+                    <span class="bullet">•</span>
+                    <span>${name}</span>
+                </div>
+                <div class="icons">
+                    <img src="edit-icon.png" alt="Bearbeiten" onclick="editItem(${index})">
+                    <img src="delete-icon.png" alt="Löschen" onclick="deleteItem(${index})">
+                </div>
+            </li>
+        `).join(""); // .join("") verhindert Kommas zwischen Listeneinträgen
     }
+
+    // Bearbeiten-Funktion (Beispiel: Nur Alert)
+    function editItem(index) {
+        alert("Bearbeiten: " + namen[index]);
+    }
+
+    // Lösch-Funktion
+    function deleteItem(index) {
+        if (confirm(namen[index] + " wirklich löschen?")) {
+            namen.splice(index, 1); // Entfernt den Eintrag aus dem Array
+            renderList(); // Liste neu rendern
+        }
+    }
+
+    // Liste beim Laden der Seite rendern
+    renderList();
 </script>
 
 </body>
