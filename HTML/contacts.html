@@ -15,7 +15,9 @@
     <link rel="stylesheet" href="../style/board.css">
     <link rel="stylesheet" href="../style/contact/contact.css">
     <link rel="stylesheet" href="../style/contact/contactCard.css">
-
+    <script src="../scripts/contact/contactFirebase.js"></script>
+    <script src="../scripts/contact/contactMain.js"></script>
+    <script src="../scripts/contact/contactTemplate.js"></script>
 </head>
 
 <body>
@@ -50,7 +52,6 @@
         </nav>
 
         <section class="content_right">
-
             <div class="headline">
                 <span class="headline_title font20">Kanban Project Management Tool</span>
                 <div class="headline_logo_help">
@@ -67,7 +68,7 @@
                     <div class="contact_List_Frame">
                         <div class="contact_scroll">
                             <div class="contac_List_Sec_Header">
-                                <button class="contact_Add_btn btn_hover_blue" onclick="">
+                                <button class="contact_Add_btn btn_hover_blue" onclick="openContactBig()">
                                     <p>Add new Contact</p>
                                     <img src="../assets/icons/person_add.svg">
                                 </button>
@@ -79,11 +80,13 @@
                                 <div class="contact_Line">
                                     <hr>
                                 </div>
-                                <div class="contact_Detail_List">
-                                    <h4 class="contact_abbreviation">AM</h4>
-                                    <div>
-                                        <h2 class="contact_name">Anton Mayer</h2>
-                                        <h3 class="contact_mail  color_font">anton@gmail.com</h3>
+                                <div id="user-list">
+                                    <div class="contact_Detail_List" onclick="openContactBigMiddle()">
+                                        <h4 class="contact_abbreviation">AM</h4>
+                                        <div>
+                                            <h2 class="contact_name">Anton Mayer</h2>
+                                            <h3 class="contact_mail  color_font">anton@gmail.com</h3>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -92,13 +95,7 @@
                                 <div class="contact_Line">
                                     <hr>
                                 </div>
-                                <div class="contact_Detail_List">
-                                    <h4 class="contact_abbreviation">AM</h4>
-                                    <div>
-                                        <h2 class="contact_name">Anton Mayer</h2>
-                                        <h3 class="contact_mail  color_font">anton@gmail.com</h3>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -108,38 +105,23 @@
                             <div class="line_Vertikal"></div>
                             <p class="contact_header_2">Better with a team</p>
                         </div>
-                        <div class="contact_Detail_Frame">
-                            <h4 class="contact_Detail_abbreviation">AM</h4>
-                            <div class="contact_Detail_Name_Frame">
-                                <p3 class="contact_Detail_Name">Anton Mayer</p3>
-                                <div class="contact_Detail_Menu">
-                                    <span><img src="../assets/icons/edit.svg">Edit</span>
-                                    <span><img src="../assets/icons/delete.svg">Delete</span>
-                                </div>
-                            </div>
-                        </div>
-                        <h2 class="contact_Detail_Info_Header">Contact Information</h2>
-                        <div class="contact_Detail_Info_Mail">
-                            <h3>Email</h3>
-                            <h3 class="color_font font_weight_400">anton@gmail.com</h3>
-                        </div>
-                        <div class="contact_Detail_Info_Phone">
-                            <h3>Phone</h3>
-                            <h3 class=" font_weight_400">+49 1111 111 11 1</h3>
+                        <div id="contact-big-middle">
+
                         </div>
                     </div>
                 </div>
 
                 <!--  CSS Datei contactCarrd.css    sichtbar mit flex-->
 
-                <div class="card_contact">
+                <div class="card_contact" id="content-card-big">
                     <div class="contact_Card_Frame">
                         <img src="../assets/icons/logocontact.svg">
                         <p>Edit contact</p>
                     </div>
                     <div class="contact_Card_Input_Frame">
                         <div class="contact_Card_Close_btn">
-                            <img class="contact_Card_Close_img" src="../assets/icons/close.svg">
+                            <img class="contact_Card_Close_img" src="../assets/icons/close.svg"
+                                onclick="closeContactBig()">
                         </div>
                         <div class="contact_Card_abbreviation_Frame">
                             <div class="contact_Card_abbreviation">
@@ -147,22 +129,25 @@
                             </div>
                             <div class="contact_Card_Input_Frame">
                                 <div class="contact_Card_Input">
-                                    <input type="text" placeholder="Name">
+                                    <input type="text" placeholder="Name" id="name_input"
+                                        oninput="updateCancelButton()">
                                     <img src="../assets/icons/person.svg">
                                 </div>
                                 <div class="contact_Card_Input">
-                                    <input type="email" placeholder="Email">
+                                    <input type="email" placeholder="Email" id="email_input"
+                                        oninput="updateCancelButton()">
                                     <img src="../assets/icons/mail.svg">
                                 </div>
                                 <div class="contact_Card_Input">
-                                    <input type="text" placeholder="Phone">
+                                    <input type="tel" placeholder="Phone" id="tel_input" oninput="updateCancelButton()">
                                     <img src="../assets/icons/call.svg">
                                 </div>
                                 <div class="contact_Card_button">
-                                    <button class="contact_Card_button1 btn_hover_white" onclick="">
-                                        <p>Delete</p>
+                                    <button class="contact_Card_button1 btn_hover_white" onclick="cancelStatus()"
+                                        id="cancel-button">
+                                        Cancel
                                     </button>
-                                    <button class="contact_Card_button2 btn_hover_blue" onclick="">
+                                    <button class="contact_Card_button2 btn_hover_blue" onclick="addContact()">
                                         <p>Save</p>
                                         <img src="../assets/icons/check.svg">
                                     </button>

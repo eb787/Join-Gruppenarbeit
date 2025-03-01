@@ -1,5 +1,5 @@
 .card_contact {
-  display: flex;
+  display: none;
   width: 1212px;
   height: 594px;
   z-index: 1;
