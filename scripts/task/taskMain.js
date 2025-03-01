@@ -2,7 +2,8 @@ let taskArray = [];
 let taskContacteArray = [];
 let taskSubTaskArray = [];
 let taskSubTaskList=[];
-
+let editIndex=false;
+let editTaskNr=0;
 
 //Start function
 window.onload = function init() {
@@ -10,7 +11,7 @@ window.onload = function init() {
   startAddTask();
   console.log("Starte task");
   loadDataFirebase();
-  //taskRenderContact();
+ // taskRenderContact();
   requiredInputAddTask();
   openDatePicker();
   subTaskListRender();
@@ -119,7 +120,8 @@ function subTaskInputCheck(flag) {
   console.log("Input Check");
   let subTaskInput = document.getElementById('inputSubtask')
   if(flag){
-    subTaskInput.value=""
+    subTaskInput.value=== null;
+    console.log("Varianel ".subTaskInput);
     subTaskInput.focus();
     };
   if (subTaskInput) {
@@ -132,19 +134,31 @@ function subTaskInputCheck(flag) {
   }
 }
 
+
 function subTaskClose(){
   console.log("subtask wird geschlossen");
   document.getElementById('subTaskAddIcon').classList.remove('ele_hide')
   document.getElementById('subTaskEditIocn').classList.add('ele_hide')
   document.getElementById('inputSubtask').value="";
-
-
 }
 
 
-function taskCreateTaskbtn() {
-    let contents= document.getElementById('inputSubtask').value;
-    taskSubTaskList.push(contents);
+function taskCreateTask() {
+    let element= document.getElementById('inputSubtask');
+    contents=element.value;
+    element.focus();
+    if(editIndex){
+     taskSubTaskList[editTaskNr]=contents
+     editIndex=false;
+     editTaskNr=0;
+    }else{
+      taskSubTaskList.push(contents);
+    }
+
+
+
+
+    
     subTaskClose();
     subTaskListRender();
     console.log("Array ",taskSubTaskList );
@@ -152,12 +166,15 @@ function taskCreateTaskbtn() {
 
 
 
+
 function editSubTask(index){
-  
-
- 
-
-}
+  let element= document.getElementById('inputSubtask');
+  element.value=taskSubTaskList[index];
+  document.getElementById('subTaskAddIcon').classList.add('ele_hide')
+  document.getElementById('subTaskEditIocn').classList.remove('ele_hide')
+  editTaskNr=index;
+  editIndex=true;
+ }
 
 
 
@@ -168,23 +185,32 @@ function deleteSubTask(index){
 
 
 
-
-
-
-
-
-function taskReadinArray(taskData) {
-  console.log("Einträge ", Object.values(taskData).length);
-  console.log("Category ", taskData[0].category);
-  console.log("deadline ", taskData[0].deadline);
-  let contactArray = taskData[0].contacts.map(task => task);
-  console.log("Anzahl der Kontake ", contactArray.length);
-  console.log("Kontake ", contactArray);
-  console.log("Kontakt 1", contactArray[0])
+function taskReadinArrayTask(taskData) {
+  console.log("Einträge von Task", Object.values(taskData).length);
+//  console.log("Category ", taskData[0].category);
+ // console.log("deadline ", taskData[0].deadline);
+ // let contactArray = taskData[0].contacts.map(task => task);
+  //console.log("Anzahl der Kontake ", contactArray.length);
+  //console.log("Kontake ", contactArray);
+  //console.log("Kontakt 1", contactArray[0])
 }
 
 
+function taskReadinArrayContact(DataContact){
+console.log("Adressen")
+DataContact.map(task => {
+taskContacteArray.push(task);
+});
 
+
+let names = taskContacteArray
+  .filter(entry => entry && entry.name) // Entfernt null-Werte & Objekte ohne "name"
+  .map(entry => entry.name); // Holt nur die Namen
+
+console.log(names);
+
+
+} 
 
 
 

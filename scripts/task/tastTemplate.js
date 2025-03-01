@@ -3,7 +3,7 @@ return`
     <div class="sub_task_item">
     <div class="sublist_text">
        <span class="bullet">•</span>
-       <span>${subTaskdesignation}</span>
+       <span ondblclick="editSubTask(${index})">${subTaskdesignation}</span>
    </div>
    <div class="icons">
        <img src="../assets/icons/edit.svg"  onclick="editSubTask(${index})">
@@ -12,3 +12,4 @@ return`
 </div>
 `
 }
+
