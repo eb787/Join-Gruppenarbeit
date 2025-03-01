@@ -39,7 +39,7 @@ span {
     font-size: 20px;
     font-weight: 400;
     border-color: #D1D1D1;
-    
+
 }
 
 
@@ -177,7 +177,7 @@ span {
     font-size: 20px;
     line-height: 24px;
     appearance: none;
- 
+
 }
 
 .date-input::-webkit-calendar-picker-indicator {
@@ -191,7 +191,7 @@ span {
     top: 40px;
 }
 
-.date-icon:hover{
+.date-icon:hover {
     cursor: pointer;
 }
 
@@ -202,33 +202,34 @@ span {
     gap: 8px;
     height: 88px;
     width: 440px;
+
     span {
         color: black;
     }
 }
 
 
-.prio_img_group{
-   display: flex;
-   flex-direction: column;
-   gap: 3px;
-   filter: brightness(0) saturate(100%) invert(53%) sepia(98%) saturate(615%) hue-rotate(-15deg);
+.prio_img_group {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    filter: brightness(0) saturate(100%) invert(53%) sepia(98%) saturate(615%) hue-rotate(-15deg);
 }
 
 
-.btn_prio:hover{
-     transform: translateY(-2px);
+.btn_prio:hover {
+    transform: translateY(-2px);
     box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.3);
 }
 
- 
- .button-medium {
-     background-color: #FFA800;
-     color: white;
-  }
- 
- 
-  
+
+.button-medium {
+    background-color: #FFA800;
+    color: white;
+}
+
+
+
 
 
 .section-category {
@@ -259,7 +260,8 @@ span {
 .category-wrapper {
     position: relative;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: start;
     width: 440px;
 }
 
@@ -275,7 +277,9 @@ span {
 
 /* Custom Pfeil-Icon */
 .custom-arrow {
+
     position: absolute;
+    top: 25px;
     right: 25px;
     width: 7.21px;
     height: 4.6px;
@@ -369,7 +373,7 @@ textarea:hover {
     cursor: pointer;
 }
 
-.error_Field{
+.error_Field {
     font-size: 10px;
     color: red;
     margin-bottom: 10px;
@@ -377,11 +381,11 @@ textarea:hover {
 }
 
 
-.subtask_list{
+.subtask_list {
     display: flex;
     flex-direction: column;
-  height: 300px;
-   background-color: #FF8190;
+    height: 300px;
+    background-color: #FF8190;
 
 }
 
@@ -389,18 +393,18 @@ textarea:hover {
 
 /*CSS Klassen die per JS aufgerufen werden*/
 
-.btn_lockout{
-      opacity: 0.6;
-      pointer-events: none; 
+.btn_lockout {
+    opacity: 0.6;
+    pointer-events: none;
 }
 
 
-.error_Msg_Input{
+.error_Msg_Input {
     display: none;
     border-color: red;
 }
 
 
-.prio_img_with{
+.prio_img_with {
     filter: brightness(0) invert(1);
- }
+}
