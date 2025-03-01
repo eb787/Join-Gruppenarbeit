@@ -9,8 +9,8 @@ window.onload = function init() {
 
   startAddTask();
   console.log("Starte task");
-   loadDataFirebase();
-   //taskRenderContact();
+  loadDataFirebase();
+  //taskRenderContact();
   requiredInputAddTask();
   openDatePicker();
 
@@ -20,7 +20,9 @@ window.onload = function init() {
 function startAddTask() {
   //document.getElementById('btnCreateTask').classList.add('btn_lockout');
   //document.getElementById('btnClearTask').classList.add('btn_lockout');
-  document.getElementById('btnPrioGroup').classList.add('prio_img_with')
+  document.getElementById('subTaskAddIcon').classList.remove('ele_hide')
+  //document.getElementById('subTaskEditIocn').classList.remove('ele_hide')
+
 }
 
 
@@ -35,7 +37,7 @@ function requiredInputAddTask() {
       } else {
         if (this.type === "date" && !correctDateInput(this.value)) {
           errorMsg.textContent = "no valid date";
-              
+
         } else {
           console.log("OK Eingabe");
           errorMsg.textContent = " ";
@@ -110,6 +112,33 @@ function btnPrioBtnSelect(auswahl, btnColor, id) {
 }
 
 
+function subTaskInputCheck(flag) {
+  console.log("Input Check");
+  let subTaskInput = document.getElementById('inputSubtask').value;
+  if(flag){subTaskInput="o"};
+  if (subTaskInput) {
+    console.log("es wurde was eigeben");
+    document.getElementById('subTaskAddIcon').classList.add('ele_hide')
+    document.getElementById('subTaskEditIocn').classList.remove('ele_hide')
+  } else {
+    document.getElementById('subTaskAddIcon').classList.remove('ele_hide')
+    document.getElementById('subTaskEditIocn').classList.add('ele_hide')
+  }
+}
+
+function subTaskClose(){
+  console.log("subtask wird geschlossen");
+  document.getElementById('subTaskAddIcon').classList.remove('ele_hide')
+  document.getElementById('subTaskEditIocn').classList.add('ele_hide')
+  document.getElementById('inputSubtask').value="";
+
+
+}
+
+
+
+
+
 
 
 function taskReadinArray(taskData) {
@@ -129,6 +158,7 @@ function taskClearbtn() { }
 function taskCreateTaskbtn() {
 
 
+
 }
 
 
@@ -138,6 +168,7 @@ function taskCreateTaskbtn() {
 
 
 function contactReadinArray() {
+
 
 }
 

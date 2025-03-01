@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input mit Icon</title>
+    <style>
+        .input-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .input-container input {
+            width: 200px;
+            padding: 8px 35px 8px 10px; /* Platz für das Icon rechts */
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .input-container .icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 18px;
+            color: #555;
+        }
+
+        .input-container .icon:hover {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="input-container">
+    <input type="text" placeholder="Text eingeben...">
+    <span class="icon" onclick="iconClick()">+</span>
+</div>
+
+<script>
+    function iconClick() {
+        alert("Icon wurde geklickt!");
+    }
+</script>
+
+</body>
+</html>
