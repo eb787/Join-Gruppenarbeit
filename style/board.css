@@ -314,11 +314,16 @@
 }
 
 .card_overlay {
-    width: 525px !important;
+    width: 445px !important;
+    padding: 48px 40px;
+    gap: 24px;
+    border-radius: 30px;
+    max-height: 835px;
 }
 
 .technical_task_overlay {
-    width: 160px !important;
+    min-width: 160px !important;
+    background-color: #1FD7C1;
 }
 
 .user_story_overlay {
@@ -373,10 +378,6 @@
     border: 2px solid white !important;
 }
 
-.font_19 {
-    font-size: 19px;
-}
-
 .gap_8 {
     gap: 8px !important;;
 }
@@ -384,4 +385,36 @@
 .task_info {
     display: flex;
     gap: 16px;
+    padding: 5px 16px;
+    align-items: center;
+}
+
+.card_overlay_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit_icon {
+    padding: 2.5px;
+}
+
+.overlay_options {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.overlay_option {
+    display: flex;
+    font-size: 16px;
+    align-items: center;
+    gap: 8px;
+}
+
+.seperator_overlay_options {
+    height: 24px;
+    background-color: #D1D1D1;
+    width: 0.5px;
 }

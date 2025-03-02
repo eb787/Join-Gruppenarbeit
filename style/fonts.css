@@ -19,6 +19,15 @@ h4 {
     font-size: 12px;
 }
 
+.font_19 {
+  font-size: 19px;
+}
+
+.font_16 {
+  font-size: 16px;
+}
+
+
 /* inter-100 - latin */
 @font-face {
     font-display: swap;

@@ -52,10 +52,13 @@ function getNoTasksDoneCard() {
     return `<div id="no_task_done" class="no_tasks">No tasks Done</div>`
 }
 
-function getCardOverlay(index, subtasks, progress) {
+function getCardOverlay(index) {
     return `    <div class="bg_overlay">
                 <div class="card card_overlay">
-                                <div class="task_category task_category_overlay technical_task technical_task_overlay">${currentTasks[index].category}</div>
+                    <div class="card_overlay_header">
+                        <div id="category_overlay${index}" class="task_category task_category_overlay technical_task_overlay ">${currentTasks[index].category}</div>
+                        <img class="close_btn_overlay" src="..//assets/icons/close.svg" alt="close button">
+                    </div>
                                     <h1 class="board_heading">${currentTasks[index].title}</h1>
                                     <div class="task_description_overlay">${currentTasks[index].description}</div>
                                     <div class="task_description_overlay">
@@ -88,35 +91,28 @@ function getCardOverlay(index, subtasks, progress) {
                                         <p class="color_blue">Subtasks</p>
                                         <div>
                                             <div class="task_info">
-                                                <div class="check_box_btn"></div>
-                                                <p class="font_19">Emanuel Macron</p>
+                                                <div class="check_box_overlay"></div>
+                                                <p class="font_16">Emanuel Macron</p>
                                             </div>
                                              <div class="task_info">
-                                                <div class="check_box_btn"></div>
-                                                <p class="font_19">Boris Becker</p>
+                                                <div class="check_box_overlay"></div>
+                                                <p class="font_16">Boris Becker</p>
                                              </div>
                                         </div>
                                     </div>
-
-
-
-
-
-                                <div class="progress_box">
-                                    <div class="progress_bar">
-                                        <div class="progress" style="width: ${progress}%;"></div>
+                                    <div  class="overlay_options">
+                                        <div class="overlay_option delete_btn_overlay_board">
+                                            <img class="delete_icon" src="..//assets/icons/delete.svg" alt="delete button">
+                                            <p>Delete</p>
+                                        </div>
+                                        <div class="seperator_overlay_options"></div>
+                                        <div class="overlay_option edit_btn_overlay_board">
+                                            <img class="edit_icon" src="..//assets/icons/edit.svg" alt="edit button">
+                                            <p>Edit</p>
+                                        </div>
                                     </div>
-                                    <div style="display: flex; flex-direction: row; gap: 1px; align-items: center;">
-                                        <h4 id="subtasks_done" style="font-weight: 400;">${currentTasks[index].subtasks.number_of_finished_subtasks}</h4>
-                                        <h4 style="font-weight: 400;">/</h4>
-                                        <h4 id="subtasks_total" style="font-weight: 400;">${subtasks}</h4><br><br>
-                                        <h4 style="font-weight: 400;">Subtasks</h4>
-                                    </div>
-                                    
-                                </div>
-                                
-        </div>
-                            </div>`
+                            </div>
+                                </div>`
 }
 
 

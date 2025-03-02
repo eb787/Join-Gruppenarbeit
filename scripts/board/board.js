@@ -182,5 +182,11 @@ function chooseRightCard(cardType) {
 }
 
 function showCardOverlay(index) {
-    document.getElementById("full_content").innerHTML += getCardOverlay(index, 20, 10);
+    document.getElementById("full_content").innerHTML += getCardOverlay(index);
+
+    if (currentTasks[index].category == "User Story") {
+        document.getElementById("category_overlay" + index).classList.add("user_story_overlay");
+        document.getElementById("category_overlay" + index).classList.remove("technical_task_overlay");
+    }
+
 }
