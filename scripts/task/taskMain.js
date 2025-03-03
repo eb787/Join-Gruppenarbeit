@@ -154,11 +154,6 @@ function taskCreateTask() {
     }else{
       taskSubTaskList.push(contents);
     }
-
-
-
-
-    
     subTaskClose();
     subTaskListRender();
     console.log("Array ",taskSubTaskList );
@@ -187,13 +182,8 @@ function deleteSubTask(index){
 
 function taskReadinArrayTask(taskData) {
   console.log("Einträge von Task", Object.values(taskData).length);
-//  console.log("Category ", taskData[0].category);
- // console.log("deadline ", taskData[0].deadline);
- // let contactArray = taskData[0].contacts.map(task => task);
-  //console.log("Anzahl der Kontake ", contactArray.length);
-  //console.log("Kontake ", contactArray);
-  //console.log("Kontakt 1", contactArray[0])
 }
+
 
 
 function taskReadinArrayContact(DataContact){
@@ -201,29 +191,45 @@ console.log("Adressen")
 DataContact.map(task => {
 taskContacteArray.push(task);
 });
-
-
-let names = taskContacteArray
-  .filter(entry => entry && entry.name) // Entfernt null-Werte & Objekte ohne "name"
-  .map(entry => entry.name); // Holt nur die Namen
-
-console.log(names);
-
-
+let templateData = taskContacteArray
+  .filter(entry => entry && entry.name)
+  .map(entry => taskRenderContactList(entry.name,entry.color));   
 } 
 
 
-
-
-
-
-
-
-function contactReadinArray() {
-
-
+function taskContactListDrobdown(){
+  document.getElementById('taskContactDrowdownMenue').classList.toggle("ele_show");
 }
 
+
+function taskContactFilterList(){
+  let input = document.getElementById("taskDropDownInput").value.toLowerCase();
+  let entries = document.querySelectorAll(".contact_Label_Item");
+entries.forEach(entries =>{
+  let labelText = entries.textContent.toLowerCase();
+  if(labelText.includes(input)){
+    entries.style.display="flex";
+  }else{
+    entries.style.display="none";
+  }
+});
+}
+
+
+
+function contactCheckOKinArray(){
+  let selectedTaskContacts = [];
+  document.querySelectorAll(".contact_Label_Item").forEach(item=>{
+    let checkbox = item.querySelector("input[type='checkbox']")
+    if(checkbox && checkbox.checked){
+      let name=item.querySelector('span').textContent.trim();
+      selectedTaskContacts.push(name);
+    }
+  })
+
+  console.log("Namen mit Checkbox ",selectedTaskContacts);
+
+}
 
 
 

@@ -28,3 +28,28 @@ element.innerHTML += taskSubTaskList.map((designation, index)=>
 ).join("");
 
 }
+
+
+function taskRenderContactList(name,color){
+    console.log("Name :", name);
+    console.log("Farbcode ",color);
+    console.log("Color :",contactColorAssign(color));
+
+   let element= document.getElementById('taskDropDownList');
+
+   element.innerHTML += taskContacListTemplate(name,contactColorAssign(color),taskInitialLettersCreate(name));
+
+}
+
+function contactColorAssign(color){
+   return contactColorArray[color-1];
+}
+
+
+function taskInitialLettersCreate(name){
+let initials = name.split(" ").map(word => word[0]).join("");
+return initials;
+
+}
+
+
