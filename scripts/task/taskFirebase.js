@@ -10,7 +10,7 @@ try{
     ])
        const DataTask = await responseTask.json();
        const DataContact= await responseContact.json();
-    taskReadinArrayTask(DataTask);   
+   // taskReadinArrayTask(DataTask);   
     taskReadinArrayContact(DataContact); 
 }catch(error){
     console.log("Fehler beim lesen " ,error);

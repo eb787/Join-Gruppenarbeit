@@ -7,7 +7,6 @@ let editTaskNr=0;
 
 //Start function
 window.onload = function init() {
-
   startAddTask();
   console.log("Starte task");
   loadDataFirebase();
@@ -15,7 +14,6 @@ window.onload = function init() {
   requiredInputAddTask();
   openDatePicker();
   subTaskListRender();
-
 }
 
 /*Tasten Clear und Create Task sperren*/
@@ -185,15 +183,16 @@ function taskReadinArrayTask(taskData) {
 }
 
 
-
 function taskReadinArrayContact(DataContact){
 console.log("Adressen")
 DataContact.map(task => {
 taskContacteArray.push(task);
 });
+
+
 let templateData = taskContacteArray
-  .filter(entry => entry && entry.name)
-  .map(entry => taskRenderContactList(entry.name,entry.color));   
+ .filter(entry => entry && entry.name)
+ .map(entry => taskRenderContactList(entry.name,entry.color));   
 } 
 
 

@@ -418,7 +418,22 @@ hr {
     height: 14.51px;
 }
 
-.required-text {
+.initiale_Icon_List{
+    display: none;
+    align-items: center;
+    justify-content: flex-start;
+    gap:5px;
+    position: absolute;
+    top:680px;
+    left:328px;
+    height:42px;
+    width: 175px;
+    background-color: #FF8190;
+ }
+
+
+
+.required_text {
     position: absolute;
     top: 830px;
     left: 328px;
