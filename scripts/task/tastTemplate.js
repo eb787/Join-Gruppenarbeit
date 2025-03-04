@@ -14,15 +14,14 @@ function SubtaskListTemplate(subTaskdesignation, index) {
 }
 
 
-function taskContacListTemplate(name,color,initials) {
-
-     return `
+function taskContacListTemplate(name, color, initials) {
+    return `
       <div class="contact_Label_Item">
      <label>
               <p class="initial_Letters_Contact" style="background-color: ${color};">${initials}</p>
               <span >${name}</span> 
               <input class="input_check" type="checkbox" onclick="contactCheckOKinArray()">
      </label>
-        </div>  
+            </div>  
      `
 }

@@ -10,7 +10,7 @@ try{
     ])
        const DataTask = await responseTask.json();
        const DataContact= await responseContact.json();
-   // taskReadinArrayTask(DataTask);   
+    taskReadinArrayTask(DataTask);   
     taskReadinArrayContact(DataContact); 
 }catch(error){
     console.log("Fehler beim lesen " ,error);
@@ -18,9 +18,25 @@ try{
 }
 
 
-async function saveDataFirebaseTask() {
-   
+function pushTaskToServer() {
+    collectData();
+    loadDataFirebase();
+    postTaskData(`/tasks/${taskId}`, currentTask);
 }
+
+
+async function postTaskData(path = "", task) {
+    let CurrentTaskResponse = await fetch(Base_URL + path + ".json",{
+        method: "PUT",
+        header: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(task)
+    });
+  //  return CurrentTaskResponseToJson = await CurrentTaskResponse.json();
+}
+
+
 
 
 async function deleteDataFirebaseTask(params) {

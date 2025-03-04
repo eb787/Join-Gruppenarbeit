@@ -534,7 +534,7 @@ textarea:hover {
 
 
 .error_Msg_Input {
-    border-color: red;
+    border-color: red !important;
 }
 
 

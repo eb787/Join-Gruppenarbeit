@@ -4,6 +4,12 @@ let taskSubTaskArray = [];
 let taskSubTaskList=[];
 let editIndex=false;
 let editTaskNr=0;
+let selectedTaskContacts = [];
+let taskPrioSelect="medium_prio";
+let currentTask = {};
+let taskId="";
+
+
 
 //Start function
 window.onload = function init() {
@@ -30,17 +36,18 @@ function startAddTask() {
 function requiredInputAddTask() {
   document.querySelectorAll(".input-field").forEach(input => {
     input.addEventListener("blur", function () {
-      let errorMsg = this.nextElementSibling;
+      let errorMsg =this.nextElementSibling;
       if (this.value.trim() === "") {
         this.classList.add('error_Msg_Input')
+             
         errorMsg.textContent = "This field is required";
         console.log("Keine Eingabe");
       } else {
         if (this.type === "date" && !correctDateInput(this.value)) {
           errorMsg.textContent = "no valid date";
-      
+          this.classList.add('error_Msg_Input')
         } else {
-          console.log("OK Eingabe");
+           console.log("OK Eingabe");
           this.classList.remove('error_Msg_Input')
           errorMsg.textContent = " ";
         }
@@ -51,6 +58,9 @@ function requiredInputAddTask() {
 
 
 function correctDateInput(dateString) {
+
+  console.log("Datum prüfen ",dateString);
+  
   let date = new Date(dateString);
   let year = date.getFullYear();
   // Prüfen, ob das Datum gültig ist
@@ -84,8 +94,9 @@ function openDatePicker() {
 }
 
 
-//Prio 
+
 function btnPrioSelect(btnPrio) {
+  taskPrioSelect="";
   document.querySelectorAll(".prio_img").forEach(el => {
     el.classList.remove('prio_img_with')
   });
@@ -95,14 +106,18 @@ function btnPrioSelect(btnPrio) {
   });
   if (btnPrio == "urgent") {
     btnPrioBtnSelect("button-urgent", "#FF3D00", 0)
+    taskPrioSelect="high_prio";
   }
   if (btnPrio == "medium") {
     btnPrioBtnSelect("button-medium", "#FFA800", 1)
+    taskPrioSelect="medium_prio"
   }
   if (btnPrio == "low") {
     btnPrioBtnSelect("button-low", "#7AE229", 2)
+    taskPrioSelect="low_prio";
   }
 }
+
 
 
 function btnPrioBtnSelect(auswahl, btnColor, id) {
@@ -158,8 +173,6 @@ function taskCreateTask() {
 }
 
 
-
-
 function editSubTask(index){
   let element= document.getElementById('inputSubtask');
   element.value=taskSubTaskList[index];
@@ -170,17 +183,19 @@ function editSubTask(index){
  }
 
 
-
 function deleteSubTask(index){
   taskSubTaskList.splice(index,1);
   subTaskListRender();
 } 
 
 
-
 function taskReadinArrayTask(taskData) {
-  console.log("Einträge von Task", Object.values(taskData).length);
+   taskId = Object.values(taskData).length;
+   console.log("Einträge von Task", Object.values(taskData).length);
+   console.log(("TaskID Aktuell" ,taskId));
+   
 }
+
 
 
 function taskReadinArrayContact(DataContact){
@@ -215,9 +230,8 @@ entries.forEach(entries =>{
 }
 
 
-
 function contactCheckOKinArray(){
-  let selectedTaskContacts = [];
+  selectedTaskContacts = [];
   document.querySelectorAll(".contact_Label_Item").forEach(item=>{
     let checkbox = item.querySelector("input[type='checkbox']")
     if(checkbox && checkbox.checked){
@@ -227,9 +241,58 @@ function contactCheckOKinArray(){
   })
 
   console.log("Namen mit Checkbox ",selectedTaskContacts);
-
 }
 
+
+function checkInputData(){
+      let mandatoryFields = document.querySelectorAll('.input-field');
+       mandatoryFields.forEach(field => {
+        if (field.value.trim() === "") {
+            field.classList.add('error_Msg_Input');
+            console.log("Es fehlt noch was");
+        } else {
+            field.classList.remove('error_Msg_Input');
+            console.log("Alle Daten OK");
+            pushTaskToServer();
+        }
+    });
+}
+
+
+
+function  collectData(){
+currentTask = {
+  title: document.getElementById('taskTitle').value,
+  description: document.getElementById('descriptionTask').value.trim() || "empty",  // oder "empty" reinschreiben wenn es leer bleibt
+  contacts: selectedTaskContacts, // oder 0 reinschreiben ohne array wenn keine Kontakte hinzugefügt werden
+  deadline: dateConversion(document.getElementById('taskDate').value),
+  prio: taskPrioSelect, // "medium_prio" , oder "low_prio", oder "high_prio"
+  category: taskCatergoryRetrieve(document.getElementById('taskCatergory').value), // "Technical Task" oder "User Story"
+  subtasks: {
+      total: taskSubTaskList.length, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
+      number_of_finished_subtasks: 0, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
+      subtasks_todo: taskSubTaskList,
+      subtasks_done: [], // ist am Anfang leer
+  },
+  status: "toDo" //  "toDo",  "inProgress", "awaitFeedback", oder "done" 
+}
+console.log("Daten die gepeichert werdden sollen ",currentTask);
+}
+
+
+function dateConversion(date){
+  const [year, month, day] = date.split("-");
+  return `${day}.${month}.${year}`;
+}
+
+
+function taskCatergoryRetrieve(number){
+  if(number === "1"){
+    return "Technical Task";
+  }else{
+    return "User Story"
+  }
+}
 
 
 
