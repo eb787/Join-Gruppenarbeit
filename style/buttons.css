@@ -100,20 +100,6 @@
     cursor: pointer;
 }
 
-.check_box_overlay {
-    width: 16px;
-    background-image: url(../assets/icons/Check_button.svg);
-    height: 16px;
-    background-repeat: no-repeat;
-    background-size: contain;
-    padding: 4px 3px;
-}
-
-.check_box_overlay:hover {
-    background-image: url(../assets/icons/checked_hover.png) !important;
-    cursor: pointer;
-}
-
 .button-clear-task {
     width: 110px;
     height: 56px;
@@ -264,14 +250,13 @@ button:hover {
     color: white;
     font-size: 20px;
     position: absolute;
-    bottom: 0;
+    bottom: 65px;
     left: calc(50vw - 156px);
     display: flex;
     justify-content: center;
     align-items: center;
-    animation-name: signedUp;
-    animation-duration: 4s;
-    animation-delay: 800ms;
+    display: none;
+    text-decoration: none;
 }
 
 .successful_signin_btn:hover {
@@ -284,27 +269,3 @@ button:hover {
     from {bottom: 0;}
     to {top: calc(50vh + 37px ); }
 }
-
-.close_btn_overlay {
-    padding: 9.25px;
-}
-
-.edit_btn_overlay_board:hover {
-    cursor: pointer;
-    color: #29ABE2;
-    font-weight: 700;
-    .edit_icon {
-        filter: invert(58%) sepia(59%) saturate(583%) hue-rotate(155deg) brightness(90%) contrast(97%);
-    }
-}
-
-.delete_btn_overlay_board:hover {
-    cursor: pointer;
-    color: #29ABE2;
-    font-weight: 700;
-    .delete_icon {
-        filter: invert(58%) sepia(59%) saturate(583%) hue-rotate(155deg) brightness(90%) contrast(97%);
-    }
-}
-
-

@@ -19,11 +19,11 @@ body {
 }
 
 .logo {
-     
+
     width: 100.03px;
     height: 121.97px;
     padding-top: 13px;
-    
+
 }
 
 
@@ -36,10 +36,10 @@ body {
 }
 
 .login_content {
-    min-height: calc(100vh - 321.97px);
+    min-height: calc(100vh - 230px);
     display: flex;
     justify-content: center;
-    padding-top: 60px;
+    align-items: center;
 }
 
 .login_field {
@@ -106,13 +106,13 @@ body {
 }
 
 .input_mail[type=email] {
-    background-image: url(../assets/icon/mail.svg);
+    background-image: url(../assets/icons/mail.svg);
     background-size: 24px;
     background-position: 374px 11px;
 }
 
 .input_pw[type=password] {
-    background-image: url(../assets/icon/lock.svg);
+    background-image: url(../assets/icons/lock.svg);
     background-position: 359px 1px;
     background-size: 17px;
     background-position: 378px 12px;
@@ -168,7 +168,7 @@ body {
 }
 
 .input_name {
-    background-image: url(../assets/icon/person.svg);
+    background-image: url(../assets/icons/person.svg);
     background-size: 24px;
     background-position: 374px 11px;
 }
@@ -183,8 +183,9 @@ body {
 
 .privacy_check:hover {
     cursor: pointer;
+
     .check_box_btn {
-        background-image: url(../assets/icon/checked_hover.png);
+        background-image: url(../assets/icons/checked_hover.png);
     }
 }
 
@@ -240,9 +241,9 @@ body {
     min-height: calc(100vh - 261.97px);
 }
 
-.login_logo{
+.login_logo {
     opacity: 1 !important;
-  
+
 }
 
 
@@ -253,7 +254,7 @@ body {
     transform: translate(-50%, -50%);
     animation: slide-in 1.0s ease-out forwards;
     z-index: 1000;
- 
+
 }
 
 
@@ -262,30 +263,52 @@ body {
     from {
         top: 50%;
         left: 50%;
-             }
+    }
 
     to {
-       
-      width: 100.02px;
-      height: 134.97px;
-      top:10%;
-      left :7%;
-           
+
+        width: 100.02px;
+        height: 134.97px;
+        top: 10%;
+        left: 7%;
+
     }
 }
 
 
 
-.main_container{
+.main_container {
     opacity: 0;
     transition: 0.5s ease-in;
     animation: fadeIn 1s ease-in 0.5s forwards;
-   
+
 }
 
 
 @keyframes fadeIn {
-    from { opacity:0; }
-    to { opacity:1; }
-   
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+.wrong_data_alert {
+    display: none;
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.wrong_data_alert.show {
+    display: block;
+}
+
+.position_signup {
+    display: flex;
+    position: absolute;
+    top: 465px;
 }
