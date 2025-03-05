@@ -27,7 +27,7 @@ function updateTaskBoard() {
     emptyBoard();
 
     for (let index = 0; index < currentTasks.length; index++) {
-         showCardOnBoard(index);
+        showCardOnBoard(index);
 
 
     }
