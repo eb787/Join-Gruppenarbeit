@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.svg">
     <title>Join</title>
-
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/login.css">
+    <link rel="stylesheet" href="../style/navbar.css">
     <link rel="stylesheet" href="../style/buttons.css">
     <link rel="stylesheet" href="../style/color.css">
     <link rel="stylesheet" href="../style/template.css">
     <link rel="stylesheet" href="../style/fonts.css">
+    <link rel="stylesheet" href="../style/board.css">
+    <script src="../scripts/signup/signup.js"></script>
 </head>
-<body>
+
+<body onload="enableSubmitButton()">
     <div class="bg_login">
         <div class="header_login">
             <img class="logo" src="../assets/icons/logo.svg" alt="logo">
@@ -22,37 +26,46 @@
         <div class="login_content no_padding signup_content">
             <div class="login_field signup_field">
                 <div class="signup_field_header">
-                    <a class="go_back_btn" href="../HTML/login.html"></a>
+                    <a class="go_back_btn" href="../HTML/login.html">
+                        <img src="../assets/icons/arrow-left-line.svg" >
+                    </a>
                     <div class="login_heading_div">
                         <h1 class="heading_login">Sign up</h1>
                         <div class="seperator_log_in"></div>
                     </div>
                 </div>
                 <div class="login_inputs no_padding">
-                    <input class="input_login input_name" type="text" placeholder="Name" alt="mail icon">
-                    <input class="input_login input_mail" type="email" placeholder="Email" alt="mail icon">
-                    <input class="input_login input_pw" type="password" placeholder="Password" alt="mail icon">
-                    <input class="input_login input_pw" type="password" placeholder="Confirm Password" alt="mail icon"> 
-                
+                    <input class="input_login input_name" id="name" type="text" placeholder="Name" required
+                        alt="mail icon">
+                    <input class="input_login input_mail" id="email" type="email" placeholder="Email" required
+                        alt="mail icon">
+                    <input class="input_login input_pw" id="password" type="password" placeholder="Password" required
+                        alt="mail icon">
+                    <input class="input_login input_pw" id="confirm_password" type="password"
+                        placeholder="Confirm Password" alt="mail icon">
                     <div class="privacy_check">
-                        <div class="check_box_btn"></div>
-                        <p class="pivacy_check_text">I accept the <a class="link_privacy" href="./policy.html" target="_blank">Privacy Policy</a></p>
-                    </div>    
+                        <input type="checkbox" id="privacy_checkbox" class="privacy_checkbox">
+                        <label for="privacy_checkbox" class="privacy_check_text">I accept the <a class="link_privacy"
+                                href="../policy.html" target="_blank">Privacy Policy</a></label>
+                    </div>
                 </div>
                 <div class="login_btns">
-                    <button type="button" class="signup_btn" disabled>Sign up</button>
+                    <button type="button"  onclick="addUserSignUp()" class="signup_btn" id="signup_btn">Sign up</button>
                 </div>
-            
+                <div class="wrong_data_alert position_signup"></div>
             </div>
         </div>
         <footer class="login_footer">
             <div class="links_footer_login">
-            <a class="links_footer link_privacy_policy" href="./policy.html">Privacy Policy</a>
-            <a class="links_footer link_legal_notice" href="./legal_notice.html">Legal notice</a>
-        </div>
+                <a class="links_footer link_privacy_policy" href="../HTML/policy.html">Privacy Policy</a>
+                <a class="links_footer link_legal_notice" href="../HTML/legal_notice.html">Legal notice</a>
+            </div>
         </footer>
-        <div class="successful_signin_btn">You Signed Up Successfully</div>
+        <a id="successful_signin_btn" href="../HTML/login.html" class="successful_signin_btn">You Signed Up
+            Successfully</a>
+
     </div>
-    
+
 </body>
+
 </html>
