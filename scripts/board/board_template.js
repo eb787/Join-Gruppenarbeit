@@ -52,67 +52,75 @@ function getNoTasksDoneCard() {
     return `<div id="no_task_done" class="no_tasks">No tasks Done</div>`
 }
 
-function getCardOverlay(index) {
-    return `    <div class="bg_overlay">
-                <div class="card card_overlay">
-                    <div class="card_overlay_header">
-                        <div id="category_overlay${index}" class="task_category task_category_overlay technical_task_overlay ">${currentTasks[index].category}</div>
-                        <img class="close_btn_overlay" src="..//assets/icons/close.svg" alt="close button">
-                    </div>
-                                    <h1 class="board_heading">${currentTasks[index].title}</h1>
-                                    <div class="task_description_overlay">${currentTasks[index].description}</div>
-                                    <div class="task_description_overlay">
-                                        <p class="color_blue">Due Date:</p>
-                                       <p>10/05/2025</p>
-                                    </div>
-                                     <div class="task_description_overlay">
-                                        <p class="color_blue al_center">Priority:</p>
-                                       <p class="priority_div">Medium<img class="prio_icon ${currentTasks[index].prio}" src="..//assets/icons/${currentTasks[index].prio}.svg" alt="priority indicator"></p>
-                                       
-                                    </div>
-                                    <div class="task_description_overlay fd_column gap_8">
-                                        <p class="color_blue">Assigned To:</p>
-                                        <div>
-                                            <div class="contact_info">
-                                                <div class="profile_badge profile_badge_overlay profile_orange">AM</div>
-                                                <p class="font_19">Emanuel Macron</p>
-                                            </div>
-                                             <div class="contact_info">
-                                                <div class="profile_badge profile_badge_overlay profile_green">EM</div>
-                                                <p class="font_19">Boris Becker</p>
-                                             </div>
-                                             <div class="contact_info">
-                                                <div class="profile_badge profile_badge_overlay profile_purple">MB</div>
-                                                <p class="font_19">Angela Merkel</p>
-                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="task_description_overlay fd_column gap_8">
-                                        <p class="color_blue">Subtasks</p>
-                                        <div>
-                                            <div class="task_info">
-                                                <div class="check_box_overlay"></div>
-                                                <p class="font_16">Emanuel Macron</p>
-                                            </div>
-                                             <div class="task_info">
-                                                <div class="check_box_overlay"></div>
-                                                <p class="font_16">Boris Becker</p>
-                                             </div>
-                                        </div>
-                                    </div>
-                                    <div  class="overlay_options">
-                                        <div class="overlay_option delete_btn_overlay_board">
-                                            <img class="delete_icon" src="..//assets/icons/delete.svg" alt="delete button">
-                                            <p>Delete</p>
-                                        </div>
-                                        <div class="seperator_overlay_options"></div>
-                                        <div class="overlay_option edit_btn_overlay_board">
-                                            <img class="edit_icon" src="..//assets/icons/edit.svg" alt="edit button">
-                                            <p>Edit</p>
-                                        </div>
-                                    </div>
+function getCardOverlay() {
+    return `    <div onclick="closeOverlay()" id="bg_overlay" class="bg_overlay d_none">
+                <div onclick="stopPropagation(event)" id="card_overlay" class="card_overlay">
+                    
                             </div>
                                 </div>`
+}
+
+function getCardOverlayContent(index) {
+    return `   
+   
+        <div class="card_overlay_header">
+            <div id="category_overlay${index}" class="task_category task_category_overlay technical_task_overlay ">${currentTasks[index].category}</div>
+            <img onclick="closeOverlay()" class="close_btn_overlay" src="..//assets/icons/close.svg" alt="close button">
+        </div>
+                        <h1 class="board_heading">${currentTasks[index].title}</h1>
+                        <div class="task_description_overlay">${currentTasks[index].description}</div>
+                        <div class="task_description_overlay">
+                            <p class="color_blue">Due Date:</p>
+                           <p>10/05/2025</p>
+                        </div>
+                         <div class="task_description_overlay">
+                            <p class="color_blue al_center">Priority:</p>
+                           <p class="priority_div">Medium<img class="prio_icon ${currentTasks[index].prio}" src="..//assets/icons/${currentTasks[index].prio}.svg" alt="priority indicator"></p>
+                           
+                        </div>
+                        <div class="task_description_overlay fd_column gap_8">
+                            <p class="color_blue">Assigned To:</p>
+                            <div>
+                                <div class="contact_info">
+                                    <div class="profile_badge profile_badge_overlay profile_orange">AM</div>
+                                    <p class="font_19">Emanuel Macron</p>
+                                </div>
+                                 <div class="contact_info">
+                                    <div class="profile_badge profile_badge_overlay profile_green">EM</div>
+                                    <p class="font_19">Boris Becker</p>
+                                 </div>
+                                 <div class="contact_info">
+                                    <div class="profile_badge profile_badge_overlay profile_purple">MB</div>
+                                    <p class="font_19">Angela Merkel</p>
+                                 </div>
+                            </div>
+                        </div>
+                        <div class="task_description_overlay fd_column gap_8">
+                            <p class="color_blue">Subtasks</p>
+                            <div>
+                                <div class="task_info">
+                                    <div class="check_box_overlay"></div>
+                                    <p class="font_16">Emanuel Macron</p>
+                                </div>
+                                 <div class="task_info">
+                                    <div class="check_box_overlay"></div>
+                                    <p class="font_16">Boris Becker</p>
+                                 </div>
+                            </div>
+                        </div>
+                        <div  class="overlay_options">
+                            <div class="overlay_option delete_btn_overlay_board">
+                                <img class="delete_icon" src="..//assets/icons/delete.svg" alt="delete button">
+                                <p>Delete</p>
+                            </div>
+                            <div class="seperator_overlay_options"></div>
+                            <div class="overlay_option edit_btn_overlay_board">
+                                <img class="edit_icon" src="..//assets/icons/edit.svg" alt="edit button">
+                                <p>Edit</p>
+                            </div>
+                        </div>
+               `
+
 }
 
 
