@@ -529,7 +529,8 @@ textarea:hover {
 .error_Field {
     font-size: 10px;
     color: red;
-    margin-bottom: 10px;
+    margin-top: -4px;
+    
 }
 
 

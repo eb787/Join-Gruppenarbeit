@@ -38,7 +38,7 @@ function requiredInputAddTask() {
       let errorMsg =this.nextElementSibling;
       if (this.value.trim() === "") {
         this.classList.add('error_Msg_Input')
-             
+        //errorMsg.style.marginTop = "-4px";      
         errorMsg.textContent = "This field is required";
         console.log("Keine Eingabe");
       } else {
@@ -57,9 +57,7 @@ function requiredInputAddTask() {
 
 
 function correctDateInput(dateString) {
-
   console.log("Datum prüfen ",dateString);
-  
   let date = new Date(dateString);
   let year = date.getFullYear();
   // Prüfen, ob das Datum gültig ist
@@ -93,7 +91,6 @@ function openDatePicker() {
 }
 
 
-
 function btnPrioSelect(btnPrio) {
   taskPrioSelect="";
   document.querySelectorAll(".prio_img").forEach(el => {
@@ -116,7 +113,6 @@ function btnPrioSelect(btnPrio) {
     taskPrioSelect="low_prio";
   }
 }
-
 
 
 function btnPrioBtnSelect(auswahl, btnColor, id) {
@@ -196,31 +192,15 @@ function taskReadinArrayTask(taskData) {
 
 
 function taskReadinArrayContact(DataContact){
-console.log("Adressen")
 taskContacteArray= Object.values(DataContact)
 .flatMap(array=>array.map(entry => (entry.name)))
+ 
+let taskContacColor= Object.values(DataContact)
+.flatMap(array=>array.map(entry => (entry.color)))
 
-
-//.filter(name=>name);
-
-
-
-console.log("Array mit Namen ",taskContacteArray);
-console.log(taskContacteArray[2]);
-
-
-taskContacteArray.map(name=>taskRenderContactList(name,7));
-
-/*
-taskContacteArray
- .filter(entry => entry && entry.name)
- .map(entry => taskRenderContactList(entry.name,entry.color));   
-
-*/
-
+taskContacteArray.map((name,index)=> 
+  taskRenderContactList(name,taskContacColor[index] || "10"));
  } 
-
-
 
 
 function taskContactListDrobdown(){
@@ -251,7 +231,6 @@ function contactCheckOKinArray(){
       selectedTaskContacts.push(name);
     }
   })
-
   console.log("Namen mit Checkbox ",selectedTaskContacts);
 }
 
@@ -288,7 +267,6 @@ currentTask = {
   },
   status: "toDo" //  "toDo",  "inProgress", "awaitFeedback", oder "done" 
 }
-console.log("Daten die gepeichert werdden sollen ",currentTask);
 }
 
 
@@ -307,5 +285,11 @@ function taskCatergoryRetrieve(number){
 }
 
 
+
+function addTaskClear(){
+
+
+
+}
 
 
