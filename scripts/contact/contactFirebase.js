@@ -1,8 +1,5 @@
 const Base_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/"
-let allNames = {};
-let allEmails = {};
-let allNumbers = {};
-let allContacts = {};
+let userPromises = [];
 
 
 async function postData(path = "", data = {}) {
@@ -17,33 +14,45 @@ async function postData(path = "", data = {}) {
 }
 
 function collectContactData() {
-    let valuename = document.getElementById('name_input').value;
-    let valueemail = document.getElementById('email_input').value;
-    let valuetel = document.getElementById('tel_input').value;
-
     return {
-        "name": valuename,
-        "email": valueemail,
-        "number": valuetel
+        "name": document.getElementById('name_input').value,
+        "email": document.getElementById('email_input').value,
+        "number": document.getElementById('tel_input').value
     };
 }
 
 async function addContact() {
-    let noteData = collectContactData();
-    let contactsResponse = await fetch(Base_URL + "/contacts.json");
-    let contactsResponseToJson = await contactsResponse.json();
-
-    let taskId = contactsResponseToJson ? Object.keys(contactsResponseToJson).length : 0;
-
-    await postData(`/contacts/${taskId}`, noteData)
-        .then(response => {
-            console.log("Daten erfolgreich gespeichert unter TaskID:", taskId, response);
+    let newContact = collectContactData();
+    let nameInput = document.getElementById('name_input');
+    let emailInput = document.getElementById('email_input');
+    if (!validateName(nameInput)) {
+        return;
+    }
+    if (!validateEmail(emailInput, newContact.email)) {
+        return;
+    }
+    let firstLetter = newContact.name.trim().charAt(0).toUpperCase();
+    if (!/^[A-Z]$/.test(firstLetter)) firstLetter = "#"; 
+    let contactsGroup = await getData(`/contacts/${firstLetter}`);
+    if (!contactsGroup) contactsGroup = {};
+    let newId = Object.keys(contactsGroup).length;
+    contactsGroup[newId] = newContact;
+    await postData(`/contacts/${firstLetter}`, contactsGroup);
             clearInputsAndClose();
-            getUsersList;
-        })
-        .catch(error => {
-            console.error("Fehler beim Speichern der Daten", error);
-        });
+    addContactToDOM(newContact, `${firstLetter}-${newId}`);
+}
+
+
+async function addContactToDOM(newContact, contactsId) {
+    let userContainer = document.getElementById("user-list");
+    let firstLetter = newContact.name.trim().charAt(0).toUpperCase();
+    if (!/^[A-Z]$/.test(firstLetter)) firstLetter = "#"; 
+    let contactsGroup = await getData(`/contacts/${firstLetter}`);
+    userContainer.innerHTML += contactCardScrollList(newContact, contactsId);
+
+    userContainer.innerHTML = "";
+    generateContactList(contactsGroup, userContainer);
+    getUsersList() 
 }
 
 
@@ -53,8 +62,6 @@ function clearInputsAndClose() {
     document.getElementById('tel_input').value = "";
     closeContactBig();
 }
-
-// Get data for List KOntakte laden
 
 async function getData(path = "") {
     let response = await fetch(Base_URL + path + ".json", {
@@ -66,32 +73,51 @@ async function getData(path = "") {
     return await response.json();
 }
 
+// Funktion, um die Benutzerliste zu laden
 async function getUsersList() {
     let userContainer = document.getElementById("user-list");
-    userContainer.innerHTML = ""; // Inhalt vor dem Laden leeren
+    userContainer.innerHTML = "";
+    let contacts = await getData("/contacts"); 
 
-    for (let i = 0; i < 70; i++) {
-        let user = await getData(`/contacts/${i}`);
+    if (contacts) {
+        let sortedLetters = Object.keys(contacts).sort();
 
-        if (user) {
-            userContainer.innerHTML += contactCardScrollList(user, i);
+        for (let letter of sortedLetters) {
+            let contactsGroup = contacts[letter];
+
+            generateContactList(contactsGroup, userContainer, letter);
         }
     }
 }
-
 window.onload = getUsersList;
 
 
 // Delete data for List
+async function deleteContact(contactId, firstLetter) {
+    try {
+        let contactsGroup = await getData(`/contacts/${firstLetter}`);
 
-async function deleteContactInFirebase() {
-    let response = await fetch(Base_URL + path + ".json", {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data)
-    });
-    return responseToJson = await response.json();
+        if (!contactsGroup || !contactsGroup[contactId]) {
+            console.error("Kontakt nicht gefunden.");
+            return;
+        }
+
+        // Kontakt entfernen
+        delete contactsGroup[contactId];
+
+        // IDs neu von 0 aufwärts vergeben
+        let updatedContacts = {};
+        let newId = 0;
+
+        for (let oldId in contactsGroup) {
+            updatedContacts[newId] = contactsGroup[oldId];
+            newId++;
+        }
+        await postData(`/contacts/${firstLetter}`, updatedContacts);
+
+        await getUsersList();
+        closeContactBigMiddle()
+    } catch (error) {
+        console.error("Fehler beim Löschen des Kontakts:", error);
 }
-
+}

@@ -39,8 +39,10 @@ span {
     font-size: 20px;
     font-weight: 400;
     border-color: #D1D1D1;
-    margin-bottom: 20px;
+
 }
+
+
 
 .div-input-title {
     height: 64px;
@@ -63,12 +65,14 @@ span {
     flex-direction: column;
     width: 440px;
     height: 96px;
+
 }
 
 .section-description {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    margin-top: 20px;
 
     span {
         font-weight: 400;
@@ -117,6 +121,7 @@ span {
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
+    margin-top: 40px;
 
     select {
         border-radius: 10px;
@@ -172,8 +177,7 @@ span {
     font-size: 20px;
     line-height: 24px;
     appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+
 }
 
 .date-input::-webkit-calendar-picker-indicator {
@@ -187,10 +191,12 @@ span {
     top: 40px;
 }
 
+.date-icon:hover {
+    cursor: pointer;
+}
+
 
 .section-prio {
-    position: absolute;
-    top: 120px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -201,6 +207,27 @@ span {
         color: black;
     }
 }
+
+
+.prio_img_group {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    filter: brightness(0) saturate(100%) invert(53%) sepia(98%) saturate(615%) hue-rotate(-15deg);
+}
+
+
+.btn_prio:hover {
+    transform: translateY(-2px);
+    box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+.button-medium {
+    background-color: #FFA800;
+    color: white;
+}
+
 
 
 
@@ -233,7 +260,8 @@ span {
 .category-wrapper {
     position: relative;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: start;
     width: 440px;
 }
 
@@ -242,7 +270,6 @@ span {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-
     cursor: pointer;
 }
 
@@ -250,7 +277,9 @@ span {
 
 /* Custom Pfeil-Icon */
 .custom-arrow {
+
     position: absolute;
+    top: 25px;
     right: 25px;
     width: 7.21px;
     height: 4.6px;
@@ -329,7 +358,7 @@ hr {
 
 .required-text {
     position: absolute;
-    top: 926px;
+    top: 830px;
     left: 328px;
     height: 27px;
     font-size: 16px;
@@ -340,7 +369,42 @@ input:hover {
     cursor: pointer;
 }
 
-
 textarea:hover {
     cursor: pointer;
+}
+
+.error_Field {
+    font-size: 10px;
+    color: red;
+    margin-bottom: 10px;
+
+}
+
+
+.subtask_list {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    background-color: #FF8190;
+
+}
+
+
+
+/*CSS Klassen die per JS aufgerufen werden*/
+
+.btn_lockout {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+
+.error_Msg_Input {
+    display: none;
+    border-color: red;
+}
+
+
+.prio_img_with {
+    filter: brightness(0) invert(1);
 }

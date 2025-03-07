@@ -3,36 +3,14 @@
     font-family: "Inter", sans-serif;
 }
 
-
+/*
 .page1 {
     background-color: rgb(245, 245, 245);
     width: 100%;
     height: 100vh;
 }
-
+*/
 .d_none {
-    display: none;
+    display: none !important; 
 }
 
-.page1_img {
-    width: 274px;
-    height: 334.07px;
-    position: fixed;
-    transform: translate(-50%, -50%);
-    animation: slide-in 1.0s ease-out forwards;
-}
-
-/* Animation inndex */
-@keyframes slide-in {
-    from {
-        top: 45%;
-        left: 50%;
-    }
-
-    to {
-        left: 5%;
-        top: 8%;
-        width: 66px;
-        height: 80px;
-    }
-}

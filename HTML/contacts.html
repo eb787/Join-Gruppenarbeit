@@ -74,23 +74,11 @@
                                 </button>
                             </div>
                             <div class="contact_Entry">
-                                <h2 class="contact_Register">A</h2>
-
                                 <!--Contact Card START-->
                                 <div class="contact_Line">
-                                    <hr>
                                 </div>
+                                <div id="letter">
                                 <div id="user-list">
-                                    <div class="contact_Detail_List" onclick="openContactBigMiddle()">
-                                        <h4 class="contact_abbreviation">AM</h4>
-                                        <div>
-                                            <h2 class="contact_name">Anton Mayer</h2>
-                                            <h3 class="contact_mail  color_font">anton@gmail.com</h3>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!--Contact Card ENDE-->
 
                                 <div class="contact_Line">
                                     <hr>
@@ -125,21 +113,22 @@
                         </div>
                         <div class="contact_Card_abbreviation_Frame">
                             <div class="contact_Card_abbreviation">
-                                <p>AM</p>
+                                <img src="../assets/icons/Group 13.png" alt="pic-edit" class="pic-edit">
                             </div>
                             <div class="contact_Card_Input_Frame">
                                 <div class="contact_Card_Input">
-                                    <input type="text" placeholder="Name" id="name_input"
-                                        oninput="updateCancelButton()">
+                                    <input type="text" placeholder="Name" id="name_input" oninput="updateCancelButton()"
+                                        required>
                                     <img src="../assets/icons/person.svg">
                                 </div>
                                 <div class="contact_Card_Input">
                                     <input type="email" placeholder="Email" id="email_input"
-                                        oninput="updateCancelButton()">
+                                        oninput="updateCancelButton()" required>
                                     <img src="../assets/icons/mail.svg">
                                 </div>
                                 <div class="contact_Card_Input">
-                                    <input type="tel" placeholder="Phone" id="tel_input" oninput="updateCancelButton()">
+                                    <input type="tel" placeholder="Phone" id="tel_input" oninput="updateCancelButton()"
+                                        required>
                                     <img src="../assets/icons/call.svg">
                                 </div>
                                 <div class="contact_Card_button">
@@ -147,7 +136,7 @@
                                         id="cancel-button">
                                         Cancel
                                     </button>
-                                    <button class="contact_Card_button2 btn_hover_blue" onclick="addContact()">
+                                    <button class="contact_Card_button2 btn_hover_blue" onclick="addContact()" id="save-button">
                                         <p>Save</p>
                                         <img src="../assets/icons/check.svg">
                                     </button>

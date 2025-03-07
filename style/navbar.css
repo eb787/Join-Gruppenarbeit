@@ -7,12 +7,14 @@ body {
 }
 
 ::-webkit-scrollbar {
-    width: 8px;
+    scrollbar-width: 6px;
+    width: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #3b4a5e;
-    border-radius: 4px;}
+    background: #a8a8a8;
+    border-radius: 3px;
+}
 
 .full_content {
     display: flex;

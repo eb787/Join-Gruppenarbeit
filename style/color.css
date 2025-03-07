@@ -1,0 +1,22 @@
+:root{
+--blue:#0038FF; 
+--blue2:#4589FF;
+--grau:#A8A8A8;
+--grau1:#D1D1D1;
+--white:#ffff;
+
+}
+
+
+
+
+:root {
+    --sideheader-main-color: #2A3647;
+    --sideheader-hover-color: #2A3D59;
+    --sideheader-active-color: #091931;
+    --content-main-color: #F6F7F8;
+    --sideheader-font-color: #CDCDCD;
+    --button-hover-color: #29ABE2;
+    --item-hover-color: #F8F8F8;
+    --details-font-color: #007CEE;
+}

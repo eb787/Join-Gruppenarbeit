@@ -12,17 +12,20 @@ body {
 .header_login {
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: flex-end;
     padding-top: 67px;
     padding-left: 77px;
     padding-right: 77px;
 }
 
 .logo {
+     
     width: 100.03px;
     height: 121.97px;
     padding-top: 13px;
+    
 }
+
 
 .sign_up_div {
     display: flex;
@@ -235,4 +238,54 @@ body {
 
 .signup_content {
     min-height: calc(100vh - 261.97px);
+}
+
+.login_logo{
+    opacity: 1 !important;
+  
+}
+
+
+.login_logo img {
+    width: 274px;
+    height: 334.07px;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    animation: slide-in 1.0s ease-out forwards;
+    z-index: 1000;
+ 
+}
+
+
+/* Animation LogoJoin */
+@keyframes slide-in {
+    from {
+        top: 50%;
+        left: 50%;
+             }
+
+    to {
+       
+      width: 100.02px;
+      height: 134.97px;
+      top:10%;
+      left :7%;
+           
+    }
+}
+
+
+
+.main_container{
+    opacity: 0;
+    transition: 0.5s ease-in;
+    animation: fadeIn 1s ease-in 0.5s forwards;
+   
+}
+
+
+@keyframes fadeIn {
+    from { opacity:0; }
+    to { opacity:1; }
+   
 }
