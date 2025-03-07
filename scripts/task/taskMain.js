@@ -16,7 +16,6 @@ window.onload = function init() {
   startAddTask();
   console.log("Starte task");
   loadDataFirebase();
- // taskRenderContact();
   requiredInputAddTask();
   openDatePicker();
   subTaskListRender();
@@ -193,22 +192,35 @@ function taskReadinArrayTask(taskData) {
    taskId = Object.values(taskData).length;
    console.log("Einträge von Task", Object.values(taskData).length);
    console.log(("TaskID Aktuell" ,taskId));
-   
 }
-
 
 
 function taskReadinArrayContact(DataContact){
 console.log("Adressen")
-DataContact.map(task => {
-taskContacteArray.push(task);
-});
+taskContacteArray= Object.values(DataContact)
+.flatMap(array=>array.map(entry => (entry.name)))
 
 
-let templateData = taskContacteArray
+//.filter(name=>name);
+
+
+
+console.log("Array mit Namen ",taskContacteArray);
+console.log(taskContacteArray[2]);
+
+
+taskContacteArray.map(name=>taskRenderContactList(name,7));
+
+/*
+taskContacteArray
  .filter(entry => entry && entry.name)
  .map(entry => taskRenderContactList(entry.name,entry.color));   
-} 
+
+*/
+
+ } 
+
+
 
 
 function taskContactListDrobdown(){
@@ -293,13 +305,6 @@ function taskCatergoryRetrieve(number){
     return "User Story"
   }
 }
-
-
-
-
-
-
-
 
 
 

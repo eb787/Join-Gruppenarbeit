@@ -10,12 +10,16 @@ try{
     ])
        const DataTask = await responseTask.json();
        const DataContact= await responseContact.json();
-    taskReadinArrayTask(DataTask);   
-    taskReadinArrayContact(DataContact); 
+   taskReadinArrayTask(DataTask);   
+   taskReadinArrayContact(DataContact); 
+ 
+ 
+    
 }catch(error){
     console.log("Fehler beim lesen " ,error);
 }
 }
+
 
 
 function pushTaskToServer() {
@@ -33,8 +37,7 @@ async function postTaskData(path = "", task) {
         },
         body: JSON.stringify(task)
     });
-  //  return CurrentTaskResponseToJson = await CurrentTaskResponse.json();
-}
+ }
 
 
 
