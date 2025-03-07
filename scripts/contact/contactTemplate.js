@@ -22,24 +22,26 @@ function contactCardScrollList(newContact, contactsId) {
 
 function contactCardMiddle(user, contactIndex, firstLetter) {
     return `
-    <div class="contact_Detail_Frame">
+        <div class="contact_Detail_Frame">
             <h4 class="contact_Detail_abbreviation">${user.name.charAt(0).toUpperCase()}${user.name.charAt(1).toUpperCase()}</h4>
-                            <div class="contact_Detail_Name_Frame">
+            <div class="contact_Detail_Name_Frame">
                 <p class="contact_Detail_Name">${user.name}</p>
-                                <div class="contact_Detail_Menu">
+                <div class="contact_Detail_Menu">
                     <span onclick="editContact('${contactIndex}', '${firstLetter}')"><img src="../assets/icons/edit.svg"> Edit</span>
                     <span onclick="deleteContact('${contactIndex}', '${firstLetter}')"><img src="../assets/icons/delete.svg"> Delete</span>
-                                </div>
-                            </div>
-                        </div>
-                        <h2 class="contact_Detail_Info_Header">Contact Information</h2>
-                        <div class="contact_Detail_Info_Mail">
-                            <h3>Email</h3>
+                </div>
+            </div>
+        </div>
+        <h2 class="contact_Detail_Info_Header">Contact Information</h2>
+        <div class="contact_Detail_Info_Mail">
+            <h3>Email</h3>
             <h3 class="color_font font_weight_400">${user.email}</h3>
-                        </div>
-                        <div class="contact_Detail_Info_Phone">
-                            <h3>Phone</h3>
+        </div>
+        <div class="contact_Detail_Info_Phone">
+            <h3>Phone</h3>
             <h3 class="font_weight_400">${user.number}</h3>
-                        </div>
+        </div>
     `;
 }
+
+

@@ -54,7 +54,9 @@ async function saveEditedContact(contactsId, firstLetter) {
   await postData(`/contacts/${firstLetter}/${contactsId}`, updatedContact);
   document.getElementById('content-card-big').style.display = 'none';
 
+  await getUsersList();
 }
+
 
 function openContactBig() {
   document.getElementById('content-card-big').style.display = 'flex';
@@ -88,6 +90,37 @@ function updateCancelButton() {
   }
 }
 
+
+function validateName(nameInput) {
+  if (nameInput.value.trim() === "") {
+      document.getElementById('name_error').textContent = "Bitte einen Namen eingeben!";
+      nameInput.classList.add("input-error");
+      return false;
+  } else {
+      document.getElementById('name_error').textContent = "";
+      nameInput.classList.remove("input-error");
+      return true;
+  }
+}
+
+
+// Funktion zur E-Mail-Validierung
+async function validateEmail(emailInput, email) {
+  let firstLetter = email.trim().charAt(0).toUpperCase();
+  if (emailInput.value.trim() === "") {
+      document.getElementById('email_error').textContent = "Bitte eine E-Mail eingeben!";
+      emailInput.classList.add("input-error");
+      return false;
+  }
+  if (!/^[A-Z]$/.test(firstLetter)) firstLetter = "#"; 
+  let contactsGroup = await getData(`/contacts/${firstLetter}`);
+  if (contactsGroup && Object.values(contactsGroup).some(contact => contact.email === email)) {
+      document.getElementById('email_error').textContent = "Diese E-Mail existiert bereits!";
+      emailInput.classList.add("input-error");
+      return false;
+  }
+  return true;
+}
 
 function cancelStatus() {
   document.getElementById('content-card-big').style.display = 'none';;

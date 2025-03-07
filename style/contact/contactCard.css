@@ -194,3 +194,20 @@
   height: 11.22px;
   width: 15.49px;
 }
+
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  display: block;
+  margin-top: 5px;
+}
+
+.input-error {
+  border: 1px solid red;
+}
+.pic-edit {
+  width: 120px;
+  height: 120px;
+
+}

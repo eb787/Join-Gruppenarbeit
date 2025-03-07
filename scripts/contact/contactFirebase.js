@@ -38,7 +38,7 @@ async function addContact() {
     let newId = Object.keys(contactsGroup).length;
     contactsGroup[newId] = newContact;
     await postData(`/contacts/${firstLetter}`, contactsGroup);
-            clearInputsAndClose();
+    clearInputsAndClose();
     addContactToDOM(newContact, `${firstLetter}-${newId}`);
 }
 
@@ -92,6 +92,28 @@ async function getUsersList() {
 window.onload = getUsersList;
 
 
+
+
+function generateContactList(contacts) {
+    let userContainer = document.getElementById("user-list");
+    let currentLetter = "";
+
+    Object.values(contacts).forEach((user, index) => {
+        let firstLetter = user.name.charAt(0).toUpperCase();
+
+        if (firstLetter !== currentLetter) {
+            currentLetter = firstLetter;
+            userContainer.innerHTML += `
+                <div class="contact-section">
+                    <h3 class="contact-section-title">${currentLetter}</h3>
+                    <hr class="contact-divider">
+                </div>
+            `;
+        }
+        let contactId = `${currentLetter}-${index}`;
+        userContainer.innerHTML += contactCardScrollList(user, contactId);
+    });
+}
 // Delete data for List
 async function deleteContact(contactId, firstLetter) {
     try {
@@ -119,5 +141,5 @@ async function deleteContact(contactId, firstLetter) {
         closeContactBigMiddle()
     } catch (error) {
         console.error("Fehler beim Löschen des Kontakts:", error);
-}
+    }
 }
