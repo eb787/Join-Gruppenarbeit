@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,55 +13,49 @@
     <link rel="stylesheet" href="../style/color.css">
     <link rel="stylesheet" href="../style/template.css">
     <link rel="stylesheet" href="../style/fonts.css">
+    <script src="../scripts/login/login.js"></script>
 </head>
+
 <body>
-
-
-    
     <div class="login_logo">
-        <img   src="/assets/icons/Capa 1.svg">
+        <img src="../assets/icons/Capa 1.svg">
     </div>
 
-    <div class="main_container">
-        <div class="bg_login">
-            <div class="header_login">
-                <div class="sign_up_div">
-                    <p class="font20">Not a Join user?</p>
-                    <a class="btn_to_signup_page" href="./signup.html">Sign up</a>
-                </div>
+    <div class="main_container bg_login">
+
+        <div class="header_login">
+            <div class="sign_up_div">
+                <p class="font20">Not a Join user?</p>
+                <a class="btn_to_signup_page" href="../HTML/signup.html">Sign up</a>
             </div>
-            
-            <div class="login_content">
-                <div class="login_field">
+        </div>
+
+        <div class="login_content">
+            <div class="login_field">
                 <div class="login_heading_div">
                     <h1 class="heading_login">Log in</h1>
                     <div class="seperator_log_in"></div>
                 </div>
-                    <div class="login_inputs">
-                    <input class="input_login input_mail" type="email" placeholder="Email" alt="mail icon">
+                <div class="login_inputs">
+                    <input class="input_login input_mail" id="email" type="email" placeholder="Email" alt="mail icon">
                     <div style="display: flex; gap: 8px; flex-direction: column; height: 74px;">
-                        <input class="input_login input_pw" type="password" placeholder="Password" alt="mail icon">
-                        <div class="wrong_data_alert d_none">Check your email and password. Please try again.</div>
+                        <input class="input_login input_pw" id="password" type="password" placeholder="Password"
+                            alt="mail icon">
+                        <div class="wrong_data_alert">Check your email and password. Please try again.</div>
                     </div>
                 </div>
                 <div class="login_btns">
-                    <button class="login_btn">Log in</button>
-                    <a class="guest_login_btn" href="./summary_guest.html">Guest Log in</a>
+                    <button type="button" onclick="userLogin()" class="login_btn">Log in</button>
+                    <a class="guest_login_btn" href="../HTML/summary_guest.html">Guest Log in</a>
                 </div>
             </div>
         </div>
-        
-   
-
         <footer class="login_footer">
             <div class="links_footer_login">
-            <a class="links_footer link_privacy_policy" href="./policy.html">Privacy Policy</a>
-            <a class="links_footer link_legal_notice" href="./legal_notice.html">Legal notice</a>
-              </div>
+                <a class="links_footer link_privacy_policy" href="./policy.html">Privacy Policy</a>
+                <a class="links_footer link_legal_notice" href="./legal_notice.html">Legal notice</a>
+            </div>
         </footer>
-  
     </div>
-     
- 
 </body>
 </html>

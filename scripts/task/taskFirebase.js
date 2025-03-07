@@ -6,26 +6,45 @@ async function loadDataFirebase() {
 try{
    const [responseTask,responseContact] = await Promise.all([
         fetch(Base_URL + "/tasks/" + ".json"),
-        fetch(Base_URL + "/contact/" + ".json")
+        fetch(Base_URL + "/contacts/" + ".json")
     ])
        const DataTask = await responseTask.json();
-    const DatayContact= await responseContact.json();
-    taskReadinArray(DataTask);    
+       const DataContact= await responseContact.json();
+   taskReadinArrayTask(DataTask);   
+   taskReadinArrayContact(DataContact); 
+ 
+ 
+    
 }catch(error){
-    console.log(error);
+    console.log("Fehler beim lesen " ,error);
 }
 }
 
 
-async function saveDataFirebaseTask() {
-   
+
+function pushTaskToServer() {
+    collectData();
+    loadDataFirebase();
+    postTaskData(`/tasks/${taskId}`, currentTask);
 }
+
+
+async function postTaskData(path = "", task) {
+    let CurrentTaskResponse = await fetch(Base_URL + path + ".json",{
+        method: "PUT",
+        header: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(task)
+    });
+ }
+
+
 
 
 async function deleteDataFirebaseTask(params) {
     
 }
-
 
 
 

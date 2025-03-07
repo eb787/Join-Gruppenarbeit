@@ -17,6 +17,7 @@ async function loadTaskData() {
    taskId = Object.values(TaskResponseToJson).length; 
     //   pushTaskToServer()
    updateTaskBoard();
+   document.getElementById("full_content").innerHTML += getCardOverlay();
 
  
    
@@ -27,10 +28,8 @@ function updateTaskBoard() {
     emptyBoard();
 
     for (let index = 0; index < currentTasks.length; index++) {
-        
         showCardOnBoard(index);
 
-       
 
     }
 }
@@ -182,5 +181,24 @@ function chooseRightCard(cardType) {
 }
 
 function showCardOverlay(index) {
-    document.getElementById("full_content").innerHTML += getCardOverlay(index, 20, 10);
+    
+    document.getElementById("bg_overlay").classList.remove("d_none");
+
+    document.getElementById("card_overlay").innerHTML = getCardOverlayContent(index);
+    if (currentTasks[index].category == "User Story") {
+        document.getElementById("category_overlay" + index).classList.add("user_story_overlay");
+        document.getElementById("category_overlay" + index).classList.remove("technical_task_overlay");
+    } else if (currentTasks[index].category == "Technical Task") {
+        document.getElementById("category_overlay" + index).classList.remove("user_story_overlay");
+        document.getElementById("category_overlay" + index).classList.add("technical_task_overlay");
+    }
+    
+}
+
+function closeOverlay() {
+    document.getElementById("bg_overlay").classList.add("d_none");
+}
+
+function stopPropagation(event){
+    event.stopPropagation();
 }

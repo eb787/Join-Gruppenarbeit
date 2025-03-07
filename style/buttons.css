@@ -90,13 +90,13 @@
 
 .check_box_btn {
     width: 24px;
-    background-image: url(../assets/icon/Check_button.svg);
+    background-image: url(../assets/icons/Check_button.svg);
     height: 24px;
     background-repeat: no-repeat;
 }
 
 .check_box_btn:hover {
-    background-image: url(../assets/icon/checked_hover.png);
+    background-image: url(../assets/icons/checked_hover.png) !important;
     cursor: pointer;
 }
 
@@ -241,6 +241,10 @@ button:hover {
     font-size: 21px;
 }
 
+.add_task_btn:hover {
+    cursor: pointer;
+}
+
 .successful_signin_btn {
     width: 312px;
     height: 74px;
@@ -250,14 +254,13 @@ button:hover {
     color: white;
     font-size: 20px;
     position: absolute;
-    bottom: 0;
+    bottom: 65px;
     left: calc(50vw - 156px);
     display: flex;
     justify-content: center;
     align-items: center;
-    animation-name: signedUp;
-    animation-duration: 4s;
-    animation-delay: 800ms;
+    display: none;
+    text-decoration: none;
 }
 
 .successful_signin_btn:hover {
@@ -269,4 +272,28 @@ button:hover {
 @keyframes signedUp {
     from {bottom: 0;}
     to {top: calc(50vh + 37px ); }
+}
+
+.close_btn_overlay {
+
+}
+
+.close_btn_overlay:hover {
+    cursor: pointer;
+}
+
+.delete_btn_overlay_board {
+
+}
+
+.delete_btn_overlay_board:hover {
+    cursor: pointer;
+}
+
+.edit_btn_overlay_board {
+
+}
+
+.edit_btn_overlay_board:hover {
+    cursor: pointer;
 }

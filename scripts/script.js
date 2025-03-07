@@ -1,11 +1,11 @@
-const contactColorArray = {
-    1:" #1FD7C1",
-    2:" #462F8A",
-    3:" #FC71FF",
-    4:" #6E52FF",
-    5:" #9327FF",
-    6:" #FFBB2B",
-    7:" #FF4646",
-    8:" #00BEE8",
-    9:" #FF7A00"
-}
+const contactColorArray = [
+    " #1FD7C1",
+    " #462F8A",
+    " #FC71FF",
+    " #6E52FF",
+    " #9327FF",
+    " #FFBB2B",
+    " #FF4646",
+    " #00BEE8",
+    " #FF7A00"
+]
