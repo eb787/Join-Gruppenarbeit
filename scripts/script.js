@@ -7,5 +7,7 @@ const contactColorArray = [
     " #FFBB2B",
     " #FF4646",
     " #00BEE8",
-    " #FF7A00"
+    " #FF7A00",
+     "#040404"
+ 
 ]
