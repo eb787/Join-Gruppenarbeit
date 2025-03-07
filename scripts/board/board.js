@@ -8,7 +8,6 @@ let newFinishedTasks = 0;
 
 async function loadTaskData() {
     await fetchTaskData();
-
     updateTaskBoard();
     document.getElementById("full_content").innerHTML += getCardOverlay(); 
 }
@@ -88,33 +87,33 @@ function showCardOnBoard(index) {
     }
 }
 
-function pushTaskToServer() {
-    getTaskInfoFromUser();
-    postTaskData(`/tasks/${taskId}`, currentTask);
-}
+// function pushTaskToServer() {
+//     getTaskInfoFromUser();
+//     postTaskData(`/tasks/${0}`, currentTask);
+// }
 
 
 // Hier dann bitte Infos reinspeichern
-function getTaskInfoFromUser() { 
-    currentTask = {
-        title: "Die Wand streichen",
-        description: "Die Wand im Wohnzimmer grün streichen", // oder "empty" reinschreiben wenn es leer bleibt
-        contacts: ["Jasmin", "Peter"], // oder 0 reinschreiben ohne array wenn keine Kontakte hinzugefügt werden
-        deadline: "03.03.2025",
-        prio: "low_prio", // "medium_prio" , oder "low_prio", oder "high_prio"
-        category: "User Story", // "Technical Task" oder "User Story"
-        subtasks: {
-            total: 3, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
-            number_of_finished_subtasks: 0, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
-            subtasks_todo: {
-                "Die Wand abkleben": "todo",
-                "Farbe auftragen": "todo",
-                "Pinsel und Zimmer putzen": "todo"
-            }
-        },
-        status: "toDo" //  "toDo",  "inProgress", "awaitFeedback", oder "done" 
-    }
-}
+// function getTaskInfoFromUser() { 
+//     currentTask = {
+//         title: "Die Wand streichen",
+//         description: "Die Wand im Wohnzimmer grün streichen", // oder "empty" reinschreiben wenn es leer bleibt
+//         contacts: ["Jasmin", "Peter"], // oder 0 reinschreiben ohne array wenn keine Kontakte hinzugefügt werden
+//         deadline: "03.03.2025",
+//         prio: "low_prio", // "medium_prio" , oder "low_prio", oder "high_prio"
+//         category: "User Story", // "Technical Task" oder "User Story"
+//         subtasks: {
+//             total: 3, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
+//             number_of_finished_subtasks: 0, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
+//             subtasks_todo: {
+//                 "Die Wand abkleben": "todo",
+//                 "Farbe auftragen": "todo",
+//                 "Pinsel und Zimmer putzen": "todo"
+//             }
+//         },
+//         status: "toDo" //  "toDo",  "inProgress", "awaitFeedback", oder "done" 
+//     }
+// }
 
 // // Hier dann bitte Infos reinspeichern
 // function getTaskInfoFromUser() { 
@@ -135,17 +134,17 @@ function getTaskInfoFromUser() {
 //     }
 // }
 
-async function postTaskData(path = "", task) {
-    let CurrentTaskResponse = await fetch(Base_URL + path + ".json",{
-        method: "POST",
-        header: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(task)
-    });
+// async function postTaskData(path = "", task) {
+//     let CurrentTaskResponse = await fetch(Base_URL + path + ".json",{
+//         method: "POST",
+//         header: {
+//             "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(task)
+//     });
 
-    return CurrentTaskResponseToJson = await CurrentTaskResponse.json();
-}
+//     return CurrentTaskResponseToJson = await CurrentTaskResponse.json();
+// }
 
 //!!!!Eine Delete-Funktion muss dann immer die Reihenfolge beachten also man muss dannn quasi alle Tasks noch mal neu auf den Server überschreiben, damit die nicht durcheinander geraten!!!!
 
@@ -270,4 +269,18 @@ async function changeNumberOfFinishedTasks(index, newFinishedTasks) {
         
             return CurrentFinishedTasksResponseToJson = await CurrentFinishedTasksResponse.json();
     }
+
+
+async function deleteTask(index) {
+
+    currentTasks.splice(index, 1);
+    updateFirebase();
+
+}    
+
+async function updateFirebase() {
+    for (let index = 0; index < currentTasks.length; index++) {
+        await postTaskData(`/tasks/${index}`, currentTasks[index]);
+    }
+}
 

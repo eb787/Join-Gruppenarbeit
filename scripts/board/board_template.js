@@ -107,7 +107,7 @@ function getCardOverlayContent(index) {
                         <div id="subtasks_box_overlay${index}">
                         </div>
                         <div  class="overlay_options">
-                            <div class="overlay_option delete_btn_overlay_board">
+                            <div onclick="deleteTask(${index})" class="overlay_option delete_btn_overlay_board">
                                 <img class="delete_icon" src="..//assets/icons/delete.svg" alt="delete button">
                                 <p>Delete</p>
                             </div>
