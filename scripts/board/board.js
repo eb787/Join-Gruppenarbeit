@@ -106,8 +106,11 @@ function getTaskInfoFromUser() {
         subtasks: {
             total: 3, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
             number_of_finished_subtasks: 0, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
-            subtasks_todo: ["Die Wand abkleben", "Farbe auftragen", "Pinsel und Zimmer putzen"],
-            subtasks_done: [], // ist am Anfang leer
+            subtasks_todo: {
+                "Die Wand abkleben": "todo",
+                "Farbe auftragen": "todo",
+                "Pinsel und Zimmer putzen": "todo"
+            }
         },
         status: "toDo" //  "toDo",  "inProgress", "awaitFeedback", oder "done" 
     }
