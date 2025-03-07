@@ -4,8 +4,16 @@ let currentTasks = [];
 let currentTask = {};
 let taskId = "";
 let elementToBeDropped = "";
+let newFinishedTasks = 0;
 
 async function loadTaskData() {
+    await fetchTaskData();
+
+    updateTaskBoard();
+    document.getElementById("full_content").innerHTML += getCardOverlay(); 
+}
+
+async function fetchTaskData(){
     currentTasks = [];
     let TaskResponse = await fetch(Base_URL + "/tasks/" + ".json");
     TaskResponseToJson = await TaskResponse.json();
@@ -15,12 +23,6 @@ async function loadTaskData() {
    }    
 
    taskId = Object.values(TaskResponseToJson).length; 
-    //   pushTaskToServer()
-   updateTaskBoard();
-   document.getElementById("full_content").innerHTML += getCardOverlay();
-
- 
-   
 }
 
 function updateTaskBoard() {
@@ -47,23 +49,23 @@ function showCardOnBoard(index) {
    
     if (currentTasks[index].status == "toDo") {
         document.getElementById("no_task_toDo").classList.add("d_none");
-        document.getElementById("toDo").innerHTML += getExampleCard(index, subtasks, progress);
+        document.getElementById("toDo").innerHTML += getExampleCard(index);
     }
 
 
     if (currentTasks[index].status == "inProgress") {
         document.getElementById("no_task_inProgress").classList.add("d_none");
-        document.getElementById("inProgress").innerHTML += getExampleCard(index, subtasks, progress);
+        document.getElementById("inProgress").innerHTML += getExampleCard(index);
     }
 
     if (currentTasks[index].status == "awaitFeedback") {
         document.getElementById("no_task_awaitFeedback").classList.add("d_none");
-        document.getElementById("awaitFeedback").innerHTML += getExampleCard(index, subtasks, progress);
+        document.getElementById("awaitFeedback").innerHTML += getExampleCard(index);
     }
 
     if (currentTasks[index].status == "done") {
         document.getElementById("no_task_done").classList.add("d_none");
-        document.getElementById("done").innerHTML += getExampleCard(index, subtasks, progress);
+        document.getElementById("done").innerHTML += getExampleCard(index);
     }
 
     if (currentTasks[index].category == "User Story") {
@@ -71,8 +73,8 @@ function showCardOnBoard(index) {
         document.getElementById("category_" + index).classList.remove("technical_task");
     }
   
-     if (subtasks == 0) {
-        document.getElementById("subtasks_" + index).classList.add("d_none");
+     if (subtasks != 0) {
+        document.getElementById("subtasks_box" + index).innerHTML = getSubtasks(index, subtasks, progress);
     } 
 
     if (currentTasks[index].description == "empty") {
@@ -192,6 +194,21 @@ function showCardOverlay(index) {
         document.getElementById("category_overlay" + index).classList.remove("user_story_overlay");
         document.getElementById("category_overlay" + index).classList.add("technical_task_overlay");
     }
+
+    if (currentTasks[index].subtasks.total != 0) {
+        document.getElementById("subtasks_box_overlay" + index).innerHTML = getSubtasksOverlay(index);
+        for (let i = 0; i < currentTasks[index].subtasks.total; i++) {
+            document.getElementById("tasks_box" + index).innerHTML += getTaskOverlay(index, i);
+            if (Object.values(currentTasks[index].subtasks.subtasks_todo)[i] == "done") {
+                document.getElementById("check_box_" + index + "_btn" + i).classList.add("checked_box");
+            
+            }
+            
+        }
+
+        
+        
+    } 
     
 }
 
@@ -202,3 +219,52 @@ function closeOverlay() {
 function stopPropagation(event){
     event.stopPropagation();
 }
+
+async function changeSubtaskCategory(index, i){
+    let div =  document.getElementById("check_box_" + index + "_btn" + i);
+    let task = Object.keys(currentTasks[index].subtasks.subtasks_todo)[i];
+    newFinishedTasks = currentTasks[index].subtasks.number_of_finished_subtasks;
+    div.classList.toggle("checked_box");
+
+    if (div.classList.contains("checked_box")) {
+        await changeTaskStatus(index, task, "done");
+        newFinishedTasks = newFinishedTasks + 1;
+        await changeNumberOfFinishedTasks(index, newFinishedTasks);
+    }
+
+    if (div.classList.contains("checked_box") == false) {
+        await changeTaskStatus(index, task, "todo");
+        newFinishedTasks = newFinishedTasks - 1;
+        await changeNumberOfFinishedTasks(index, newFinishedTasks);
+        }
+
+        await fetchTaskData();
+}
+
+async function changeTaskStatus(index, task, status) {
+   
+            let CurrentSubtaskResponse = await fetch(Base_URL + `/tasks/${index}/subtasks/subtasks_todo/${task}` + ".json",{
+                method: "PUT",
+                header: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(status)
+            });
+        
+            return CurrentSubtaskResponseToJson = await CurrentSubtaskResponse.json();
+}
+
+async function changeNumberOfFinishedTasks(index, newFinishedTasks) {
+
+    
+            let CurrentFinishedTasksResponse = await fetch(Base_URL + `/tasks/${index}/subtasks/number_of_finished_subtasks` + ".json",{
+                method: "PUT",
+                header: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(newFinishedTasks)
+            });
+        
+            return CurrentFinishedTasksResponseToJson = await CurrentFinishedTasksResponse.json();
+    }
+

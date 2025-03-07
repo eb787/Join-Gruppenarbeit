@@ -100,6 +100,10 @@
     cursor: pointer;
 }
 
+.checked_box {
+    background-image: url(../assets/icons/checked_hover.png) !important;
+}
+
 .button-clear-task {
     width: 110px;
     height: 56px;
@@ -274,26 +278,18 @@ button:hover {
     to {top: calc(50vh + 37px ); }
 }
 
-.close_btn_overlay {
-
-}
-
 .close_btn_overlay:hover {
     cursor: pointer;
 }
 
-.delete_btn_overlay_board {
-
-}
-
 .delete_btn_overlay_board:hover {
     cursor: pointer;
-}
-
-.edit_btn_overlay_board {
-
+    font-weight: 700;
+    filter: invert(48%) sepia(70%) saturate(3316%) hue-rotate(163deg) brightness(97%) contrast(102%);
 }
 
 .edit_btn_overlay_board:hover {
     cursor: pointer;
+    font-weight: 700;
+    filter: invert(48%) sepia(70%) saturate(3316%) hue-rotate(163deg) brightness(97%) contrast(102%);
 }

@@ -310,8 +310,8 @@
     top: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
     z-index: 99;
+    padding-top: 48px;
 }
 
 .bg_overlay:hover {
@@ -326,8 +326,11 @@
     padding: 48px 40px;
     gap: 24px;
     border-radius: 30px;
-    max-height: 835px;
     box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.08);
+    overflow: auto;
+    max-height: calc(100vh - 196px);
+    scrollbar-color: #0000000e transparent;
+    height: fit-content;
 }
 
 .card_overlay:hover {
@@ -400,6 +403,16 @@
     gap: 16px;
     padding: 5px 16px;
     align-items: center;
+    width: fit-content;
+}
+
+.task_info:hover {
+ cursor: pointer;
+ background-color: #0000000e;
+ border-radius: 10px;
+ .check_box_btn {
+    background-image: url(../assets/icons/checked_hover.png);
+ }
 }
 
 .card_overlay_header {

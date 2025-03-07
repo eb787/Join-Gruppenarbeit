@@ -1,11 +1,26 @@
-function getExampleCard(index, subtasks, progress) {
+function getExampleCard(index) {
     return `<div class="card" onclick="showCardOverlay(${index})" draggable="true" ondragstart="startDragging(${index})">
                                 <div id="category_${index}" class="task_category technical_task">${currentTasks[index].category}</div>
                                 <div>
                                     <div class="task_name">${currentTasks[index].title}</div>
                                     <div id="description_${index}" class="task_description">${currentTasks[index].description}...</div>
                                 </div>
-                                <div id="subtasks_${index}" class="progress_box">
+                                <div id="subtasks_box${index}">
+                                </div>
+                                <div class="card_footer">
+                                    <div id="Profile_badges_${index}" class="profile_badges">
+                                        
+                                    </div>
+                                    <img class="prio_icon ${currentTasks[index].prio}" src="..//assets/icons/${currentTasks[index].prio}.svg" alt="priority indicator">
+                                </div>
+                                
+        
+                            </div>`
+}
+
+function getSubtasks(index, subtasks, progress) {
+    return `
+    <div id="subtasks_${index}" class="progress_box">
                                     <div class="progress_bar">
                                         <div id="progress_${index}" class="progress" style="width: ${progress}%;"></div>
                                     </div>
@@ -17,15 +32,9 @@ function getExampleCard(index, subtasks, progress) {
                                     </div>
                                     
                                 </div>
-                                <div class="card_footer">
-                                    <div id="Profile_badges_${index}" class="profile_badges">
-                                        
-                                    </div>
-                                    <img class="prio_icon ${currentTasks[index].prio}" src="..//assets/icons/${currentTasks[index].prio}.svg" alt="priority indicator">
-                                </div>
-                                
-        
-                            </div>`
+    
+    `
+    
 }
 
 function getContactIcon() {
@@ -95,18 +104,7 @@ function getCardOverlayContent(index) {
                                  </div>
                             </div>
                         </div>
-                        <div class="task_description_overlay fd_column gap_8">
-                            <p class="color_blue">Subtasks</p>
-                            <div>
-                                <div class="task_info">
-                                    <div class="check_box_overlay"></div>
-                                    <p class="font_16">Emanuel Macron</p>
-                                </div>
-                                 <div class="task_info">
-                                    <div class="check_box_overlay"></div>
-                                    <p class="font_16">Boris Becker</p>
-                                 </div>
-                            </div>
+                        <div id="subtasks_box_overlay${index}">
                         </div>
                         <div  class="overlay_options">
                             <div class="overlay_option delete_btn_overlay_board">
@@ -122,6 +120,29 @@ function getCardOverlayContent(index) {
                `
 
 }
+
+function getSubtasksOverlay(index) {
+    return `
+    <div class="task_description_overlay fd_column gap_8">
+                            <p class="color_blue">Subtasks</p>
+                            <div id="tasks_box${index}"> 
+                            </div>
+                        </div>
+    
+    `
+}
+
+function getTaskOverlay(index, i) {
+    return `
+                             <div onclick="changeSubtaskCategory(${index}, ${i})" class="task_info">
+                                    <div id="check_box_${index}_btn${i}" class="check_box_btn"></div>
+                                    <p class="font_16">${Object.keys(currentTasks[index].subtasks.subtasks_todo)[i]}</p>
+                                </div>
+    
+    `
+}
+
+
 
 
 
