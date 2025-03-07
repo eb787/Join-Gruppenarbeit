@@ -329,7 +329,7 @@
     box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.08);
     overflow: auto;
     max-height: calc(100vh - 196px);
-    scrollbar-color: #0000000e transparent;
+    scrollbar-width: none;
     height: fit-content;
 }
 
