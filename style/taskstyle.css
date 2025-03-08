@@ -281,6 +281,8 @@ border-radius: 45px;
     span {
         color: black;
     }
+    margin-top: 23px;
+
 }
 
 
@@ -328,6 +330,7 @@ border-radius: 45px;
         border-color: #D1D1D1;
         border-radius: 10px;
    }
+   
 }
 
 
@@ -529,7 +532,7 @@ textarea:hover {
 .error_Field {
     font-size: 10px;
     color: red;
-    margin-top: -4px;
+    margin-top: -3px;
     
 }
 

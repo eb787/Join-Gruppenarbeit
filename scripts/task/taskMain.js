@@ -17,6 +17,7 @@ window.onload = function init() {
   console.log("Starte task");
   loadDataFirebase();
   requiredInputAddTask();
+  focusOnTestFields();
   openDatePicker();
   subTaskListRender();
 }
@@ -53,6 +54,17 @@ function requiredInputAddTask() {
       }
     })
   })
+}
+
+
+function focusOnTestFields() {
+  document.querySelectorAll(".input-field").forEach(event => {
+    event.addEventListener("focus", function () {
+       document.querySelectorAll(".error_Field").forEach(event => {
+        event.textContent="\u00A0";
+   
+      });
+  })});
 }
 
 
@@ -250,7 +262,6 @@ function checkInputData(){
 }
 
 
-
 function  collectData(){
 currentTask = {
   title: document.getElementById('taskTitle').value,
@@ -262,9 +273,8 @@ currentTask = {
   subtasks: {
       total: taskSubTaskList.length, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
       number_of_finished_subtasks: 0, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
-      subtasks_todo: taskSubTaskList,
-      subtasks_done: [], // ist am Anfang leer
-  },
+      subtasks_todo: subTasksObjects(),
+   },
   status: "toDo" //  "toDo",  "inProgress", "awaitFeedback", oder "done" 
 }
 }
@@ -285,11 +295,20 @@ function taskCatergoryRetrieve(number){
 }
 
 
+function subTasksObjects(){
+let  todoSatus = "todo"; 
+let subTasksTodo = {}; 
+taskSubTaskList.forEach(task => {
+    subTasksTodo[task] = todoSatus; 
+});
+return subTasksTodo;
+}
+
+
+
 
 function addTaskClear(){
-
-
-
+  
 }
 
 
