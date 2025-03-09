@@ -21,18 +21,16 @@ body {
     flex: 1;
 }
 
-.content_right{
+.content_right {
     align-items: center;
     background-color: white;
     flex-grow: 1;
     width: calc(100% - 232px);
 }
 
-.main_contant{
+.main_contant {
     background-color: rgb(246, 247, 249);
-    height: 1000px;
-    
-    
+    height: 928px;
 }
 
 .headline {
@@ -42,7 +40,7 @@ body {
     height: 96px;
     width: 100%;
     flex-grow: 1;
-    gap: 100px;
+    gap: 30px;
     justify-content: right;
 }
 
@@ -56,19 +54,14 @@ body {
     display: flex;
 }
 
-.headline_logo_help:hover{
+.headline_logo_help:hover {
     cursor: pointer;
     transform: scale(1.2);
 }
 
-.headline_logo_user_sign_in{
+.headline_logo_user_sign_in {
     padding-right: 32px;
     display: flex;
-}
-
-.headline_logo_user_sign_in:hover{
-    cursor: pointer;
-    transform: scale(1.2);
 }
 
 .navbar_seperator {
@@ -95,11 +88,11 @@ body {
 }
 
 .div_nav_icons {
-    padding-top: 120px;
+    padding-top: 100px;
 }
 
 .navbar_icon {
-    color: rgb(251,255,255);
+    color: rgb(251, 255, 255);
     gap: 7px;
     align-items: center;
     display: flex;
@@ -109,28 +102,39 @@ body {
     height: 45px;
 }
 
-.navbar_icon:hover {
-    cursor: pointer;
+.navbar_current_icon {
+    color: rgb(251, 255, 255);
+    gap: 7px;
+    align-items: center;
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: center;
+    width: 232px;
+    height: 45px;
     background-color: rgb(8, 26, 49);
 }
 
+.navbar_icon:hover {
+    cursor: pointer;
+    background-color: rgba(6, 94, 209, 0.445);
+}
+
 .div_impressum {
-    padding-top: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 285px;
 }
 
 .nav_impressum {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color:  rgb(251,255,255);
+    color: rgb(168, 168, 168);
     gap: 7px;
     margin-bottom: 15px;
-    width: 232px;
     height: 32px;
-
+    text-decoration: none;
 }
 
 .nav_impressum:hover {
     cursor: pointer;
-    background-color: rgb(8, 26, 49);
+    color: rgb(37, 172, 226);
 }
