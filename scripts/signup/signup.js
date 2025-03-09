@@ -37,7 +37,12 @@ async function addUserSignUp() {
     await saveContact(email, name, password);
     document.getElementById('successful_signin_btn').style.display = 'flex';
     resetFormFields();
+
+    setTimeout(() => {
+        window.location.href = "../HTML/login.html";  
+    }, 2000); 
 }
+
 
 
 function checkInput(name, email, password, confirmPassword, checkbox) {

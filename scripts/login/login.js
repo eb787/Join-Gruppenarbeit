@@ -10,9 +10,11 @@ async function userLogin() {
     if (!email || !password) return showErrorMessage(errorMessage, "Please fill in all fields.");
     const userData = await checkIfContactExists(email);
     if (!userData) return showErrorMessage(errorMessage, "User not found.");
-    if (userData.password !== password) return showErrorMessage(errorMessage, "Incorrect password. Please try again.");
+    if (userData.password !== password) return showErrorMessage(errorMessage, "Incorrect password. Please try again.");  
+   
+    await createUserFolder(userData);
     
-    window.location.href = "../HTML/summary_guest.html"; 
+    window.location.href = "../HTML/summary.html"; 
 }
 
 async function checkIfContactExists(email) {
@@ -23,7 +25,7 @@ async function checkIfContactExists(email) {
 
 function findUserByEmail(data, email) {
     for (let id in data) {
-        if (data[id].email === email) return data[id];
+        if (data[id].email === email) return { ...data[id], userId: id }; 
     }
     return null;
 }
@@ -35,6 +37,22 @@ function resetErrorMessage(errorMessage) {
 function showErrorMessage(errorMessage, message) {
     errorMessage.textContent = message;
     errorMessage.classList.add("show");
+}
+
+
+async function createUserFolder(userData) {
+    const userFolderURL = `${Base_URL}/currentUser.json`;  
+    const userFolderData = { email: userData.email, name: userData.name };
+    try {
+        const response = await fetch(userFolderURL, {
+            method: "PUT", headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(userFolderData),
+        });
+        if (!response.ok) throw new Error("Error creating user folder");
+        console.log("User folder created:", await response.json());
+    } catch (error) {
+        console.error("Error creating user folder:", error);
+    }
 }
 
 
