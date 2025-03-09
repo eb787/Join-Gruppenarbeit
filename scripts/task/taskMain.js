@@ -19,6 +19,7 @@ window.onload = function init() {
   focusOnRequiredFields();
   openDatePicker();
   subTaskListRender();
+
 }
 
 //Tasten Clear und Create Task sperren*/
@@ -38,10 +39,10 @@ function requiredInputAddTask() {
       let errorMsg =this.nextElementSibling;
       if (this.value.trim() === "") {
         this.classList.add('error_Msg_Input')
-        //errorMsg.style.marginTop = "-4px";      
         errorMsg.textContent = "This field is required";
         console.log("Keine Eingabe");
       } else {
+    
         if (this.type === "date" && !correctDateInput(this.value)) {
           errorMsg.textContent = "no valid date";
           this.classList.add('error_Msg_Input')
@@ -67,23 +68,20 @@ function focusOnRequiredFields() {
 }
 
 
+
 function correctDateInput(dateString) {
   console.log("Datum prüfen ",dateString);
   let date = new Date(dateString);
   let year = date.getFullYear();
-  // Prüfen, ob das Datum gültig ist
-  if (isNaN(year)) {
+  console.log("Jahr auisgeben",year);
+ 
+ if (year.toString().length >4) {
   }
-  // Prüfen, ob die Jahreszahl mehr als 4 Stellen hat
-  else if (year.toString().length > 4) {
-  }
-  // Prüfen, ob das Jahr unter 2025 liegt sollte vielleicht erweiter werden auf aktuelles datum
-  else if (year < 2025) {
+    else if (year < 2025) {
     return false;
   }
   else {
-    console.log("Kein Fehler: Gültige Eingabe");
-    return true;
+     return true;
   }
 }
 
@@ -95,11 +93,13 @@ function openDatePicker() {
   document.querySelector(".date-icon").addEventListener("click", function () {
     if (dateInput.showPicker) {
       dateInput.showPicker();
-    } else {
+      document.getElementById('taskDate').focus();
+          } else {
       dateInput.focus();
     }
   });
 }
+
 
 
 function btnPrioSelect(btnPrio) {
