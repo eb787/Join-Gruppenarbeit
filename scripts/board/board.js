@@ -1,13 +1,27 @@
 const Base_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/";
 
+const contactColorArray = {
+    1: "#1FD7C1",
+    2: "#462F8A",
+    3: "#FC71FF",
+    4: "#6E52FF",
+    5: "#9327FF",
+    6: "#FFBB2B",
+    7: "#FF4646",
+    8: "#00BEE8",
+    9: "#FF7A00"
+};
+
 let currentTasks = [];
 let currentTask = {};
 let taskId = "";
 let elementToBeDropped = "";
 let newFinishedTasks = 0;
+let currentContacts = [];
 
 async function loadTaskData() {
     await fetchTaskData();
+    await fetchContactData();
     updateTaskBoard();
     document.getElementById("full_content").innerHTML += getCardOverlay(); 
 }
@@ -22,6 +36,18 @@ async function fetchTaskData(){
    }    
 
    taskId = Object.values(TaskResponseToJson).length; 
+}
+
+async function fetchContactData(){
+    currentContacts = [];
+    let contactResponse = await fetch(Base_URL + "/contacts/" + ".json");
+    currentContactResponseToJson = await contactResponse.json();
+
+    for (let index = 0; index < Object.values(currentContactResponseToJson).length; index++) {
+        for (let i = 0; i < Object.values(currentContactResponseToJson)[index].length; i++) {
+            currentContacts.push(Object.values(currentContactResponseToJson)[index][i]);
+        }
+    }
 }
 
 function updateTaskBoard() {
@@ -81,11 +107,37 @@ function showCardOnBoard(index) {
     }
 
     if (currentTasks[index].contacts != 0) {
-         document.getElementById("Profile_badges_" + index).innerHTML += getContactIcon();
+        for (let i = 0; i < currentTasks[index].contacts.length; i++) {
+            getCorrectContact(index, i);
+            
+        }
+         
     } else {
        document.getElementById("Profile_badges_" + index).classList.add("d_none");
     }
 }
+
+function getCorrectContact(index, i) {
+
+    for (let a = 0; a < currentContacts.length; a++) {
+        if (currentTasks[index].contacts[i] == currentContacts[a].email) {
+            document.getElementById("Profile_badges_" + index).innerHTML += getContactIcon(index, i, a);
+            getInitials(a, index, i);
+        } 
+    }
+    
+   
+}
+
+function getInitials(a, index, i) {
+    let names = [];
+    names.push(currentContacts[a].name);
+            for (let b = 0; b < names.length; b++) {
+                let initial = names[b].charAt(0).toUpperCase();
+                document.getElementById("profile_" + index + "_" + i).innerHTML += initial;
+            }
+}
+
 
 // function pushTaskToServer() {
 //     getTaskInfoFromUser();
@@ -211,11 +263,43 @@ function showCardOverlay(index) {
         
         
     } 
+
+    if (currentTasks[index].contacts != 0) {
+        document.getElementById("task_description_overlay_" + index).innerHTML = getContactBoxOverlay(index);
+
+        for (let i = 0; i < currentTasks[index].contacts.length; i++) {
+            
+            getCorrectContactOverlay(index, i);
+            
+        }
+         
+    }
     
 }
 
+function getCorrectContactOverlay(index, i) {
+
+    for (let a = 0; a < currentContacts.length; a++) {
+        if (currentTasks[index].contacts[i] == currentContacts[a].email) {
+            document.getElementById("profile_badges_overlay" + index).innerHTML += getContactIconOverlay(index, i, a);
+            getInitialsOverlay(a, index, i);
+        } 
+    }
+    
+   
+}
+
+function getInitialsOverlay(a, index, i) {
+    let names = [];
+    names.push(currentContacts[a].name);
+            for (let b = 0; b < names.length; b++) {
+                let initial = names[b].charAt(0).toUpperCase();
+                document.getElementById("profile_badge_overlay_" + index + "_" + i).innerHTML += initial;
+            }
+}
+
 function closeOverlay() {
-    document.getElementById("bg_overlay").classList.add("d_none");
+    location.reload();
 }
 
 function stopPropagation(event){
@@ -282,5 +366,23 @@ async function updateFirebase() {
     for (let index = 0; index < currentTasks.length; index++) {
         await postTaskData(`/tasks/${index}`, currentTasks[index]);
     }
+    await deleteTaskData(`/tasks/${currentTasks.length}`);
+    location.reload();
 }
+
+async function postTaskData(path = "", task) {
+    let CurrentTaskResponse = await fetch(Base_URL + path + ".json",{
+        method: "PUT",
+        header: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(task)
+    });
+ }
+
+ async function deleteTaskData(path = "") {
+    let CurrentTaskResponse = await fetch(Base_URL + path + ".json",{
+        method: "DELETE",
+    });
+ }
 

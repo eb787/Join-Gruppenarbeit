@@ -108,12 +108,16 @@
 
 .board_table_content {
     padding-left: 64px;
-    padding-right: 64px;
     display: flex;
     justify-content: space-between;
     padding-right: 64px;
     gap: 26px;
     height: 688px;
+    max-height: calc(100vh - 364.5px);
+    margin-bottom: 36px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
 }
 
 
@@ -123,8 +127,7 @@
     gap: 16px;
     flex-direction: column;
     padding-top: 6px;
-    overflow-y: auto;
-    height: 600px;
+    padding-bottom: 6px;
 }
 
 .no_tasks {
@@ -228,59 +231,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.first_profile {
-    z-index: 1;
-    position: relative;
-}
-
-.second_profile {
-    z-index: 2;
-    position: relative;
-    left: -8px;
-}
-
-.third_profile {
-    z-index: 3;
-    position: relative;
-    left: -16px;
-}
-
-.profile_orange {
-    background-color: #FF7A00;
-}
-
-.profile_green {
-    background-color: #1FD7C1;
-}
-
-.profile_purple {
-    background-color: #462F8A;
-}
-
-.profile_pink {
-    background-color: #FC71FF;
-}
-
-.profile_blue {
-    background-color: #6E52FF;
-}
-
-.profile_lightpurple {
-    background-color: #9327FF;
-}
-
-.profile_yellow {
-    background-color: #FFBB2B;
-}
-
-.profile_red {
-    background-color: #FF4646;
-}
-
-.profile_turquoise {
-    background-color: #00BEE8;
 }
 
 .prio_icon {
