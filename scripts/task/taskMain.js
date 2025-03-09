@@ -14,15 +14,14 @@ let taskId="";
 //Start function
 window.onload = function init() {
   startAddTask();
-  console.log("Starte task");
   loadDataFirebase();
   requiredInputAddTask();
-  focusOnTestFields();
+  focusOnRequiredFields();
   openDatePicker();
   subTaskListRender();
 }
 
-/*Tasten Clear und Create Task sperren*/
+//Tasten Clear und Create Task sperren*/
 function startAddTask() {
   //document.getElementById('btnCreateTask').classList.add('btn_lockout');
   //document.getElementById('btnClearTask').classList.add('btn_lockout');
@@ -57,7 +56,7 @@ function requiredInputAddTask() {
 }
 
 
-function focusOnTestFields() {
+function focusOnRequiredFields() {
   document.querySelectorAll(".input-field").forEach(event => {
     event.addEventListener("focus", function () {
        document.querySelectorAll(".error_Field").forEach(event => {
@@ -257,6 +256,7 @@ function checkInputData(){
             field.classList.remove('error_Msg_Input');
             console.log("Alle Daten OK");
             pushTaskToServer();
+            addTaskClear();
         }
     });
 }
@@ -305,10 +305,21 @@ return subTasksTodo;
 }
 
 
-
-
 function addTaskClear(){
-  
+  console.log("Lösche Felder");
+  document.getElementById('taskTitle').value="";
+  document.getElementById('descriptionTask').value="";
+  loadDataFirebase() ;
+  document.getElementById('taskContactDrowdownMenue').classList.remove("ele_show");
+  selectedTaskContacts=[];
+  document.getElementById('taskDate').value="";
+  btnPrioSelect('medium');
+  document.getElementById('taskCatergory').value="";
+  document.getElementById('inputSubtask').value="";
+  subTaskClose();
+  taskSubTaskList=[];
+  subTaskClose();
+  subTaskListRender();
 }
 
 

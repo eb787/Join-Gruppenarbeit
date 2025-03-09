@@ -12,8 +12,6 @@ try{
        const DataContact= await responseContact.json();
    taskReadinArrayTask(DataTask);   
    taskReadinArrayContact(DataContact); 
- 
- 
     
 }catch(error){
     console.log("Fehler beim lesen " ,error);
