@@ -1,5 +1,6 @@
 let taskArray = [];
 let taskContacteArray = [];
+let taskContacEMailArray=[];
 let taskSubTaskArray = [];
 let taskSubTaskList = [];
 let editIndex = false;
