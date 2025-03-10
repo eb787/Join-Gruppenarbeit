@@ -280,9 +280,15 @@ currentTask = {
 }
 
 
-function dateConversion(date){
-  const [year, month, day] = date.split("-");
-  return `${day}.${month}.${year}`;
+function dateConversion(dateOld){
+  console.log('Dateformat',dateOld);
+
+    let date = new Date(dateOld);
+    let day = String(date.getDate()).padStart(2, '0'); // 25
+    let month = String(date.getMonth() + 1).padStart(2, '0'); // 02
+    let year = String(date.getFullYear()).slice(-2); // 25 (letzte 2 Stellen)
+
+    return `${day}/${month}/${year}`;
 }
 
 
