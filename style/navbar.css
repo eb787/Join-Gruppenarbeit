@@ -132,6 +132,21 @@ body {
     margin-bottom: 15px;
     height: 32px;
     text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar_impressum_current_icon {
+    color: rgb(251, 255, 255);
+    height: 32px;
+    width: 232px;
+    background-color: rgb(8, 26, 49);
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
 .nav_impressum:hover {
