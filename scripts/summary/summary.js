@@ -26,7 +26,7 @@ function openPage(){
 }
 
 function updateHTML() {
-  document.getElementById("content_urgent").innerHTML = getNumberToDo();
+  document.getElementById("content_urgent").innerHTML =  getNumberUrgent();
   document.getElementById("content_to_do").innerHTML = getNumberToDo();
   document.getElementById("content_success").innerHTML = getNumberSuccess();
   document.getElementById("content_date_div").innerHTML = getDeadlineDate();
@@ -36,7 +36,7 @@ function updateHTML() {
 }
 
 function getNumberUrgent() {
-  return currentTasks.filter(task => task && task.status === "urgent").length;
+  return currentTasks.filter(task => task && task.prio === "high_prio").length;
 }
 
 function getNumberToDo() {
