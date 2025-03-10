@@ -266,7 +266,7 @@ function  collectData(){
 currentTask = {
   title: document.getElementById('taskTitle').value,
   description: document.getElementById('descriptionTask').value.trim() || "empty",  // oder "empty" reinschreiben wenn es leer bleibt
-  contacts: selectedTaskContacts, // oder 0 reinschreiben ohne array wenn keine Kontakte hinzugefügt werden
+  contacts: addTaskWriteContacts(), // oder 0 reinschreiben ohne array wenn keine Kontakte hinzugefügt werden
   deadline: dateConversion(document.getElementById('taskDate').value),
   prio: taskPrioSelect, // "medium_prio" , oder "low_prio", oder "high_prio"
   category: taskCatergoryRetrieve(document.getElementById('taskCatergory').value), // "Technical Task" oder "User Story"
@@ -286,6 +286,17 @@ function dateConversion(date){
 }
 
 
+function addTaskWriteContacts(){
+  if (selectedTaskContacts.length>0){
+    return selectedTaskContacts
+  }else{
+    return "0";
+  }
+
+}
+
+
+
 function taskCatergoryRetrieve(number){
   if(number === "1"){
     return "Technical Task";
@@ -293,6 +304,8 @@ function taskCatergoryRetrieve(number){
     return "User Story"
   }
 }
+
+
 
 
 function subTasksObjects(){
@@ -320,6 +333,12 @@ function addTaskClear(){
   taskSubTaskList=[];
   subTaskClose();
   subTaskListRender();
+  document.querySelectorAll(".input-field").forEach(event => {
+    event.classList.remove('error_Msg_Input');
+      });
+  document.querySelectorAll(".error_Field").forEach(event => {
+        event.textContent="\u00A0";
+         });
 }
 
 
