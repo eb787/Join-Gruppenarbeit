@@ -14,13 +14,19 @@ async function postData(path = "", data = {}) {
 }
 
 function collectContactData() {
+
+    const color = contactColorArray[globalIndex % contactColorArray.length];
+    console.log(color);
+
     return {
         "name": document.getElementById('name_input').value,
         "email": document.getElementById('email_input').value,
-        "number": document.getElementById('tel_input').value
+        "number": document.getElementById('tel_input').value,
+        "color" : color
     };
+   
+  
 }
-
 async function addContact() {
     let newContact = collectContactData();
     let nameInput = document.getElementById('name_input');
@@ -32,7 +38,7 @@ async function addContact() {
         return;
     }
     let firstLetter = newContact.name.trim().charAt(0).toUpperCase();
-    if (!/^[A-Z]$/.test(firstLetter)) firstLetter = "#"; 
+    if (!/^[A-Z]$/.test(firstLetter)) firstLetter = "#";
     let contactsGroup = await getData(`/contacts/${firstLetter}`);
     if (!contactsGroup) contactsGroup = {};
     let newId = Object.keys(contactsGroup).length;
@@ -40,19 +46,21 @@ async function addContact() {
     await postData(`/contacts/${firstLetter}`, contactsGroup);
     clearInputsAndClose();
     addContactToDOM(newContact, `${firstLetter}-${newId}`);
+
+   
 }
 
 
 async function addContactToDOM(newContact, contactsId) {
     let userContainer = document.getElementById("user-list");
     let firstLetter = newContact.name.trim().charAt(0).toUpperCase();
-    if (!/^[A-Z]$/.test(firstLetter)) firstLetter = "#"; 
+    if (!/^[A-Z]$/.test(firstLetter)) firstLetter = "#";
     let contactsGroup = await getData(`/contacts/${firstLetter}`);
     userContainer.innerHTML += contactCardScrollList(newContact, contactsId);
 
     userContainer.innerHTML = "";
     generateContactList(contactsGroup, userContainer);
-    getUsersList() 
+    getUsersList()
 }
 
 
@@ -77,25 +85,24 @@ async function getData(path = "") {
 async function getUsersList() {
     let userContainer = document.getElementById("user-list");
     userContainer.innerHTML = "";
-    let contacts = await getData("/contacts"); 
+    let contacts = await getData("/contacts");
 
     if (contacts) {
         let sortedLetters = Object.keys(contacts).sort();
+        let globalIndex = 0; 
 
         for (let letter of sortedLetters) {
             let contactsGroup = contacts[letter];
-
-            generateContactList(contactsGroup, userContainer, letter);
+            generateContactList(contactsGroup, userContainer, letter, globalIndex);
+            globalIndex += Object.keys(contactsGroup).length; // Erhöhe den globalen Index für jedes Kontakt-Array
         }
     }
+
 }
+
 window.onload = getUsersList;
 
-
-
-
-function generateContactList(contacts) {
-    let userContainer = document.getElementById("user-list");
+function generateContactList(contacts, userContainer, letter, globalIndex) {
     let currentLetter = "";
 
     Object.values(contacts).forEach((user, index) => {
@@ -110,6 +117,8 @@ function generateContactList(contacts) {
                 </div>
             `;
         }
+        user.color = contactColorArray[globalIndex % contactColorArray.length];
+        globalIndex++;
         let contactId = `${currentLetter}-${index}`;
         userContainer.innerHTML += contactCardScrollList(user, contactId);
     });
@@ -143,3 +152,4 @@ async function deleteContact(contactId, firstLetter) {
         console.error("Fehler beim Löschen des Kontakts:", error);
     }
 }
+

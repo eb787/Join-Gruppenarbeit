@@ -1,6 +1,7 @@
-function contactCardScrollList(newContact, contactsId) {
+function contactCardScrollList(newContact, contactsId ) {
     let nameParts = newContact.name.trim().split(" "); 
     let initials = nameParts[0].charAt(0).toUpperCase(); 
+    let backgroundColor = newContact.color || "#ccc";
 
     if (nameParts.length > 1) {
         initials += nameParts[1].charAt(0).toUpperCase(); 
@@ -9,7 +10,7 @@ function contactCardScrollList(newContact, contactsId) {
     return `
     
         <div class="contact_Detail_List" id="contact-card-${contactsId}" onclick="openContactBigMiddle('${contactsId}')">
-            <h4 class="contact_abbreviation">${initials}</h4>
+            <h4 class="contact_abbreviation" style="background-color:${backgroundColor};">${initials}</h4>
             <div>
                 <h2 class="contact_name">${newContact.name}</h2>
                 <h3 class="contact_mail color_font">${newContact.email}</h3>
@@ -21,9 +22,16 @@ function contactCardScrollList(newContact, contactsId) {
 
 
 function contactCardMiddle(user, contactIndex, firstLetter) {
+    let nameParts = user.name.trim().split(" "); 
+    let initials = nameParts[0].charAt(0).toUpperCase(); 
+    let backgroundColor = user.color || "#ccc";
+    if (nameParts.length > 1) {
+        initials += nameParts[1].charAt(0).toUpperCase(); 
+    }
+
     return `
-        <div class="contact_Detail_Frame">
-            <h4 class="contact_Detail_abbreviation">${user.name.charAt(0).toUpperCase()}${user.name.charAt(1).toUpperCase()}</h4>
+        <div class="contact_Detail_Frame" >
+            <h4 class="contact_Detail_abbreviation" style="background-color: ${backgroundColor};">${initials}</h4>
             <div class="contact_Detail_Name_Frame">
                 <p class="contact_Detail_Name">${user.name}</p>
                 <div class="contact_Detail_Menu">

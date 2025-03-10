@@ -1,5 +1,9 @@
+let globalIndex = 0; 
+
+
 async function openContactBigMiddle(contactsId) {
   let contactMiddle = document.getElementById("contact-big-middle");
+
   if (!contactMiddle) {
       console.error("Element mit ID 'contact-big-middle' nicht gefunden.");
       return;
@@ -11,6 +15,10 @@ async function openContactBigMiddle(contactsId) {
       
       if (contactsGroup && contactsGroup[contactIndex]) {
           let user = contactsGroup[contactIndex];
+
+          user.color = contactColorArray[globalIndex % contactColorArray.length];
+          globalIndex++;
+
           contactMiddle.innerHTML = contactCardMiddle(user, contactIndex, firstLetter);
       } else {
           console.error("Kein Benutzer gefunden mit ID:", contactsId);
@@ -19,6 +27,7 @@ async function openContactBigMiddle(contactsId) {
       console.error("Fehler beim Abrufen der Benutzerdaten:", error);
   }
 }
+
 
 function closeContactBigMiddle() {
   let contactMiddle = document.getElementById("contact-big-middle");
@@ -52,9 +61,9 @@ async function saveEditedContact(contactsId, firstLetter) {
   };
 
   await postData(`/contacts/${firstLetter}/${contactsId}`, updatedContact);
-  document.getElementById('content-card-big').style.display = 'none';
-
-  await getUsersList();
+  closeContactBig()
+  closeContactBigMiddle()
+  getUsersList();
 }
 
 
