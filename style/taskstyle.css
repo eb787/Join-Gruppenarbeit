@@ -541,7 +541,39 @@ textarea:hover {
     border-color: red !important;
 }
 
-
 .prio_img_with {
     filter: brightness(0) invert(1);
+}
+
+
+
+.message_Finish{
+display: none;
+align-items: center;
+justify-content: center;
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+width: 300px;
+height: 60px;
+background-color: #2A3647;
+color: white;
+border-radius: 16px;
+margin: 0;
+font-size: 20px;
+font-weight: 400;
+
+}
+
+.message_Finish_contents{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    
+}
+.message_Finish_contents img{
+    height: 30px;
+    width: 30px;
+
 }
