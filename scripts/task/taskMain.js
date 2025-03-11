@@ -62,7 +62,6 @@ function focusOnRequiredFields() {
     event.addEventListener("focus", function () {
       document.querySelectorAll(".error_Field").forEach(event => {
         event.textContent = "\u00A0";
-
       });
     })
   });
@@ -204,6 +203,8 @@ function taskReadinArrayTask(taskData) {
 
 
 function taskReadinArrayContact(DataContact) {
+  let= index=0;
+  document.getElementById('taskDropDownList').innerHTML="";
   taskContacteArray = Object.values(DataContact)
   .flatMap(array=>array.map(entry=>({
     name:entry.name,
@@ -211,11 +212,10 @@ function taskReadinArrayContact(DataContact) {
     color: entry.color || "10"
   })));
   console.log("Array mit name,Maikl ",taskContacteArray);
-  let=index=0;
+
   taskContacteArray.map((contact,index) =>
       taskRenderContactList(index,contact.name,contact.color ||  "10",contact.email));
- 
-}
+ }
 
 
 function taskContactListDrobdown() {
@@ -341,24 +341,23 @@ function addTaskClear() {
   document.getElementById('taskTitle').value = "";
   document.getElementById('descriptionTask').value = "";
   loadDataFirebase();
+
   document.getElementById('taskContactDrowdownMenue').classList.remove("ele_show");
   selectedTaskContacts = [];
   document.getElementById('taskDate').value = "";
   btnPrioSelect('medium');
   document.getElementById('taskCatergory').value = "";
   document.getElementById('inputSubtask').value = "";
+ 
   subTaskClose();
   taskSubTaskList = [];
   subTaskClose();
   subTaskListRender();
   document.getElementById('taskTitle').focus();
-
-
+  
   //document.getElementById('taskTitle').style.borderColor="black";
-
-
-// document.getElementById('taskDate').style.borderColor="black";
-// document.getElementById('taskCatergory').style.borderColor="black";
+ // document.getElementById('taskDate').style.borderColor="black";
+ // document.getElementById('taskCatergory').style.borderColor="black";
 
 
 }
