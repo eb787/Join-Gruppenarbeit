@@ -196,8 +196,6 @@ function deleteSubTask(index) {
 
 function taskReadinArrayTask(taskData) {
   taskId = Object.values(taskData).length;
-  console.log("Einträge von Task", Object.values(taskData).length);
-  console.log(("TaskID Aktuell", taskId));
 }
 
 
@@ -220,7 +218,6 @@ function taskReadinArrayContact(DataContact) {
 
 
 function taskContactListDrobdown() {
-  console.log("öffne Liste");
   document.getElementById('taskContactDrowdownMenue').classList.toggle('ele_show');
   document.getElementById('initialeIconList').classList.toggle('icon_List_hide')
 }
@@ -344,6 +341,7 @@ function addTaskClear() {
 
   document.getElementById('taskContactDrowdownMenue').classList.remove("ele_show");
   selectedTaskContacts = [];
+  document.getElementById('initialeIconList').innerHTML="";
   document.getElementById('taskDate').value = "";
   btnPrioSelect('medium');
   document.getElementById('taskCatergory').value = "";
@@ -355,6 +353,8 @@ function addTaskClear() {
   subTaskListRender();
   document.getElementById('taskTitle').focus();
   
+
+
   //document.getElementById('taskTitle').style.borderColor="black";
  // document.getElementById('taskDate').style.borderColor="black";
  // document.getElementById('taskCatergory').style.borderColor="black";
