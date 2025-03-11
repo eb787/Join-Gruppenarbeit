@@ -14,6 +14,15 @@ function taskRenderContactList(index,name,color,email){
   element.innerHTML += taskContacListTemplate(index,name,contactColorAssign(color),taskInitialLettersCreate(name),email);
 }
 
+function taskContacInitialRender(selectContact){
+  let element= document.getElementById('initialeIconList');
+  selectContact.map(empty=>{
+    let name=empty.name;
+    let color = empty.color;
+    element.innerHTML += taskContacInitialTemplate(contactColorAssign(color),taskInitialLettersCreate(name));
+  });
+}
+
 
 function contactColorAssign(color){
    return contactColorArray[color-1];

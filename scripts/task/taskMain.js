@@ -19,7 +19,6 @@ window.onload = function init() {
   focusOnRequiredFields();
   openDatePicker();
   subTaskListRender();
-
 }
 
 //Tasten Clear und Create Task sperren*/
@@ -213,13 +212,17 @@ function taskReadinArrayContact(DataContact) {
   })));
   console.log("Array mit name,Maikl ",taskContacteArray);
 
-  taskContacteArray.map((contact,index) =>
-      taskRenderContactList(index,contact.name,contact.color ||  "10",contact.email));
- }
+  taskContacteArray.map((contact,index) =>{
+      taskRenderContactList(index,contact.name,contact.color ||  "10",contact.email);
+      });
+   }
+
 
 
 function taskContactListDrobdown() {
-  document.getElementById('taskContactDrowdownMenue').classList.toggle("ele_show");
+  console.log("öffne Liste");
+  document.getElementById('taskContactDrowdownMenue').classList.toggle('ele_show');
+  document.getElementById('initialeIconList').classList.toggle('icon_List_hide')
 }
 
 
@@ -243,11 +246,12 @@ function contactCheckOKinArray(index) {
     if (checkbox && checkbox.checked) {
       console.log("ID ",contactID)
       selectedTaskContacts.push(taskContacteArray[contactID]);
+      document.getElementById('initialeIconList').innerHTML="";
+      taskContacInitialRender(selectedTaskContacts);
      }
   })
   console.log("Namen mit Checkbox ", selectedTaskContacts);
 }
-
 
 
 function checkInputData() {
@@ -262,8 +266,6 @@ function checkInputData() {
       pushTaskToServer();
       timePopUp(2000);
       addTaskClear();
-    
-
     }
   });
 }
@@ -322,8 +324,6 @@ function taskCatergoryRetrieve(number) {
     return "User Story"
   }
 }
-
-
 
 
 function subTasksObjects() {

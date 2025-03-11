@@ -14,9 +14,9 @@ function SubtaskListTemplate(subTaskdesignation, index) {
 }
 
 
-function taskContacListTemplate(index,name, color, initials,email) {
-    console.log("Emial",email);
-    console.log("Index",index);
+function taskContacListTemplate(index, name, color, initials, email) {
+    console.log("Emial", email);
+    console.log("Index", index);
     return `
       <div class="contact_Label_Item">
      <label>
@@ -26,4 +26,20 @@ function taskContacListTemplate(index,name, color, initials,email) {
      </label>
             </div>  
      `
+}
+
+
+function taskContacInitialTemplate(color,initials) {
+    return `
+   
+           <span class="initial_Letters_Contact" style="background-color:  ${color}; margin-left: -15px;"> 
+           ${initials}
+           </span>
+            
+       
+    
+    
+    `
+
+
 }

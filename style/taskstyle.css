@@ -225,6 +225,12 @@ font-weight: 400;
 width: 42px;
 height:42px;
 border-radius: 45px;
+border-color:black;
+border-style: solid;
+border-width: 0.5px;
+
+
+
 }
 
 
@@ -425,15 +431,13 @@ hr {
     display: none;
     align-items: center;
     justify-content: flex-start;
-    gap:5px;
     position: absolute;
     top:680px;
-    left:328px;
+    left:345px;
     height:42px;
     width: 175px;
-    background-color: #FF8190;
- }
-
+    margin-top: 10px;
+  }
 
 
 .required_text {
@@ -455,8 +459,7 @@ textarea:hover {
 
 
 .subtask_list {
- 
-  display: flex;
+   display: flex;
   flex-direction: column;
   width: 105%;
   height: 100px;
@@ -576,4 +579,9 @@ font-weight: 400;
     height: 30px;
     width: 30px;
 
+}
+
+
+.icon_List_hide{
+    display: flex;
 }
