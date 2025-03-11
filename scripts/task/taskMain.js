@@ -1,6 +1,5 @@
 let taskArray = [];
 let taskContacteArray = [];
-let taskContacEMailArray=[];
 let taskSubTaskArray = [];
 let taskSubTaskList = [];
 let editIndex = false;
@@ -206,13 +205,16 @@ function taskReadinArrayTask(taskData) {
 
 function taskReadinArrayContact(DataContact) {
   taskContacteArray = Object.values(DataContact)
-    .flatMap(array => array.map(entry => (entry.name)))
-
-  let taskContacColor = Object.values(DataContact)
-    .flatMap(array => array.map(entry => (entry.color)))
-
-  taskContacteArray.map((name, index) =>
-    taskRenderContactList(name, taskContacColor[index] || "10"));
+  .flatMap(array=>array.map(entry=>({
+    name:entry.name,
+    email:entry.email,
+    color: entry.color || "10"
+  })));
+  console.log("Array mit name,Maikl ",taskContacteArray);
+  let=index=0;
+  taskContacteArray.map((contact,index) =>
+      taskRenderContactList(index,contact.name,contact.color ||  "10",contact.email));
+ 
 }
 
 
@@ -234,18 +236,21 @@ function taskContactFilterList() {
   });
 }
 
-
-function contactCheckOKinArray() {
+function contactCheckOKinArray(index) {
   selectedTaskContacts = [];
-  document.querySelectorAll(".contact_Label_Item").forEach(item => {
-    let checkbox = item.querySelector("input[type='checkbox']")
+  document.querySelectorAll(".contact_Label_Item").forEach((entry,contactID) => {
+    let checkbox = entry.querySelector("input[type='checkbox']")
     if (checkbox && checkbox.checked) {
-      let name = item.querySelector('span').textContent.trim();
-      selectedTaskContacts.push(name);
-    }
+      console.log("ID ",contactID)
+      selectedTaskContacts.push(taskContacteArray[contactID]);
+     }
   })
   console.log("Namen mit Checkbox ", selectedTaskContacts);
 }
+
+
+
+
 
 
 function checkInputData() {
@@ -260,7 +265,7 @@ function checkInputData() {
       pushTaskToServer();
       timePopUp(2000);
       addTaskClear();
-      
+    
 
     }
   });
@@ -280,8 +285,8 @@ function collectData() {
   currentTask = {
     title: document.getElementById('taskTitle').value,
     description: document.getElementById('descriptionTask').value.trim() || "empty",  // oder "empty" reinschreiben wenn es leer bleibt
-    contacts: addTaskWriteContacts(), // oder 0 reinschreiben ohne array wenn keine Kontakte hinzugefügt werden
-    deadline: dateConversion(document.getElementById('taskDate').value),
+    contacts: addTaskWriteContacts(),// oder 0 reinschreiben ohne array wenn keine Kontakte hinzugefügt werden
+      deadline: dateConversion(document.getElementById('taskDate').value),
     prio: taskPrioSelect, // "medium_prio" , oder "low_prio", oder "high_prio"
     category: taskCatergoryRetrieve(document.getElementById('taskCatergory').value), // "Technical Task" oder "User Story"
     subtasks: {
@@ -295,19 +300,17 @@ function collectData() {
 
 
 function dateConversion(dateOld) {
-  console.log('Dateformat', dateOld);
-
   let date = new Date(dateOld);
   let day = String(date.getDate()).padStart(2, '0'); // 25
   let month = String(date.getMonth() + 1).padStart(2, '0'); // 02
   let year = String(date.getFullYear()).slice(-2); // 25 (letzte 2 Stellen)
-
   return `${day}/${month}/${year}`;
 }
 
 
 function addTaskWriteContacts() {
   if (selectedTaskContacts.length > 0) {
+    console.log(selectedTaskContacts);
     return selectedTaskContacts
   } else {
     return "0";

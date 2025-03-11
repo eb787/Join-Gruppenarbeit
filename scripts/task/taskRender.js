@@ -9,9 +9,9 @@ element.innerHTML += taskSubTaskList.map((designation, index)=>
 }
 
 
-function taskRenderContactList(name,color){
+function taskRenderContactList(index,name,color,email){
    let element= document.getElementById('taskDropDownList');
-  element.innerHTML += taskContacListTemplate(name,contactColorAssign(color),taskInitialLettersCreate(name));
+  element.innerHTML += taskContacListTemplate(index,name,contactColorAssign(color),taskInitialLettersCreate(name),email);
 }
 
 

@@ -14,13 +14,15 @@ function SubtaskListTemplate(subTaskdesignation, index) {
 }
 
 
-function taskContacListTemplate(name, color, initials) {
+function taskContacListTemplate(index,name, color, initials,email) {
+    console.log("Emial",email);
+    console.log("Index",index);
     return `
       <div class="contact_Label_Item">
      <label>
               <p class="initial_Letters_Contact" style="background-color: ${color};">${initials}</p>
-              <span >${name}</span> 
-              <input class="input_check" type="checkbox" onclick="contactCheckOKinArray()">
+              <span>${name}</span> 
+              <input class="input_check" type="checkbox" onclick="contactCheckOKinArray(${index})">
      </label>
             </div>  
      `

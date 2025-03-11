@@ -19,18 +19,8 @@ try{
 }
 
 
-function taskReadinArrayContact(DataContact) {
-    taskContacteArray = Object.values(DataContact)
-      .flatMap(array => array.map(entry => (entry.name)))
-    let taskContacColor = Object.values(DataContact)
-      .flatMap(array => array.map(entry => (entry.color)))
-  
-      let taskContacEMailArray=Object.values(DataContact)
-      .flatMap(array=>array.map(entry=>(entry.email)))
-    
-      taskContacteArray.map((name, index) =>
-      taskRenderContactList(name, taskContacColor[index] || "10"));
-  }
+
+
 
 
 function pushTaskToServer() {
