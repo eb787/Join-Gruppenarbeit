@@ -250,9 +250,6 @@ function contactCheckOKinArray(index) {
 
 
 
-
-
-
 function checkInputData() {
   let mandatoryFields = document.querySelectorAll('.input-field');
   mandatoryFields.forEach(field => {
@@ -315,9 +312,7 @@ function addTaskWriteContacts() {
   } else {
     return "0";
   }
-
 }
-
 
 
 function taskCatergoryRetrieve(number) {
@@ -341,9 +336,6 @@ function subTasksObjects() {
 }
 
 
-
-
-
 function addTaskClear() {
   console.log("Lösche Felder");
   document.getElementById('taskTitle').value = "";
@@ -359,10 +351,15 @@ function addTaskClear() {
   taskSubTaskList = [];
   subTaskClose();
   subTaskListRender();
- document.getElementById('taskTitle').style.borderColor="black";
-document.getElementById('taskDate').style.borderColor="black";
-document.getElementById('taskCatergory').style.borderColor="black";
-document.getElementById('taskTitle').focus();
+  document.getElementById('taskTitle').focus();
+
+
+  //document.getElementById('taskTitle').style.borderColor="black";
+
+
+// document.getElementById('taskDate').style.borderColor="black";
+// document.getElementById('taskCatergory').style.borderColor="black";
+
 
 }
 

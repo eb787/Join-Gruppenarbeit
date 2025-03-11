@@ -18,11 +18,6 @@ try{
 }
 }
 
-
-
-
-
-
 function pushTaskToServer() {
     collectData();
     loadDataFirebase();
@@ -41,6 +36,16 @@ async function postTaskData(path = "", task) {
  }
 
 
+//Hilffunction zum DB refreshen 
+ function datar(){
+    try{
+    fetch(Base_URL + "/tasks.json", { method: "PATCH", body: "{}" });
+    console.log("DB Refeheh");
+    }catch{
+    console.log("Feker");
+}
+    
+}
 
 
 
