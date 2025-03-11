@@ -20,7 +20,6 @@ try{
 
 function pushTaskToServer() {
     collectData();
-    //loadDataFirebase();
     postTaskData(`/tasks/${taskId}`, currentTask);
 }
 

@@ -48,7 +48,7 @@ function requiredInputAddTask() {
         } else {
           console.log("OK Eingabe");
           this.classList.remove('error_Msg_Input')
-          errorMsg.textContent = " ";
+          errorMsg.textContent = "\u00A0";
         }
       }
     })
@@ -250,7 +250,7 @@ function contactCheckOKinArray(index) {
   console.log("Namen mit Checkbox ", selectedTaskContacts);
 }
 
-
+/*
 function checkInputData() {
   let mandatoryFields = document.querySelectorAll('.input-field');
   mandatoryFields.forEach(field => {
@@ -266,6 +266,32 @@ function checkInputData() {
     }
   });
 }
+*/
+
+function checkInputData() {
+  let mandatoryFields = document.querySelectorAll('.input-field');
+     mandatoryFields.forEach(field => {
+    if (field.value.trim() == "") {
+       field.classList.add('error_Msg_Input');
+        console.log("Es fehlt noch was");
+        return;
+    } else {
+      
+     // field.classList.remove('error_Msg_Input');
+      console.log("Alle Daten OK");
+      pushTaskToServer();
+      timePopUp(2000);
+      addTaskClear();
+    }
+  });
+     
+  
+}
+
+
+
+
+
 
 
  function timePopUp(duration){
@@ -353,8 +379,6 @@ function addTaskClear() {
   subTaskListRender();
   document.getElementById('taskTitle').focus();
   
-
-
   //document.getElementById('taskTitle').style.borderColor="black";
  // document.getElementById('taskDate').style.borderColor="black";
  // document.getElementById('taskCatergory').style.borderColor="black";
@@ -362,4 +386,11 @@ function addTaskClear() {
 
 }
 
+
+function Test(){
+  console.log("setze Button zurück");
+  //document.getElementById('taskDate').style.setProperty("border-color", "black", "important");
+
+document.getElementById('taskDate').style.borderColor="";
+}
 
