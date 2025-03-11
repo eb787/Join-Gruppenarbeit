@@ -17,11 +17,10 @@ let currentTask = {};
 let taskId = "";
 let elementToBeDropped = "";
 let newFinishedTasks = 0;
-let currentContacts = [];
+
 
 async function loadTaskData() {
     await fetchTaskData();
-    await fetchContactData();
     updateTaskBoard();
     document.getElementById("full_content").innerHTML += getCardOverlay(); 
 }
@@ -38,17 +37,7 @@ async function fetchTaskData(){
    taskId = Object.values(TaskResponseToJson).length; 
 }
 
-async function fetchContactData(){
-    currentContacts = [];
-    let contactResponse = await fetch(Base_URL + "/contacts/" + ".json");
-    currentContactResponseToJson = await contactResponse.json();
 
-    for (let index = 0; index < Object.values(currentContactResponseToJson).length; index++) {
-        for (let i = 0; i < Object.values(currentContactResponseToJson)[index].length; i++) {
-            currentContacts.push(Object.values(currentContactResponseToJson)[index][i]);
-        }
-    }
-}
 
 function updateTaskBoard() {
     //hier geben wir die Daten in ein Template dass dan als task-card im Board angezeigt wird
@@ -106,7 +95,7 @@ function showCardOnBoard(index) {
         document.getElementById("description_" + index).classList.add("d_none");
     }
 
-    if (currentTasks[index].contacts != 0) {
+    if (currentTasks[index].contacts) {
         for (let i = 0; i < currentTasks[index].contacts.length; i++) {
             getCorrectContact(index, i);
             
@@ -118,24 +107,19 @@ function showCardOnBoard(index) {
 }
 
 function getCorrectContact(index, i) {
-
-    for (let a = 0; a < currentContacts.length; a++) {
-        if (currentTasks[index].contacts[i] == currentContacts[a].email) {
-            document.getElementById("Profile_badges_" + index).innerHTML += getContactIcon(index, i, a);
-            getInitials(a, index, i);
-        } 
-    }
-    
-   
+        document.getElementById("Profile_badges_" + index).innerHTML += getContactIcon(index, i);
+        getInitials(index, i);
 }
 
-function getInitials(a, index, i) {
-    let names = [];
-    names.push(currentContacts[a].name);
-            for (let b = 0; b < names.length; b++) {
-                let initial = names[b].charAt(0).toUpperCase();
-                document.getElementById("profile_" + index + "_" + i).innerHTML += initial;
-            }
+function getInitials(index, i) {
+    let names = currentTasks[index].contacts[i].name.split(' ');
+    let initials = "";
+    for (let a = 0; a < names.length; a++) {
+        initials += names[a].substr(0,1);
+        
+    }
+    document.getElementById("profile_" + index + "_" + i).innerHTML += initials.toUpperCase();
+    
 }
 
 
@@ -264,38 +248,25 @@ function showCardOverlay(index) {
         
     } 
 
-    if (currentTasks[index].contacts != 0) {
+    if (currentTasks[index].contacts) {
         document.getElementById("task_description_overlay_" + index).innerHTML = getContactBoxOverlay(index);
 
         for (let i = 0; i < currentTasks[index].contacts.length; i++) {
-            
-            getCorrectContactOverlay(index, i);
-            
+            document.getElementById("profile_badges_overlay" + index).innerHTML += getContactIconOverlay(index, i);
+            getInitialsOverlay(index, i);
+           
         }
-         
     }
-    
 }
 
-function getCorrectContactOverlay(index, i) {
 
-    for (let a = 0; a < currentContacts.length; a++) {
-        if (currentTasks[index].contacts[i] == currentContacts[a].email) {
-            document.getElementById("profile_badges_overlay" + index).innerHTML += getContactIconOverlay(index, i, a);
-            getInitialsOverlay(a, index, i);
-        } 
+function getInitialsOverlay(index, i) {
+    let names = currentTasks[index].contacts[i].name.split(' ');
+    let initials = "";
+    for (let a = 0; a < names.length; a++) {
+        initials += names[a].substr(0,1);
     }
-    
-   
-}
-
-function getInitialsOverlay(a, index, i) {
-    let names = [];
-    names.push(currentContacts[a].name);
-            for (let b = 0; b < names.length; b++) {
-                let initial = names[b].charAt(0).toUpperCase();
-                document.getElementById("profile_badge_overlay_" + index + "_" + i).innerHTML += initial;
-            }
+    document.getElementById("profile_badge_overlay_" + index + "_" + i).innerHTML += initials.toUpperCase();
 }
 
 function closeOverlay() {
