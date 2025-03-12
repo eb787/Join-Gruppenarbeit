@@ -250,24 +250,6 @@ function contactCheckOKinArray(index) {
   console.log("Namen mit Checkbox ", selectedTaskContacts);
 }
 
-/*
-function checkInputData() {
-  let mandatoryFields = document.querySelectorAll('.input-field');
-  mandatoryFields.forEach(field => {
-    if (field.value.trim() === "") {
-      field.classList.add('error_Msg_Input');
-      console.log("Es fehlt noch was");
-    } else {
-      field.classList.remove('error_Msg_Input');
-      console.log("Alle Daten OK");
-      pushTaskToServer();
-      timePopUp(2000);
-      addTaskClear();
-    }
-  });
-}
-*/
-
 function checkInputData() {
   let mandatoryFields = document.querySelectorAll('.input-field');
      mandatoryFields.forEach(field => {
@@ -307,7 +289,7 @@ function collectData() {
   currentTask = {
     title: document.getElementById('taskTitle').value,
     description: document.getElementById('descriptionTask').value.trim() || "empty",  // oder "empty" reinschreiben wenn es leer bleibt
-    contacts: addTaskWriteContacts(),// oder 0 reinschreiben ohne array wenn keine Kontakte hinzugefügt werden
+    contacts: selectedTaskContacts, //
       deadline: dateConversion(document.getElementById('taskDate').value),
     prio: taskPrioSelect, // "medium_prio" , oder "low_prio", oder "high_prio"
     category: taskCatergoryRetrieve(document.getElementById('taskCatergory').value), // "Technical Task" oder "User Story"
@@ -327,16 +309,6 @@ function dateConversion(dateOld) {
   let month = String(date.getMonth() + 1).padStart(2, '0'); // 02
   let year = String(date.getFullYear()).slice(-2); // 25 (letzte 2 Stellen)
   return `${day}/${month}/${year}`;
-}
-
-
-function addTaskWriteContacts() {
-  if (selectedTaskContacts.length > 0) {
-    console.log(selectedTaskContacts);
-    return selectedTaskContacts
-  } else {
-    return "0";
-  }
 }
 
 
