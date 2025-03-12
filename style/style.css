@@ -7,6 +7,15 @@
     display: none !important;
 }
 
+.submenu_closed {
+    display: none;
+}
+
+.submenu_open {
+    display: block;
+}
+
+
 .user_logo {
     height: 32px;
     width: 32px;
@@ -26,4 +35,39 @@
 .user_logo:hover {
     cursor: pointer;
     background-color: rgb(227, 228, 229);
+}
+
+.div_submenu {
+    position: absolute;
+    top: 99px;
+    right: 20px;
+    transition: all 250ms ease-in-out;
+    
+}
+
+.submenu {
+    justify-content: space-evenly;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 158px;
+    width: 148px;
+    background-color: rgba(42, 54, 71);
+    border-radius: 20px 0 20px 20px;
+
+}
+
+.submenu a:hover{
+    background-color: rgba(6, 94, 209, 0.445);
+    width: 148px;
+}
+
+.submenu a {
+    color: rgb(168, 168, 168);
+    text-decoration: none;
+    width: 148px;
+    height: 36px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
