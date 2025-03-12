@@ -233,13 +233,14 @@ function showCardOverlay(index) {
         document.getElementById("category_overlay" + index).classList.add("technical_task_overlay");
     }
 
+
     if (currentTasks[index].subtasks.total != 0) {
         document.getElementById("subtasks_box_overlay" + index).innerHTML = getSubtasksOverlay(index);
         for (let i = 0; i < currentTasks[index].subtasks.total; i++) {
             document.getElementById("tasks_box" + index).innerHTML += getTaskOverlay(index, i);
             if (Object.values(currentTasks[index].subtasks.subtasks_todo)[i] == "done") {
                 document.getElementById("check_box_" + index + "_btn" + i).classList.add("checked_box");
-            
+           
             }
             
         }
@@ -356,4 +357,6 @@ async function postTaskData(path = "", task) {
         method: "DELETE",
     });
  }
+
+
 

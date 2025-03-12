@@ -96,9 +96,9 @@ function getCardOverlayContent(index) {
                                 <p>Delete</p>
                             </div>
                             <div class="seperator_overlay_options"></div>
-                            <div class="overlay_option edit_btn_overlay_board">
+                            <div onclick="editTask(${index})" class="overlay_option edit_btn_overlay_board">
                                 <img class="edit_icon" src="..//assets/icons/edit.svg" alt="edit button">
-                                <p>Edit</p>
+                                <p >Edit</p>
                             </div>
                         </div>
                `
@@ -151,4 +151,44 @@ function getContactIconOverlay(index, i) {
 
 
 
+// Ab hier Edit Task Template
 
+function editTaskTemplate(index){
+     
+    return `
+        <div class="section-title">
+    <form>
+        <div class="section-title-div">
+            <span class="title">Title<span class="star-red">*</span></span>
+            <input id="taskTitle" class="input-title input-field" type="text" placeholder="Enter a title" tabindex="1">
+            <span  class="error_Field">&nbsp;</span>
+        </div>
+    </form>
+    <div class="section-description">
+        <span>Description</span>
+        <div class="textarea-description">
+            <textarea  id="descriptionTask" placeholder="Enter a Description" tabindex="2"></textarea>
+            <img src="../assets/icons/textarea.png" alt="" class="textarea-icon">
+        </div>
+    </div>
+    <div class="section-assigned">
+        <span class="assigned-title">Assigned to</span>
+        <div class="task_Contact_dropdown">
+
+            <div class="task_input_section">
+                <input type="text" id="taskDropDownInput" class="task_dropdown_input" tabindex="3"
+                    placeholder="Select contacts to assign" onclick="taskContactListDrobdown()"
+                    onkeyup="taskContactFilterList()"  >
+                <img src="../assets/icons/arrow_down.svg">
+            </div>
+
+            <div id="taskContactDrowdownMenue" class="task_dropdown_content">
+            <div id="taskDropDownList" class="task_dropdown_list">
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+    `
+
+}

@@ -280,7 +280,8 @@
     overflow: auto;
     max-height: calc(100vh - 196px);
     scrollbar-width: none;
-    height: fit-content;
+    /*height: fit-content;*/
+    height: 800px;
 }
 
 .card_overlay:hover {
