@@ -60,65 +60,87 @@ function emptyBoard() {
 function showCardOnBoard(index) {
     let subtasks = currentTasks[index].subtasks.total;
     let progress =  currentTasks[index].subtasks.number_of_finished_subtasks / subtasks * 100;
-   
+    let layer = "";
     if (currentTasks[index].status == "toDo") {
         document.getElementById("no_task_toDo").classList.add("d_none");
-        document.getElementById("toDo").innerHTML += getExampleCard(index);
+        document.getElementById("toDo").innerHTML += getExampleCard(index, layer);
     }
 
 
     if (currentTasks[index].status == "inProgress") {
         document.getElementById("no_task_inProgress").classList.add("d_none");
-        document.getElementById("inProgress").innerHTML += getExampleCard(index);
+        document.getElementById("inProgress").innerHTML += getExampleCard(index, layer);
     }
 
     if (currentTasks[index].status == "awaitFeedback") {
         document.getElementById("no_task_awaitFeedback").classList.add("d_none");
-        document.getElementById("awaitFeedback").innerHTML += getExampleCard(index);
+        document.getElementById("awaitFeedback").innerHTML += getExampleCard(index, layer);
     }
 
     if (currentTasks[index].status == "done") {
         document.getElementById("no_task_done").classList.add("d_none");
-        document.getElementById("done").innerHTML += getExampleCard(index);
+        document.getElementById("done").innerHTML += getExampleCard(index, layer);
     }
 
-    if (currentTasks[index].category == "User Story") {
-        document.getElementById("category_" + index).classList.add("user_story");
-        document.getElementById("category_" + index).classList.remove("technical_task");
-    }
+
+    checkCategory(index, layer);
+
+    checkSubtasks(subtasks, index, progress, layer);
+
+    checkDescription(index, layer);
+    checkContacts(index, layer);
   
-     if (subtasks != 0) {
-        document.getElementById("subtasks_box" + index).innerHTML = getSubtasks(index, subtasks, progress);
-    } 
+    
 
-    if (currentTasks[index].description == "empty") {
-        document.getElementById("description_" + index).classList.add("d_none");
+    
+
+   
+}
+
+function checkCategory(index, layer){
+    if (currentTasks[index].category == "User Story") {
+        document.getElementById("category_" + index + "_" + layer).classList.add("user_story");
+        document.getElementById("category_" + index + "_" + layer).classList.remove("technical_task");
     }
+}
 
+function checkSubtasks(subtasks, index, progress, layer) {
+    if (subtasks != 0) {
+        document.getElementById("subtasks_box" + index + "_" + layer).innerHTML = getSubtasks(index, subtasks, progress, layer);
+    } 
+}
+
+function checkDescription(index, layer) {
+    if (currentTasks[index].description == "empty") {
+        document.getElementById("description_" + index + "_" + layer).classList.add("d_none");
+    }
+}
+
+function checkContacts(index, layer) {
     if (currentTasks[index].contacts) {
         for (let i = 0; i < currentTasks[index].contacts.length; i++) {
-            getCorrectContact(index, i);
+            getCorrectContact(index, i, layer);
             
         }
          
     } else {
-       document.getElementById("Profile_badges_" + index).classList.add("d_none");
+       document.getElementById("Profile_badges_" + index + "_" + layer).classList.add("d_none");
     }
 }
 
-function getCorrectContact(index, i) {
-        document.getElementById("Profile_badges_" + index).innerHTML += getContactIcon(index, i);
-        getInitials(index, i);
+function getCorrectContact(index, i, layer) {
+        document.getElementById("Profile_badges_" + index + "_" + layer).innerHTML += getContactIcon(index, i, layer);
+        getInitials(index, i, layer);
 }
 
-function getInitials(index, i) {
+function getInitials(index, i, layer) {
     let names = currentTasks[index].contacts[i].name.split(' ');
     let initials = "";
     for (let a = 0; a < names.length; a++) {
         initials += names[a].substr(0,1);
         
     }
-    document.getElementById("profile_" + index + "_" + i).innerHTML += initials.toUpperCase();
+    document.getElementById("profile_" + index + "_" + i + "_" + layer).innerHTML += initials.toUpperCase();
     
 }
 
@@ -358,5 +380,48 @@ async function postTaskData(path = "", task) {
     });
  }
 
+function findTask() {
+    let titleToFind = document.getElementById('inputfield_board').value;
 
+
+    for (let index = 0; index < currentTasks.length; index++) {
+        if (currentTasks[index].title.toLowerCase().includes(titleToFind.toLowerCase())) {
+            let subtasks = currentTasks[index].subtasks.total;
+            let progress =  currentTasks[index].subtasks.number_of_finished_subtasks / subtasks * 100;
+            let layer = "overlay";
+            document.getElementById("bg_overlay").classList.remove("d_none");
+            document.getElementById('card_overlay').innerHTML += getFoundItems(titleToFind);
+            document.getElementById('search_results').innerHTML += getExampleCard(index, layer);
+
+            checkCategory(index, layer);
+            checkSubtasks(subtasks, index, progress, layer);
+            checkDescription(index, layer);
+            checkContacts(index, layer);
+
+
+                           
+
+            // let prio = "Medium";
+            // if (currentTasks[index].prio == "high_prio") {
+            //     prio = "High";
+            // } else if (currentTasks[index].prio == "low_prio") {
+            //     prio = "Low";
+            // }
+            
+            // document.getElementById('prio_' + index).innerHTML = prio;
+            
+        }
+        
+    }
+    
+    
+
+
+
+
+
+
+
+    document.getElementById('inputfield_board').value = "";
+}
 
