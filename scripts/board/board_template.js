@@ -156,6 +156,12 @@ function getContactIconOverlay(index, i) {
 function editTaskTemplate(index){
      
     return `
+
+       <div class="card_overlay_header">
+            <div id="category_overlay${index}" class="task_category task_category_overlay  "></div>
+            <img onclick="closeOverlay()" class="close_btn_overlay" src="..//assets/icons/close.svg" alt="close button">
+        </div>
+
         <div class="section-title">
     <form>
         <div class="section-title-div">
