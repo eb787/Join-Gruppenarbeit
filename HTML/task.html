@@ -21,7 +21,7 @@
     <script src="..//scripts/script.js"></script>
 </head>
 
-<body>
+<body onload="renderInitials()">
     <div class="full_content">
         <nav class="nav">
             <div class="nav-icon-capa2">
@@ -29,41 +29,49 @@
             </div>
 
             <div class="div_nav_icons">
-                <div class="navbar_icon">
+                <a class="navbar_icon" href="../HTML/summary.html">
                     <img src="../assets/icons/summary.svg">
-                </div>
-                <div class="navbar_icon">
+                </a>
+                <div class="navbar_current_icon" href="../HTML/task.html">
                     <img src="../assets/icons/add_task.svg">
                 </div>
-                <div class="navbar_icon">
+                <a class="navbar_icon" href="../HTML/board.html">
                     <img src="../assets/icons/board.svg">
-                </div>
-                <div class="navbar_icon">
+                </a>
+                <a class="navbar_icon" href="../HTML/contacts.html">
                     <img src="../assets/icons/contacts.svg">
-                </div>
+                </a>
             </div>
             <div class="div_impressum">
-                <div class="nav_impressum">
-                    <img src="../assets/icons/privacy_policy.svg">
-                </div>
-                <div class="nav_impressum">
-                    <img src="../assets/icons/legal_notice.svg">
-                </div>
+                <a class="nav_impressum" href="../HTML/policy.html">
+                    <p>Privacy Policy</p>
+                </a>
+                <a class="nav_impressum" href="../HTML/legal_notice.html">
+                    <p>Legal notice</p>
+                </a>
             </div>
         </nav>
 
         <section class="content_right">
             <div class="headline">
                 <span class="headline_title font20">Kanban Project Management Tool</span>
-                <div class="headline_logo_help">
+                <a class="headline_logo_help" href="../HTML/help.html">
                     <img src="../assets/icons/help.svg" alt="">
-                </div>
-                <div class="headline_logo_user_sign_in">
+                </a>
+                <div id="logo_user_sign_in" onclick="toggleMenu()" class="headline_logo_user_sign_in">
                 </div>
                 <seperator class="navbar_seperator"></seperator>
             </div>
-
+            
             <div class="main_contant">
+                <div class="div_submenu submenu_closed" id="submenu_toogle">
+                    <div class="submenu">
+                        <a href="../HTML/legal_notice.html">Legal Notice</a>
+                        <a href="../HTML/policy.html">Privacy Policy</a>
+                        <a href="../HTML/login.html">Log out</a>
+                    </div>
+                </div>
+            </div>
                 <h1>Add Task</h1>
 
                 <div class="section-title">
