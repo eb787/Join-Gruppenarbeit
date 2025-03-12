@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../style/fonts.css">
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/board.css">
-    <link rel="stylesheet" href="../style/taskstyle.css">
+    
     <script src="../scripts/board/board.js"></script>
     <script src="../scripts/board/board_template.js"></script>
     <script src="..//scripts/task/taskEdit.js"></script>
@@ -68,9 +68,9 @@
                         <h1 class="board_heading">Board</h1>
                         <div class="board_options">
                             <div class="input_board">
-                                <input class="inputfield_board" type="text" placeholder="Find Task"
+                                <input id="inputfield_board" class="inputfield_board" type="text" placeholder="Find Task"
                                     alt="input find task">
-                                <div class="input_icons">
+                                <div onclick="findTask()" class="input_icons">
                                     <img class="seperator_icon" src="../assets/icons/seperator.png"
                                         alt="seperator icon">
                                     <img class="search_icon" src="../assets/icons/search.png" alt="search icon">

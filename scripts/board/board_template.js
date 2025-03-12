@@ -1,28 +1,28 @@
-function getExampleCard(index) {
+function getExampleCard(index, layer) {
     return `<div class="card" onclick="showCardOverlay(${index})" draggable="true" ondragstart="startDragging(${index})">
-                                <div id="category_${index}" class="task_category technical_task">${currentTasks[index].category}</div>
+                                <div id="category_${index}_${layer}" class="task_category technical_task">${currentTasks[index].category}</div>
                                 <div>
                                     <div class="task_name">${currentTasks[index].title}</div>
-                                    <div id="description_${index}" class="task_description">${currentTasks[index].description}...</div>
+                                    <div id="description_${index}_${layer}" class="task_description">${currentTasks[index].description}...</div>
                                 </div>
-                                <div id="subtasks_box${index}">
+                                <div id="subtasks_box${index}_${layer}">
                                 </div>
                                 <div class="card_footer">
-                                    <div id="Profile_badges_${index}" class="profile_badges">
+                                    <div id="Profile_badges_${index}_${layer}" class="profile_badges">
                                         
                                     </div>
-                                    <img class="prio_icon ${currentTasks[index].prio}" src="..//assets/icons/${currentTasks[index].prio}.svg" alt="priority indicator">
+                                    <img class="prio_icon ${currentTasks[index].prio}_${layer}" src="..//assets/icons/${currentTasks[index].prio}.svg" alt="priority indicator">
                                 </div>
                                 
         
                             </div>`
 }
 
-function getSubtasks(index, subtasks, progress) {
+function getSubtasks(index, subtasks, progress, layer) {
     return `
-    <div id="subtasks_${index}" class="progress_box">
+    <div id="subtasks_${index}_${layer}" class="progress_box">
                                     <div class="progress_bar">
-                                        <div id="progress_${index}" class="progress" style="width: ${progress}%;"></div>
+                                        <div id="progress_${index}_${layer}" class="progress" style="width: ${progress}%;"></div>
                                     </div>
                                     <div style="display: flex; flex-direction: row; gap: 1px; align-items: center;">
                                         <h4 id="subtasks_done" style="font-weight: 400;">${currentTasks[index].subtasks.number_of_finished_subtasks}</h4>
@@ -37,8 +37,8 @@ function getSubtasks(index, subtasks, progress) {
     
 }
 
-function getContactIcon(index, i) {
-    return  `   <div id="profile_${index}_${i}" class="profile_badge" style="z-index: ${i + 1}; position: relative; left: calc(${i} * -8px); background-color: ${contactColorArray[currentTasks[index].contacts[i].color]};"></div>  
+function getContactIcon(index, i, layer) {
+    return  `   <div id="profile_${index}_${i}_${layer}" class="profile_badge" style="z-index: ${i + 1}; position: relative; left: calc(${i} * -8px); background-color: ${contactColorArray[currentTasks[index].contacts[i].color]};"></div>  
     `
 
 }
@@ -191,4 +191,15 @@ function editTaskTemplate(index){
 </div>
     `
 
+}
+
+function getFoundItems(titleToFind) {
+
+    return ` <div id="search_results"> <h2>Die Suche nach <i>${titleToFind} </i>ergab folgende Ergebnisse:</h2>
+    
+    
+    </div>
+    
+    
+    `
 }
