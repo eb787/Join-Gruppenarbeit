@@ -34,11 +34,11 @@ function getSubtasks(index, subtasks, progress, layer) {
                                 </div>
     
     `
-    
+
 }
 
 function getContactIcon(index, i, layer) {
-    return  `   <div id="profile_${index}_${i}_${layer}" class="profile_badge" style="z-index: ${i + 1}; position: relative; left: calc(${i} * -8px); background-color: ${contactColorArray[currentTasks[index].contacts[i].color]};"></div>  
+    return `   <div id="profile_${index}_${i}_${layer}" class="profile_badge" style="z-index: ${i + 1}; position: relative; left: calc(${i} * -8px); background-color: ${contactColorArray[currentTasks[index].contacts[i].color]};"></div>  
     `
 
 }
@@ -70,6 +70,8 @@ function getCardOverlay() {
 function getCardOverlayContent(index) {
     return `   
    
+
+    
         <div class="card_overlay_header">
             <div id="category_overlay${index}" class="task_category task_category_overlay technical_task_overlay ">${currentTasks[index].category}</div>
             <img onclick="closeOverlay()" class="close_btn_overlay" src="..//assets/icons/close.svg" alt="close button">
@@ -138,7 +140,7 @@ function getContactBoxOverlay(index) {
 }
 
 function getContactIconOverlay(index, i) {
-    return  `   <div class="contact_info">
+    return `   <div class="contact_info">
                     <div id="profile_badge_overlay_${index}_${i}"  class="profile_badge profile_badge_overlay" style="background-color: ${contactColorArray[currentTasks[index].contacts[i].color]};">
                     </div>
                     <p class="font_19">${currentTasks[index].contacts[i].name}
@@ -153,9 +155,15 @@ function getContactIconOverlay(index, i) {
 
 // Ab hier Edit Task Template
 
-function editTaskTemplate(index){
-     
+function editTaskTemplate(index) {
+
     return `
+
+       <div class="card_overlay_header">
+            <div id="category_overlay${index}" class="task_category task_category_overlay  "></div>
+            <img onclick="closeOverlay()" class="close_btn_overlay" src="..//assets/icons/close.svg" alt="close button">
+        </div>
+
         <div class="section-title">
     <form>
         <div class="section-title-div">
@@ -171,6 +179,44 @@ function editTaskTemplate(index){
             <img src="../assets/icons/textarea.png" alt="" class="textarea-icon">
         </div>
     </div>
+
+
+         <div class="section-date-div">
+              <span>Due date<span class="star-red">*</span></span>
+              <input type="date" id="taskDate"  class=" date_test date-input input-field " tabindex="4">
+              <span class="error_Field">&nbsp;</span>
+              <img src="../assets/icons/event.png" class="date-icon" alt="Calendar">
+          </div>
+
+
+
+           <div class="section-prio">
+                        <span>Prio</span>
+                        <div class="prio-buttons">
+
+                            <button onclick="btnPrioSelect('urgent')" class="btn_prio button-urgent" tabindex="5">Urgent
+                                <img class="prio_img" src="../assets/icons/high_prio.svg" alt="urgent">
+                            </button>
+
+
+                            <button onclick="btnPrioSelect('medium')" class="btn_prio button-medium" tabindex="6">Medium
+                                <div id="btnPrioGroup" class="prio_img prio_img_group">
+                                    <img src="../assets/icons/linePrio.svg">
+                                    <img src="../assets/icons/linePrio.svg">
+                                </div>
+                            </button>
+
+
+                            <button onclick="btnPrioSelect('low')" class="btn_prio button-low" tabindex="7">Low
+                                <img class="prio_img" src="../assets/icons/low_prio.svg">
+                            </button>
+                        </div>
+
+                    </div>
+
+
+
+
     <div class="section-assigned">
         <span class="assigned-title">Assigned to</span>
         <div class="task_Contact_dropdown">
@@ -188,7 +234,39 @@ function editTaskTemplate(index){
             </div>
         </div>
     </div>
-</div>
+
+   <div id="initialeIconList" class="initiale_Icon_List icon_List_hide"></div>      
+      
+   
+       <div class="section-subtasks">
+                        <span>Subtasks</span>
+                        <div class="input-wrapper">
+                            <input type="text" id="inputSubtask" class="input-subtasks" oninput="subTaskInputCheck()"
+                                maxlength="40">
+                            <span class="error_Field">&nbsp;</span>
+                            <img id="subTaskAddIcon" class="add-subtasks ele_hide" onclick="subTaskInputCheck(true)"
+                                src="../assets/icons/add.png" alt="add-icon">
+
+                            <div id="subTaskEditIocn" class="add-subtasks sub_Task_Edit_Iocn ele_hide">
+                                <img id="subTaskCloseIcon" onclick="subTaskClose()" src="../assets/icons/close.svg"
+                                    alt="add-icon">
+                                <img src="../assets/icons/vectorV.svg">
+                                <img id="subTaskCheckIcon" onclick="taskCreateTask()" src="../assets/icons/checkSW.svg"
+                                    alt="add-icon">
+                            </div>
+                            <div id="subTaskList" class="subtask_list">
+                            </div>
+                        </div>
+            </div>
+
+
+    <button>OK</button>            
+
+
+    </div>
+
+
+
     `
 
 }

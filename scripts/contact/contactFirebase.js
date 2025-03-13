@@ -1,6 +1,10 @@
 const Base_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/"
-let userPromises = [];
+const colorIndexKey = "globalIndex"; // Schlüssel für LocalStorage
 
+let globalIndex = parseInt(localStorage.getItem(colorIndexKey)) || 0;
+function saveGlobalIndex() {
+    localStorage.setItem(colorIndexKey, globalIndex);
+}
 
 async function postData(path = "", data = {}) {
     let response = await fetch(Base_URL + path + ".json", {
@@ -14,95 +18,85 @@ async function postData(path = "", data = {}) {
 }
 
 function collectContactData() {
+    let color = globalIndex % contactColorArray.length;
 
-    const color = contactColorArray[globalIndex % contactColorArray.length];
-    console.log(color);
-
-    return {
+    let newContact = {
         "name": document.getElementById('name_input').value,
         "email": document.getElementById('email_input').value,
         "number": document.getElementById('tel_input').value,
-        "color" : color
+        "color": color
     };
-   
-  
+
+    globalIndex++; 
+    saveGlobalIndex(); 
+
+    return newContact;
 }
+
+
+window.onload = getUsersList;
+
 async function addContact() {
     let newContact = collectContactData();
     let nameInput = document.getElementById('name_input');
     let emailInput = document.getElementById('email_input');
-    if (!validateName(nameInput)) {
-        return;
-    }
-    if (!validateEmail(emailInput, newContact.email)) {
-        return;
-    }
-    let firstLetter = newContact.name.trim().charAt(0).toUpperCase();
-    if (!/^[A-Z]$/.test(firstLetter)) firstLetter = "#";
-    let contactsGroup = await getData(`/contacts/${firstLetter}`);
-    if (!contactsGroup) contactsGroup = {};
+
+    if (!validateName(nameInput) || !(await validateEmail(emailInput, newContact.email))) return;
+
+    let firstLetter = getFirstLetter(newContact.name);
+    let contactsGroup = contactsData[firstLetter] || {};
     let newId = Object.keys(contactsGroup).length;
     contactsGroup[newId] = newContact;
+   
     await postData(`/contacts/${firstLetter}`, contactsGroup);
     clearInputsAndClose();
-    addContactToDOM(newContact, `${firstLetter}-${newId}`);
-
-   
+    getUsersList(); // Aktualisiert die gesamte Liste
 }
 
-
-async function addContactToDOM(newContact, contactsId) {
+async function getUsersList() {
     let userContainer = document.getElementById("user-list");
-    let firstLetter = newContact.name.trim().charAt(0).toUpperCase();
-    if (!/^[A-Z]$/.test(firstLetter)) firstLetter = "#";
-    let contactsGroup = await getData(`/contacts/${firstLetter}`);
-    userContainer.innerHTML += contactCardScrollList(newContact, contactsId);
-
     userContainer.innerHTML = "";
-    generateContactList(contactsGroup, userContainer);
-    getUsersList()
+    contactsData = await getData("/contacts");
+    generateFullContactList(contactsData, userContainer);
+
+    addEventListenersToContacts(); // Füge Event Listener neu hinzu
 }
 
-
-function clearInputsAndClose() {
-    document.getElementById('name_input').value = "";
-    document.getElementById('email_input').value = "";
-    document.getElementById('tel_input').value = "";
-    closeContactBig();
+function addEventListenersToContacts() {
+    document.querySelectorAll(".contact-card").forEach(contact => {
+        contact.addEventListener("click", function () {
+            let contactId = this.dataset.id;
+            openContactBigMiddle(contactId);
+        });
+    });
 }
 
 async function getData(path = "") {
-    let response = await fetch(Base_URL + path + ".json", {
+    let response = await fetch(`${Base_URL}${path}.json`, {
         method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        }
+        headers: { "Content-Type": "application/json" }
     });
     return await response.json();
 }
 
-// Funktion, um die Benutzerliste zu laden
-async function getUsersList() {
-    let userContainer = document.getElementById("user-list");
-    userContainer.innerHTML = "";
-    let contacts = await getData("/contacts");
-
-    if (contacts) {
-        let sortedLetters = Object.keys(contacts).sort();
-        let globalIndex = 0; 
-
-        for (let letter of sortedLetters) {
-            let contactsGroup = contacts[letter];
-            generateContactList(contactsGroup, userContainer, letter, globalIndex);
-            globalIndex += Object.keys(contactsGroup).length; // Erhöhe den globalen Index für jedes Kontakt-Array
-        }
-    }
-
+function generateFullContactList(contacts, userContainer) {
+    let sortedLetters = Object.keys(contacts).sort();
+    sortedLetters.forEach(letter => generateContactList(contacts[letter], userContainer, letter));
 }
 
-window.onload = getUsersList;
+function clearInputsAndClose() {
+    ["name_input", "email_input", "tel_input"].forEach(id => document.getElementById(id).value = "");
+    closeContactBig();
+    resetPicture()
+    
+}
 
-function generateContactList(contacts, userContainer, letter, globalIndex) {
+function getFirstLetter(name) {
+    let letter = name.trim().charAt(0).toUpperCase();
+    return /^[A-Z]$/.test(letter) ? letter : "#";
+}
+
+function generateContactList(contacts, userContainer, letter) {
     let currentLetter = "";
 
     Object.values(contacts).forEach((user, index) => {
@@ -117,39 +111,70 @@ function generateContactList(contacts, userContainer, letter, globalIndex) {
                 </div>
             `;
         }
-        user.color = contactColorArray[globalIndex % contactColorArray.length];
-        globalIndex++;
+        let colorIndex = typeof user.color === "number" 
+            ? user.color % contactColorArray.length 
+            : index % contactColorArray.length;
+
+        let color = contactColorArray[colorIndex];
+
+
         let contactId = `${currentLetter}-${index}`;
-        userContainer.innerHTML += contactCardScrollList(user, contactId);
+        userContainer.innerHTML += contactCardScrollList(user, contactId, color);
     });
 }
+
+function contactColorAssign(color) {
+    return contactColorArray[color - 1] || "#ccc"; 
+}
+
+
 // Delete data for List
 async function deleteContact(contactId, firstLetter) {
     try {
-        let contactsGroup = await getData(`/contacts/${firstLetter}`);
-
-        if (!contactsGroup || !contactsGroup[contactId]) {
+        if (!contactsData || !contactsData[firstLetter] || !contactsData[firstLetter][contactId]) {
             console.error("Kontakt nicht gefunden.");
             return;
         }
 
-        // Kontakt entfernen
-        delete contactsGroup[contactId];
+        delete contactsData[firstLetter][contactId];
 
-        // IDs neu von 0 aufwärts vergeben
         let updatedContacts = {};
         let newId = 0;
-
-        for (let oldId in contactsGroup) {
-            updatedContacts[newId] = contactsGroup[oldId];
+        for (let oldId in contactsData[firstLetter]) {
+            updatedContacts[newId] = contactsData[firstLetter][oldId];
             newId++;
         }
+
         await postData(`/contacts/${firstLetter}`, updatedContacts);
+        globalIndex = newId;
+        saveGlobalIndex();
 
         await getUsersList();
-        closeContactBigMiddle()
+
+        setTimeout(() => {
+            restoreClickEvents();
+        }, 100); // Leichte Verzögerung, um sicherzustellen, dass DOM-Updates abgeschlossen sind
+
+        closeContactBigMiddle();
     } catch (error) {
         console.error("Fehler beim Löschen des Kontakts:", error);
     }
 }
 
+function restoreClickEvents() {
+    document.querySelectorAll(".delete-button").forEach(button => {
+        button.addEventListener("click", function () {
+            let contactId = this.dataset.id;
+            let firstLetter = this.dataset.letter;
+            deleteContact(contactId, firstLetter);
+        });
+    });
+
+    document.querySelectorAll(".edit-button").forEach(button => {
+        button.addEventListener("click", function () {
+            let contactId = this.dataset.id;
+            let firstLetter = this.dataset.letter;
+            editContact(contactId, firstLetter);
+        });
+    });
+}
