@@ -1,7 +1,7 @@
-function contactCardScrollList(newContact, contactsId ) {
+function contactCardScrollList(newContact, contactsId, color ) {
     let nameParts = newContact.name.trim().split(" "); 
     let initials = nameParts[0].charAt(0).toUpperCase(); 
-    let backgroundColor = newContact.color || "#ccc";
+    let backgroundColor = color || "#ccc";
 
     if (nameParts.length > 1) {
         initials += nameParts[1].charAt(0).toUpperCase(); 
@@ -21,10 +21,10 @@ function contactCardScrollList(newContact, contactsId ) {
 
 
 
-function contactCardMiddle(user, contactIndex, firstLetter) {
+function contactCardMiddle(user, contactIndex, firstLetter, color) {
     let nameParts = user.name.trim().split(" "); 
     let initials = nameParts[0].charAt(0).toUpperCase(); 
-    let backgroundColor = user.color || "#ccc";
+    let backgroundColor = color || "#ccc";
     if (nameParts.length > 1) {
         initials += nameParts[1].charAt(0).toUpperCase(); 
     }
@@ -35,7 +35,7 @@ function contactCardMiddle(user, contactIndex, firstLetter) {
             <div class="contact_Detail_Name_Frame">
                 <p class="contact_Detail_Name">${user.name}</p>
                 <div class="contact_Detail_Menu">
-                    <span onclick="editContact('${contactIndex}', '${firstLetter}')"><img src="../assets/icons/edit.svg"> Edit</span>
+                    <span onclick="editContact('${contactIndex}', '${firstLetter}','${color}')"><img src="../assets/icons/edit.svg"> Edit</span>
                     <span onclick="deleteContact('${contactIndex}', '${firstLetter}')"><img src="../assets/icons/delete.svg"> Delete</span>
                 </div>
             </div>
