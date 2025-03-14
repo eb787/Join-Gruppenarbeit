@@ -12,7 +12,7 @@ const contactColorArray = {
     9: "#FF7A00"
 };
 
-let currentTasks = [];
+let currentTasks = {};
 let currentTask = {};
 let taskId = "";
 let elementToBeDropped = "";
@@ -30,9 +30,18 @@ async function fetchTaskData(){
     let TaskResponse = await fetch(Base_URL + "/tasks/" + ".json");
     TaskResponseToJson = await TaskResponse.json();
 
-   for (let index = 0; index < Object.values(TaskResponseToJson).length; index++) {
-        currentTasks.push(Object.values(TaskResponseToJson)[index]);
-   }    
+//    for (let index = 0; index < Object.values(TaskResponseToJson).length; index++) {
+//         if (Object.values(TaskResponseToJson)[index]) {
+//           currentTasks.push(Object.values(TaskResponseToJson)[index]);  
+//         }
+//    }    
+
+for (let index = 0; index < TaskResponseToJson.length; index++) {
+    if (TaskResponseToJson[index]) {
+       
+      currentTasks[index] = TaskResponseToJson[index];
+    }
+}  
 
    taskId = Object.values(TaskResponseToJson).length; 
 }
@@ -43,10 +52,16 @@ function updateTaskBoard() {
     //hier geben wir die Daten in ein Template dass dan als task-card im Board angezeigt wird
     emptyBoard();
 
+    // for (let index = 0; index < currentTasks.length; index++) {
+    //     showCardOnBoard(index);
+    // }
+
     for (let index = 0; index < currentTasks.length; index++) {
+        if (currentTasks[index]) {
         showCardOnBoard(index);
 
-
+        }
+        
     }
 }
 
@@ -401,24 +416,8 @@ function findTask() {
     document.getElementById('card_overlay').innerHTML = getFoundItems();
     document.getElementById('card_overlay').classList.add('card_extra');
     for (let index = 0; index < currentTasks.length; index++) {
-        if (currentTasks[index].title.toLowerCase().includes(titleToFind.toLowerCase())) {
-            let subtasks = currentTasks[index].subtasks.total;
-            let progress =  currentTasks[index].subtasks.number_of_finished_subtasks / subtasks * 100;
-            let layer = "overlay";
-            
-            
-            document.getElementById('found_titles').innerHTML += getExampleCard(index, layer);
-
-            checkCategory(index, layer);
-            checkSubtasks(subtasks, index, progress, layer);
-            checkDescription(index, layer);
-            checkContacts(index, layer);
-
-
-                           
-
-            
-            
+        if (currentTasks[index]) {
+            getTaskInfo(index, titleToFind);
         }
         
     } 
@@ -435,5 +434,19 @@ function findTask() {
         
     }
     document.getElementById('inputfield_board').value = "";
+}
+
+function getTaskInfo(index, titleToFind) {
+    if (currentTasks[index].title.toLowerCase().includes(titleToFind.toLowerCase())) {
+        let subtasks = currentTasks[index].subtasks.total;
+        let progress =  currentTasks[index].subtasks.number_of_finished_subtasks / subtasks * 100;
+        let layer = "overlay";
+        document.getElementById('found_titles').innerHTML += getExampleCard(index, layer);
+
+        checkCategory(index, layer);
+        checkSubtasks(subtasks, index, progress, layer);
+        checkDescription(index, layer);
+        checkContacts(index, layer);
+    }
 }
 
