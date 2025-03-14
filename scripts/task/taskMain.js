@@ -12,8 +12,9 @@ let taskId = "";
 
 
 //Start function
-window.onload = function init() {
-  startAddTask();
+//window.onload = function init() {
+function init(){  
+startAddTask();
   loadDataFirebase();
   requiredInputAddTask();
   focusOnRequiredFields();

@@ -25,6 +25,7 @@ function toggleMenu() {
   });
   
 
+
 function renderInitials() {
   const Base_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/";
   renderUserLogo()
