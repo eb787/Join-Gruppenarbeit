@@ -255,7 +255,6 @@ hr {
     font-weight: 600;
     display: flex;
     justify-content: center;
-    flex-direction: column;
 }
 
 .task-text-small {
