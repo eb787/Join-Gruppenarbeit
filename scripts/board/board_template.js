@@ -84,7 +84,7 @@ function getCardOverlayContent(index) {
                         </div>
                          <div class="task_description_overlay">
                             <p class="color_blue al_center">Priority:</p>
-                           <p class="priority_div">Medium<img class="prio_icon ${currentTasks[index].prio}" src="..//assets/icons/${currentTasks[index].prio}.svg" alt="priority indicator"></p>
+                           <div class="priority_div"><div id="prio_text_${index}">Medium</div><img class="prio_icon" src="..//assets/icons/${currentTasks[index].prio}.svg" alt="priority indicator"></div>
                            
                         </div>
                         <div id="task_description_overlay_${index}" class="task_description_overlay fd_column gap_8">
@@ -284,12 +284,14 @@ function editTaskTemplate(index) {
 
 }
 
-function getFoundItems(titleToFind) {
+function getFoundItems() {
 
-    return ` <div id="search_results"> <h2>Die Suche nach <i>${titleToFind} </i>ergab folgende Ergebnisse:</h2>
+    return ` <h1 class="board_heading heading_extra">Search results</h1>
+
+    <div id="found_titles" class="found_titles"></div>
     
     
-    </div>
+   
     
     
     `

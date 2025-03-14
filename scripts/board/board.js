@@ -85,6 +85,7 @@ function showCardOnBoard(index) {
 
     checkCategory(index, layer);
 
+
     checkSubtasks(subtasks, index, progress, layer);
 
     checkDescription(index, layer);
@@ -102,6 +103,17 @@ function checkCategory(index, layer){
         document.getElementById("category_" + index + "_" + layer).classList.add("user_story");
         document.getElementById("category_" + index + "_" + layer).classList.remove("technical_task");
     }
+}
+
+function checkPriority(index) {
+    let prio = "Medium";
+    if (currentTasks[index].prio == "high_prio") {
+        prio = "High";
+    } else if (currentTasks[index].prio == "low_prio") {
+        prio = "Low";
+    }
+            
+    document.getElementById('prio_text_' + index).innerHTML = prio;
 }
 
 function checkSubtasks(subtasks, index, progress, layer) {
@@ -124,7 +136,7 @@ function checkContacts(index, layer) {
         }
          
     } else {
-       document.getElementById("Profile_badges_" + index + "_" + layer).classList.add("d_none");
+       document.getElementById("Profile_badges_" + index + "_" + layer).innerHTML = "";
     }
 }
 
@@ -245,6 +257,7 @@ function chooseRightCard(cardType) {
 function showCardOverlay(index) {
     
     document.getElementById("bg_overlay").classList.remove("d_none");
+    document.getElementById('card_overlay').classList.remove('card_extra');
 
     document.getElementById("card_overlay").innerHTML = getCardOverlayContent(index);
     if (currentTasks[index].category == "User Story") {
@@ -254,6 +267,7 @@ function showCardOverlay(index) {
         document.getElementById("category_overlay" + index).classList.remove("user_story_overlay");
         document.getElementById("category_overlay" + index).classList.add("technical_task_overlay");
     }
+    checkPriority(index);
 
 
     if (currentTasks[index].subtasks.total != 0) {
@@ -293,7 +307,8 @@ function getInitialsOverlay(index, i) {
 }
 
 function closeOverlay() {
-    location.reload();
+    document.getElementById('card_overlay').innerHTML = "";
+    document.getElementById("bg_overlay").classList.add("d_none");
 }
 
 function stopPropagation(event){
@@ -382,16 +397,17 @@ async function postTaskData(path = "", task) {
 
 function findTask() {
     let titleToFind = document.getElementById('inputfield_board').value;
-
-
+    document.getElementById("bg_overlay").classList.remove("d_none");
+    document.getElementById('card_overlay').innerHTML = getFoundItems();
+    document.getElementById('card_overlay').classList.add('card_extra');
     for (let index = 0; index < currentTasks.length; index++) {
         if (currentTasks[index].title.toLowerCase().includes(titleToFind.toLowerCase())) {
             let subtasks = currentTasks[index].subtasks.total;
             let progress =  currentTasks[index].subtasks.number_of_finished_subtasks / subtasks * 100;
             let layer = "overlay";
-            document.getElementById("bg_overlay").classList.remove("d_none");
-            document.getElementById('card_overlay').innerHTML += getFoundItems(titleToFind);
-            document.getElementById('search_results').innerHTML += getExampleCard(index, layer);
+            
+            
+            document.getElementById('found_titles').innerHTML += getExampleCard(index, layer);
 
             checkCategory(index, layer);
             checkSubtasks(subtasks, index, progress, layer);
@@ -401,27 +417,23 @@ function findTask() {
 
                            
 
-            // let prio = "Medium";
-            // if (currentTasks[index].prio == "high_prio") {
-            //     prio = "High";
-            // } else if (currentTasks[index].prio == "low_prio") {
-            //     prio = "Low";
-            // }
             
-            // document.getElementById('prio_' + index).innerHTML = prio;
             
         }
         
+    } 
+
+    if (document.getElementById('found_titles').innerHTML == '') {
+        closeOverlay();
+        document.getElementById('card_overlay').classList.remove('card_extra');
+        document.getElementById('no_element_found_alert').classList.remove('d_none');
+        document.getElementById('input_board').classList.add('alert_input');
+        setTimeout(() => {
+       document.getElementById('no_element_found_alert').classList.add('d_none');
+        document.getElementById('input_board').classList.remove('alert_input');
+          }, 5000);
+        
     }
-    
-    
-
-
-
-
-
-
-
     document.getElementById('inputfield_board').value = "";
 }
 

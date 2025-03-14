@@ -275,3 +275,7 @@ button:hover {
 .edit_btn_overlay_board:hover {
     cursor: pointer;
 }
+
+.close_btn_overlay:hover {
+    cursor: pointer;
+}

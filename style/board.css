@@ -40,6 +40,10 @@
     display: flex;
 }
 
+.alert_input{
+    border: 1px solid #FF8190
+}
+
 .inputfield_board {
     border: 0;
     padding: 0;
@@ -219,6 +223,7 @@
 
 .profile_badges {
     display: flex;
+    min-width: 2px;
 }
 
 .profile_badge {
@@ -395,4 +400,33 @@
     height: 24px;
     background-color: #D1D1D1;
     width: 0.5px;
+}
+
+.alert_box{
+    font-size: 12px;
+    font-weight: 400;
+    color: #FF8190;
+    padding-top: 6px;
+}
+
+.found_titles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-top: 150px;
+}
+
+.heading_extra {
+    font-size: 61px;
+    position: fixed;
+    background-color: white;
+    z-index: 99;
+    height: 100px;
+    padding-top: 48px;
+}
+
+.card_extra {
+    padding: 0 40px !important;
+    padding-bottom: 48px !important; 
 }
