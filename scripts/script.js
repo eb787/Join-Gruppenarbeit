@@ -34,14 +34,14 @@ function renderInitials() {
       .then(res => res.json())
       .then(data => {
           const userName = data.name; 
-          const initials = getInitials(userName);
+          const initials = getCurrentInitials(userName);
           
           document.getElementById('render_initials_user_logo').textContent = initials;
       })
       .catch(err => console.error("Fehler beim Abrufen des Namens:", err));
 }
 
-function getInitials(name) {
+function getCurrentInitials(name) {
     const nameParts = name.split(" ");
     const initials = nameParts.map(part => part.charAt(0).toUpperCase()).join('');
     return initials;
