@@ -232,8 +232,6 @@ function getContactInitials(index, i, layer) {
 //     return CurrentTaskResponseToJson = await CurrentTaskResponse.json();
 // }
 
-//!!!!Eine Delete-Funktion muss dann immer die Reihenfolge beachten also man muss dannn quasi alle Tasks noch mal neu auf den Server überschreiben, damit die nicht durcheinander geraten!!!!
-
 function allowDrop(event) {
     event.preventDefault();
 }
@@ -366,30 +364,23 @@ async function changeSubtaskCategory(index, i){
 }
 
 async function changeTaskStatus(index, task, status) {
-   
-            let CurrentSubtaskResponse = await fetch(Base_URL + `/tasks/${index}/subtasks/subtasks_todo/${task}` + ".json",{
+            await fetch(Base_URL + `/tasks/${index}/subtasks/subtasks_todo/${task}` + ".json",{
                 method: "PUT",
                 header: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(status)
             });
-        
-            return CurrentSubtaskResponseToJson = await CurrentSubtaskResponse.json();
 }
 
 async function changeNumberOfFinishedTasks(index, newFinishedTasks) {
-
-    
-            let CurrentFinishedTasksResponse = await fetch(Base_URL + `/tasks/${index}/subtasks/number_of_finished_subtasks` + ".json",{
+            await fetch(Base_URL + `/tasks/${index}/subtasks/number_of_finished_subtasks` + ".json",{
                 method: "PUT",
                 header: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(newFinishedTasks)
             });
-        
-            return CurrentFinishedTasksResponseToJson = await CurrentFinishedTasksResponse.json();
     }
 
 
