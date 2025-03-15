@@ -192,6 +192,9 @@ function editTaskTemplate(index) {
 
             <div class="section-prio">
                 <span>Priority</span>
+
+
+
                 <div class="prio-buttons">
                        <button onclick="btnPrioSelect('urgent')" class="btn_prio button-urgent" tabindex="5">Urgent
                        <img class="prio_img" src="../assets/icons/high_prio.svg" alt="urgent">

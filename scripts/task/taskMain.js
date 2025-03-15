@@ -269,12 +269,6 @@ function checkInputData() {
   
 }
 
-
-
-
-
-
-
  function timePopUp(duration){
   let notification = document.getElementById('notificationFinish');
   notification.style.display="flex";
@@ -290,7 +284,7 @@ function collectData() {
     description: document.getElementById('descriptionTask').value.trim() || "empty",  // oder "empty" reinschreiben wenn es leer bleibt
     contacts: selectedTaskContacts, //
       deadline: dateConversion(document.getElementById('taskDate').value),
-    prio: taskPrioSelect, // "medium_prio" , oder "low_prio", oder "high_prio"
+    prio: taskPrioSelect, // "medium_prio" , oder "low_prio", oder "hgh_prioi"
     category: taskCatergoryRetrieve(document.getElementById('taskCatergory').value), // "Technical Task" oder "User Story"
     subtasks: {
       total: taskSubTaskList.length, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
