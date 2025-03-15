@@ -156,7 +156,11 @@ function getContactIconOverlay(index, i) {
 function editTaskTemplate(index) {
 
     return `
-         <div class="card_overlay_header">
+        
+  
+
+
+        <div class="card_overlay_header">
             <div id="category_overlay${index}" class="task_category task_category_overlay  "></div>
             <img onclick="closeOverlay()" class="close_btn_overlay" src="..//assets/icons/close.svg" alt="close button">
         </div>
@@ -175,18 +179,18 @@ function editTaskTemplate(index) {
                 <span>Description</span>
                 <div class="textarea-description">
                     <textarea id="descriptionTask" placeholder="Enter a Description" tabindex="2"></textarea>
-                    <img src="../assets/icons/textarea.png" alt="" class="textarea-icon">
-                </div>
+                                  </div>
             </div>
 
-    
+        
+
             <div class="section-date-div">
-                <span>Due date<span class="star-red">*</span></span>
-               <div>
-                   <input type="date" id="taskDate" class=" date_test date-input input-field " tabindex="4">
-                      <span class="error_Field">&nbsp;</span>
-                   <img src="../assets/icons/event.png" class="date-icon" >
+                <span class="star-red">Due date </span>
+               <div class="task_Date_Input_Div">
+                   <input type="date" id="taskDate" class="date_input input-field" tabindex="4">
+                   <img src="../assets/icons/event.png" class="date-icon"  onclick="openDatePicker()" >
                 </div>
+                <span class="error_Field">&nbsp;</span>
             </div>
           
 
@@ -195,10 +199,11 @@ function editTaskTemplate(index) {
                 <span>Priority</span>
                 <div class="prio-buttons">
 
+                
                     <button onclick="btnPrioSelect('urgent')" class="btn_prio button-urgent" tabindex="5">Urgent
                         <img class="prio_img" src="../assets/icons/high_prio.svg" alt="urgent">
                     </button>
-
+                  
 
                     <button onclick="btnPrioSelect('medium')" class="btn_prio button-medium" tabindex="6">Medium
                         <div id="btnPrioGroup" class="prio_img prio_img_group">
@@ -241,7 +246,7 @@ function editTaskTemplate(index) {
             </div>
 
 
-
+            <div>
                 <span>Subtasks</span>
                 <div class="input-wrapper">
                     <input type="text" id="inputSubtask" class="input-subtasks" oninput="subTaskInputCheck()"
@@ -249,7 +254,7 @@ function editTaskTemplate(index) {
                     <span class="error_Field">&nbsp;</span>
                     <img id="subTaskAddIcon" class="add-subtasks ele_hide" onclick="subTaskInputCheck(true)"
                         src="../assets/icons/add.png" alt="add-icon">
-
+                </div>
                     <div id="subTaskEditIocn" class="add-subtasks sub_Task_Edit_Iocn ele_hide">
                         <img id="subTaskCloseIcon" onclick="subTaskClose()" src="../assets/icons/close.svg"
                             alt="add-icon">
@@ -257,30 +262,17 @@ function editTaskTemplate(index) {
                         <img id="subTaskCheckIcon" onclick="taskCreateTask()" src="../assets/icons/checkSW.svg"
                             alt="add-icon">
                     </div>
-                    <div id="subTaskList" class="subtask_list">
-                    </div>
+                        <div id="subTaskList" class="subtask_list"></div>
+                    </div>   
                
-                    <button class="taskEdit_Btn">OK</button>
-               
+                
+                <div class="btn_div">
+                    <button class="button_Ok">OK  <img src="../assets/icons/check.svg"></button>
                 </div>
-                   
+                     
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    `
+   `
 
 }
 
@@ -289,10 +281,7 @@ function getFoundItems() {
     return ` <h1 class="board_heading heading_extra">Search results</h1>
 
     <div id="found_titles" class="found_titles"></div>
-    
-    
-   
-    
+      
     
     `
 }

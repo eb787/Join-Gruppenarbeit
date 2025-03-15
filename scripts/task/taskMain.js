@@ -85,21 +85,16 @@ function correctDateInput(dateString) {
   }
 }
 
-
-
 //Datum Picker öffnen
 function openDatePicker() {
-  let dateInput = document.querySelector(".date-input");
-  document.querySelector(".date-icon").addEventListener("click", function () {
-    if (dateInput.showPicker) {
+  let dateInput=document.getElementById('taskDate');
+     if (dateInput.showPicker) {
       dateInput.showPicker();
       document.getElementById('taskDate').focus();
     } else {
       dateInput.focus();
     }
-  });
-}
-
+ }
 
 
 function btnPrioSelect(btnPrio) {
