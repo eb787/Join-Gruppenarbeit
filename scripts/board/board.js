@@ -393,32 +393,13 @@ async function changeNumberOfFinishedTasks(index, newFinishedTasks) {
 
 
 async function deleteTask(index) {
-
-    currentTasks.splice(index, 1);
-    updateFirebase();
-
+    currentTasks[index] = {};
+    await deleteTaskData(`/tasks/${index}`);
+    location.reload();
 }    
 
-async function updateFirebase() {
-    for (let index = 0; index < currentTasks.length; index++) {
-        await postTaskData(`/tasks/${index}`, currentTasks[index]);
-    }
-    await deleteTaskData(`/tasks/${currentTasks.length}`);
-    location.reload();
-}
-
-async function postTaskData(path = "", task) {
-    let CurrentTaskResponse = await fetch(Base_URL + path + ".json",{
-        method: "PUT",
-        header: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(task)
-    });
- }
-
  async function deleteTaskData(path = "") {
-    let CurrentTaskResponse = await fetch(Base_URL + path + ".json",{
+    await fetch(Base_URL + path + ".json",{
         method: "DELETE",
     });
  }
