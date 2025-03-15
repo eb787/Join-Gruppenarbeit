@@ -69,9 +69,7 @@ function getCardOverlay() {
 
 function getCardOverlayContent(index) {
     return `   
-   
-
-    
+      
         <div class="card_overlay_header">
             <div id="category_overlay${index}" class="task_category task_category_overlay technical_task_overlay ">${currentTasks[index].category}</div>
             <img onclick="closeOverlay()" class="close_btn_overlay" src="..//assets/icons/close.svg" alt="close button">
@@ -154,12 +152,10 @@ function getContactIconOverlay(index, i) {
 // Ab hier Edit Task Template
 
 function editTaskTemplate(index) {
+    console.log("Gebe Currentaskaus ",currentTasks[index]);
+    //btnPrioSelect('urgent');    
 
     return `
-        
-  
-
-
         <div class="card_overlay_header">
             <div id="category_overlay${index}" class="task_category task_category_overlay  "></div>
             <img onclick="closeOverlay()" class="close_btn_overlay" src="..//assets/icons/close.svg" alt="close button">
@@ -169,8 +165,7 @@ function editTaskTemplate(index) {
             <form>
                 <div class="section-title-div">
                     <span class="title">Title</span>
-                    <input id="taskTitle" class="input-title input-field" type="text" placeholder="Enter a title"
-                        tabindex="1">
+                    <input id="taskTitle" class="input-title input-field" type="text" value="${currentTasks[index].title}" tabindex="1">
                     <span class="error_Field">&nbsp;</span>
                 </div>
             </form>
@@ -178,8 +173,8 @@ function editTaskTemplate(index) {
             <div class="section-description">
                 <span>Description</span>
                 <div class="textarea-description">
-                    <textarea id="descriptionTask" placeholder="Enter a Description" tabindex="2"></textarea>
-                                  </div>
+                    <textarea id="descriptionTask"  placeholder="Enter a Description" tabindex="2">${currentTasks[index].description}</textarea>
+                </div>
             </div>
 
         
@@ -187,7 +182,7 @@ function editTaskTemplate(index) {
             <div class="section-date-div">
                 <span class="star-red">Due date </span>
                <div class="task_Date_Input_Div">
-                   <input type="date" id="taskDate" class="date_input input-field" tabindex="4">
+                   <input type="date" value="${dateConversation(currentTasks[index].deadline)}" id="taskDate" class="date_input input-field" tabindex="4" >
                    <img src="../assets/icons/event.png" class="date-icon"  onclick="openDatePicker()" >
                 </div>
                 <span class="error_Field">&nbsp;</span>
@@ -198,10 +193,8 @@ function editTaskTemplate(index) {
             <div class="section-prio">
                 <span>Priority</span>
                 <div class="prio-buttons">
-
-                
-                    <button onclick="btnPrioSelect('urgent')" class="btn_prio button-urgent" tabindex="5">Urgent
-                        <img class="prio_img" src="../assets/icons/high_prio.svg" alt="urgent">
+                       <button onclick="btnPrioSelect('urgent')" class="btn_prio button-urgent" tabindex="5">Urgent
+                       <img class="prio_img" src="../assets/icons/high_prio.svg" alt="urgent">
                     </button>
                   
 
@@ -271,7 +264,6 @@ function editTaskTemplate(index) {
                 </div>
                      
     </div>
-
    `
 
 }
@@ -285,3 +277,16 @@ function getFoundItems() {
     
     `
 }
+
+
+
+function dateConversation(dateStr){
+    let parts = dateStr.split("/"); // Teilt das Datum in ["13", "03", "25"]
+    let day = parts[0];
+    let month = parts[1];
+    let year = "20" + parts[2]; // "25" -> "2025"
+    return `${year}-${month}-${day}`;
+}
+
+
+

@@ -1,6 +1,6 @@
 const Base_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/";
 
-const contactColorArray = {
+let contactColorArray = {
     1: "#1FD7C1",
     2: "#462F8A",
     3: "#FC71FF",

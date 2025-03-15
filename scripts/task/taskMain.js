@@ -6,21 +6,24 @@ let editIndex = false;
 let editTaskNr = 0;
 let selectedTaskContacts = [];
 let taskPrioSelect = "medium_prio";
-let currentTask = {};
-let taskId = "";
+//let currentTask = {};
+//let taskId = "";
 
 
 
 //Start function
 //window.onload = function init() {
 function init(){  
-startAddTask();
+
+   startAddTask();
   loadDataFirebase();
   requiredInputAddTask();
   focusOnRequiredFields();
-  openDatePicker();
-  subTaskListRender();
+   subTaskListRender();
 }
+
+
+
 
 //Tasten Clear und Create Task sperren*/
 function startAddTask() {
