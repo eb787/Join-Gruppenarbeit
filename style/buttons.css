@@ -240,6 +240,9 @@ button:hover {
 
 .add_task_btn:hover {
     cursor: pointer;
+    background-color: #29ABE2;
+    border: 1px solid #29ABE2;
+    box-shadow: 0 4px 4px 0px #00000040;
 }
 
 .successful_signin_btn {

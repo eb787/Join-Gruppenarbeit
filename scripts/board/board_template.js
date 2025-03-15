@@ -60,7 +60,7 @@ function getNoTasksDoneCard() {
 }
 
 function getCardOverlay() {
-    return `    <div onclick="closeOverlay()" id="bg_overlay" class="bg_overlay d_none">
+    return `    <div onclick="closeOverlay('bg_overlay')" id="bg_overlay" class="bg_overlay d_none">
                 <div onclick="stopPropagation(event)" id="card_overlay" class="card_overlay">
                     
                             </div>
@@ -72,7 +72,7 @@ function getCardOverlayContent(index) {
       
         <div class="card_overlay_header">
             <div id="category_overlay${index}" class="task_category task_category_overlay technical_task_overlay ">${currentTasks[index].category}</div>
-            <img onclick="closeOverlay()" class="close_btn_overlay" src="..//assets/icons/close.svg" alt="close button">
+            <img onclick="closeOverlay('bg_overlay')" class="close_btn_overlay" src="..//assets/icons/close.svg" alt="close button">
         </div>
                         <h1 class="board_heading">${currentTasks[index].title}</h1>
                         <div class="task_description_overlay">${currentTasks[index].description}</div>
@@ -158,7 +158,7 @@ function editTaskTemplate(index) {
     return `
         <div class="card_overlay_header">
             <div id="category_overlay${index}" class="task_category task_category_overlay  "></div>
-            <img onclick="closeOverlay()" class="close_btn_overlay" src="..//assets/icons/close.svg" alt="close button">
+            <img onclick="closeOverlay('bg_overlay')" class="close_btn_overlay" src="..//assets/icons/close.svg" alt="close button">
         </div>
 
  
@@ -293,3 +293,11 @@ function dateConversation(dateStr){
 
 
 
+function getAddTaskOverlay() {
+    return `    <div onclick="closeOverlay('addTask_overlay')" id="addTask_overlay" class="bg_overlay d_none">
+                <div onclick="stopPropagation(event)" id="addTask_card" class="addTask_overlay">
+                <img onclick="closeOverlay('addTask_overlay')" class="close_btn_overlay" style="width: 100px;" src="..//assets/icons/close.svg" alt="close button">
+                    
+                            </div>
+                                </div>`
+}

@@ -1,16 +1,17 @@
 const Base_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/";
 
 let contactColorArray = {
-    1: "#1FD7C1",
-    2: "#462F8A",
-    3: "#FC71FF",
-    4: "#6E52FF",
-    5: "#9327FF",
-    6: "#FFBB2B",
-    7: "#FF4646",
-    8: "#00BEE8",
-    9: "#FF7A00"
-};
+// const contactColorArray = {
+//     1: "#1FD7C1",
+//     2: "#462F8A",
+//     3: "#FC71FF",
+//     4: "#6E52FF",
+//     5: "#9327FF",
+//     6: "#FFBB2B",
+//     7: "#FF4646",
+//     8: "#00BEE8",
+//     9: "#FF7A00"
+// };
 
 let currentTasks = {};
 let currentTask = {};
@@ -23,6 +24,7 @@ async function loadTaskData() {
     await fetchTaskData();
     updateTaskBoard();
     document.getElementById("full_content").innerHTML += getCardOverlay(); 
+    document.getElementById("full_content").innerHTML += getAddTaskOverlay();
 }
 
 async function fetchTaskData(){
@@ -157,17 +159,17 @@ function checkContacts(index, layer) {
 
 function getCorrectContact(index, i, layer) {
         document.getElementById("Profile_badges_" + index + "_" + layer).innerHTML += getContactIcon(index, i, layer);
-        getInitials(index, i, layer);
+        getContactInitials(index, i, layer);
 }
 
-function getInitials(index, i, layer) {
+function getContactInitials(index, i, layer) {
     let names = currentTasks[index].contacts[i].name.split(' ');
-    let initials = "";
+    let initialsBoard = "";
     for (let a = 0; a < names.length; a++) {
-        initials += names[a].substr(0,1);
+        initialsBoard += names[a].substr(0,1);
         
     }
-    document.getElementById("profile_" + index + "_" + i + "_" + layer).innerHTML += initials.toUpperCase();
+    document.getElementById("profile_" + index + "_" + i + "_" + layer).innerHTML += initialsBoard.toUpperCase();
     
 }
 
@@ -314,16 +316,28 @@ function showCardOverlay(index) {
 
 function getInitialsOverlay(index, i) {
     let names = currentTasks[index].contacts[i].name.split(' ');
-    let initials = "";
+    let initialsBoard = "";
     for (let a = 0; a < names.length; a++) {
-        initials += names[a].substr(0,1);
+        initialsBoard += names[a].substr(0,1);
     }
-    document.getElementById("profile_badge_overlay_" + index + "_" + i).innerHTML += initials.toUpperCase();
+    document.getElementById("profile_badge_overlay_" + index + "_" + i).innerHTML += initialsBoard.toUpperCase();
 }
 
-function closeOverlay() {
-    document.getElementById('card_overlay').innerHTML = "";
-    document.getElementById("bg_overlay").classList.add("d_none");
+function closeOverlay(specifier) {
+    if (specifier == "bg_overlay") {
+        document.getElementById('card_overlay').innerHTML = "";
+        document.getElementById(specifier).classList.add("d_none");
+    } else if (specifier == "addTask_overlay") {
+        document.getElementById("addTask_card").classList.remove("slide-in");
+        document.getElementById("addTask_card").classList.add("slide-out");
+        document.getElementById(specifier).classList.add("brighter_background");
+        setTimeout(() => {
+            document.getElementById(specifier).classList.add("d_none");
+        }, 200);
+        
+        
+    }
+    
 }
 
 function stopPropagation(event){
@@ -448,5 +462,12 @@ function getTaskInfo(index, titleToFind) {
         checkDescription(index, layer);
         checkContacts(index, layer);
     }
+}
+
+function showAddTaskOverlay() {
+    document.getElementById("addTask_overlay").classList.remove("brighter_background");
+    document.getElementById("addTask_overlay").classList.remove("d_none");
+    document.getElementById("addTask_card").classList.remove("slide-out");
+    document.getElementById("addTask_card").classList.add("slide-in");
 }
 

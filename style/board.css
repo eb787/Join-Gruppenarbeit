@@ -430,3 +430,49 @@
     padding: 0 40px !important;
     padding-bottom: 48px !important; 
 }
+
+.addTask_overlay {
+    width: 1116px;
+    height: 870px;
+    max-height: calc(100vh - 148px);
+    border-radius: 30px;
+    box-shadow: 0 0 4px 0 #0000001A;
+    background-color: #FFFFFF;
+    position: absolute;
+    margin-top: 28px;
+}
+
+.slide-in {
+    animation: slide-in 0.2s ease-out forwards;
+}
+
+@keyframes slide-in {
+    from {
+        right: -100vw;
+    }
+    to {
+        right: calc((100vw - 1116px) / 2);
+    }
+}
+
+.slide-out {
+    animation: slide-out 0.2s ease-out forwards;
+}
+
+@keyframes slide-out {
+    from {
+        right: calc((100vw - 1116px) / 2);
+    }
+    to {
+        right: -100vw;
+    }
+}
+
+.brighter_background {
+    animation: brightenBackground 0.2s linear forwards;
+}
+
+@keyframes brightenBackground {
+    0% { background-color: rgba(0, 0, 0, 0.4); }
+    100% { background-color: transparent; }
+}
