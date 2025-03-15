@@ -362,6 +362,7 @@ async function changeSubtaskCategory(index, i){
         }
 
         await fetchTaskData();
+        updateTaskBoard();
 }
 
 async function changeTaskStatus(index, task, status) {
