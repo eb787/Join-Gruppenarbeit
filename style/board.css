@@ -40,6 +40,10 @@
     display: flex;
 }
 
+.input_board_searching {
+    border: 1px solid #29ABE2;
+}
+
 .alert_input{
     border: 1px solid #FF8190
 }

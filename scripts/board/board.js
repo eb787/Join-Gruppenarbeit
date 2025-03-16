@@ -399,6 +399,13 @@ async function deleteTask(index) {
     });
  }
 
+function startTyping() {
+    document.getElementById('input_board').classList.add('input_board_searching');
+    if (document.getElementById('inputfield_board').value == "") {
+        document.getElementById('input_board').classList.remove('input_board_searching');
+    }
+}
+
 function findTask() {
     let titleToFind = document.getElementById('inputfield_board').value;
     document.getElementById("bg_overlay").classList.remove("d_none");
@@ -412,17 +419,19 @@ function findTask() {
     } 
 
     if (document.getElementById('found_titles').innerHTML == '') {
-        closeOverlay();
+        closeOverlay("bg_overlay");
         document.getElementById('card_overlay').classList.remove('card_extra');
         document.getElementById('no_element_found_alert').classList.remove('d_none');
         document.getElementById('input_board').classList.add('alert_input');
         setTimeout(() => {
-       document.getElementById('no_element_found_alert').classList.add('d_none');
-        document.getElementById('input_board').classList.remove('alert_input');
-          }, 5000);
+            document.getElementById('no_element_found_alert').classList.add('d_none');
+            document.getElementById('input_board').classList.remove('alert_input');
+        }, 5000);
         
     }
     document.getElementById('inputfield_board').value = "";
+    document.getElementById('input_board').classList.remove('input_board_searching');
+    
 }
 
 function getTaskInfo(index, titleToFind) {
