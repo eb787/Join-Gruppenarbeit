@@ -40,22 +40,32 @@ function editTaskWriteContacts(contactList) {
 function taskContactListDrobdown1() {
         console.log("Öffne Liste");
         loadContacsFirebase();
-        
-        //document.getElementById('taskContactDrowdownMenue').classList.toggle('ele_show');
-        //document.getElementById('initialeIconList').classList.toggle('icon_List_hide')
+        document.getElementById('taskContactDrowdownMenue').classList.toggle('ele_show');
+        document.getElementById('initialeIconList').classList.toggle('icon_List_hide')
       }
-
-
 
       async function loadContacsFirebase(){
         try{
            let dataCont = await fetch(Base_URL + "/contacts/" + ".json")
            dataRaskEditContact = await dataCont.json();
            console.log("Contace ",dataRaskEditContact);
-           
-        }catch{
-
+       }catch{
+           console.log("Fehler beim Laden")
         }
+        taskReadinArrayContact(dataRaskEditContact);
+   }
 
+   function taskContactFilterList1() {
+        let input = document.getElementById("taskDropDownInput").value.toLowerCase();
+        let entries = document.querySelectorAll(".contact_Label_Item");
+        entries.forEach(entries => {
+          let labelText = entries.textContent.toLowerCase();
+          if (labelText.includes(input)) {
+            entries.style.display = "flex";
+          } else {
+            entries.style.display = "none";
+          }
+        });
       }
+
 
