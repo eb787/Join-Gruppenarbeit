@@ -225,9 +225,9 @@ function editTaskTemplate(index) {
 
                     <div class="task_input_section">
                         <input type="text" id="taskDropDownInput" class="task_dropdown_input" tabindex="3"
-                            placeholder="Select contacts to assign" onclick="taskContactListDrobdown()"
+                            placeholder="Select contacts to assign" onclick="taskContactListDrobdown1()"
                             onkeyup="taskContactFilterList()">
-                        <img src="../assets/icons/arrow_down.svg">
+                        <img src="../assets/icons/arrow_down.svg" >
                     </div>
 
                     <div id="taskContactDrowdownMenue" class="task_dropdown_content">
