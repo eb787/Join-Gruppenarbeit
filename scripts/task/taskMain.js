@@ -15,7 +15,7 @@ let taskPrioSelect = "medium_prio";
 //window.onload = function init() {
 function init(){  
 
-   startAddTask();
+  startAddTask();
   loadDataFirebase();
   requiredInputAddTask();
   focusOnRequiredFields();
@@ -198,7 +198,9 @@ function taskReadinArrayTask(taskData) {
 }
 
 
+
 function taskReadinArrayContact(DataContact) {
+  console.log("Aushabe Datacontact ",DataContact);
   let= index=0;
   document.getElementById('taskDropDownList').innerHTML="";
   taskContacteArray = Object.values(DataContact)
@@ -208,7 +210,6 @@ function taskReadinArrayContact(DataContact) {
     color: entry.color || "10"
   })));
   console.log("Array mit name,Maikl ",taskContacteArray);
-
   taskContacteArray.map((contact,index) =>{
       taskRenderContactList(index,contact.name,contact.color ||  "10",contact.email);
       });
