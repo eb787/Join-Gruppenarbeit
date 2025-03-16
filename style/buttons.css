@@ -96,12 +96,16 @@
 }
 
 .check_box_btn:hover {
-    background-image: url(../assets/icons/checked_hover.png) !important;
+    background-image: url(../assets/icons/subtask_todo_hover.svg) !important;
     cursor: pointer;
 }
 
 .checked_box {
-    background-image: url(../assets/icons/checked_hover.png) !important;
+    background-image: url(../assets/icons/subtask_done.svg) !important;
+}
+
+.checked_box:hover {
+    background-image: url(../assets/icons/subtask_done_hover.svg) !important;
 }
 
 .button-clear-task {

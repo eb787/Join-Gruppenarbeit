@@ -1,5 +1,5 @@
 function getExampleCard(index, layer) {
-    return `<div class="card" onclick="showCardOverlay(${index})" draggable="true" ondragstart="startDragging(${index})">
+    return `<div id="card_number_${index}" class="card" onclick="showCardOverlay(${index})" draggable="true" ondragstart="startDragging(${index}, event)">
                                 <div id="category_${index}_${layer}" class="task_category technical_task">${currentTasks[index].category}</div>
                                 <div>
                                     <div class="task_name">${currentTasks[index].title}</div>
@@ -118,7 +118,7 @@ function getSubtasksOverlay(index) {
 
 function getTaskOverlay(index, i) {
     return `
-                             <div onclick="changeSubtaskCategory(${index}, ${i})" class="task_info">
+                             <div id="check_box_${index}_info${i}" onclick="changeSubtaskCategory(${index}, ${i})" class="task_info">
                                     <div id="check_box_${index}_btn${i}" class="check_box_btn"></div>
                                     <p class="font_16">${Object.keys(currentTasks[index].subtasks.subtasks_todo)[i]}</p>
                                 </div>

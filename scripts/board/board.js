@@ -236,7 +236,8 @@ function allowDrop(event) {
     event.preventDefault();
 }
 
-function startDragging(index) {
+function startDragging(index, event) {
+    document.getElementById('card_number_' + index).classList.add('rotate_card');
     elementToBeDropped = index;
 }
 
@@ -290,7 +291,7 @@ function showCardOverlay(index) {
             document.getElementById("tasks_box" + index).innerHTML += getTaskOverlay(index, i);
             if (Object.values(currentTasks[index].subtasks.subtasks_todo)[i] == "done") {
                 document.getElementById("check_box_" + index + "_btn" + i).classList.add("checked_box");
-           
+                document.getElementById("check_box_" + index + "_info" + i).classList.add("task_info_done");
             }
             
         }
@@ -343,9 +344,11 @@ function stopPropagation(event){
 
 async function changeSubtaskCategory(index, i){
     let div =  document.getElementById("check_box_" + index + "_btn" + i);
+    let box = document.getElementById("check_box_" + index + "_info" + i);
     let task = Object.keys(currentTasks[index].subtasks.subtasks_todo)[i];
     newFinishedTasks = currentTasks[index].subtasks.number_of_finished_subtasks;
     div.classList.toggle("checked_box");
+    box.classList.toggle("task_info_done");
 
     if (div.classList.contains("checked_box")) {
         await changeTaskStatus(index, task, "done");
