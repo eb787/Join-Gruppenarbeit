@@ -3,7 +3,7 @@ function getExampleCard(index, layer) {
                                 <div id="category_${index}_${layer}" class="task_category technical_task">${currentTasks[index].category}</div>
                                 <div>
                                     <div class="task_name">${currentTasks[index].title}</div>
-                                    <div id="description_${index}_${layer}" class="task_description">${currentTasks[index].description}...</div>
+                                    <div id="description_${index}_${layer}" class="task_description">${currentTasks[index].description.slice(0, 50)}...</div>
                                 </div>
                                 <div id="subtasks_box${index}_${layer}">
                                 </div>
