@@ -109,6 +109,19 @@
   margin: 0;
 }
 
+.contact_Card_Frame span {
+  font-size: 27px;
+  font-weight: 400;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.line-contact {
+  height: 90px;
+  border: 3px;
+  border-color: #29ABE2;
+}
+
 
 .contact_Card_Frame div {
   width: 90px;

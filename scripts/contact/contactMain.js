@@ -4,33 +4,49 @@ let oldPictureHTML = "";
 console.log(contactsData);
 
 async function openContactBigMiddle(contactsId) {
-  let contactMiddle = document.getElementById("contact-big-middle");
+  let contactMiddle = getContactElement();
+  if (!contactMiddle) return;
 
-  if (!contactMiddle) {
-    console.error("Element mit ID 'contact-big-middle' nicht gefunden.");
-    return;
+  let { firstLetter, contactIndex } = parseContactId(contactsId);
+  let user = await fetchUser(firstLetter, contactIndex);
+
+  if (user) {
+    let color = getUserColor(user, contactIndex);
+    renderContact(contactMiddle, user, contactIndex, firstLetter, color);
+  } else {
+    console.error("Kein Benutzer gefunden mit ID:", contactsId);
   }
-  let firstLetter = contactsId.split("-")[0];
-  let contactIndex = contactsId.split("-")[1];
+}
+
+function getContactElement() {
+  let contactMiddle = document.getElementById("contact-big-middle");
+  if (!contactMiddle) console.error("Element mit ID 'contact-big-middle' nicht gefunden.");
+  return contactMiddle;
+}
+
+function parseContactId(contactsId) {
+  let [firstLetter, contactIndex] = contactsId.split("-");
+  return { firstLetter, contactIndex };
+}
+
+async function fetchUser(firstLetter, contactIndex) {
   try {
     let contactsGroup = await getData(`/contacts/${firstLetter}`);
-
-    if (contactsGroup && contactsGroup[contactIndex]) {
-      let user = contactsGroup[contactIndex];
-
-      let colorIndex = typeof user.color === "number"
-        ? user.color % contactColorArray.length
-        : index % contactColorArray.length;
-
-      let color = contactColorArray[colorIndex];
-
-      contactMiddle.innerHTML = contactCardMiddle(user, contactIndex, firstLetter, color);
-    } else {
-      console.error("Kein Benutzer gefunden mit ID:", contactsId);
-    }
+    return contactsGroup?.[contactIndex] || null;
   } catch (error) {
     console.error("Fehler beim Abrufen der Benutzerdaten:", error);
+    return null;
   }
+}
+
+function getUserColor(user, index) {
+  return contactColorArray[
+    typeof user.color === "number" ? user.color % contactColorArray.length : index % contactColorArray.length
+  ];
+}
+
+function renderContact(contactMiddle, user, contactIndex, firstLetter, color) {
+  contactMiddle.innerHTML = contactCardMiddle(user, contactIndex, firstLetter, color);
 }
 
 
@@ -44,9 +60,8 @@ function closeContactBigMiddle() {
 async function editContact(contactsId, firstLetter,color) {
   let editContact = document.getElementById('content-card-big');
   editContact.style.display = 'flex';
-
+  contactcardHeadlineEdit()
   let contact = await getData(`/contacts/${firstLetter}/${contactsId}`);
-
   if (contact) {
     document.getElementById('name_input').value = contact.name;
     document.getElementById('email_input').value = contact.email;
@@ -69,8 +84,10 @@ async function saveEditedContact(contactsId, firstLetter) {
   await postData(`/contacts/${firstLetter}/${contactsId}`, updatedContact);
   closeContactBig()
   closeContactBigMiddle()
-  getUsersList();
+  updateUserList();
   resetPicture();
+  validateName();
+  validateEmail();
 
 }
 
@@ -99,12 +116,17 @@ function updatePicture(contact, color) {
 function resetPicture() {
   let contactPicture = document.getElementById('picture-edit');
   if (oldPictureHTML) {
-    contactPicture.innerHTML = oldPictureHTML;
+    contactPicture.innerHTML = oldPictureHTML; 
+    let restoredPicture = contactPicture.querySelector('.pic-edit');
+    if (restoredPicture) {
+      restoredPicture.style.display = 'flex'; 
+    }
   }
 }
 
 function openContactBig() {
   document.getElementById('content-card-big').style.display = 'flex';
+  contactcardHeadline();
 }
 
 
@@ -136,7 +158,8 @@ function updateCancelButton() {
 }
 
 
-function validateName(nameInput) {
+function validateName() {
+  let nameInput = document.getElementById('name_input');
   if (nameInput.value.trim() === "") {
     document.getElementById('name_error').textContent = "Bitte einen Namen eingeben!";
     nameInput.classList.add("input-error");
@@ -150,7 +173,8 @@ function validateName(nameInput) {
 
 
 // Funktion zur E-Mail-Validierung
-async function validateEmail(emailInput, email) {
+async function validateEmail(email) {
+  let emailInput = document.getElementById('email_input');
   let firstLetter = email.trim().charAt(0).toUpperCase();
   if (emailInput.value.trim() === "") {
     document.getElementById('email_error').textContent = "Bitte eine E-Mail eingeben!";
@@ -169,7 +193,7 @@ console.log(contactsGroup);
   }
 
   return true;
-}async function validateEmail(emailInput, email) {
+}async function validateEmail(email) {
   let firstLetter = email.trim().charAt(0).toUpperCase();
   if (emailInput.value.trim() === "") {
     showError(emailInput, "Bitte eine E-Mail eingeben!");

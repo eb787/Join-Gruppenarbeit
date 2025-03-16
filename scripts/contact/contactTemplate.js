@@ -52,4 +52,34 @@ function contactCardMiddle(user, contactIndex, firstLetter, color) {
     `;
 }
 
+function contactcardHeadline(mode) {
+    let headline = document.getElementById('headline');
+    headline.innerHTML = cardNewContact(mode);
+}
 
+function cardNewContact(mode) {
+    let title = mode === "edit" ? "Edit Contact" : "Add Contact";
+    let text = "Task are better with a team!"
+    return `
+            <img src="../assets/icons/logocontact.svg">
+            <p>${title}</p>
+            <span>${text}</span>
+            <hr class= "line-contact">
+        
+    `;
+}
+
+function contactcardHeadlineEdit() {
+    let headline = document.getElementById('headline');
+    headline.innerHTML = cardNewContactEdit();
+}
+
+function cardNewContactEdit() {
+    let title = "Edit Contact";
+    return `
+            <img src="../assets/icons/logocontact.svg">
+            <p>${title}</p>
+            
+        
+    `;
+}
