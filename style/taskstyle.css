@@ -456,11 +456,10 @@ textarea:hover {
 
 
 .subtask_list {
-   display: flex;
+  display: flex;
   flex-direction: column;
   width: 105%;
   height: 100px;
-  background-color:#F6F7F9;
   margin-top: -20px;
   overflow-y: scroll;
  }
@@ -476,7 +475,7 @@ textarea:hover {
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    border-bottom: 1px solid #ccc;
+    
 }
 
 .sublist_text {

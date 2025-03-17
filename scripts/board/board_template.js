@@ -160,7 +160,6 @@ function editTaskTemplate(index) {
             <div id="category_overlay${index}" class="task_category task_category_overlay  "></div>
             <img onclick="closeOverlay('bg_overlay')" class="close_btn_overlay" src="..//assets/icons/close.svg" alt="close button">
         </div>
-
  
             <form>
                 <div class="section-title-div">
@@ -192,7 +191,6 @@ function editTaskTemplate(index) {
 
             <div class="section-prio">
                 <span>Priority</span>
-
 
 
                 <div class="prio-buttons">
@@ -242,30 +240,36 @@ function editTaskTemplate(index) {
             </div>
 
 
-            <div>
-                <span>Subtasks</span>
-                <div class="input-wrapper">
-                    <input type="text" id="inputSubtask" class="input-subtasks" oninput="subTaskInputCheck()"
-                        maxlength="40">
-                    <span class="error_Field">&nbsp;</span>
-                    <img id="subTaskAddIcon" class="add-subtasks ele_hide" onclick="subTaskInputCheck(true)"
-                        src="../assets/icons/add.png" alt="add-icon">
+            <div class="test">
+
+                        <span>Subtasks</span>
+                        <div class="input-wrapper">
+                            <input type="text" placeholder="Add new subtask"   id="inputSubtask" class="input-subtasks" oninput="subTaskInputCheck()"
+                           
+                                                      
+                            <span class="error_Field">&nbsp;</span>                                      
+
+                                 <img id="subTaskAddIcon" class="add-subtasks ele_hide" onclick="subTaskInputCheck(true)"
+                                src="../assets/icons/add.png">
+                       
+                            
+                            
+                            <div id="subTaskEditIocn" class="add-subtasks sub_Task_Edit_Iocn ele_hide">
+                                <img id="subTaskCloseIcon" onclick="subTaskClose()" src="../assets/icons/close.svg">
+                                <img src="../assets/icons/vectorV.svg">
+                                <img id="subTaskCheckIcon" onclick="taskCreateTaskEdit()" src="../assets/icons/checkSW.svg">
+                            </div>
+
+                        </div>
+                            
+                                <div id="subTaskList" class="subtask_list"></div>
+                            </div>   
+                    
+                        
+                        <div class="btn_div">
+                            <button class="button_Ok">OK  <img src="../assets/icons/check.svg"></button>
                 </div>
-                    <div id="subTaskEditIocn" class="add-subtasks sub_Task_Edit_Iocn ele_hide">
-                        <img id="subTaskCloseIcon" onclick="subTaskClose()" src="../assets/icons/close.svg"
-                            alt="add-icon">
-                        <img src="../assets/icons/vectorV.svg">
-                        <img id="subTaskCheckIcon" onclick="taskCreateTask()" src="../assets/icons/checkSW.svg"
-                            alt="add-icon">
-                    </div>
-                        <div id="subTaskList" class="subtask_list"></div>
-                    </div>   
-               
-                
-                <div class="btn_div">
-                    <button class="button_Ok">OK  <img src="../assets/icons/check.svg"></button>
-                </div>
-                     
+            
     </div>
    `
 
