@@ -5,6 +5,8 @@ console.log("taskEdit.js");
 let dataRaskEditContact = {};
 let taskSubTaskListEdit=[];
 let index="";
+let contactList={};
+
 
 function editTask(index) {
         index=index;
@@ -14,7 +16,8 @@ function editTask(index) {
         document.getElementById('card_overlay').innerHTML = editTaskTemplate(index);
         console.log("prio = ", currentTasks[index].prio);
         checkPrioEditTask(index);
-        editTaskWriteContacts(currentTasks[index].contacts);
+        contactList=currentTasks[index].contacts;
+        editTaskWriteContacts(contactList);
         subTaskListLoadEdit(index);
   }
 
@@ -50,14 +53,23 @@ function checkPrioEditTask(index) {
 }
 
 
-function editTaskWriteContacts(contactList) {
+function  editTaskWriteContacts(contactList) {
+        console.log("Adressliste ",contactList);
+        
         let element = document.getElementById('initialeIconList');
         contactList.map(emtry => {
                 let name = emtry.name;
                 let color = emtry.color;
-                element.innerHTML += taskContacInitialTemplate(contactColorAssign(color), taskInitialLettersCreate(name));
+             element.innerHTML += taskContacInitialTemplate(contactColorAssignEdit(color), taskInitialLettersCreate(name));
         });
 }
+
+function contactColorAssignEdit(color){
+        return contactColorArray[color];
+     }
+
+
+
 
 function taskContactListDrobdown1() {
         console.log("Öffne Liste");
@@ -163,3 +175,64 @@ function taskCreateTaskEdit() {
     </div>
     `
     }
+
+
+
+
+    function TaskEditSave(){
+       console.log("Speichere taskEdit");
+       taskEditContactsCheck();
+       collectDataEdit();
+       taskEditContactsCheck();
+        //postTaskDataEdit(`/tasks/${index}`,currentTask);
+        //closeOverlay('bg_overlay')
+    }
+
+
+    function collectDataEdit() {
+        currentTask = {
+          title: document.getElementById('taskTitle').value,
+          description: document.getElementById('descriptionTask').value.trim() || "empty",  // oder "empty" reinschreiben wenn es leer bleibt
+          contacts: selectedTaskContacts,//
+            deadline: dateConversion(document.getElementById('taskDate').value),
+          prio: taskPrioSelect, // "medium_prio" , oder "low_prio", oder "hgh_prioi"
+          //category: taskCatergoryRetrieve(document.getElementById('taskCatergory').value), // "Technical Task" oder "User Story"
+          subtasks: {
+            total: taskSubTaskListEdit.length, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
+            number_of_finished_subtasks: 0, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
+            subtasks_todo: subTasksObjects(),
+          },
+          //status: "toDo" //  "toDo",  "inProgress", "awaitFeedback", oder "done" 
+        }
+       
+      }
+
+     
+      function taskEditContactsCheck(){
+        if(selectedTaskContacts.length>0){
+                console.log("Kontake vorhanden");
+                return selectedTaskContacts;
+        }else{
+                console.log("Adressen beim speichern ",contactList.length);
+                 if(contactList.length>0){
+                 return selectedTaskContacts= contactList;   
+                }else{
+                console.log("Kein Kontake vorhanden"); 
+             if('contacts' in currentTask){
+               delete currentTask.contacts;        
+        }} }
+         
+        }
+        
+             
+        /*
+        async function postTaskDataEdit(path = "", task) {
+                let CurrentTaskResponse =  await fetch(Base_URL + path + ".json",{
+                    method: "PUT",
+                    header: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(task)
+                });
+         }
+*/

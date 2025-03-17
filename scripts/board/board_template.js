@@ -267,8 +267,10 @@ function editTaskTemplate(index) {
                     
                         
                         <div class="btn_div">
-                            <button class="button_Ok">OK  <img src="../assets/icons/check.svg"></button>
-                </div>
+                            <button class="button_Ok" onclick="TaskEditSave()" >OK<img src="../assets/icons/check.svg"></button>
+            
+                            </div>
+                          
             
     </div>
    `

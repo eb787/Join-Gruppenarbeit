@@ -273,7 +273,7 @@ function checkInputData() {
  function timePopUp(duration){
   let notification = document.getElementById('notificationFinish');
   notification.style.display="flex";
-  setTimeout(()=>{
+    setTimeout(()=>{
     notification.style.display="none";
   },duration);
 }
