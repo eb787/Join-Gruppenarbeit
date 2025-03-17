@@ -208,7 +208,6 @@ button:hover {
 .go_back_btn {
     width: 32px;
     height: 32px;
-    background-image: url(../assets/icon/arrow-left-line.svg);
 }
 
 .go_back_btn:hover {
