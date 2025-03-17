@@ -100,6 +100,7 @@ body {
     justify-content: center;
     width: 232px;
     height: 45px;
+    text-decoration: none;
 }
 
 .navbar_current_icon {

@@ -6,7 +6,7 @@
     flex: 1;
 }
 
-.headline_logo_help{
+.headline_logo_help {
     display: none;
 }
 
@@ -17,7 +17,8 @@ h1 {
     font-size: 52px;
 }
 
-h2, h3 {
+h2,
+h3 {
     color: #000;
     font-weight: bold;
     padding-bottom: 16px;
@@ -28,6 +29,18 @@ p {
     color: #000100;
 }
 
-.blue{
+.blue {
     color: rgb(50, 168, 216);
+}
+
+.div_impressum_guest {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 385px;
+    text-decoration: none;
+}
+
+.div_nav_icons_guest{
+    padding-top: 180px;
 }
