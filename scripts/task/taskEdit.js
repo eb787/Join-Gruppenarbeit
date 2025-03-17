@@ -8,8 +8,8 @@ let index="";
 let contactList={};
 
 
-function editTask(index) {
-        index=index;
+function editTask(indexU) {
+        index=indexU
         console.log("Es wird Task mit Index bearbeutetr ", index);
         loadContacsFirebase();
         document.getElementById('card_overlay').innerHTML = "";
@@ -39,6 +39,9 @@ function contactCheckOKinArray(index) {
 
 function checkPrioEditTask(index) {
         let prio = currentTasks[index].prio;
+console.log("Prio ausgeben ",prio);
+
+
         switch (prio) {
                 case "high_prio":
                         btnPrioSelect('urgent')
@@ -48,7 +51,7 @@ function checkPrioEditTask(index) {
                         break;
                 case "low_prio":
                         btnPrioSelect('low')
-                        break;
+                       break;
         }
 }
 
@@ -184,8 +187,8 @@ function taskCreateTaskEdit() {
        taskEditContactsCheck();
        collectDataEdit();
        taskEditContactsCheck();
-        //postTaskDataEdit(`/tasks/${index}`,currentTask);
-        //closeOverlay('bg_overlay')
+       //postTaskDataEdit(`/tasks/${parseInt(index)}`,currentTask);
+        closeOverlay('bg_overlay')
     }
 
 
@@ -204,29 +207,11 @@ function taskCreateTaskEdit() {
           },
           //status: "toDo" //  "toDo",  "inProgress", "awaitFeedback", oder "done" 
         }
-       
-      }
+             }
 
-     
-      function taskEditContactsCheck(){
-        if(selectedTaskContacts.length>0){
-                console.log("Kontake vorhanden");
-                return selectedTaskContacts;
-        }else{
-                console.log("Adressen beim speichern ",contactList.length);
-                 if(contactList.length>0){
-                 return selectedTaskContacts= contactList;   
-                }else{
-                console.log("Kein Kontake vorhanden"); 
-             if('contacts' in currentTask){
-               delete currentTask.contacts;        
-        }} }
-         
-        }
-        
-             
-        /*
-        async function postTaskDataEdit(path = "", task) {
+
+
+             async function postTaskDataEdit(path = "", task) {
                 let CurrentTaskResponse =  await fetch(Base_URL + path + ".json",{
                     method: "PUT",
                     header: {
@@ -234,5 +219,26 @@ function taskCreateTaskEdit() {
                     },
                     body: JSON.stringify(task)
                 });
-         }
-*/
+             }
+
+
+
+             function taskEditContactsCheck(){
+                if(selectedTaskContacts.length>0){
+                        console.log("Kontake vorhanden");
+                        return selectedTaskContacts;
+                }
+                else{
+                        console.log("Adressen beim speichern ",contactList.length);
+                         if(contactList.length>0){
+                           return selectedTaskContacts= contactList; 
+                        }else{
+                        console.log("Kein Kontake vorhanden"); 
+                     if('contacts' in currentTask){
+                       delete currentTask.contacts;        
+              }}}}
+        
+        
+                 
+        
+        

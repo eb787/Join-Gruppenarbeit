@@ -21,7 +21,7 @@ try{
 
 function pushTaskToServer() {
     collectData();
-    postTaskData(`/tasks/${taskId}`, currentTask);
+    postTaskData(`/tasks/${taskId}`, currentTaskAdd);
 }
 
 

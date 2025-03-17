@@ -1,152 +1,62 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../style/style.css">
-    <link rel="stylesheet" href="../style/board.css">
-    <link rel="stylesheet" href="../style/task/addTaskOverlay.css">
-    <link rel="stylesheet" href="../style/buttons.css">
-    <script src="../scripts/test.js"></script>
-    <script src="../scripts/test.js"></script>
-    <script src="../scripts/task/taskMain.js"></script>
-   <!-- <script src="../scripts/board/board.js"></script>-->
-
-
 </head>
-
 <body>
-
-  
-    <div onclick="" id="card_overlay" class="test1 card_overlay_Task_Edit">
-
-        <div class="card_overlay_header">
-            <div id="category_overlay${index}" class="task_category task_category_overlay  "></div>
-            <img onclick="closeOverlay()" class="close_btn_overlay" src="..//assets/icons/close.svg" alt="close button">
-        </div>
-
- 
-            <form>
-                <div class="section-title-div">
-                    <span class="title">Title</span>
-                    <input id="taskTitle" class="input-title input-field" type="text" placeholder="Enter a title"
-                        tabindex="1">
-                    <span class="error_Field">&nbsp;</span>
-                </div>
-            </form>
-
-            <div class="section-description">
-                <span>Description</span>
-                <div class="textarea-description">
-                    <textarea id="descriptionTask" placeholder="Enter a Description" tabindex="2"></textarea>
-                                  </div>
-            </div>
-
-        
-
-            <div class="section-date-div">
-                <span class="star-red">Due date </span>
-               <div class="task_Date_Input_Div">
-                   <input type="date" id="taskDate" class="date_input input-field" tabindex="4">
-                   <img src="../assets/icons/event.png" class="date-icon"  onclick="openDatePicker()" >
-                </div>
-                <span class="error_Field">&nbsp;</span>
-            </div>
-          
-
-
-            <div class="section-prio">
-                <span>Priority</span>
-                <div class="prio-buttons">
-
-                
-                    <button onclick="btnPrioSelect('urgent')" class="btn_prio button-urgent" tabindex="5">Urgent
-                        <img class="prio_img" src="../assets/icons/high_prio.svg" alt="urgent">
-                    </button>
-                  
-
-                    <button onclick="btnPrioSelect('medium')" class="btn_prio button-medium" tabindex="6">Medium
-                        <div id="btnPrioGroup" class="prio_img prio_img_group">
-                            <img src="../assets/icons/linePrio.svg">
-                            <img src="../assets/icons/linePrio.svg">
-                        </div>
-                    </button>
-
-
-                    <button onclick="btnPrioSelect('low')" class="btn_prio button-low" tabindex="7">Low
-                        <img class="prio_img" src="../assets/icons/low_prio.svg">
-                    </button>
-                </div>
-
-            </div>
-
-
-
-
-            <div class="section-assigned">
-                <span class="assigned-title">Assigned to</span>
-                <div class="task_Contact_dropdown">
-
-                    <div class="task_input_section">
-                        <input type="text" id="taskDropDownInput" class="task_dropdown_input" tabindex="3"
-                            placeholder="Select contacts to assign" onclick="taskContactListDrobdown()"
-                            onkeyup="taskContactFilterList()">
-                        <img src="../assets/icons/arrow_down.svg">
-                    </div>
-
-                    <div id="taskContactDrowdownMenue" class="task_dropdown_content">
-                        <div id="taskDropDownList" class="task_dropdown_list">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="initialeIconList" class="initiale_Icon_List icon_List_hide">
-                
-            </div>
-
-
-            <div>
-                <span>Subtasks</span>
-                <div class="input-wrapper">
-                    <input type="text" id="inputSubtask" class="input-subtasks" oninput="subTaskInputCheck()"
-                        maxlength="40">
-                    <span class="error_Field">&nbsp;</span>
-                    <img id="subTaskAddIcon" class="add-subtasks ele_hide" onclick="subTaskInputCheck(true)"
-                        src="../assets/icons/add.png" alt="add-icon">
-                </div>
-                    <div id="subTaskEditIocn" class="add-subtasks sub_Task_Edit_Iocn ele_hide">
-                        <img id="subTaskCloseIcon" onclick="subTaskClose()" src="../assets/icons/close.svg"
-                            alt="add-icon">
-                        <img src="../assets/icons/vectorV.svg">
-                        <img id="subTaskCheckIcon" onclick="taskCreateTask()" src="../assets/icons/checkSW.svg"
-                            alt="add-icon">
-                    </div>
-                        <div id="subTaskList" class="subtask_list"></div>
-                    </div>   
-               
-                
-                <div class="btn_div">
-                    <button class="button_Ok">OK  <img src="../assets/icons/check.svg"></button>
-                </div>
-           
-                
-
-                
-    </div>
-
-
-
-
-
-
-
-
-
-
-
+    <button onclick="init()">Test</button>
+    
 </body>
+
+<script>
+console.log("Test");
+const Base_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/";   
+
+currentTask = {
+          title: "test",
+          description: "TestDes",
+          contacts:"",//
+            deadline:"12/03/24",
+          prio: "medium_prio", // "medium_prio" , oder "low_prio", oder "hgh_prioi"
+          //category: taskCatergoryRetrieve(document.getElementById('taskCatergory').value), // "Technical Task" oder "User Story"
+          subtasks: {
+            total: 0, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
+            number_of_finished_subtasks: 0, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
+            subtasks_todo:"" ,
+          },
+          status: "toDo" //  "toDo",  "inProgress", "awaitFeedback", oder "done" 
+        }
+
+
+function init(){
+    console.log("Init aufgerufen");
+    postTaskData(`/tasks/${2}`, currentTask);
+
+}
+
+
+async function postTaskData(path = "", task) {
+    console.log("Schreibe Daten");
+    
+
+    let CurrentTaskResponse = await fetch(Base_URL + path + ".json",{
+        method: "PUT",
+        header: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(task)
+    });
+ }
+
+
+
+
+
+
+
+</script>
 
 </html>

@@ -6,20 +6,17 @@ let editIndex = false;
 let editTaskNr = 0;
 let selectedTaskContacts = [];
 let taskPrioSelect = "medium_prio";
-//let currentTask = {};
+let currentTaskAdd = {};
 //let taskId = "";
 
 
 
-//Start function
-//window.onload = function init() {
 function init(){  
-
   startAddTask();
   loadDataFirebase();
   requiredInputAddTask();
   focusOnRequiredFields();
-   subTaskListRender();
+  subTaskListRender();
 }
 
 
@@ -280,7 +277,7 @@ function checkInputData() {
 
 
 function collectData() {
-  currentTask = {
+  currentTaskAdd = {
     title: document.getElementById('taskTitle').value,
     description: document.getElementById('descriptionTask').value.trim() || "empty",  // oder "empty" reinschreiben wenn es leer bleibt
     contacts: selectedTaskContacts, //
