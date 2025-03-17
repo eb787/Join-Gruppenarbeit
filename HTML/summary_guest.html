@@ -13,11 +13,12 @@
     <link rel="stylesheet" href="../style/template.css">
     <link rel="stylesheet" href="../style/fonts.css">
     <link rel="stylesheet" href="../style/board.css">
-    <link rel="stylesheet" href="../style/summary_guest.css">
+    <link rel="stylesheet" href="../style/summary.css">
+    <script src="../scripts/summary/guest_summary.js"></script>
 
 </head>
 
-<body>
+<body onload="fetchData()">
     <div class="full_content">
         <nav class="nav">
             <div class="nav-icon-capa2">
@@ -25,26 +26,26 @@
             </div>
 
             <div class="div_nav_icons">
-                <div class="navbar_icon">
+                <div class="navbar_current_icon">
                     <img src="../assets/icons/summary.svg">
                 </div>
-                <div class="navbar_icon">
+                <a class="navbar_icon" href="../HTML/task.html">
                     <img src="../assets/icons/add_task.svg">
-                </div>
-                <div class="navbar_icon">
+                </a>
+                <a class="navbar_icon" href="../HTML/board.html">
                     <img src="../assets/icons/board.svg">
-                </div>
-                <div class="navbar_icon">
+                </a>
+                <a class="navbar_icon" href="../HTML/contacts.html">
                     <img src="../assets/icons/contacts.svg">
-                </div>
+                </a>
             </div>
             <div class="div_impressum">
-                <div class="nav_impressum">
-                    <img src="../assets/icons/privacy_policy.svg">
-                </div>
-                <div class="nav_impressum">
-                    <img src="../assets/icons/legal_notice.svg">
-                </div>
+                <a class="nav_impressum" href="../HTML/guest_policy.html">
+                    <span>Privacy Policy</span>
+                </a>
+                <a class="nav_impressum" href="../HTML/guest_legal_notice.html">
+                    <span>Legal notice</span>
+                </a>
             </div>
         </nav>
 
@@ -52,86 +53,99 @@
 
             <div class="headline">
                 <span class="headline_title font20">Kanban Project Management Tool</span>
-                <div class="headline_logo_help">
+                <a class="headline_logo_help" href="../HTML/help.html">
                     <img src="../assets/icons/help.svg" alt="">
-                </div>
-                <div class="headline_logo_user_sign_in">
+                </a>
+                <div  class="headline_logo_user_sign_in">
+                    <div id="guest_logo_user_sign_in" onclick="toggleMenu()" class="user_logo">
+                        <span>G</span>
+                    </div>
                 </div>
                 <seperator class="navbar_seperator"></seperator>
             </div>
 
             <div class="main_contant">
-                <div class="first-container">
-                    <h1>Join 360</h1>
-                    <hr>
-                    <span>Key Metrics at a Glance</span>
-                </div>
-                <div class="content">
-                    <div class="content-to-do">
-                        <div class="content-pen border-style">
-                            <img src="../assets/icons/pen.png" alt="pen" class="img-pen">
-                            <div class="text-pen">
-                                <span class="one-done">1</span>
-                                <span class="text-to-do">To-do</span>
-                            </div>
-                        </div>
-                        <div class="content-success border-style">
-                            <img src="../assets/icons/success.png" alt="sucess" class="img-pen">
-                            <div class="text-pen">
-                                <span class="one-done">1</span>
-                                <span class="text-to-do">Done</span>
-                            </div>
-                        </div>
-                    </div>
-            
-                    <div class="content-date border-style">
-                        <div class="content-date-div">
-                            <img src="../assets/icons/up.png" alt="Urgent" class="img-up">
-                            <div class="text-up">
-                                <span class="one-urgent">1</span>
-                                <span class="text-urgent">Urgent</span>
-                            </div>
-                            <div class="line-between-div">
-                                <hr class="line-between">
-                            </div>
-                        </div>
-                        <div class="content-deadline">
-                            <div class="content-deadline-date">
-                                <span class="text">October 16, 2022</span>
-                            </div>
-                            <div class="content-deadline-date-upcoming">
-                                <span class="text">Upcoming Deadline</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container-task ">
-                        <div class="container-task-one border-style">
-                            <div class="task-text">
-                                <span class="task-text-big">5</span>
-                                <span class="task-text-small">Tasks in Board</span>
-                            </div>
-                        </div>
-            
-                        <div class="container-task-two border-style">
-                            <div class="task-text">
-                                <span class="task-text-big">2</span>
-                                <span class="task-text-small">Tasks In Progress</span>
-                            </div>
-                        </div>
-                        <div class="container-task-three border-style">
-                            <div class="task-text">
-                                <span class="task-text-big text">2</span>
-                                <span class="task-text-small text">Awaiting Feedback</span>
-                            </div>
-                        </div>
+                <div class="div_submenu submenu_closed" id="submenu_toogle">
+                    <div class="submenu">
+                        <a href="../HTML/guest_legal_notice.html">Legal Notice</a>
+                        <a href="../HTML/guest_policy.html">Privacy Policy</a>
+                        <a href="../HTML/login.html">Log out</a>
                     </div>
                 </div>
-                <div class="container-morning">
-                    <h3 class="titel-one">Good morning,</h3><span class="titel-two">Sofia Müller</span>
+            </div>
+
+
+            <div class="first-container">
+                <h1>Join 360</h1>
+                <hr>
+                <span>Key Metrics at a Glance</span>
+            </div>
+            <div class="content">
+                <div class="content-to-do">
+                    <div class="content-pen border-style" onclick="openPage('../HTML/board.html')">
+                        <img src="../assets/icons/pen.png" alt="pen" class="img-pen">
+                        <div class="text-pen">
+                            <span id="content_to_do" class="one-done"></span>
+                            <span class="text-to-do">To-do</span>
+                        </div>
+                    </div>
+                    <div class="content-success border-style" onclick="openPage('../HTML/board.html')">
+                        <img src="../assets/icons/success.png" alt="sucess" class="img-pen">
+                        <div class="text-pen">
+                            <span id="content_success" class="one-done"></span>
+                            <span class="text-to-do">Done</span>
+                        </div>
+                    </div>
                 </div>
 
+                <div class="content-date border-style" onclick="openPage('../HTML/board.html')">
+                    <div class="content-date-div">
+                        <img src="../assets/icons/up.png" alt="Urgent" class="img-up">
+                        <div class="text-up">
+                            <span id="content_urgent" class="one-urgent"></span>
+                            <span class="text-urgent">Urgent</span>
+                        </div>
+                        <div class="line-between-div">
+                            <hr class="line-between">
+                        </div>
+                    </div>
+                    <div class="content-deadline">
+                        <div class="content-deadline-date">
+                            <span id="content_date_div" class="text"></span>
+                        </div>
+                        <div class="content-deadline-date-upcoming">
+                            <span class="text">Upcoming Deadline</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-task ">
+                    <div class="container-task-one border-style" onclick="openPage('../HTML/board.html')">
+                        <div class="task-text">
+                            <span id="content_task_in_board" class="task-text-big"></span>
+                            <span class="task-text-small">Tasks in Board</span>
+                        </div>
+                    </div>
+
+                    <div class="container-task-two border-style" onclick="openPage('../HTML/board.html')">
+                        <div class="task-text">
+                            <span id="content_task_in_progress" class="task-text-big"></span>
+                            <span class="task-text-small">Tasks In Progress</span>
+                        </div>
+                    </div>
+                    <div class="container-task-three border-style" onclick="openPage('../HTML/board.html')">
+                        <div class="task-text">
+                            <span id="content_awaiting_feedback" class="task-text-big text"></span>
+                            <span class="task-text-small text">Awaiting Feedback</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
+            <div class="container-morning">
+                <h3 id="content_welcome" class="titel-one"></h3>
+            </div>
+
+    </div>
+    </section>
     </div>
 </body>
 
