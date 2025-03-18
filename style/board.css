@@ -112,6 +112,7 @@
 
 .add_task_icon:hover {
     cursor: pointer;
+    filter: invert(50%) sepia(100%) saturate(200%) hue-rotate(165deg) brightness(100%) contrast(100%);
 }
 
 .board_table_content {
@@ -136,6 +137,7 @@
     flex-direction: column;
     padding-top: 6px;
     padding-bottom: 6px;
+    min-height: 100%;
 }
 
 .no_tasks {
