@@ -29,17 +29,11 @@ function taskContacListTemplate(index, name, color, initials, email) {
 }
 
 
-function taskContacInitialTemplate(color,initials) {
+function taskContacInitialTemplate(color, initials) {
     return `
    
            <span class="initial_Letters_Contact" style="background-color:  ${color}; margin-left: -15px;"> 
            ${initials}
            </span>
-            
-       
-    
-    
-    `
-
-
+         `
 }

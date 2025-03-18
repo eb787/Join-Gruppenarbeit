@@ -96,12 +96,16 @@
 }
 
 .check_box_btn:hover {
-    background-image: url(../assets/icons/checked_hover.png) !important;
+    background-image: url(../assets/icons/subtask_todo_hover.svg) !important;
     cursor: pointer;
 }
 
 .checked_box {
-    background-image: url(../assets/icons/checked_hover.png) !important;
+    background-image: url(../assets/icons/subtask_done.svg) !important;
+}
+
+.checked_box:hover {
+    background-image: url(../assets/icons/subtask_done_hover.svg) !important;
 }
 
 .button-clear-task {
@@ -239,6 +243,9 @@ button:hover {
 
 .add_task_btn:hover {
     cursor: pointer;
+    background-color: #29ABE2;
+    border: 1px solid #29ABE2;
+    box-shadow: 0 4px 4px 0px #00000040;
 }
 
 .successful_signin_btn {
@@ -272,5 +279,9 @@ button:hover {
 
 
 .edit_btn_overlay_board:hover {
+    cursor: pointer;
+}
+
+.close_btn_overlay:hover {
     cursor: pointer;
 }

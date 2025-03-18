@@ -6,20 +6,21 @@ let editIndex = false;
 let editTaskNr = 0;
 let selectedTaskContacts = [];
 let taskPrioSelect = "medium_prio";
-let currentTask = {};
-let taskId = "";
+let currentTaskAdd = {};
+//let taskId = "";
+taskContacteArray
 
 
-
-//Start function
-window.onload = function init() {
+function init(){  
   startAddTask();
   loadDataFirebase();
   requiredInputAddTask();
   focusOnRequiredFields();
-  openDatePicker();
   subTaskListRender();
 }
+
+
+
 
 //Tasten Clear und Create Task sperren*/
 function startAddTask() {
@@ -84,21 +85,16 @@ function correctDateInput(dateString) {
   }
 }
 
-
-
 //Datum Picker öffnen
 function openDatePicker() {
-  let dateInput = document.querySelector(".date-input");
-  document.querySelector(".date-icon").addEventListener("click", function () {
-    if (dateInput.showPicker) {
+  let dateInput=document.getElementById('taskDate');
+     if (dateInput.showPicker) {
       dateInput.showPicker();
       document.getElementById('taskDate').focus();
     } else {
       dateInput.focus();
     }
-  });
-}
-
+ }
 
 
 function btnPrioSelect(btnPrio) {
@@ -199,7 +195,9 @@ function taskReadinArrayTask(taskData) {
 }
 
 
+
 function taskReadinArrayContact(DataContact) {
+  console.log("Aushabe Datacontact ",DataContact);
   let= index=0;
   document.getElementById('taskDropDownList').innerHTML="";
   taskContacteArray = Object.values(DataContact)
@@ -213,6 +211,7 @@ function taskReadinArrayContact(DataContact) {
   taskContacteArray.map((contact,index) =>{
       taskRenderContactList(index,contact.name,contact.color ||  "10",contact.email);
       });
+      
    }
 
 
@@ -270,28 +269,22 @@ function checkInputData() {
   
 }
 
-
-
-
-
-
-
  function timePopUp(duration){
   let notification = document.getElementById('notificationFinish');
   notification.style.display="flex";
-  setTimeout(()=>{
+    setTimeout(()=>{
     notification.style.display="none";
   },duration);
 }
 
 
 function collectData() {
-  currentTask = {
+  currentTaskAdd = {
     title: document.getElementById('taskTitle').value,
     description: document.getElementById('descriptionTask').value.trim() || "empty",  // oder "empty" reinschreiben wenn es leer bleibt
     contacts: selectedTaskContacts, //
       deadline: dateConversion(document.getElementById('taskDate').value),
-    prio: taskPrioSelect, // "medium_prio" , oder "low_prio", oder "high_prio"
+    prio: taskPrioSelect, // "medium_prio" , oder "low_prio", oder "hgh_prioi"
     category: taskCatergoryRetrieve(document.getElementById('taskCatergory').value), // "Technical Task" oder "User Story"
     subtasks: {
       total: taskSubTaskList.length, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern

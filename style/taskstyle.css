@@ -1,5 +1,6 @@
 * {
     margin: 0;
+  
 }
 
 .addTask_Title {
@@ -88,10 +89,11 @@ span {
     height: 136px;
 
     textarea {
-        resize: none;
         display: flex;
+        resize: none;
         width: 440px;
         height: 120px;
+        overflow: auto;
         border-radius: 10px;
         border-width: 1px;
         border-color: #D1D1D1;
@@ -102,13 +104,7 @@ span {
     }
 }
 
-.textarea-icon {
-    height: 18.9px;
-    width: 18.0px;
-    position: absolute;
-    right: 5px;
-    top: 262px;
-}
+
 
 .section-assigned {
     position: absolute;
@@ -460,11 +456,10 @@ textarea:hover {
 
 
 .subtask_list {
-   display: flex;
+  display: flex;
   flex-direction: column;
   width: 105%;
   height: 100px;
-  background-color:#F6F7F9;
   margin-top: -20px;
   overflow-y: scroll;
  }
@@ -480,7 +475,7 @@ textarea:hover {
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    border-bottom: 1px solid #ccc;
+    
 }
 
 .sublist_text {

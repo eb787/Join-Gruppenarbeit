@@ -2,6 +2,7 @@ console.log("daten von firerbase");
 
 const Base_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/";
 
+
 async function loadDataFirebase() {
 try{
    const [responseTask,responseContact] = await Promise.all([
@@ -20,7 +21,7 @@ try{
 
 function pushTaskToServer() {
     collectData();
-    postTaskData(`/tasks/${taskId}`, currentTask);
+    postTaskData(`/tasks/${taskId}`, currentTaskAdd);
 }
 
 

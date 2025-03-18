@@ -1,17 +1,17 @@
-const contactColorArray = [
-    " #1FD7C1",
-    " #462F8A",
-    " #FC71FF",
-    " #6E52FF",
-    " #9327FF",
-    " #FFBB2B",
-    " #FF4646",
-    " #00BEE8",
-    " #FF7A00",
-     "#040404"
-]
+let contactColorArray = [ 
+  "#1FD7C1",
+  "#462F8A",
+  "#FC71FF",
+  "#6E52FF",
+  "#9327FF",
+  "#FFBB2B",
+  "#FF4646",
+  "#00BEE8",
+  "#FF7A00",
+  "#040404"
+];
 
-function toggleMenu() {
+/*function toggleMenu() {
     document.getElementById('submenu_toogle').classList.toggle('submenu_open');
   }
   
@@ -24,6 +24,7 @@ function toggleMenu() {
     }
   });
   
+
 
 function renderInitials() {
   const Base_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/";
@@ -57,3 +58,4 @@ function addUserLogoTemplate(){
         </div>
     `
 }
+    */

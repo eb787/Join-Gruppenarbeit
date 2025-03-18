@@ -1,18 +1,18 @@
 const Base_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/";
 
-const contactColorArray = {
-    1: "#1FD7C1",
-    2: "#462F8A",
-    3: "#FC71FF",
-    4: "#6E52FF",
-    5: "#9327FF",
-    6: "#FFBB2B",
-    7: "#FF4646",
-    8: "#00BEE8",
-    9: "#FF7A00"
-};
+// const contactColorArray = {
+//     1: "#1FD7C1",
+//     2: "#462F8A",
+//     3: "#FC71FF",
+//     4: "#6E52FF",
+//     5: "#9327FF",
+//     6: "#FFBB2B",
+//     7: "#FF4646",
+//     8: "#00BEE8",
+//     9: "#FF7A00"
+// };
 
-let currentTasks = [];
+let currentTasks = {};
 let currentTask = {};
 let taskId = "";
 let elementToBeDropped = "";
@@ -23,6 +23,7 @@ async function loadTaskData() {
     await fetchTaskData();
     updateTaskBoard();
     document.getElementById("full_content").innerHTML += getCardOverlay(); 
+    document.getElementById("full_content").innerHTML += getAddTaskOverlay();
 }
 
 async function fetchTaskData(){
@@ -30,9 +31,18 @@ async function fetchTaskData(){
     let TaskResponse = await fetch(Base_URL + "/tasks/" + ".json");
     TaskResponseToJson = await TaskResponse.json();
 
-   for (let index = 0; index < Object.values(TaskResponseToJson).length; index++) {
-        currentTasks.push(Object.values(TaskResponseToJson)[index]);
-   }    
+//    for (let index = 0; index < Object.values(TaskResponseToJson).length; index++) {
+//         if (Object.values(TaskResponseToJson)[index]) {
+//           currentTasks.push(Object.values(TaskResponseToJson)[index]);  
+//         }
+//    }    
+
+for (let index = 0; index < TaskResponseToJson.length; index++) {
+    if (TaskResponseToJson[index]) {
+       
+      currentTasks[index] = TaskResponseToJson[index];
+    }
+}  
 
    taskId = Object.values(TaskResponseToJson).length; 
 }
@@ -43,10 +53,16 @@ function updateTaskBoard() {
     //hier geben wir die Daten in ein Template dass dan als task-card im Board angezeigt wird
     emptyBoard();
 
+    // for (let index = 0; index < currentTasks.length; index++) {
+    //     showCardOnBoard(index);
+    // }
+
     for (let index = 0; index < currentTasks.length; index++) {
+        if (currentTasks[index]) {
         showCardOnBoard(index);
 
-
+        }
+        
     }
 }
 
@@ -85,6 +101,7 @@ function showCardOnBoard(index) {
 
     checkCategory(index, layer);
 
+
     checkSubtasks(subtasks, index, progress, layer);
 
     checkDescription(index, layer);
@@ -104,6 +121,17 @@ function checkCategory(index, layer){
     }
 }
 
+function checkPriority(index) {
+    let prio = "Medium";
+    if (currentTasks[index].prio == "high_prio") {
+        prio = "High";
+    } else if (currentTasks[index].prio == "low_prio") {
+        prio = "Low";
+    }
+            
+    document.getElementById('prio_text_' + index).innerHTML = prio;
+}
+
 function checkSubtasks(subtasks, index, progress, layer) {
     if (subtasks != 0) {
         document.getElementById("subtasks_box" + index + "_" + layer).innerHTML = getSubtasks(index, subtasks, progress, layer);
@@ -118,29 +146,36 @@ function checkDescription(index, layer) {
 
 function checkContacts(index, layer) {
     if (currentTasks[index].contacts) {
-        for (let i = 0; i < currentTasks[index].contacts.length; i++) {
-            getCorrectContact(index, i, layer);
-            
+        if (currentTasks[index].contacts.length > 5 && layer == "") {
+            for (let i = 0; i < 5; i++) {
+                getCorrectContact(index, i, layer);
+            }
+            document.getElementById("Profile_badges_" + index + "_" + layer).innerHTML += getContactDots();
+        } else {
+            for (let i = 0; i < currentTasks[index].contacts.length; i++) {
+                        getCorrectContact(index, i, layer);
+            }
         }
+        
          
     } else {
-       document.getElementById("Profile_badges_" + index + "_" + layer).classList.add("d_none");
+       document.getElementById("Profile_badges_" + index + "_" + layer).innerHTML = "";
     }
 }
 
 function getCorrectContact(index, i, layer) {
         document.getElementById("Profile_badges_" + index + "_" + layer).innerHTML += getContactIcon(index, i, layer);
-        getInitials(index, i, layer);
+        getContactInitials(index, i, layer);
 }
 
-function getInitials(index, i, layer) {
+function getContactInitials(index, i, layer) {
     let names = currentTasks[index].contacts[i].name.split(' ');
-    let initials = "";
+    let initialsBoard = "";
     for (let a = 0; a < names.length; a++) {
-        initials += names[a].substr(0,1);
+        initialsBoard += names[a].substr(0,1);
         
     }
-    document.getElementById("profile_" + index + "_" + i + "_" + layer).innerHTML += initials.toUpperCase();
+    document.getElementById("profile_" + index + "_" + i + "_" + layer).innerHTML += initialsBoard.toUpperCase();
     
 }
 
@@ -204,13 +239,12 @@ function getInitials(index, i, layer) {
 //     return CurrentTaskResponseToJson = await CurrentTaskResponse.json();
 // }
 
-//!!!!Eine Delete-Funktion muss dann immer die Reihenfolge beachten also man muss dannn quasi alle Tasks noch mal neu auf den Server überschreiben, damit die nicht durcheinander geraten!!!!
-
 function allowDrop(event) {
     event.preventDefault();
 }
 
-function startDragging(index) {
+function startDragging(index, event) {
+    document.getElementById('card_number_' + index).classList.add('rotate_card');
     elementToBeDropped = index;
 }
 
@@ -245,6 +279,7 @@ function chooseRightCard(cardType) {
 function showCardOverlay(index) {
     
     document.getElementById("bg_overlay").classList.remove("d_none");
+    document.getElementById('card_overlay').classList.remove('card_extra');
 
     document.getElementById("card_overlay").innerHTML = getCardOverlayContent(index);
     if (currentTasks[index].category == "User Story") {
@@ -254,6 +289,7 @@ function showCardOverlay(index) {
         document.getElementById("category_overlay" + index).classList.remove("user_story_overlay");
         document.getElementById("category_overlay" + index).classList.add("technical_task_overlay");
     }
+    checkPriority(index);
 
 
     if (currentTasks[index].subtasks.total != 0) {
@@ -262,7 +298,7 @@ function showCardOverlay(index) {
             document.getElementById("tasks_box" + index).innerHTML += getTaskOverlay(index, i);
             if (Object.values(currentTasks[index].subtasks.subtasks_todo)[i] == "done") {
                 document.getElementById("check_box_" + index + "_btn" + i).classList.add("checked_box");
-           
+                document.getElementById("check_box_" + index + "_info" + i).classList.add("task_info_done");
             }
             
         }
@@ -285,15 +321,28 @@ function showCardOverlay(index) {
 
 function getInitialsOverlay(index, i) {
     let names = currentTasks[index].contacts[i].name.split(' ');
-    let initials = "";
+    let initialsBoard = "";
     for (let a = 0; a < names.length; a++) {
-        initials += names[a].substr(0,1);
+        initialsBoard += names[a].substr(0,1);
     }
-    document.getElementById("profile_badge_overlay_" + index + "_" + i).innerHTML += initials.toUpperCase();
+    document.getElementById("profile_badge_overlay_" + index + "_" + i).innerHTML += initialsBoard.toUpperCase();
 }
 
-function closeOverlay() {
-    location.reload();
+function closeOverlay(specifier) {
+    if (specifier == "bg_overlay") {
+        document.getElementById('card_overlay').innerHTML = "";
+        document.getElementById(specifier).classList.add("d_none");
+    } else if (specifier == "addTask_overlay") {
+        document.getElementById("addTask_card").classList.remove("slide-in");
+        document.getElementById("addTask_card").classList.add("slide-out");
+        document.getElementById(specifier).classList.add("brighter_background");
+        setTimeout(() => {
+            document.getElementById(specifier).classList.add("d_none");
+        }, 200);
+        
+        
+    }
+    
 }
 
 function stopPropagation(event){
@@ -302,9 +351,11 @@ function stopPropagation(event){
 
 async function changeSubtaskCategory(index, i){
     let div =  document.getElementById("check_box_" + index + "_btn" + i);
+    let box = document.getElementById("check_box_" + index + "_info" + i);
     let task = Object.keys(currentTasks[index].subtasks.subtasks_todo)[i];
     newFinishedTasks = currentTasks[index].subtasks.number_of_finished_subtasks;
     div.classList.toggle("checked_box");
+    box.classList.toggle("task_info_done");
 
     if (div.classList.contains("checked_box")) {
         await changeTaskStatus(index, task, "done");
@@ -319,109 +370,105 @@ async function changeSubtaskCategory(index, i){
         }
 
         await fetchTaskData();
+        updateTaskBoard();
 }
 
 async function changeTaskStatus(index, task, status) {
-   
-            let CurrentSubtaskResponse = await fetch(Base_URL + `/tasks/${index}/subtasks/subtasks_todo/${task}` + ".json",{
+            await fetch(Base_URL + `/tasks/${index}/subtasks/subtasks_todo/${task}` + ".json",{
                 method: "PUT",
                 header: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(status)
             });
-        
-            return CurrentSubtaskResponseToJson = await CurrentSubtaskResponse.json();
 }
 
 async function changeNumberOfFinishedTasks(index, newFinishedTasks) {
-
-    
-            let CurrentFinishedTasksResponse = await fetch(Base_URL + `/tasks/${index}/subtasks/number_of_finished_subtasks` + ".json",{
+            await fetch(Base_URL + `/tasks/${index}/subtasks/number_of_finished_subtasks` + ".json",{
                 method: "PUT",
                 header: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(newFinishedTasks)
             });
-        
-            return CurrentFinishedTasksResponseToJson = await CurrentFinishedTasksResponse.json();
     }
 
 
 async function deleteTask(index) {
-
-    currentTasks.splice(index, 1);
-    updateFirebase();
-
+    currentTasks[index] = {};
+    await deleteTaskData(`/tasks/${index}`);
+    location.reload();
 }    
 
-async function updateFirebase() {
-    for (let index = 0; index < currentTasks.length; index++) {
-        await postTaskData(`/tasks/${index}`, currentTasks[index]);
-    }
-    await deleteTaskData(`/tasks/${currentTasks.length}`);
-    location.reload();
-}
-
-async function postTaskData(path = "", task) {
-    let CurrentTaskResponse = await fetch(Base_URL + path + ".json",{
-        method: "PUT",
-        header: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(task)
-    });
- }
-
  async function deleteTaskData(path = "") {
-    let CurrentTaskResponse = await fetch(Base_URL + path + ".json",{
+    await fetch(Base_URL + path + ".json",{
         method: "DELETE",
     });
  }
 
+function startTyping() {
+    document.getElementById('input_board').classList.add('input_board_searching');
+    if (document.getElementById('inputfield_board').value == "") {
+        document.getElementById('input_board').classList.remove('input_board_searching');
+    }
+}
+
 function findTask() {
     let titleToFind = document.getElementById('inputfield_board').value;
-
-
+    // document.getElementById("bg_overlay").classList.remove("d_none");
+    
+    let counter = 0;
+    // document.getElementById('card_overlay').innerHTML = getFoundItems();
+    // document.getElementById('card_overlay').classList.add('card_extra');
     for (let index = 0; index < currentTasks.length; index++) {
-        if (currentTasks[index].title.toLowerCase().includes(titleToFind.toLowerCase())) {
-            let subtasks = currentTasks[index].subtasks.total;
-            let progress =  currentTasks[index].subtasks.number_of_finished_subtasks / subtasks * 100;
-            let layer = "overlay";
-            document.getElementById("bg_overlay").classList.remove("d_none");
-            document.getElementById('card_overlay').innerHTML += getFoundItems(titleToFind);
-            document.getElementById('search_results').innerHTML += getExampleCard(index, layer);
-
-            checkCategory(index, layer);
-            checkSubtasks(subtasks, index, progress, layer);
-            checkDescription(index, layer);
-            checkContacts(index, layer);
-
-
-                           
-
-            // let prio = "Medium";
-            // if (currentTasks[index].prio == "high_prio") {
-            //     prio = "High";
-            // } else if (currentTasks[index].prio == "low_prio") {
-            //     prio = "Low";
-            // }
-            
-            // document.getElementById('prio_' + index).innerHTML = prio;
-            
+        if (currentTasks[index]) {
+            // getTaskInfo(index, titleToFind);
+            if (currentTasks[index].title.toLowerCase().includes(titleToFind.toLowerCase())) {
+                counter = counter + 1;
+                if (counter == 1) {
+                    emptyBoard();
+                }
+                showCardOnBoard(index);
+            }
         }
+    } 
+// document.getElementById('found_titles').innerHTML == ''
+    if (counter == 0) {
+        // closeOverlay("bg_overlay");
+        // document.getElementById('card_overlay').classList.remove('card_extra');
+        document.getElementById('no_element_found_alert').classList.remove('d_none');
+        document.getElementById('input_board').classList.add('alert_input');
+        setTimeout(() => {
+            document.getElementById('no_element_found_alert').classList.add('d_none');
+            document.getElementById('input_board').classList.remove('alert_input');
+        }, 5000);
         
     }
-    
-    
-
-
-
-
-
-
-
     document.getElementById('inputfield_board').value = "";
+    document.getElementById('input_board').classList.remove('input_board_searching');
+    
+}
+
+function getTaskInfo(index, titleToFind) {
+    if (currentTasks[index].title.toLowerCase().includes(titleToFind.toLowerCase())) {
+        showCardOnBoard(index);
+
+        // let subtasks = currentTasks[index].subtasks.total;
+        // let progress =  currentTasks[index].subtasks.number_of_finished_subtasks / subtasks * 100;
+        // let layer = "overlay";
+        // document.getElementById('found_titles').innerHTML += getExampleCard(index, layer);
+
+        // checkCategory(index, layer);
+        // checkSubtasks(subtasks, index, progress, layer);
+        // checkDescription(index, layer);
+        // checkContacts(index, layer);
+    }
+}
+
+function showAddTaskOverlay() {
+    document.getElementById("addTask_overlay").classList.remove("brighter_background");
+    document.getElementById("addTask_overlay").classList.remove("d_none");
+    document.getElementById("addTask_card").classList.remove("slide-out");
+    document.getElementById("addTask_card").classList.add("slide-in");
 }
 

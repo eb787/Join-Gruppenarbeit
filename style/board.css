@@ -40,6 +40,14 @@
     display: flex;
 }
 
+.input_board_searching {
+    border: 1px solid #29ABE2;
+}
+
+.alert_input{
+    border: 1px solid #FF8190
+}
+
 .inputfield_board {
     border: 0;
     padding: 0;
@@ -104,6 +112,7 @@
 
 .add_task_icon:hover {
     cursor: pointer;
+    filter: invert(50%) sepia(100%) saturate(200%) hue-rotate(165deg) brightness(100%) contrast(100%);
 }
 
 .board_table_content {
@@ -128,6 +137,7 @@
     flex-direction: column;
     padding-top: 6px;
     padding-bottom: 6px;
+    min-height: 100%;
 }
 
 .no_tasks {
@@ -219,6 +229,7 @@
 
 .profile_badges {
     display: flex;
+    min-width: 2px;
 }
 
 .profile_badge {
@@ -363,8 +374,14 @@
  background-color: #0000000e;
  border-radius: 10px;
  .check_box_btn {
-    background-image: url(../assets/icons/checked_hover.png);
+    background-image: url(../assets/icons/subtask_todo_hover.svg);
  }
+}
+
+.task_info_done:hover {
+    .checked_box {
+        background-image: url(../assets/icons/subtask_done_hover.svg)!important;
+     }
 }
 
 .card_overlay_header {
@@ -396,3 +413,94 @@
     background-color: #D1D1D1;
     width: 0.5px;
 }
+
+.alert_box{
+    font-size: 12px;
+    font-weight: 400;
+    color: #FF8190;
+    padding-top: 6px;
+}
+
+.found_titles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-top: 150px;
+}
+
+.heading_extra {
+    font-size: 61px;
+    position: fixed;
+    background-color: white;
+    z-index: 99;
+    height: 100px;
+    padding-top: 48px;
+}
+
+.card_extra {
+    padding: 0 40px !important;
+    padding-bottom: 48px !important; 
+}
+
+.addTask_overlay {
+    width: 1116px;
+    height: 870px;
+    max-height: calc(100vh - 148px);
+    border-radius: 30px;
+    box-shadow: 0 0 4px 0 #0000001A;
+    background-color: #FFFFFF;
+    position: absolute;
+    margin-top: 28px;
+}
+
+.slide-in {
+    animation: slide-in 0.2s ease-out forwards;
+}
+
+@keyframes slide-in {
+    from {
+        right: -100vw;
+    }
+    to {
+        right: calc((100vw - 1116px) / 2);
+    }
+}
+
+.slide-out {
+    animation: slide-out 0.2s ease-out forwards;
+}
+
+@keyframes slide-out {
+    from {
+        right: calc((100vw - 1116px) / 2);
+    }
+    to {
+        right: -100vw;
+    }
+}
+
+.brighter_background {
+    animation: brightenBackground 0.2s linear forwards;
+}
+
+@keyframes brightenBackground {
+    0% { background-color: rgba(0, 0, 0, 0.4); }
+    100% { background-color: transparent; }
+}
+
+.rotate_card {
+    transform: rotate(5deg);
+}
+
+.dots_more_content {
+    z-index: 6;
+    position: relative;
+    left: calc(-40px);
+    color: #A8A8A8;
+    display: flex;
+    align-items: end;
+    padding-left: 5px;
+    font-size: 16px;
+}
+

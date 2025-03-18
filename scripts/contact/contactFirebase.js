@@ -27,8 +27,8 @@ function collectContactData() {
         "color": color
     };
 
-    globalIndex++; 
-    saveGlobalIndex(); 
+    globalIndex++;
+    saveGlobalIndex();
 
     return newContact;
 }
@@ -41,16 +41,20 @@ async function addContact() {
     let nameInput = document.getElementById('name_input');
     let emailInput = document.getElementById('email_input');
 
-    if (!validateName(nameInput) || !(await validateEmail(emailInput, newContact.email))) return;
+    if (!validateName(nameInput) || !(await validateEmail(newContact.email))) return;
 
     let firstLetter = getFirstLetter(newContact.name);
     let contactsGroup = contactsData[firstLetter] || {};
     let newId = Object.keys(contactsGroup).length;
     contactsGroup[newId] = newContact;
-   
+
     await postData(`/contacts/${firstLetter}`, contactsGroup);
     clearInputsAndClose();
-    getUsersList(); // Aktualisiert die gesamte Liste
+    getUsersList();
+    currentLetter = firstLetter;
+    index = newId;
+
+    showAlertSuccess(currentLetter, index); 
 }
 
 async function getUsersList() {
@@ -59,16 +63,6 @@ async function getUsersList() {
     contactsData = await getData("/contacts");
     generateFullContactList(contactsData, userContainer);
 
-    addEventListenersToContacts(); // Füge Event Listener neu hinzu
-}
-
-function addEventListenersToContacts() {
-    document.querySelectorAll(".contact-card").forEach(contact => {
-        contact.addEventListener("click", function () {
-            let contactId = this.dataset.id;
-            openContactBigMiddle(contactId);
-        });
-    });
 }
 
 async function getData(path = "") {
@@ -88,7 +82,7 @@ function clearInputsAndClose() {
     ["name_input", "email_input", "tel_input"].forEach(id => document.getElementById(id).value = "");
     closeContactBig();
     resetPicture()
-    
+
 }
 
 function getFirstLetter(name) {
@@ -105,55 +99,56 @@ function generateContactList(contacts, userContainer, letter) {
         if (firstLetter !== currentLetter) {
             currentLetter = firstLetter;
             userContainer.innerHTML += `
-                <div class="contact-section">
+                <div class="contact-section" id= "contact-section">
                     <h3 class="contact-section-title">${currentLetter}</h3>
                     <hr class="contact-divider">
                 </div>
             `;
         }
-        let colorIndex = typeof user.color === "number" 
-            ? user.color % contactColorArray.length 
+        let colorIndex = typeof user.color === "number"
+            ? user.color % contactColorArray.length
             : index % contactColorArray.length;
 
         let color = contactColorArray[colorIndex];
 
 
-        let contactId = `${currentLetter}-${index}`;
-        userContainer.innerHTML += contactCardScrollList(user, contactId, color);
+        let contactsId = `${currentLetter}-${index}`;
+        userContainer.innerHTML += contactCardScrollList(user, contactsId, color);
     });
-}
-
-function contactColorAssign(color) {
-    return contactColorArray[color - 1] || "#ccc"; 
 }
 
 
 // Delete data for List
-async function deleteContact(contactId, firstLetter) {
+async function deleteContact(contactsId, firstLetter) {
     try {
-        if (!contactsData || !contactsData[firstLetter] || !contactsData[firstLetter][contactId]) {
+        if (!contactsData || !contactsData[firstLetter] || !contactsData[firstLetter][contactsId]) {
             console.error("Kontakt nicht gefunden.");
             return;
         }
-
-        delete contactsData[firstLetter][contactId];
-
+        delete contactsData[firstLetter][contactsId];
         let updatedContacts = {};
         let newId = 0;
         for (let oldId in contactsData[firstLetter]) {
             updatedContacts[newId] = contactsData[firstLetter][oldId];
             newId++;
         }
-
         await postData(`/contacts/${firstLetter}`, updatedContacts);
         globalIndex = newId;
         saveGlobalIndex();
+        let contactElement = document.getElementById(`contact-card-A-0`);
+        if (contactElement) {
+            contactElement.remove();
+        }
+        let remainingContacts = document.querySelectorAll(`[data-letter="${firstLetter}"] .contact-card`);
 
-        await getUsersList();
+        let contactSection = document.getElementById(`contact-section-${firstLetter}`);
+        if (contactSection && remainingContacts.length === 0) {
+            contactSection.remove();
+        }
 
         setTimeout(() => {
-            restoreClickEvents();
-        }, 100); // Leichte Verzögerung, um sicherzustellen, dass DOM-Updates abgeschlossen sind
+            location.reload();
+        }, 100);
 
         closeContactBigMiddle();
     } catch (error) {
@@ -161,20 +156,11 @@ async function deleteContact(contactId, firstLetter) {
     }
 }
 
-function restoreClickEvents() {
-    document.querySelectorAll(".delete-button").forEach(button => {
-        button.addEventListener("click", function () {
-            let contactId = this.dataset.id;
-            let firstLetter = this.dataset.letter;
-            deleteContact(contactId, firstLetter);
-        });
-    });
 
-    document.querySelectorAll(".edit-button").forEach(button => {
-        button.addEventListener("click", function () {
-            let contactId = this.dataset.id;
-            let firstLetter = this.dataset.letter;
-            editContact(contactId, firstLetter);
-        });
-    });
+function deleteHtml() {
+    let contactElement = document.getElementById(`contact-card-A-0`);
+if (contactElement) {
+    contactElement.remove();
 }
+}
+ 

@@ -15,7 +15,11 @@
     <link rel="stylesheet" href="../style/task/addTaskOverlay.css">
     <script src="../scripts/board/board.js"></script>
     <script src="../scripts/board/board_template.js"></script>
+    
     <script src="..//scripts/task/taskEdit.js"></script>
+    <script src="../scripts/task/taskMain.js"></script>
+    <script src="../scripts/task/taskRender.js"></script>
+    <script src="../scripts/task/tastTemplate.js"></script>
     <script src="..//scripts/script.js"></script>
 </head>
 
@@ -74,8 +78,9 @@
                     <div class="board_header">
                         <h1 class="board_heading">Board</h1>
                         <div class="board_options">
-                            <div class="input_board">
-                                <input id="inputfield_board" class="inputfield_board" type="text" placeholder="Find Task"
+                            <div>
+                            <div id="input_board" class="input_board">
+                                <input onkeyup="startTyping()" id="inputfield_board" class="inputfield_board" type="text" placeholder="Find Task"
                                     alt="input find task">
                                 <div onclick="findTask()" class="input_icons">
                                     <img class="seperator_icon" src="../assets/icons/seperator.png"
@@ -83,7 +88,10 @@
                                     <img class="search_icon" src="../assets/icons/search.png" alt="search icon">
                                 </div>
                             </div>
-                            <button type="button" class="add_task_btn">Add task<img class="add_icon"
+                            <div id="no_element_found_alert" class="alert_box d_none">No Task has been found</div>
+                            </div>
+                            
+                            <button onclick="showAddTaskOverlay()" type="button" class="add_task_btn">Add task<img class="add_icon"
                                     src="../assets/icons/add.svg" alt="add task"></button>
                         </div>
                     </div>
@@ -91,15 +99,15 @@
                         <div class="board_table_headings">
                             <div class="board_description_box">
                                 <h2 class="Board_description_text">To do</h2>
-                                <img class="add_task_icon" src="../assets/icons/plus button.png" alt="plus icon">
+                                <img onclick="showAddTaskOverlay()" class="add_task_icon" src="../assets/icons/plus button.png" alt="plus icon">
                             </div>
                             <div class="board_description_box">
                                 <h2 class="Board_description_text">In progress</h2>
-                                <img class="add_task_icon" src="../assets/icons/plus button.png" alt="plus icon">
+                                <img onclick="showAddTaskOverlay()" class="add_task_icon" src="../assets/icons/plus button.png" alt="plus icon">
                             </div>
                             <div class="board_description_box">
                                 <h2 class="Board_description_text">Await feedback</h2>
-                                <img class="add_task_icon" src="../assets/icons/plus button.png" alt="plus icon">
+                                <img onclick="showAddTaskOverlay()" class="add_task_icon" src="../assets/icons/plus button.png" alt="plus icon">
                             </div>
                             <div class="board_description_box">
                                 <h2 class="Board_description_text">Done</h2>
