@@ -11,7 +11,7 @@ let contactColorArray = [
   "#040404"
 ];
 
-function toggleMenu() {
+/*function toggleMenu() {
     document.getElementById('submenu_toogle').classList.toggle('submenu_open');
   }
   
@@ -58,3 +58,4 @@ function addUserLogoTemplate(){
         </div>
     `
 }
+    */

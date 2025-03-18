@@ -83,3 +83,13 @@ function cardNewContactEdit() {
         
     `;
 }
+
+
+function  alertSuccess() {
+    return `
+    <div id ="alert">
+    <div class="alert-div">
+  <p class="alert-text">Contact succesfully created</p>  
+</div>
+</div>`
+}
