@@ -5,7 +5,8 @@ console.log("taskEdit.js");
 let dataRaskEditContact = {};
 let taskSubTaskListEdit=[];
 let index="";
-let contactList={};
+let addTaskEditDBContac={};
+
 
 
 function editTask(indexU) {
@@ -86,7 +87,8 @@ async function loadContacsFirebase() {
         try {
                 let dataCont = await fetch(Base_URL + "/contacts/" + ".json")
                 dataRaskEditContact = await dataCont.json();
-                console.log("Contace ", dataRaskEditContact);
+                console.log("Kontace auis DB gelesen ", dataRaskEditContact);
+               
         } catch {
                 console.log("Fehler beim Laden")
         }
@@ -187,8 +189,11 @@ function taskCreateTaskEdit() {
        taskEditContactsCheck();
        collectDataEdit();
        taskEditContactsCheck();
-       //postTaskDataEdit(`/tasks/${parseInt(index)}`,currentTask);
-        closeOverlay('bg_overlay')
+       postTaskDataEdit(`/tasks/${parseInt(index)}`,currentTask);
+       closeOverlay('bg_overlay')
+          console.log(currentTasks[index].status);
+          
+           
     }
 
 
@@ -205,13 +210,15 @@ function taskCreateTaskEdit() {
             number_of_finished_subtasks: 0, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
             subtasks_todo: subTasksObjects(),
           },
-          //status: "toDo" //  "toDo",  "inProgress", "awaitFeedback", oder "done" 
+          status: currentTasks[index].status,  //  "toDo",  "inProgress", "awaitFeedback", oder "done" 
         }
              }
 
 
 
              async function postTaskDataEdit(path = "", task) {
+                console.log("Schreibe in DB");
+           
                 let CurrentTaskResponse =  await fetch(Base_URL + path + ".json",{
                     method: "PUT",
                     header: {
@@ -222,21 +229,25 @@ function taskCreateTaskEdit() {
              }
 
 
-
              function taskEditContactsCheck(){
-                if(selectedTaskContacts.length>0){
+                console.log("Kontake ",selectedTaskContacts);
+                console.log("Kontake aus DB ", taskContacteArray);
+                 if(selectedTaskContacts.length>0){
                         console.log("Kontake vorhanden");
-                        return selectedTaskContacts;
+                        return   selectedTaskContacts;
                 }
                 else{
                         console.log("Adressen beim speichern ",contactList.length);
                          if(contactList.length>0){
-                           return selectedTaskContacts= contactList; 
+                                console.log("Schreine Kontake aus DB in DB");
+                                                          
+                           return selectedTaskContacts=taskContacteArray; 
                         }else{
                         console.log("Kein Kontake vorhanden"); 
                      if('contacts' in currentTask){
                        delete currentTask.contacts;        
-              }}}}
+              }}}                      
+              }
         
         
                  

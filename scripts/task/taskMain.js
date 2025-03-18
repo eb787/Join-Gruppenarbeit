@@ -8,7 +8,7 @@ let selectedTaskContacts = [];
 let taskPrioSelect = "medium_prio";
 let currentTaskAdd = {};
 //let taskId = "";
-
+taskContacteArray
 
 
 function init(){  
@@ -207,9 +207,11 @@ function taskReadinArrayContact(DataContact) {
     color: entry.color || "10"
   })));
   console.log("Array mit name,Maikl ",taskContacteArray);
+
   taskContacteArray.map((contact,index) =>{
       taskRenderContactList(index,contact.name,contact.color ||  "10",contact.email);
       });
+      
    }
 
 
