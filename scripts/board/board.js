@@ -415,19 +415,27 @@ function startTyping() {
 
 function findTask() {
     let titleToFind = document.getElementById('inputfield_board').value;
-    document.getElementById("bg_overlay").classList.remove("d_none");
-    document.getElementById('card_overlay').innerHTML = getFoundItems();
-    document.getElementById('card_overlay').classList.add('card_extra');
+    // document.getElementById("bg_overlay").classList.remove("d_none");
+    
+    let counter = 0;
+    // document.getElementById('card_overlay').innerHTML = getFoundItems();
+    // document.getElementById('card_overlay').classList.add('card_extra');
     for (let index = 0; index < currentTasks.length; index++) {
         if (currentTasks[index]) {
-            getTaskInfo(index, titleToFind);
+            // getTaskInfo(index, titleToFind);
+            if (currentTasks[index].title.toLowerCase().includes(titleToFind.toLowerCase())) {
+                counter = counter + 1;
+                if (counter == 1) {
+                    emptyBoard();
+                }
+                showCardOnBoard(index);
+            }
         }
-        
     } 
-
-    if (document.getElementById('found_titles').innerHTML == '') {
-        closeOverlay("bg_overlay");
-        document.getElementById('card_overlay').classList.remove('card_extra');
+// document.getElementById('found_titles').innerHTML == ''
+    if (counter == 0) {
+        // closeOverlay("bg_overlay");
+        // document.getElementById('card_overlay').classList.remove('card_extra');
         document.getElementById('no_element_found_alert').classList.remove('d_none');
         document.getElementById('input_board').classList.add('alert_input');
         setTimeout(() => {
@@ -443,15 +451,17 @@ function findTask() {
 
 function getTaskInfo(index, titleToFind) {
     if (currentTasks[index].title.toLowerCase().includes(titleToFind.toLowerCase())) {
-        let subtasks = currentTasks[index].subtasks.total;
-        let progress =  currentTasks[index].subtasks.number_of_finished_subtasks / subtasks * 100;
-        let layer = "overlay";
-        document.getElementById('found_titles').innerHTML += getExampleCard(index, layer);
+        showCardOnBoard(index);
 
-        checkCategory(index, layer);
-        checkSubtasks(subtasks, index, progress, layer);
-        checkDescription(index, layer);
-        checkContacts(index, layer);
+        // let subtasks = currentTasks[index].subtasks.total;
+        // let progress =  currentTasks[index].subtasks.number_of_finished_subtasks / subtasks * 100;
+        // let layer = "overlay";
+        // document.getElementById('found_titles').innerHTML += getExampleCard(index, layer);
+
+        // checkCategory(index, layer);
+        // checkSubtasks(subtasks, index, progress, layer);
+        // checkDescription(index, layer);
+        // checkContacts(index, layer);
     }
 }
 
