@@ -8,9 +8,7 @@ function getExampleCard(index, layer) {
                                 <div id="subtasks_box${index}_${layer}">
                                 </div>
                                 <div class="card_footer">
-                                    <div id="Profile_badges_${index}_${layer}" class="profile_badges">
-                                        
-                                    </div>
+                                    <div id="Profile_badges_${index}_${layer}" class="profile_badges"></div>
                                     <img class="prio_icon ${currentTasks[index].prio}_${layer}" src="..//assets/icons/${currentTasks[index].prio}.svg" alt="priority indicator">
                                 </div>
                                 
@@ -40,7 +38,10 @@ function getSubtasks(index, subtasks, progress, layer) {
 function getContactIcon(index, i, layer) {
     return `   <div id="profile_${index}_${i}_${layer}" class="profile_badge" style="z-index: ${i + 1}; position: relative; left: calc(${i} * -8px); background-color: ${contactColorArray[currentTasks[index].contacts[i].color]};"></div>  
     `
+}
 
+function getContactDots() {
+    return ` <div class="dots_more_content">...</div>`
 }
 
 function getNoTasksToDoCard() {

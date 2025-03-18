@@ -146,10 +146,17 @@ function checkDescription(index, layer) {
 
 function checkContacts(index, layer) {
     if (currentTasks[index].contacts) {
-        for (let i = 0; i < currentTasks[index].contacts.length; i++) {
-            getCorrectContact(index, i, layer);
-            
+        if (currentTasks[index].contacts.length > 5 && layer == "") {
+            for (let i = 0; i < 5; i++) {
+                getCorrectContact(index, i, layer);
+            }
+            document.getElementById("Profile_badges_" + index + "_" + layer).innerHTML += getContactDots();
+        } else {
+            for (let i = 0; i < currentTasks[index].contacts.length; i++) {
+                        getCorrectContact(index, i, layer);
+            }
         }
+        
          
     } else {
        document.getElementById("Profile_badges_" + index + "_" + layer).innerHTML = "";
