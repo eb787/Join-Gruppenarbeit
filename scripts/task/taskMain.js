@@ -281,7 +281,7 @@ function checkInputData() {
 function collectData() {
   currentTaskAdd = {
     title: document.getElementById('taskTitle').value,
-    description: document.getElementById('descriptionTask').value.trim() || "empty",  // oder "empty" reinschreiben wenn es leer bleibt
+    description: document.getElementById('descriptionTask').value.trim(),// || "empty",  // oder "empty" reinschreiben wenn es leer bleibt
     contacts: selectedTaskContacts, //
       deadline: dateConversion(document.getElementById('taskDate').value),
     prio: taskPrioSelect, // "medium_prio" , oder "low_prio", oder "hgh_prioi"

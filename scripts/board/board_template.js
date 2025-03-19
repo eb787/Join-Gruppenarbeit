@@ -70,8 +70,7 @@ function getCardOverlay() {
 
 function getCardOverlayContent(index) {
     return `   
-      
-        <div class="card_overlay_header">
+            <div class="card_overlay_header">
             <div id="category_overlay${index}" class="task_category task_category_overlay technical_task_overlay ">${currentTasks[index].category}</div>
             <img onclick="closeOverlay('bg_overlay')" class="close_btn_overlay" src="..//assets/icons/close.svg" alt="close button">
         </div>
@@ -154,35 +153,34 @@ function getContactIconOverlay(index, i) {
 
 function editTaskTemplate(index) {
     console.log("Gebe Currentaskaus ",currentTasks[index]);
-    //btnPrioSelect('urgent');    
-
+   
     return `
         <div class="card_overlay_header">
             <div id="category_overlay${index}" class="task_category task_category_overlay  "></div>
             <img onclick="closeOverlay('bg_overlay')" class="close_btn_overlay" src="..//assets/icons/close.svg" alt="close button">
         </div>
  
-            <form>
+            
                 <div class="section-title-div">
                     <span class="title">Title</span>
-                    <input id="taskTitle" class="input-title input-field" type="text" value="${currentTasks[index].title}" tabindex="1">
+                    <input id="taskTitle" class="input-title input-field" type="text" tabindex="1">
                     <span class="error_Field">&nbsp;</span>
                 </div>
-            </form>
+            
 
-            <div class="section-description">
-                <span>Description</span>
-                <div class="textarea-description">
-                    <textarea id="descriptionTask"  placeholder="Enter a Description" tabindex="2">${currentTasks[index].description}</textarea>
+               <div class="section-description">
+                  <span>Description</span>
+                   <div class="textarea-description">
+                        <textarea id="descriptionTask"  placeholder="Enter a Description" tabindex="2">${currentTasks[index].description}</textarea>
+                   </div>
                 </div>
-            </div>
 
         
 
             <div class="section-date-div">
                 <span class="star-red">Due date </span>
                <div class="task_Date_Input_Div">
-                   <input type="date" value="${dateConversation(currentTasks[index].deadline)}" id="taskDate" class="date_input input-field" tabindex="4" >
+                   <input type="date"  id="taskDate" class="date_input input-field" tabindex="4" >
                    <img src="../assets/icons/event.png" class="date-icon"  onclick="openDatePicker()" >
                 </div>
                 <span class="error_Field">&nbsp;</span>
@@ -271,7 +269,7 @@ function editTaskTemplate(index) {
                             <button class="button_Ok" onclick="TaskEditSave()" >OK<img src="../assets/icons/check.svg"></button>
             
                             </div>
-                          
+                        
             
     </div>
    `
@@ -284,6 +282,7 @@ function getFoundItems() {
 
     <div id="found_titles" class="found_titles"></div>
       
+    
     
     `
 }
@@ -304,7 +303,9 @@ function getAddTaskOverlay() {
     return `    <div onclick="closeOverlay('addTask_overlay')" id="addTask_overlay" class="bg_overlay d_none">
                 <div onclick="stopPropagation(event)" id="addTask_card" class="addTask_overlay">
                 <img onclick="closeOverlay('addTask_overlay')" class="close_btn_overlay" style="width: 100px;" src="..//assets/icons/close.svg" alt="close button">
-                    
+               <h1>TaskEdit</h1>
+    <h1>ab hier einfügen</h1>     
+               
                             </div>
                                 </div>`
 }
