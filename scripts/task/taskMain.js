@@ -34,8 +34,11 @@ function startAddTask() {
 
 //Felder prüfen ob Eingabe erfolgte mit QuerySelector
 function requiredInputAddTask() {
+
+  
   document.querySelectorAll(".input-field").forEach(input => {
     input.addEventListener("blur", function () {
+      console.log("Prüfe feld");
       let errorMsg = this.nextElementSibling;
       if (this.value.trim() === "") {
         this.classList.add('error_Msg_Input')
@@ -106,17 +109,24 @@ function btnPrioSelect(btnPrio) {
     button.style.backgroundColor = "white";
     button.style.color = "black";
   });
+
+
   if (btnPrio == "urgent") {
     btnPrioBtnSelect("button-urgent", "#FF3D00", 0)
     taskPrioSelect = "high_prio";
+  
   }
+
   if (btnPrio == "medium") {
     btnPrioBtnSelect("button-medium", "#FFA800", 1)
     taskPrioSelect = "medium_prio"
+
   }
+
   if (btnPrio == "low") {
     btnPrioBtnSelect("button-low", "#7AE229", 2)
     taskPrioSelect = "low_prio";
+  
   }
 }
 
@@ -235,7 +245,7 @@ function taskContactFilterList() {
   });
 }
 
-function contactCheckOKinArray(index) {
+function contactCheckOKinArray() {
   selectedTaskContacts = [];
   document.querySelectorAll(".contact_Label_Item").forEach((entry,contactID) => {
     let checkbox = entry.querySelector("input[type='checkbox']")

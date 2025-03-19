@@ -36,23 +36,6 @@ function contactCheckOKinArray(index) {
         console.log("Namen mit Checkbox ", selectedTaskContacts);
 }
 
-function checkPrioEditTask(index) {
-        let prio = currentTasks[index].prio;
-console.log("Prio ausgeben ",prio);
-
-
-        switch (prio) {
-                case "high_prio":
-                        btnPrioSelect('urgent')
-                        break;
-                case "medium_prio":
-                        btnPrioSelect('medium')
-                        break;
-                case "low_prio":
-                        btnPrioSelect('low')
-                       break;
-        }
-}
 
 
 function  editTaskWriteContacts(contactList) {
@@ -107,7 +90,7 @@ function taskContactFilterList1() {
 
 
 function subTaskListLoadEdit(index) {
-        
+      
         document.getElementById('subTaskAddIcon').classList.remove('ele_hide')
         document.getElementById('subTaskEditIocn').classList.add('ele_hide')
         if (currentTasks[index].subtasks.total != 0) {

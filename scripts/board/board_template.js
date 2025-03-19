@@ -193,12 +193,12 @@ function editTaskTemplate(index) {
 
 
                 <div class="prio-buttons">
-                       <button onclick="btnPrioSelect('urgent')" class="btn_prio button-urgent" tabindex="5">Urgent
+                       <button onclick="btnPrioSelect('urgent');checkPrioEditTask('urgent')" class="btn_prio button-urgent" tabindex="5">Urgent
                        <img class="prio_img" src="../assets/icons/high_prio.svg" alt="urgent">
                     </button>
                   
 
-                    <button onclick="btnPrioSelect('medium')" class="btn_prio button-medium" tabindex="6">Medium
+                    <button onclick="btnPrioSelect('medium');checkPrioEditTask('medium')" class="btn_prio button-medium" tabindex="6">Medium
                         <div id="btnPrioGroup" class="prio_img prio_img_group">
                             <img src="../assets/icons/linePrio.svg">
                             <img src="../assets/icons/linePrio.svg">
@@ -206,7 +206,7 @@ function editTaskTemplate(index) {
                     </button>
 
 
-                    <button onclick="btnPrioSelect('low')" class="btn_prio button-low" tabindex="7">Low
+                    <button onclick="btnPrioSelect('low');checkPrioEditTask('low')" class="btn_prio button-low" tabindex="7">Low
                         <img class="prio_img" src="../assets/icons/low_prio.svg">
                     </button>
                 </div>
@@ -222,7 +222,7 @@ function editTaskTemplate(index) {
 
                     <div class="task_input_section">
                         <input type="text" id="taskDropDownInput" class="task_dropdown_input" tabindex="3"
-                            placeholder="Select contacts to assign" onclick="taskContactListDrobdown1()"
+                            placeholder="Select contacts to assign" onclick="taskContactListDrobdownEdit()"
                             onkeyup="taskContactFilterList1()">
                         <img src="../assets/icons/arrow_down.svg" >
                     </div>
@@ -259,10 +259,11 @@ function editTaskTemplate(index) {
                                 <img id="subTaskCheckIcon" onclick="taskCreateTaskEdit()" src="../assets/icons/checkSW.svg">
                             </div>
 
-                        </div>
+                           </div>
                             
                                 <div id="subTaskList" class="subtask_list"></div>
-                            </div>   
+                              
+                                </div>   
                     
                         
                         <div class="btn_div">

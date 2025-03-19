@@ -61,8 +61,4 @@ function addUserLogoTemplate(){
         </div>
     `
 }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e696ee6e48106065e2b940c15ad923d4d0f8bf63
