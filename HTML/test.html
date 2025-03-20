@@ -7,8 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    <button onclick="init()">Test</button>
-    
+    <button onclick="init()">Test Datensatz hinzufügen</button>
+    <button onclick="dbtest()">DB-Test></button>
 </body>
 
 <script>
@@ -33,7 +33,7 @@ currentTask = {
 
 function init(){
     console.log("Init aufgerufen");
-    postTaskData(`/tasks/${0}`, currentTask);
+    postTaskData(`/tasks/${5}`, currentTask);
 
 }
 
@@ -52,6 +52,33 @@ async function postTaskData(path = "", task) {
  }
 
 
+
+
+
+ const BASE_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/";
+ const TEST_PATH = "/tasks/" + ".json"; // Ein leerer oder vorhandener Eintrag
+
+
+
+function dbtest(){
+    console.log("Firebase - Test");
+    
+    checkDatabaseAccess();
+}
+
+async function checkDatabaseAccess() {
+    try {
+        let response = await fetch(`${BASE_URL}${TEST_PATH}`);
+        if (!response.ok) throw new Error(`HTTP-Fehler: ${response.status}`);
+        
+        let data = await response.json();
+        console.log("🔥 Zugriff erfolgreich!", data);
+        return true;
+    } catch (error) {
+        console.error("❌ Kein Zugriff auf die Datenbank:", error);
+        return false;
+    }
+}
 
 
 

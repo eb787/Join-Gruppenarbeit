@@ -12,6 +12,8 @@ let DataTaskContactsTask = [];
 let DataSubTaskListEdit = [];
 let editIndexEdit = false;
 let editTaskNrEdit = 0;
+selectedTaskContacts="";
+subTaskArray="";
 
 
 dataFromFirebase();
@@ -42,23 +44,27 @@ function TaskEditOverlayRender() {
 
 
 function checkPrioEditTask(prio) {
-
+               
         console.log("Prio ausgeben ", prio);
         switch (prio) {
                 case "high_prio":
-                        btnPrioSelect('urgent')
                         DataTaskPrio = "high_prio"
+                        btnPrioSelect('urgent')
+                
                         break;
                 case "medium_prio":
-                        btnPrioSelect('medium')
                         DataTaskPrio = "medium_prio";
+                        btnPrioSelect('medium')
+               
                         break;
                 case "low_prio":
-                        btnPrioSelect('low')
                         DataTaskPrio = "low_prio";
-                        break;
+                        btnPrioSelect('low')
+                   break;
         }
-        console.log("Aktuel prio ", DataTaskPrio);
+
+
+      console.log("Aktuel prio ", DataTaskPrio);
 
 }
 
@@ -173,24 +179,23 @@ function deleteSubTaskEdit(posi) {
 function TaskEditSave() {
         console.log("Speichere taskEdit");
         collectDataEdit();
-      
         console.log(DataTaskEdit[indexEdit].status);
         console.log(selectedTaskContacts);
         console.log(subtaskinObjekt(DataSubTaskListEdit));
-
-        console.log(checkContacts());
-
-        //postTaskDataEdit(`/tasks/${parseInt(indexEdit)}`, currentTaskEdit);
-        //updateTaskBoard();
+        console.log("Prio speichern",DataTaskPrio);
+        
+        postTaskDataEdit(`/tasks/${parseInt(indexEdit)}`, currentTaskEdit);
+      
+     
         //closeOverlay('bg_overlay')
-
+        updateTaskBoard();
 
 
 }
 
 
 function subtaskinObjekt(subTaskArray){
-       return subTask = Object.fromEntries(subTaskArray.map(item => [item, "done"]));
+       return subTask = Object.fromEntries(subTaskArray.map(item => [item, "todo"]));
 }
 
 
@@ -198,9 +203,10 @@ function collectDataEdit() {
         currentTaskEdit = {
                 title: document.getElementById('taskTitle').value,
                 description: document.getElementById('descriptionTask').value.trim(),  // oder "empty" reinschreiben wenn es leer bleibt
-                contacts: selectedTaskContacts,//
+                contacts: checkContacts() ,//
                 deadline: dateConversion(document.getElementById('taskDate').value),
                 prio: DataTaskPrio, // "medium_prio" , oder "low_prio", oder "hgh_prioi"
+                category:DataTaskEdit[indexEdit].category,
                 subtasks: {
                         total: DataSubTaskListEdit.length, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
                         number_of_finished_subtasks: 0, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
@@ -212,15 +218,19 @@ function collectDataEdit() {
 
 
 
-
-
 function checkContacts(){
-    if (Object.keys(DataTaskPrio)){
-       return DataTaskPrio;    
+   if (selectedTaskContacts.length>0){
+        console.log("Schreibe Daten aus Liste");
+        return selectedTaskContacts
+  
     }
     else{
-    return  DataTaskContactsTask;
-    }
+        if(DataTaskContactsTask.length>0){
+                console.log("Schreibe Daten aus Datenbank");
+                return DataTaskContactsTask;
+        }
+                return "";
+   }
 }
 
 
@@ -243,9 +253,7 @@ async function dataFromFirebase() {
         const { DataTask, DataContact } = await loadDataFirebaseEdit();
         DataTaskEdit = DataTask;
         DataContactsAll = DataContact
-        console.log("Test", DataTaskEdit);
-        console.log("Test1", DataContactsAll);
-}
+  }
 
 
 async function loadDataFirebaseEdit() {

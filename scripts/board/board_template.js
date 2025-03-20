@@ -178,7 +178,7 @@ function editTaskTemplate(index) {
         
 
             <div class="section-date-div">
-                <span class="star-red">Due date </span>
+                <span>Due date </span>
                <div class="task_Date_Input_Div">
                    <input type="date"  id="taskDate" class="date_input input-field" tabindex="4" >
                    <img src="../assets/icons/event.png" class="date-icon"  onclick="openDatePicker()" >
@@ -193,12 +193,12 @@ function editTaskTemplate(index) {
 
 
                 <div class="prio-buttons">
-                       <button onclick="btnPrioSelect('urgent');checkPrioEditTask('urgent')" class="btn_prio button-urgent" tabindex="5">Urgent
+                       <button onclick="btnPrioSelect('urgent');checkPrioEditTask('high_prio')" class="btn_prio button-urgent" tabindex="5">Urgent
                        <img class="prio_img" src="../assets/icons/high_prio.svg" alt="urgent">
                     </button>
-                  
+                 
 
-                    <button onclick="btnPrioSelect('medium');checkPrioEditTask('medium')" class="btn_prio button-medium" tabindex="6">Medium
+                    <button onclick="btnPrioSelect('medium');checkPrioEditTask('medium_prio')" class="btn_prio button-medium" tabindex="6">Medium
                         <div id="btnPrioGroup" class="prio_img prio_img_group">
                             <img src="../assets/icons/linePrio.svg">
                             <img src="../assets/icons/linePrio.svg">
@@ -206,7 +206,7 @@ function editTaskTemplate(index) {
                     </button>
 
 
-                    <button onclick="btnPrioSelect('low');checkPrioEditTask('low')" class="btn_prio button-low" tabindex="7">Low
+                    <button onclick="btnPrioSelect('low');checkPrioEditTask('low_prio')" class="btn_prio button-low" tabindex="7">Low
                         <img class="prio_img" src="../assets/icons/low_prio.svg">
                     </button>
                 </div>
@@ -234,12 +234,12 @@ function editTaskTemplate(index) {
                 </div>
             </div>
 
-            <div id="initialeIconList" class="initiale_Icon_List icon_List_hide">
+            <div id="initialeIconList" class="initiale_Icon_ListEdit icon_List_hide">
                 
             </div>
 
 
-            <div class="test">
+            <div class="section_Subtask">
 
                         <span>Subtasks</span>
                         <div class="input-wrapper">
@@ -268,10 +268,9 @@ function editTaskTemplate(index) {
                         
                         <div class="btn_div">
                             <button class="button_Ok" onclick="TaskEditSave()" >OK<img src="../assets/icons/check.svg"></button>
-            
-                            </div>
-                        
-            
+                                        </div>
+
+    
     </div>
    `
 
@@ -284,6 +283,8 @@ function getFoundItems() {
     <div id="found_titles" class="found_titles"></div>
       
     
+
+    </div>
     
     `
 }
@@ -301,12 +302,162 @@ function dateConversation(dateStr){
 
 
 function getAddTaskOverlay() {
-    return `    <div onclick="closeOverlay('addTask_overlay')" id="addTask_overlay" class="bg_overlay d_none">
-                <div onclick="stopPropagation(event)" id="addTask_card" class="addTask_overlay">
-                <img onclick="closeOverlay('addTask_overlay')" class="close_btn_overlay" style="width: 100px;" src="..//assets/icons/close.svg" alt="close button">
-               <h1>TaskEdit</h1>
-    <h1>ab hier einfügen</h1>     
+   
+    return ` 
+
+              <div onclick="closeOverlay('addTask_overlay')" id="addTask_overlay" class="bg_overlay d_none">
                
+              <div onclick="stopPropagation(event)" id="addTask_card" class="addTask_overlay">
+               <img onclick="closeOverlay('addTask_overlay')" class="close_btn_overlay" style="width: 100px;" src="..//assets/icons/close.svg" alt="close button">
+                
+    
+
+     <h1>Add Task</h1>
+
+     <div class="section_AddTask">
+                <div class="section-title">
+                    <form>
+                        <div class="section-title-div">
+                            <span class="title">Title<span class="star-red">*</span></span>
+                            <input id="taskTitle" class="input-title input-field" type="text" placeholder="Enter a title" tabindex="1">
+                            <span  class="error_Field">&nbsp;</span>
+                        </div>
+                    </form>
+                    <div class="section-description">
+                        <span>Description</span>
+                        <div class="textarea-description">
+                            <textarea  id="descriptionTask" placeholder="Enter a Description" tabindex="2"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="section-assigned">
+                        <span class="assigned-title">Assigned to</span>
+                        <div class="task_Contact_dropdown">
+
+                            <div class="task_input_section">
+                                <input type="text" id="taskDropDownInput" class="task_dropdown_input" tabindex="3"
+                                    placeholder="Select contacts to assign" onclick="taskContactListDrobdown()"
+                                    onkeyup="taskContactFilterList()"  >
+                                <img src="../assets/icons/arrow_down.svg">
                             </div>
-                                </div>`
+
+                            <div id="taskContactDrowdownMenue" class="task_dropdown_content">
+                            <div id="taskDropDownList" class="task_dropdown_list">
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+             
+                <hr>
+
+
+
+                <div class="section-date">
+                    <div class="section-date-div">
+                        <span>Due date<span class="star-red">*</span></span>
+                        <input type="date" id="taskDate"  class=" date_test date-input input-field " tabindex="4">
+                        <span class="error_Field">&nbsp;</span>
+                        <img src="../assets/icons/event.png" class="date-icon"  onclick="openDatePicker()">
+                    </div>
+
+
+                    <div class="section-prio">
+                        <span>Priority</span>
+                        <div class="prio-buttons">
+
+                            <button onclick="btnPrioSelect('urgent')" class="btn_prio button-urgent" tabindex="5">Urgent
+                                <img class="prio_img" src="../assets/icons/high_prio.svg" alt="urgent">
+                            </button>
+
+
+                            <button onclick="btnPrioSelect('medium')" class="btn_prio button-medium" tabindex="6">Medium
+                                <div id="btnPrioGroup" class="prio_img prio_img_group">
+                                    <img src="../assets/icons/linePrio.svg">
+                                    <img src="../assets/icons/linePrio.svg">
+                                </div>
+                            </button>
+
+
+                            <button onclick="btnPrioSelect('low')" class="btn_prio button-low" tabindex="7">Low
+                                <img class="prio_img" src="../assets/icons/low_prio.svg">
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="section-category">
+                        <span>Category<span class="star-red">*</span></span>
+                        
+                        <div class="category-wrapper">
+                            <select id="taskCatergory" class="input-field">
+                                <option value="" selected disabled>Select task category</option>
+                                <option value="1">Technical Task</option>
+                                <option value="2">User Story</option>
+                            </select>
+                           <span class="error_Field">&nbsp;</span>
+                        </div>
+                                
+                    </div>
+
+
+
+                    <div class="section-subtasks">
+                        <span>Subtasks</span>
+                        <div class="input-wrapper">
+                            <input type="text" id="inputSubtask" class="input-subtasks" oninput="subTaskInputCheck()"
+                                maxlength="40">
+                            <span class="error_Field">&nbsp;</span>
+                            <img id="subTaskAddIcon" class="add-subtasks ele_hide" onclick="subTaskInputCheck(true)"
+                                src="../assets/icons/add.png" alt="add-icon">
+
+                            <div id="subTaskEditIocn" class="add-subtasks sub_Task_Edit_Iocn ele_hide">
+                                <img id="subTaskCloseIcon" onclick="subTaskClose()" src="../assets/icons/close.svg"
+                                    alt="add-icon">
+                                <img src="../assets/icons/vectorV.svg">
+                                <img id="subTaskCheckIcon" onclick="taskCreateTask()" src="../assets/icons/checkSW.svg"
+                                    alt="add-icon">
+                            </div>
+                            <div id="subTaskList" class="subtask_list">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="button-bottom-task">
+                    <button id="btnClearTask" class="button-clear-task" onclick="addTaskClear()">Clear <img class="cancel"
+                            src="../assets/icons/iconoir_cancel.png" alt=""></button>
+                    <button id="btnCreateTask" class="button-create-task" onclick="checkInputData()">Create Task <img
+                            src="../assets/icons/check.png" alt=""></button>
+                </div>
+                
+
+
+                   <div id="initialeIconList" class="initiale_Icon_List icon_List_hide">
+                       
+                    </div> 
+                          
+
+
+                
+                <div class="required_text">
+                    <span><span class="star-red ">*</span class="required-text">This field is requiered</span>
+                </div>
+            </div>
+
+            <div id="notificationFinish" class="message_Finish">
+                <div class="message_Finish_contents">
+                      <p>Task added to board</p>
+                      <img src="../assets/icons/boardIcon.svg">
+                </div>
+            </div>
+
+
+        </section>
+
+
+</div>
+    </div>
+    `
 }

@@ -38,11 +38,11 @@ function renderInitials() {
       .then(data => {
           const userName = data.name; 
           const initials = getCurrentInitials(userName);
-          
           document.getElementById('render_initials_user_logo').textContent = initials;
       })
-      .catch(err => console.error("Fehler beim Abrufen des Namens:", err));
+      .catch(err => console.error("Fehler beim Abrufen des Namens:", err)); 
 }
+
 
 function getCurrentInitials(name) {
     const nameParts = name.split(" ");
@@ -50,9 +50,11 @@ function getCurrentInitials(name) {
     return initials;
 }
 
+
 function renderUserLogo(){
     document.getElementById("logo_user_sign_in").innerHTML = addUserLogoTemplate();
-    }
+ }
+
 
 function addUserLogoTemplate(){
     return ` 

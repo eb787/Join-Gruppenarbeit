@@ -354,11 +354,6 @@ function addTaskClear() {
   subTaskListRender();
   document.getElementById('taskTitle').focus();
   
-  //document.getElementById('taskTitle').style.borderColor="black";
- // document.getElementById('taskDate').style.borderColor="black";
- // document.getElementById('taskCatergory').style.borderColor="black";
-
-
 }
 
 
