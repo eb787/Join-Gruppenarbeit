@@ -40,7 +40,7 @@ body {
     height: 96px;
     width: 100%;
     flex-grow: 1;
-    gap: 30px;
+    ;
     justify-content: right;
 }
 
@@ -52,6 +52,10 @@ body {
 
 .headline_logo_help {
     display: flex;
+}
+
+.desktop_display_none{
+    display: none;
 }
 
 .headline_logo_help:hover {
