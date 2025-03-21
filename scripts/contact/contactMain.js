@@ -1,10 +1,12 @@
-
 let contactsData = [];
 let oldPictureHTML = "";
 let activeContact = null;
+let allEmpty = true;
+
 console.log(contactsData);
 
-async function openContactBigMiddle(contactsId) {
+
+async function openContactBigMiddle(contactsId, letter) {
   let contactMiddle = getContactElement();
   if (!contactMiddle) return;
 
@@ -12,26 +14,25 @@ async function openContactBigMiddle(contactsId) {
   let user = await fetchUser(firstLetter, contactIndex);
 
   if (user) {
-    let color = getUserColor(user, contactIndex);
-    renderContact(contactMiddle, user, contactIndex, firstLetter, color);
-
-    highlightActiveContact(contactsId, firstLetter);
+      let contactsIdColor = `${firstLetter}-${user.name.toLowerCase()}`;
+      let color = getUserColor(contactsIdColor, letter);
+      renderContact(contactMiddle, user, contactIndex, firstLetter, color);
+      highlightActiveContact(contactsId);
   } else {
-    console.error("Kein Benutzer gefunden mit ID:", contactsId);
+      console.error("Kein Benutzer gefunden mit ID:", contactsId);
   }
 }
+
 
 function highlightActiveContact(contactsId) {
   if (activeContact) {
     activeContact.style.backgroundColor = "";
     activeContact.style.color = "";
   }
-
   let contactElement = document.getElementById(`contact-card-${contactsId}`);
   if (contactElement) {
     contactElement.style.backgroundColor = "#2A3647";
     contactElement.style.color = "white";
-
     activeContact = contactElement;
   }
 }
@@ -48,6 +49,7 @@ function parseContactId(contactsId) {
   return { firstLetter, contactIndex };
 }
 
+
 async function fetchUser(firstLetter, contactIndex) {
   try {
     let contactsGroup = await getData(`/contacts/${firstLetter}`);
@@ -58,11 +60,26 @@ async function fetchUser(firstLetter, contactIndex) {
   }
 }
 
-function getUserColor(user, index) {
-  return contactColorArray[
-    typeof user.color === "number" ? user.color % contactColorArray.length : index % contactColorArray.length
-  ];
+function getUserColor(contactsId, letter) {
+  let key = `contactColor_${letter}_${contactsId}`;
+  let storedColor = localStorage.getItem(key);
+  if (storedColor) {
+      return storedColor;
+  } else {
+      let colorIndex = Math.abs(hashCode(contactsId)) % contactColorArray.length;
+      let color = contactColorArray[colorIndex];
+      localStorage.setItem(key, color);
+      return color;
+  }
 }
+
+function hashCode(str) {
+  return str.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
+}
+
+
+
+
 
 function renderContact(contactMiddle, user, contactIndex, firstLetter, color) {
   contactMiddle.innerHTML = contactCardMiddle(user, contactIndex, firstLetter, color);
@@ -75,6 +92,7 @@ function closeContactBigMiddle() {
     contactMiddle.style.display = "none";
   }
 }
+
 
 async function editContact(contactsId, firstLetter, color) {
   let editContact = document.getElementById('content-card-big');
@@ -91,33 +109,35 @@ async function editContact(contactsId, firstLetter, color) {
       await saveEditedContact(contactsId, firstLetter, color);
     };
   }
-
 }
+
 
 async function saveEditedContact(contactsId, firstLetter) {
   let contactIndex = parseInt(localStorage.getItem(`${contactsId}_index`)) || 0;
-  saveGlobalIndex() 
- 
-  let color = contactColorArray[contactIndex % contactColorArray.length]; // Farbe bleibt stabil
-
-  let updatedContact = {
-    "name": document.getElementById('name_input').value.trim(),
-    "email": document.getElementById('email_input').value.trim(),
-    "number": document.getElementById('tel_input').value.trim(),
-    "color": color // Nutzt gespeicherten Index für konsistente Farbe
-  };
-
+  saveGlobalIndex();
+  let existingUser = await fetchUser(firstLetter, contactIndex);
+  let updatedContact = getUpdatedContact(existingUser);
   await postData(`/contacts/${firstLetter}/${contactsId}`, updatedContact);
-
+    let color = updatedContact.color;
+  localStorage.setItem(`contactColor_${firstLetter}_${contactsId}`, color);
   closeContactBig();
   closeContactBigMiddle();
   resetPicture();
   validateName();
   validateEmail(updatedContact.email);
-  location.reload();
-
+    location.reload();
 }
 
+
+function getUpdatedContact(existingUser) {
+  let color = existingUser?.color ?? (globalIndex % contactColorArray.length);
+  return {
+    "name": document.getElementById('name_input').value.trim(),
+    "email": document.getElementById('email_input').value.trim(),
+    "number": document.getElementById('tel_input').value.trim(),
+    "color": color
+  };
+}
 
 
 function updatePicture(contact, color) {
@@ -129,17 +149,15 @@ function updatePicture(contact, color) {
   }
   let nameParts = contact.name.trim().split(" ");
   let initials = nameParts[0].charAt(0).toUpperCase();
-  let backgroundColor = color || "#ccc";
-
   if (nameParts.length > 1) {
     initials += nameParts[1].charAt(0).toUpperCase();
   }
   contactPicture.innerHTML = `
-  
-      <h4 class="contact_abbreviation_big" style="background-color:${backgroundColor};">${initials}</h4>
+      <h4 class="contact_abbreviation_big" style="background-color:${color};">${initials}</h4>
   `;
-
 }
+
+
 function resetPicture() {
   let contactPicture = document.getElementById('picture-edit');
   if (oldPictureHTML) {
@@ -151,6 +169,7 @@ function resetPicture() {
   }
 }
 
+
 function openContactBig() {
   document.getElementById('content-card-big').style.display = 'flex';
   contactcardHeadline();
@@ -161,20 +180,16 @@ function closeContactBig() {
   document.getElementById('content-card-big').style.display = 'none';;
 }
 
-function closeContactBigMiddle() {
-  document.getElementById('contact-big-middle').style.display = 'none';;
-}
+
 
 function updateCancelButton() {
   let inputs = document.querySelectorAll('#name_input, #email_input, #tel_input');
   let cancelButton = document.getElementById('cancel-button');
-  let allEmpty = true;
   inputs.forEach(input => {
     if (input.value.trim() !== "") {
       allEmpty = false;
     }
   });
-
   if (allEmpty) {
     cancelButton.innerText = "Cancel";
     cancelButton.setAttribute("onclick", "cancelStatus()");
@@ -269,18 +284,19 @@ async function showAlertSuccess(currentLetter, index) {
 
   let alert = document.getElementById('alert'); // Holt das Alert-Element
 
-  // Timeout, um das Alert nach 1,5 Sekunden zu entfernen
-  setTimeout(() => {
-    if (alert) {
-      alert.remove();  // Entfernt nur das Alert-Element, der Rest der Seite bleibt interaktiv
-    }
-  }, 1000);
-
-  // Benutzerliste aktualisieren
-  await getUsersList();
-
-
-
-  let contactsId = `${currentLetter}-${index}`;
-  openContactBigMiddle(contactsId);
+    setTimeout(() => {
+      if (alert) {
+        alert.remove();  // Entfernt nur das Alert-Element, der Rest der Seite bleibt interaktiv
+      }
+    }, 2000);
+  
+    // Benutzerliste aktualisieren
+    await getUsersList();
+  
+  
+  
+    let contactsId = `${currentLetter}-${index}`;
+    openContactBigMiddle(contactsId);
+  
+  
 }

@@ -438,11 +438,6 @@
     padding-top: 48px;
 }
 
-.card_extra {
-    padding: 0 40px !important;
-    padding-bottom: 48px !important; 
-}
-
 .addTask_overlay {
     width: 1116px;
     height: 870px;

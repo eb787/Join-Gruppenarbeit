@@ -1,10 +1,11 @@
 const Base_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/"
-const colorIndexKey = "globalIndex"; // Schlüssel für LocalStorage
+const colorIndexKey = "globalIndex";
 
 let globalIndex = parseInt(localStorage.getItem(colorIndexKey)) || 0;
 function saveGlobalIndex() {
     localStorage.setItem(colorIndexKey, globalIndex);
 }
+
 
 async function postData(path = "", data = {}) {
     let response = await fetch(Base_URL + path + ".json", {
@@ -17,9 +18,9 @@ async function postData(path = "", data = {}) {
     return await response.json();
 }
 
+
 function collectContactData() {
     let color = globalIndex % contactColorArray.length;
-
     let newContact = {
         "name": document.getElementById('name_input').value,
         "email": document.getElementById('email_input').value,
@@ -39,7 +40,6 @@ function collectContactData() {
 async function addContact() {
     let newContact = collectContactData();
     let nameInput = document.getElementById('name_input');
-    let emailInput = document.getElementById('email_input');
 
     if (!validateName(nameInput) || !(await validateEmail(newContact.email))) return;
 
@@ -50,11 +50,13 @@ async function addContact() {
 
     await postData(`/contacts/${firstLetter}`, contactsGroup);
     clearInputsAndClose();
-    getUsersList();
-    currentLetter = firstLetter;
     index = newId;
+    let contactsId = `${firstLetter}-${newId}`;
 
-    showAlertSuccess(currentLetter, index); 
+     getUsersList();
+     openContactBigMiddle(contactsId);
+     showAlertSuccess(firstLetter, index); 
+
 }
 
 async function getUsersList() {
@@ -99,24 +101,19 @@ function generateContactList(contacts, userContainer, letter) {
         if (firstLetter !== currentLetter) {
             currentLetter = firstLetter;
             userContainer.innerHTML += `
-                <div class="contact-section" id= "contact-section">
+                <div class="contact-section">
                     <h3 class="contact-section-title">${currentLetter}</h3>
                     <hr class="contact-divider">
                 </div>
             `;
         }
-        let colorIndex = typeof user.color === "number"
-            ? user.color % contactColorArray.length
-            : index % contactColorArray.length;
+        let contactsId = `${firstLetter}-${index}`;
+        let contactsIdColor = `${firstLetter}-${user.name.toLowerCase()}`;
+        let color = getUserColor(contactsIdColor, letter);
 
-        let color = contactColorArray[colorIndex];
-
-
-        let contactsId = `${currentLetter}-${index}`;
-        userContainer.innerHTML += contactCardScrollList(user, contactsId, color);
+        userContainer.innerHTML += contactCardScrollList(user, contactsId, color, letter);
     });
 }
-
 
 // Delete data for List
 async function deleteContact(contactsId, firstLetter) {
