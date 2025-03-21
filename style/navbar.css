@@ -54,6 +54,10 @@ body {
     display: flex;
 }
 
+.desktop_display_none{
+    display: none;
+}
+
 .headline_logo_help:hover {
     cursor: pointer;
     transform: scale(1.2);

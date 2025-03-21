@@ -1,255 +1,273 @@
 
 //Ab hier Task Edit
-console.log("taskEdit.js");
+console.log("taskEdit.js aufgerufen");
 
-let dataRaskEditContact = {};
-let taskSubTaskListEdit=[];
-let index="";
-let addTaskEditDBContac={};
-
-
-
-function editTask(indexU) {
-        index=indexU
-        console.log("Es wird Task mit Index bearbeutetr ", index);
-        loadContacsFirebase();
-        document.getElementById('card_overlay').innerHTML = "";
-        document.getElementById('card_overlay').innerHTML = editTaskTemplate(index);
-        console.log("prio = ", currentTasks[index].prio);
-        checkPrioEditTask(index);
-        contactList=currentTasks[index].contacts;
-        editTaskWriteContacts(contactList);
-        subTaskListLoadEdit(index);
-  }
+//Variablen Global
+let currentTaskEdit = {};
+let indexEdit = 0;
+let DataTaskEdit = {};
+let DataContactsAll = "";
+let DataTaskPrio = "";
+let DataTaskContactsTask = [];
+let DataSubTaskListEdit = [];
+let editIndexEdit = false;
+let editTaskNrEdit = 0;
+selectedTaskContacts="";
+subTaskArray="";
 
 
-function contactCheckOKinArray(index) {
-        selectedTaskContacts = [];
-        document.querySelectorAll(".contact_Label_Item").forEach((entry, contactID) => {
-                let checkbox = entry.querySelector("input[type='checkbox']")
-                if (checkbox && checkbox.checked) {
-                        console.log("ID ", contactID)
-                        selectedTaskContacts.push(taskContacteArray[contactID]);
-                        document.getElementById('initialeIconList').innerHTML = "";
-                        taskContacInitialRender(selectedTaskContacts);
-                }
-        })
-        console.log("Namen mit Checkbox ", selectedTaskContacts);
+dataFromFirebase();
+
+
+
+function editTask(index) {
+        indexEdit = index;
+        DataTaskContactsTask = DataTaskEdit[indexEdit].contacts;
+        console.log("EditTask aufgereufen", indexEdit);
+        TaskEditOverlayRender();
+
 }
 
 
-function checkPrioEditTask(index) {
-        let prio = currentTasks[index].prio;
-console.log("Prio ausgeben ",prio);
+function TaskEditOverlayRender() {
+        document.getElementById('card_overlay').innerHTML = "";
+        document.getElementById('card_overlay').innerHTML = editTaskTemplate(indexEdit);
+        document.getElementById('taskTitle').value = DataTaskEdit[indexEdit].title;  //title
+        document.getElementById('descriptionTask').value = DataTaskEdit[indexEdit].description;
+        document.getElementById('taskDate').value = dateConversation(DataTaskEdit[indexEdit].deadline);
+        checkPrioEditTask(DataTaskEdit[indexEdit].prio); //prio setzen 
+        taskReadinArrayContact(DataContactsAll);
+        editTaskWriteContacts(DataTaskContactsTask);
+        subTaskListLoadEdit()
+}
 
 
+
+function checkPrioEditTask(prio) {
+               
+        console.log("Prio ausgeben ", prio);
         switch (prio) {
                 case "high_prio":
+                        DataTaskPrio = "high_prio"
                         btnPrioSelect('urgent')
+                
                         break;
                 case "medium_prio":
+                        DataTaskPrio = "medium_prio";
                         btnPrioSelect('medium')
+               
                         break;
                 case "low_prio":
+                        DataTaskPrio = "low_prio";
                         btnPrioSelect('low')
-                       break;
+                   break;
         }
+
+
+      console.log("Aktuel prio ", DataTaskPrio);
+
 }
 
 
-function  editTaskWriteContacts(contactList) {
-        console.log("Adressliste ",contactList);
-        
-        let element = document.getElementById('initialeIconList');
-        contactList.map(emtry => {
-                let name = emtry.name;
-                let color = emtry.color;
-             element.innerHTML += taskContacInitialTemplate(contactColorAssignEdit(color), taskInitialLettersCreate(name));
-        });
-}
-
-function contactColorAssignEdit(color){
-        return contactColorArray[color];
-     }
-
-
-
-
-function taskContactListDrobdown1() {
-        console.log("Öffne Liste");
-        taskReadinArrayContact(dataRaskEditContact);
+function taskContactListDrobdownEdit() {
         document.getElementById('taskContactDrowdownMenue').classList.toggle('ele_show');
         document.getElementById('initialeIconList').classList.toggle('icon_List_hide')
 }
 
 
-async function loadContacsFirebase() {
-        try {
-                let dataCont = await fetch(Base_URL + "/contacts/" + ".json")
-                dataRaskEditContact = await dataCont.json();
-                console.log("Kontace auis DB gelesen ", dataRaskEditContact);
-               
-        } catch {
-                console.log("Fehler beim Laden")
+
+function taskContactsLoadTaskDB() {
+        let conta = DataTaskEdit[indexEdit].contacts;
+}
+
+
+function editTaskWriteContacts(DataContacts) {
+        if (DataContacts.length > 0) {
+                let element = document.getElementById('initialeIconList');
+                DataContacts.map(emtry => {
+                        let name = emtry.name;
+                        let color = emtry.color;
+                        element.innerHTML += taskContacInitialTemplate(contactColorAssignEdit(color), taskInitialLettersCreate(name));
+                });
+                function contactColorAssignEdit(color) {
+                        return contactColorArray[color];
+                }
         }
 }
 
 
-function taskContactFilterList1() {
-        let input = document.getElementById("taskDropDownInput").value.toLowerCase();
-        let entries = document.querySelectorAll(".contact_Label_Item");
-        entries.forEach(entries => {
-                let labelText = entries.textContent.toLowerCase();
-                if (labelText.includes(input)) {
-                        entries.style.display = "flex";
-                } else {
-                        entries.style.display = "none";
-                }
-        });
+
+function contactColorAssignEdit(color) {
+        return contactColorArray[color];
 }
 
 
 
-function subTaskListLoadEdit(index) {
-        
+function subTaskListLoadEdit() {
         document.getElementById('subTaskAddIcon').classList.remove('ele_hide')
         document.getElementById('subTaskEditIocn').classList.add('ele_hide')
-        if (currentTasks[index].subtasks.total != 0) {
-                taskSubTaskListEdit = Object.keys(currentTasks[index].subtasks.subtasks_todo);
-              //  element = document.getElementById('subTaskList');
-              //  element.innerHTML = "";
-              //  element.innerHTML += taskSubTaskListEdit.map((designation, index) =>
-               //         SubtaskListTemplate(designation, index)
-        //        ).join("");
-        subTaskListRenderEdit(index, taskSubTaskListEdit);
+        if (DataTaskEdit[indexEdit].subtasks.total > 0) {
+                DataSubTaskListEdit = Object.keys(DataTaskEdit[indexEdit].subtasks.subtasks_todo);
+                subTaskListRenderEdit(DataSubTaskListEdit);
         }
+
+
 }
 
-
-function subTaskListRenderEdit(index, taskSubTaskListEdit){
+function subTaskListRenderEdit(taskSubList) {
         element = document.getElementById('subTaskList');
         element.innerHTML = "";
-        element.innerHTML += taskSubTaskListEdit.map((designation, index) =>
-                SubtaskListTemplateEdit(designation, index)
-        ).join("");
-
+        element.innerHTML += taskSubList.map((designation, index) =>
+                SubtaskListTemplateEdit(designation, index)).join("");
 }
 
 
-
-function taskCreateTaskEdit() {
-        console.log("Hänge Task an");
-        
-        let element = document.getElementById('inputSubtask');
-        contents = element.value;
-        element.focus();
-        if (editIndex) {
-          taskSubTaskListEdit[editTaskNr] = contents
-          editIndex = false;
-          editTaskNr = 0;
-        } else {
-          taskSubTaskListEdit.push(contents);
-        }
-        subTaskClose();
-        subTaskListRenderEdit(index,taskSubTaskListEdit);
-       
-        console.log("Array ", taskSubTaskListEdit);
-      }
-
-
-      function deleteSubTaskEdit(posi) {
-        taskSubTaskListEdit.splice(posi, 1);
-        console.log("Neue subtasj ",taskSubTaskListEdit);
-        
-        subTaskListRenderEdit(index, taskSubTaskListEdit);
-
-      }
-
-
-      function SubtaskListTemplateEdit(subTaskdesignation, index) {
+function SubtaskListTemplateEdit(subTaskEntry, index) {
         return `
         <div class="sub_task_item">
         <div class="sublist_text">
            <span class="bullet">•</span>
-           <span ondblclick="editSubTask(${index})">${subTaskdesignation}</span>
+           <span ondblclick="editSubTaskEdit(${index})">${subTaskEntry}</span>
        </div>
        <div class="icons">
-           <img src="../assets/icons/edit.svg"  onclick="editSubTask(${index})">
+           <img src="../assets/icons/edit.svg"  onclick="editSubTaskEdit(${index})">
            <img src="../assets/icons/delete.svg"onclick="deleteSubTaskEdit(${index})">
        </div>
     </div>
     `
-    }
+}
 
 
-
-
-    function TaskEditSave(){
-       console.log("Speichere taskEdit");
-       taskEditContactsCheck();
-       collectDataEdit();
-       taskEditContactsCheck();
-       postTaskDataEdit(`/tasks/${parseInt(index)}`,currentTask);
-       closeOverlay('bg_overlay')
-          console.log(currentTasks[index].status);
-          
-           
-    }
-
-
-    function collectDataEdit() {
-        currentTask = {
-          title: document.getElementById('taskTitle').value,
-          description: document.getElementById('descriptionTask').value.trim() || "empty",  // oder "empty" reinschreiben wenn es leer bleibt
-          contacts: selectedTaskContacts,//
-            deadline: dateConversion(document.getElementById('taskDate').value),
-          prio: taskPrioSelect, // "medium_prio" , oder "low_prio", oder "hgh_prioi"
-          //category: taskCatergoryRetrieve(document.getElementById('taskCatergory').value), // "Technical Task" oder "User Story"
-          subtasks: {
-            total: taskSubTaskListEdit.length, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
-            number_of_finished_subtasks: 0, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
-            subtasks_todo: subTasksObjects(),
-          },
-          status: currentTasks[index].status,  //  "toDo",  "inProgress", "awaitFeedback", oder "done" 
+function taskCreateTaskEdit() {
+        let element = document.getElementById('inputSubtask');
+        contents = element.value;
+        element.focus();
+        if (editIndexEdit) {
+                DataSubTaskListEdit[editTaskNr] = contents
+                editIndexEdit = false;
+                editTaskNrEdit = 0;
+        } else {
+                DataSubTaskListEdit.push(contents);
         }
-             }
+        subTaskClose();
+        subTaskListRenderEdit(DataSubTaskListEdit);
+
+}
+
+
+function editSubTaskEdit(index) {
+        console.log("SUBTask mit Nummer ", index);
+
+        let element = document.getElementById('inputSubtask');
+        element.value = DataSubTaskListEdit[index];
+        document.getElementById('subTaskAddIcon').classList.add('ele_hide')
+        document.getElementById('subTaskEditIocn').classList.remove('ele_hide')
+        editTaskNrEdit = index;
+        editIndexEdit = true;
+}
 
 
 
-             async function postTaskDataEdit(path = "", task) {
-                console.log("Schreibe in DB");
-           
-                let CurrentTaskResponse =  await fetch(Base_URL + path + ".json",{
-                    method: "PUT",
-                    header: {
+
+function deleteSubTaskEdit(posi) {
+        DataSubTaskListEdit.splice(posi, 1);
+        console.log("Neue subtasj ", DataSubTaskListEdit);
+        subTaskListRenderEdit(DataSubTaskListEdit);
+}
+
+
+function TaskEditSave() {
+        console.log("Speichere taskEdit");
+        collectDataEdit();
+        console.log(DataTaskEdit[indexEdit].status);
+        console.log(selectedTaskContacts);
+        console.log(subtaskinObjekt(DataSubTaskListEdit));
+        console.log("Prio speichern",DataTaskPrio);
+        
+        postTaskDataEdit(`/tasks/${parseInt(indexEdit)}`, currentTaskEdit);
+      
+     
+        //closeOverlay('bg_overlay')
+        updateTaskBoard();
+
+
+}
+
+
+function subtaskinObjekt(subTaskArray){
+       return subTask = Object.fromEntries(subTaskArray.map(item => [item, "todo"]));
+}
+
+
+function collectDataEdit() {
+        currentTaskEdit = {
+                title: document.getElementById('taskTitle').value,
+                description: document.getElementById('descriptionTask').value.trim(),  // oder "empty" reinschreiben wenn es leer bleibt
+                contacts: checkContacts() ,//
+                deadline: dateConversion(document.getElementById('taskDate').value),
+                prio: DataTaskPrio, // "medium_prio" , oder "low_prio", oder "hgh_prioi"
+                category:DataTaskEdit[indexEdit].category,
+                subtasks: {
+                        total: DataSubTaskListEdit.length, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
+                        number_of_finished_subtasks: 0, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
+                        subtasks_todo:subtaskinObjekt(DataSubTaskListEdit),
+                },
+                status: DataTaskEdit[indexEdit].status,  //  "toDo",  "inProgress", "awaitFeedback", oder "done" 
+        }
+}
+
+
+
+function checkContacts(){
+   if (selectedTaskContacts.length>0){
+        console.log("Schreibe Daten aus Liste");
+        return selectedTaskContacts
+  
+    }
+    else{
+        if(DataTaskContactsTask.length>0){
+                console.log("Schreibe Daten aus Datenbank");
+                return DataTaskContactsTask;
+        }
+                return "";
+   }
+}
+
+
+
+
+
+async function postTaskDataEdit(path = "", task) {
+        console.log("Schreibe in DB");
+        let CurrentTaskResponse = await fetch(Base_URL + path + ".json", {
+                method: "PUT",
+                header: {
                         "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(task)
-                });
-             }
+                },
+                body: JSON.stringify(task)
+        });
+}
 
 
-             function taskEditContactsCheck(){
-                console.log("Kontake ",selectedTaskContacts);
-                console.log("Kontake aus DB ", taskContacteArray);
-                 if(selectedTaskContacts.length>0){
-                        console.log("Kontake vorhanden");
-                        return   selectedTaskContacts;
-                }
-                else{
-                        console.log("Adressen beim speichern ",contactList.length);
-                         if(contactList.length>0){
-                                console.log("Schreine Kontake aus DB in DB");
-                                                          
-                           return selectedTaskContacts=taskContacteArray; 
-                        }else{
-                        console.log("Kein Kontake vorhanden"); 
-                     if('contacts' in currentTask){
-                       delete currentTask.contacts;        
-              }}}                      
-              }
-        
-        
-                 
-        
-        
+async function dataFromFirebase() {
+        const { DataTask, DataContact } = await loadDataFirebaseEdit();
+        DataTaskEdit = DataTask;
+        DataContactsAll = DataContact
+  }
+
+
+async function loadDataFirebaseEdit() {
+        try {
+                const [responseTask, responseContact] = await Promise.all([
+                        fetch(Base_URL + "/tasks/" + ".json"),
+                        fetch(Base_URL + "/contacts/" + ".json")
+                ])
+                const DataTask = await responseTask.json();
+                const DataContact = await responseContact.json();
+                return { DataTask, DataContact };
+
+        } catch (error) {
+                console.log("Fehler beim lesen ", error);
+        }
+}
+

@@ -1,0 +1,44 @@
+@media (max-width: 1000px) {
+    .headline_title{
+        display: none
+    }
+
+    .headline{
+        gap: 0;
+    }
+
+    .mobile_join_logo{
+        position: absolute;
+        left: 56px;
+    }
+
+    .mobile_capa{
+        display: flex;
+        position: absolute;
+        left: 56px;
+    }
+
+    .mobile_display_none {
+        display: none;
+    }
+
+    .nav_mobile {
+        display: flex;
+        background-color: rgba(42, 54, 71);
+        height: 80px;
+        align-items: center;
+        justify-content: space-around;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .mobile_display_flex{
+        display: flex;
+    }
+
+    .navbar_seperator{
+        width: 100%
+    }
+
+}

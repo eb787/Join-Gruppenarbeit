@@ -1,29 +1,38 @@
+* {
+    margin: 0;
+  
+}
 
+.close_btn_overlay{
+    width: 24px;
+    height: 24px;
+}
 
+.section_AddTask{
+    display: flex;
+    flex-direction: row;
+}
 
-
-
+.addTask_Title {
+    height: 73px;
+    width: 278px;
+    font-size: 61px;
+    font-weight: 700;
+}
 
 span {
     color: #2A3647;
+}
+
+.star-red {
+    color: #FF8190;
+}
+
+.title {
+    width: 440px;
+    height: 24px;
     font-size: 20px;
     font-weight: 400;
-   
-}
-
-
-
-.section-title-div {
-    display: flex;
-    gap: 4px;
-    flex-direction: column;
-    width: 440px;
-    height: 96px;
-}
-
-.section-title {
-    width: 440px;
-    height: 376px;
 }
 
 .input-title {
@@ -35,6 +44,7 @@ span {
     gap: 10px;
     font-size: 20px;
     font-weight: 400;
+
 }
 
 
@@ -47,29 +57,50 @@ span {
 }
 
 
+/*------- linke Sectiom--------*/
+
+.section-title {
+display: flex;
+flex-direction: column;
+margin-left: 40px;
+margin-top: 80px;
+     
+}
+
+
+.section-title-div {
+    display: flex;
+    gap: 4px;
+    flex-direction: column;
+    width: 440px;
+    height: 96px;
+}
 
 .section-description {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    margin-top: 20px;
 
     span {
         font-weight: 400;
         font-size: 20px;
     }
+
+
 }
 
 .textarea-description {
     display: flex;
     gap: 4px;
-    width: 100%;
+    width: 440px;
     height: 136px;
 
     textarea {
         display: flex;
         resize: none;
-        width: 100%;
-        height: 80px;
+        width: 440px;
+        height: 120px;
         overflow: auto;
         border-radius: 10px;
         border-width: 1px;
@@ -78,29 +109,20 @@ span {
         gap: 10px;
         font-weight: 400;
         font-size: 20px;
-
     }
-
 }
 
 
-
-.textarea-icon {
-    height: 18.9px;
-    width: 18.0px;
-    right: 5px;
-    top: 262px;
-}
 
 .section-assigned {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    width: 100%;
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
-    margin-top: 20px;
+    margin-top: 40px;
+    
 }
 
 
@@ -109,30 +131,29 @@ span {
     width: 112px;
 }
 
-.task_input_section {
+.task_input_section{
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
-
+    width: 440px;
 }
 
-.task_input_section img {
+.task_input_section img{
     width: 7.21px;
     height: 4.6px;
     position: relative;
     right: 30px;
+ 
 }
 
 
 
-.task_Contact_dropdown {
+.task_Contact_dropdown{
     position: relative;
     display: inline-block;
-  
-
+    width: 420px;
 }
 
-.task_dropdown_input {
+.task_dropdown_input{
     font-size: 20px;
     font-weight: 400;
     width: 100%;
@@ -158,18 +179,18 @@ span {
     overflow-y: auto;
 }
 
-.task_dropdown_list {
+.task_dropdown_list{
     width: 100%;
 }
 
 
-.contact_Label_Item {
+.contact_Label_Item{
     display: flex;
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
     font-size: 18px;
-}
+ }
 
 
 .task_dropdown_list label {
@@ -178,8 +199,8 @@ span {
     gap: 20px;
     align-items: center;
     width: 100%;
-    padding: 8px 12px;
-    cursor: pointer;
+     padding: 8px 12px;
+     cursor: pointer;
 }
 
 
@@ -189,67 +210,72 @@ span {
 }
 
 
-.contact_Label_Item input {
+.contact_Label_Item input{
     width: 16px;
     height: 16px;
     display: flex;
     justify-content: flex-end;
-
+ 
 }
 
 
-.initial_Letters_Contact {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
+.initial_Letters_Contact{
+display: flex;
+align-items: center;
+justify-content: center;
+font-size:12px ;
+font-weight: 400;
+width: 42px;
+height:42px;
+border-radius: 45px;
+border-color:black;
+border-style: solid;
+border-width: 0.5px;
+
+
+
+}
+
+/*---rechte Section----*/
+
+
+.section-date {
+    
+    position: relative;
+    top: 80px;
+    left: 150px;
+    width: 440px;
+    height: 416px;
     font-weight: 400;
-    width: 42px;
-    height: 42px;
-    border-radius: 45px;
-    border-color: black;
-    border-style: solid;
-    border-width: 0.5px;
-    margin-top: 10px;
+    font-size: 20px;
 }
 
-
-
-.task_Date_Input_Div {
+.section-date-div {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 5px;
-
+    gap: 4px;
+    flex-direction: column;
 }
 
-
-.date_input {
-    display: flex;
-    align-items: center;
-    width: 100%;
+.date-input {
+    background-size: 20px;
+    padding: 12px 16px 12px 16px;
+    border: 1px solid;
+    border-radius: 10px;
     font-size: 20px;
     line-height: 24px;
-    height: 48px;
-    border-style: solid;
-    border-width: 0.5px;
-    border-color: black;
-    border-radius: 8px;
-    padding-left: 10px;
+    
+
 }
 
-.date_input::-webkit-calendar-picker-indicator {
+.date-input::-webkit-calendar-picker-indicator {
     display: none;
     -webkit-appearance: none;
 }
 
 .date-icon {
-    position: relative;
-    right: 30px;
-    width: 24px;
-    height: 24px;
-
-
+    position: absolute;
+    right: 10px;
+    top: 40px;
 }
 
 .date-icon:hover {
@@ -263,11 +289,10 @@ span {
     gap: 8px;
     height: 88px;
     width: 440px;
-
     span {
         color: black;
     }
-
+    margin-top: 23px;
 
 }
 
@@ -296,6 +321,8 @@ span {
 
 
 .section-category {
+    position: absolute;
+    top: 232px;
     display: flex;
     gap: 8px;
     flex-direction: column;
@@ -307,55 +334,54 @@ span {
 
     select {
         height: 48px;
-        width: 100%;
+        width: 440px;
         padding: 12px 16px 12px 16px;
         font-size: 20px;
         line-height: 24px;
         border-color: #D1D1D1;
         border-radius: 10px;
-    }
+   }
+   
 }
 
 
-    
-  .section_Subtask{
-    width: 102%;
-    margin-top: 15px;
-   
-  }
-
-
+.section-subtasks {
+    width: 396px;
+    height: 80px;
+    position: absolute;
+    top: 336px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
 
 
 .input-wrapper {
-    display: flex;
+    position: relative;
+    display: inline-block;
     height: 48px;
-    width: 100%;
-    margin-top: 10px;
-}
+    width: 418px;
+  }
 
-.input-subtasks {
+  .input-subtasks {
     width: 100%;
+    padding: 12px 10px 12px 10px; /* Rechts Platz für das Icon */
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    
-    
- 
-   
-  
-}
+    outline: none;
+ }
 
 
 
 .add-subtasks {
-    position: relative;
-    right: 30px;
-    top:18px;
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
     width: 14px;
     height: 14px;
     cursor: pointer;
-    
 }
 
 .add-subtasks:hover {
@@ -363,18 +389,17 @@ span {
 }
 
 
-.sub_Task_Edit_Iocn {
-    position: relative;
-    right: 70px;
+.sub_Task_Edit_Iocn{
     display: flex;
-    gap: 10px;
+    gap:10px;
+    margin-right: 30px;
 }
 
 
 hr {
-    position: absolute;
-    top: 260px;
-    left: 816.25px;
+    position: relative;
+    top: 80px;
+    left: 100px;
     width: 0px;
     height: 424px;
     motion-rotation: 0;
@@ -385,13 +410,16 @@ hr {
     height: 11.22px;
 
 }
+
 .cancel {
     height: 24px;
     width: 24px;
 }
+
 .img-up {
     width: 20px;
     height: 14.51px;
+
 }
 
 .img-medium {
@@ -404,14 +432,17 @@ hr {
     height: 14.51px;
 }
 
-.initiale_Icon_ListEdit {
+.initiale_Icon_List{
     display: none;
     align-items: center;
     justify-content: flex-start;
-    width: 100%;
-    height: 42px;
-    margin-left: 15px;
-}
+    position: absolute;
+    top:680px;
+    left:345px;
+    height:42px;
+    width: 175px;
+    margin-top: 10px;
+  }
 
 
 .required_text {
@@ -433,17 +464,16 @@ textarea:hover {
 
 
 .subtask_list {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: auto;
+  display: flex;
+  flex-direction: column;
+  width: 105%;
+  height: 100px;
+  margin-top: -20px;
+  overflow-y: scroll;
+ }
 
-    overflow-y: scroll;
-    margin-bottom: 30px;
-}
 
-
-.button-bottom-task {
+.button-bottom-task{
     margin-top: 20px;
 }
 
@@ -452,19 +482,17 @@ textarea:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 95%;
-    margin-top: 10px;
-   
+    padding: 10px;
+    
 }
 
 .sublist_text {
     display: flex;
     align-items: center;
-    gap: 10px;
-    /* Abstand zwischen Punkt und Name */
+    gap: 10px; /* Abstand zwischen Punkt und Name */
 }
 
-.sublist_text span {
+.sublist_text span{
     font-size: 16px;
 }
 
@@ -491,62 +519,14 @@ textarea:hover {
 }
 
 
-.taskEdit_Btn {
-    width: 100px;
-    height: 50px;
-    border-radius: 8px;
-
-}
-
-.btn_div {
-    display: flex;
-    justify-content: flex-end;
-
-}
-
-
-.button_Ok {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    width: 89px;
-    height: 57px;
-    gap: 15px;
-    background-color: #2A3647;
-    color: white;
-    font-size: 20px;
-    line-height: 24px;
-    border-radius: 10px;
-    border: 1px solid;
-    box-shadow: rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.3s ease, transform 0.2s ease;
-
-    img {
-        background-color: #2A3647;
-    }
-}
-
-.button_Ok:hover {
-    background-color: #29ABE2;
-
-    img {
-        background-color: #29ABE2;
-
-    }
-}
-
-
-
-
 
 /*CSS Klassen die per JS aufgerufen werden*/
 
-.ele_hide {
+.ele_hide{
     display: none;
 }
 
-.ele_show {
+.ele_show{
     display: flex;
 }
 
@@ -560,7 +540,7 @@ textarea:hover {
     font-size: 10px;
     color: red;
     margin-top: -3px;
-
+    
 }
 
 
@@ -573,39 +553,39 @@ textarea:hover {
 }
 
 
-.message_Finish {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px;
-    height: 60px;
-    background-color: #2A3647;
-    color: white;
-    border-radius: 16px;
-    margin: 0;
-    font-size: 20px;
-    font-weight: 400;
+
+.message_Finish{
+display: none;
+align-items: center;
+justify-content: center;
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+width: 300px;
+height: 60px;
+background-color: #2A3647;
+color: white;
+border-radius: 16px;
+margin: 0;
+font-size: 20px;
+font-weight: 400;
 
 }
 
-.message_Finish_contents {
+.message_Finish_contents{
     display: flex;
     align-items: center;
     gap: 30px;
-
+    
 }
-
-.message_Finish_contents img {
+.message_Finish_contents img{
     height: 30px;
     width: 30px;
 
 }
 
 
-.icon_List_hide {
+.icon_List_hide{
     display: flex;
 }

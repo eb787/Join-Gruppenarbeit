@@ -35,7 +35,7 @@ function collectContactData() {
 }
 
 
-window.onload = getUsersList;
+
 
 async function addContact() {
     let newContact = collectContactData();

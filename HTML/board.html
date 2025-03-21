@@ -13,18 +13,19 @@
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/board.css">
     <link rel="stylesheet" href="../style/task/addTaskOverlay.css">
+    <link rel="stylesheet" href="../style/task/addTaskTemplate.css">
     <script src="../scripts/board/board.js"></script>
     <script src="../scripts/board/board_template.js"></script>
-    
     <script src="..//scripts/task/taskEdit.js"></script>
     <script src="../scripts/task/taskMain.js"></script>
     <script src="../scripts/task/taskRender.js"></script>
     <script src="../scripts/task/tastTemplate.js"></script>
-    <script src="..//scripts/script.js"></script>
+    <script src="../scripts/task/taskFirebase.js"></script>
+   <script src="..//scripts/script.js"></script> 
 </head>
 
 
-<body onload="loadTaskData(); renderInitials();">
+<body onload="loadTaskData();renderInitials();">
     <div id="full_content" class="full_content">
         <nav class="nav">
             <div class="nav-icon-capa2">
@@ -116,20 +117,16 @@
                         <div class="board_table_content">
 
                             <div class="board_content_box" id="toDo" ondrop="moveTo(id)" ondragover="allowDrop(event)">
-                                    <!-- <div id="no_task_toDo" class="no_tasks">No tasks To do</div> -->
                             </div>
                            
                             <div class="board_content_box" id="inProgress" ondrop="moveTo(id)"
                                 ondragover="allowDrop(event)">
-                                <!-- <div id="no_task_inProgress" class="no_tasks">No tasks In Progress</div> -->
                             </div>
 
                             <div class="board_content_box" id="awaitFeedback" ondrop="moveTo(id)"
                                 ondragover="allowDrop(event)">
-                                <!-- <div id="no_task_awaitFeedback" class="no_tasks">No tasks Await Feedback</div> -->
                             </div>
                             <div class="board_content_box" id="done" ondrop="moveTo(id)" ondragover="allowDrop(event)">
-                                <!-- <div id="no_task_done" class="no_tasks">No tasks Done</div> -->
                             </div>
                         </div>
                     </div>

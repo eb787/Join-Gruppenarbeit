@@ -292,7 +292,7 @@
     max-height: calc(100vh - 196px);
     scrollbar-width: none;
     height: fit-content;
-    
+
 
 }
 
@@ -436,11 +436,6 @@
     z-index: 99;
     height: 100px;
     padding-top: 48px;
-}
-
-.card_extra {
-    padding: 0 40px !important;
-    padding-bottom: 48px !important; 
 }
 
 .addTask_overlay {
