@@ -152,8 +152,7 @@ function getContactIconOverlay(index, i) {
 // Ab hier Edit Task Template
 
 function editTaskTemplate(index) {
-    console.log("Gebe Currentaskaus ",currentTasks[index]);
-   
+       
     return `
         <div class="card_overlay_header">
             <div id="category_overlay${index}" class="task_category task_category_overlay  "></div>
@@ -181,7 +180,7 @@ function editTaskTemplate(index) {
                 <span>Due date </span>
                <div class="task_Date_Input_Div">
                    <input type="date"  id="taskDate" class="date_input input-field" tabindex="4" >
-                   <img src="../assets/icons/event.png" class="date-icon"  onclick="openDatePicker()" >
+                   <img src="../assets/icons/event.png" class="date_icon_Edit"  onclick="openDatePicker()" >
                 </div>
                 <span class="error_Field">&nbsp;</span>
             </div>
@@ -305,30 +304,30 @@ function getAddTaskOverlay() {
    
     return ` 
 
-              <div onclick="closeOverlay('addTask_overlay')" id="addTask_overlay" class="bg_overlay d_none">
+        <div onclick="closeOverlay('addTask_overlay')" id="addTask_overlay" class="bg_overlay d_none">
                
               <div onclick="stopPropagation(event)" id="addTask_card" class="addTask_overlay">
                <img onclick="closeOverlay('addTask_overlay')" class="close_btn_overlay" style="width: 100px;" src="..//assets/icons/close.svg" alt="close button">
-                
-    
+                              
 
-     <h1>Add Task</h1>
 
-     <div class="section_AddTask">
+                  <h1>Add Task</h1>
+            <div class="section_AddTask">
+         
                 <div class="section-title">
-                    <form>
                         <div class="section-title-div">
                             <span class="title">Title<span class="star-red">*</span></span>
                             <input id="taskTitle" class="input-title input-field" type="text" placeholder="Enter a title" tabindex="1">
                             <span  class="error_Field">&nbsp;</span>
                         </div>
-                    </form>
+                 
                     <div class="section-description">
                         <span>Description</span>
                         <div class="textarea-description">
                             <textarea  id="descriptionTask" placeholder="Enter a Description" tabindex="2"></textarea>
                         </div>
                     </div>
+
 
                     <div class="section-assigned">
                         <span class="assigned-title">Assigned to</span>
@@ -398,7 +397,7 @@ function getAddTaskOverlay() {
                             </select>
                            <span class="error_Field">&nbsp;</span>
                         </div>
-                                
+                           
                     </div>
 
 
@@ -419,32 +418,31 @@ function getAddTaskOverlay() {
                                 <img id="subTaskCheckIcon" onclick="taskCreateTask()" src="../assets/icons/checkSW.svg"
                                     alt="add-icon">
                             </div>
-                            <div id="subTaskList" class="subtask_list">
-                            </div>
-                        </div>
-
+                            <div id="subTaskList" class="subtask_list"></div>
+                         </div>
                     </div>
-                </div>
+
                 <div class="button-bottom-task">
-                    <button id="btnClearTask" class="button-clear-task" onclick="addTaskClear()">Clear <img class="cancel"
+                    <button id="btnClearTask" class="button-clear-task" onclick="addTaskClear()">Canel <img class="cancel"
                             src="../assets/icons/iconoir_cancel.png" alt=""></button>
                     <button id="btnCreateTask" class="button-create-task" onclick="checkInputData()">Create Task <img
-                            src="../assets/icons/check.png" alt=""></button>
+                         src="../assets/icons/check.png" alt=""></button>
                 </div>
-                
+               
+             </div>
+               
+               
+              
 
-
-                   <div id="initialeIconList" class="initiale_Icon_List icon_List_hide">
-                       
-                    </div> 
-                          
-
-
+                <div id="initialeIconList" class="initiale_Icon_List icon_List_hide"></div> 
                 
                 <div class="required_text">
                     <span><span class="star-red ">*</span class="required-text">This field is requiered</span>
                 </div>
+            
+            
             </div>
+
 
             <div id="notificationFinish" class="message_Finish">
                 <div class="message_Finish_contents">
@@ -452,12 +450,10 @@ function getAddTaskOverlay() {
                       <img src="../assets/icons/boardIcon.svg">
                 </div>
             </div>
-
-
-        </section>
-
-
-</div>
-    </div>
+              
+            
+            
+            </div>
+            </div>
     `
 }

@@ -7,7 +7,6 @@ let editTaskNr = 0;
 let selectedTaskContacts = [];
 let taskPrioSelect = "medium_prio";
 let currentTaskAdd = {};
-//let taskId = "";
 taskContacteArray
 
 
@@ -18,8 +17,6 @@ function init(){
   focusOnRequiredFields();
   subTaskListRender();
 }
-
-
 
 
 //Tasten Clear und Create Task sperren*/
@@ -34,11 +31,8 @@ function startAddTask() {
 
 //Felder prüfen ob Eingabe erfolgte mit QuerySelector
 function requiredInputAddTask() {
-
-  
-  document.querySelectorAll(".input-field").forEach(input => {
+ document.querySelectorAll(".input-field").forEach(input => {
     input.addEventListener("blur", function () {
-      console.log("Prüfe feld");
       let errorMsg = this.nextElementSibling;
       if (this.value.trim() === "") {
         this.classList.add('error_Msg_Input')
@@ -73,11 +67,8 @@ function focusOnRequiredFields() {
 
 
 function correctDateInput(dateString) {
-  console.log("Datum prüfen ", dateString);
   let date = new Date(dateString);
   let year = date.getFullYear();
-  console.log("Jahr auisgeben", year);
-
   if (year.toString().length > 4) {
   }
   else if (year < 2025) {
@@ -141,15 +132,12 @@ function btnPrioBtnSelect(auswahl, btnColor, id) {
 
 
 function subTaskInputCheck(flag) {
-  console.log("Input Check");
   let subTaskInput = document.getElementById('inputSubtask')
   if (flag) {
     subTaskInput.value === null;
-    console.log("Varianel ".subTaskInput);
     subTaskInput.focus();
   };
   if (subTaskInput) {
-    console.log("es wurde was eigeben");
     document.getElementById('subTaskAddIcon').classList.add('ele_hide')
     document.getElementById('subTaskEditIocn').classList.remove('ele_hide')
   } else {
@@ -160,7 +148,6 @@ function subTaskInputCheck(flag) {
 
 
 function subTaskClose() {
-  console.log("subtask wird geschlossen");
   document.getElementById('subTaskAddIcon').classList.remove('ele_hide')
   document.getElementById('subTaskEditIocn').classList.add('ele_hide')
   document.getElementById('inputSubtask').value = "";
@@ -180,7 +167,7 @@ function taskCreateTask() {
   }
   subTaskClose();
   subTaskListRender();
-  console.log("Array ", taskSubTaskList);
+
 }
 
 
@@ -207,7 +194,6 @@ function taskReadinArrayTask(taskData) {
 
 
 function taskReadinArrayContact(DataContact) {
-  console.log("Aushabe Datacontact ",DataContact);
   let= index=0;
   document.getElementById('taskDropDownList').innerHTML="";
   taskContacteArray = Object.values(DataContact)
@@ -216,8 +202,6 @@ function taskReadinArrayContact(DataContact) {
     email:entry.email,
     color: entry.color || "10"
   })));
-  console.log("Array mit name,Maikl ",taskContacteArray);
-
   taskContacteArray.map((contact,index) =>{
       taskRenderContactList(index,contact.name,contact.color ||  "10",contact.email);
       });
@@ -227,6 +211,8 @@ function taskReadinArrayContact(DataContact) {
 
 
 function taskContactListDrobdown() {
+  console.log("Starte Contactliste");
+  
   document.getElementById('taskContactDrowdownMenue').classList.toggle('ele_show');
   document.getElementById('initialeIconList').classList.toggle('icon_List_hide')
 }
@@ -250,26 +236,20 @@ function contactCheckOKinArray() {
   document.querySelectorAll(".contact_Label_Item").forEach((entry,contactID) => {
     let checkbox = entry.querySelector("input[type='checkbox']")
     if (checkbox && checkbox.checked) {
-      console.log("ID ",contactID)
       selectedTaskContacts.push(taskContacteArray[contactID]);
       document.getElementById('initialeIconList').innerHTML="";
       taskContacInitialRender(selectedTaskContacts);
      }
   })
-  console.log("Namen mit Checkbox ", selectedTaskContacts);
-}
+ }
 
 function checkInputData() {
   let mandatoryFields = document.querySelectorAll('.input-field');
      mandatoryFields.forEach(field => {
     if (field.value.trim() == "") {
        field.classList.add('error_Msg_Input');
-        console.log("Es fehlt noch was");
-        return;
+            return;
     } else {
-      
-     // field.classList.remove('error_Msg_Input');
-      console.log("Alle Daten OK");
       pushTaskToServer();
       timePopUp(2000);
       addTaskClear();
@@ -335,7 +315,6 @@ function subTasksObjects() {
 
 
 function addTaskClear() {
-  console.log("Lösche Felder");
   document.getElementById('taskTitle').value = "";
   document.getElementById('descriptionTask').value = "";
   loadDataFirebase();
@@ -354,13 +333,5 @@ function addTaskClear() {
   subTaskListRender();
   document.getElementById('taskTitle').focus();
   
-}
-
-
-function Test(){
-  console.log("setze Button zurück");
-  //document.getElementById('taskDate').style.setProperty("border-color", "black", "important");
-
-document.getElementById('taskDate').style.borderColor="";
 }
 

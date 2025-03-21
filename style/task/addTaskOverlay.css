@@ -1,16 +1,9 @@
 
-
-
-
-
-
 span {
     color: #2A3647;
     font-size: 20px;
     font-weight: 400;
-   
-}
-
+  }
 
 
 .section-title-div {
@@ -21,10 +14,12 @@ span {
     height: 96px;
 }
 
+
 .section-title {
     width: 440px;
     height: 376px;
 }
+
 
 .input-title {
     display: flex;
@@ -59,6 +54,7 @@ span {
     }
 }
 
+
 .textarea-description {
     display: flex;
     gap: 4px;
@@ -77,10 +73,8 @@ span {
         padding: 18px 16px 18px 16px;
         gap: 10px;
         font-weight: 400;
-        font-size: 20px;
-
+       font-size: 20px;
     }
-
 }
 
 
@@ -243,7 +237,13 @@ span {
     -webkit-appearance: none;
 }
 
-.date-icon {
+
+.date-icon:hover {
+    cursor: pointer;
+}
+
+
+.date_icon_Edit {
     position: relative;
     right: 30px;
     width: 24px;
@@ -251,11 +251,6 @@ span {
 
 
 }
-
-.date-icon:hover {
-    cursor: pointer;
-}
-
 
 .section-prio {
     display: flex;
