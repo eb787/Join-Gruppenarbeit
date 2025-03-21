@@ -1,6 +1,6 @@
 function getExampleCard(index, layer) {
-    return `<div id="card_number_${index}" class="card" onclick="showCardOverlay(${index})" draggable="true" ondragstart="startDragging(${index}, event)">
-                                <div id="category_${index}_${layer}" class="task_category technical_task">${currentTasks[index].category}</div>
+    return `<div id="card_number_${index}" class="card" onclick="showCardOverlay(${index})" draggable="true" ondragstart="startDragging(${index})">
+                                <div id="category_${index}${layer}" class="task_category technical_task">${currentTasks[index].category}</div>
                                 <div>
                                     <div class="task_name">${currentTasks[index].title}</div>
                                     <div id="description_${index}_${layer}" class="task_description">${currentTasks[index].description.slice(0, 50)}...</div>
@@ -15,6 +15,7 @@ function getExampleCard(index, layer) {
         
                             </div>`
 }
+
 
 function getSubtasks(index, subtasks, progress, layer) {
     return `
@@ -35,30 +36,37 @@ function getSubtasks(index, subtasks, progress, layer) {
 
 }
 
+
 function getContactIcon(index, i, layer) {
     return `   <div id="profile_${index}_${i}_${layer}" class="profile_badge" style="z-index: ${i + 1}; position: relative; left: calc(${i} * -8px); background-color: ${contactColorArray[currentTasks[index].contacts[i].color]};"></div>  
     `
 }
 
+
 function getContactDots() {
     return ` <div class="dots_more_content">...</div>`
 }
+
 
 function getNoTasksToDoCard() {
     return `<div id="no_task_toDo" class="no_tasks">No tasks To do</div>`
 }
 
+
 function getNoTasksInProgressCard() {
     return `<div id="no_task_inProgress" class="no_tasks">No tasks In progress</div>`
 }
+
 
 function getNoTasksAwaitFeedbackCard() {
     return `<div id="no_task_awaitFeedback" class="no_tasks">No tasks Await feedback</div>`
 }
 
+
 function getNoTasksDoneCard() {
     return `<div id="no_task_done" class="no_tasks">No tasks Done</div>`
 }
+
 
 function getCardOverlay() {
     return `    <div onclick="closeOverlay('bg_overlay')" id="bg_overlay" class="bg_overlay d_none">
@@ -68,10 +76,11 @@ function getCardOverlay() {
                                 </div>`
 }
 
+
 function getCardOverlayContent(index) {
     return `   
             <div class="card_overlay_header">
-            <div id="category_overlay${index}" class="task_category task_category_overlay technical_task_overlay ">${currentTasks[index].category}</div>
+            <div id="category_${index}_overlay" class="task_category task_category_overlay technical_task_overlay ">${currentTasks[index].category}</div>
             <img onclick="closeOverlay('bg_overlay')" class="close_btn_overlay" src="..//assets/icons/close.svg" alt="close button">
         </div>
                         <h1 class="board_heading">${currentTasks[index].title}</h1>
@@ -105,6 +114,7 @@ function getCardOverlayContent(index) {
 
 }
 
+
 function getSubtasksOverlay(index) {
     return `
     <div class="task_description_overlay fd_column gap_8">
@@ -116,6 +126,7 @@ function getSubtasksOverlay(index) {
     `
 }
 
+
 function getTaskOverlay(index, i) {
     return `
                              <div id="check_box_${index}_info${i}" onclick="changeSubtaskCategory(${index}, ${i})" class="task_info">
@@ -125,6 +136,7 @@ function getTaskOverlay(index, i) {
     
     `
 }
+
 
 function getContactBoxOverlay(index) {
     return `
@@ -137,9 +149,10 @@ function getContactBoxOverlay(index) {
     `
 }
 
+
 function getContactIconOverlay(index, i) {
     return `   <div class="contact_info">
-                    <div id="profile_badge_overlay_${index}_${i}"  class="profile_badge profile_badge_overlay" style="background-color: ${contactColorArray[currentTasks[index].contacts[i].color]};">
+                    <div id="profile_${index}_${i}_overlay"  class="profile_badge profile_badge_overlay" style="background-color: ${contactColorArray[currentTasks[index].contacts[i].color]};">
                     </div>
                     <p class="font_19">${currentTasks[index].contacts[i].name}
                     </p>
@@ -275,20 +288,6 @@ function editTaskTemplate(index) {
    `
 
 }
-
-function getFoundItems() {
-
-    return ` <h1 class="board_heading heading_extra">Search results</h1>
-
-    <div id="found_titles" class="found_titles"></div>
-      
-    
-
-    </div>
-    
-    `
-}
-
 
 
 function dateConversation(dateStr){
