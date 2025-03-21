@@ -166,11 +166,13 @@ function deleteSubTaskEdit(posi) {
 }
 
 
-function TaskEditSave() {
+async function TaskEditSave() {
          collectDataEdit();
-         postTaskDataEdit(`/tasks/${parseInt(indexEdit)}`, currentTaskEdit);
-         closeOverlay('bg_overlay')
+         await postTaskDataEdit(`/tasks/${parseInt(indexEdit)}`, currentTaskEdit);
+         await fetchTaskData();
+              
          updateTaskBoard();
+         closeOverlay('bg_overlay')
 }
 
 
