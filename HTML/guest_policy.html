@@ -14,12 +14,15 @@
     <link rel="stylesheet" href="../style/fonts.css">
     <link rel="stylesheet" href="../style/board.css">
     <link rel="stylesheet" href="../style/policy.css">
+    <link rel="stylesheet" href="../style/mobile/policy_mobile.css">
+    <link rel="stylesheet" href="../style/mobile/navbar_mobile.css">
+    <script src="../scripts/policy legal_notice/policy legal_notice.js"></script>
 
 </head>
 
 <body>
     <div class="full_content">
-        <nav class="nav">
+        <nav class="nav mobile_display_none">
             <div class="nav-icon-capa2">
                 <img src="../assets/icons/capa 2.svg">
             </div>
@@ -42,6 +45,9 @@
         <section class="content_right">
 
             <div class="headline">
+                <div class="mobile_join_logo desktop_display_none mobile_display_flex">
+                    <img src="../assets/icons/mobile_capa.svg">
+                </div>
                 <span class="headline_title font20">Kanban Project Management Tool</span>
                 <div class="headline_logo_help">
                     <img src="../assets/icons/help.svg" alt="">
@@ -116,6 +122,19 @@
                 </div>
 
             </div>
+            <a href="../HTML/guest_legal_notice.html"></a>
+            <nav class="nav_mobile">
+                <div class="mobile_navbar_icon mobile_display_flex" onclick="openPageLogin('../HTML/login.html')">
+                    <img src="../assets/icons/mobile_login.svg">
+                </div>
+                <div class="mobile_display_flex">
+                    <img src="../assets/icons/mobile_legal_notice.svg" onclick="openPageLegalNotice('../HTML/guest_legal_notice.html')">
+                </div>
+                <div class="mobile_navbar_icon mobile_display_flex">
+                    <img src="../assets/icons/mobile_current_privacy.svg">
+                </div>
+
+            </nav>
         </section>
     </div>
 </body>
