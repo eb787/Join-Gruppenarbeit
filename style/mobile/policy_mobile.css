@@ -1,0 +1,11 @@
+@media (max-width: 1000px) {
+    .headline_logo_user_sign_in_mobile{
+        display: flex;
+        padding-right: 32px;
+    }
+
+    .privacy_policy_text {
+        padding: 50px 30px;
+      
+}
+}
