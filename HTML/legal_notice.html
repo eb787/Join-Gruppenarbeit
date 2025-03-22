@@ -14,12 +14,15 @@
     <link rel="stylesheet" href="../style/fonts.css">
     <link rel="stylesheet" href="../style/board.css">
     <link rel="stylesheet" href="../style/legal_notice.css">
+    <link rel="stylesheet" href="../style/mobile/navbar_mobile.css">
+    <link rel="stylesheet" href="../style/mobile/policy_mobile.css">
+    <script src="../scripts/script.js"></script>
 
 </head>
 
-<body>
+<body onload=" renderInitials()">
     <div class="full_content">
-        <nav class="nav">
+        <nav class="nav mobile_display_none">
             <div class="nav-icon-capa2">
                 <img src="../assets/icons/capa 2.svg">
             </div>
@@ -51,16 +54,26 @@
         <section class="content_right">
 
             <div class="headline">
+                <div class="mobile_join_logo desktop_display_none mobile_display_flex">
+                    <img src="../assets/icons/mobile_capa.svg">
+                </div>
                 <span class="headline_title font20">Kanban Project Management Tool</span>
-                <div class="headline_logo_help">
+                <div class="headline_logo_help mobile_display_none">
                     <img src="../assets/icons/help.svg" alt="">
                 </div>
-                <div class="headline_logo_user_sign_in">
+                <div id="logo_user_sign_in" onclick="toggleMenu()" class="headline_logo_user_sign_in_mobile desktop_display_none">
                 </div>
                 <seperator class="navbar_seperator"></seperator>
             </div>
 
             <div class="main_contant">
+                <div class="div_submenu submenu_closed" id="submenu_toogle">
+                    <div class="submenu">
+                        <a href="../HTML/policy.html">Privacy Policy</a>
+                        <a href="../HTML/help.html">Help</a>
+                        <a href="../HTML/login.html">Log out</a>
+                    </div>
+                </div>
                 <div class="legal_notice_text">
                     <h1>Legal Notice</h1>
 
@@ -123,6 +136,22 @@
 
                 </div>
             </div>
+            <nav class="nav_mobile">
+
+                <div class="mobile_navbar_icon mobile_display_flex">
+                    <img src="../assets/icons/mobile_summary.svg">
+                </div>
+                <div class="mobile_navbar_icon mobile_display_flex">
+                    <img src="../assets/icons/mobile_task.svg">
+                </div>
+                <div class="mobile_navbar_icon mobile_display_flex">
+                    <img src="../assets/icons/mobile_board.svg">
+                </div>
+                <div class="mobile_navbar_icon mobile_display_flex">
+                    <img src="../assets/icons/mobile_contact.svg">
+                </div>
+
+            </nav>
         </section>
     </div>
 </body>
