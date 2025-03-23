@@ -21,10 +21,8 @@ function init(){
 
 //Tasten Clear und Create Task sperren*/
 function startAddTask() {
-  //document.getElementById('btnCreateTask').classList.add('btn_lockout');
-  //document.getElementById('btnClearTask').classList.add('btn_lockout');
   document.getElementById('subTaskAddIcon').classList.remove('ele_hide')
-  //document.getElementById('subTaskEditIocn').classList.remove('ele_hide')
+
 
 }
 

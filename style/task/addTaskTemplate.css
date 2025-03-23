@@ -131,11 +131,7 @@ margin-top: 80px;
     width: 112px;
 }
 
-.task_input_section{
-    display: flex;
-    align-items: center;
-    width: 440px;
-}
+
 
 .task_input_section img{
     width: 7.21px;
@@ -153,16 +149,23 @@ margin-top: 80px;
     width: 420px;
 }
 
+.task_input_section{
+    display: flex;
+    align-items: center;
+    width: 440px;
+}
+
 .task_dropdown_input{
     font-size: 20px;
     font-weight: 400;
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     text-align: left;
     background-color: white;
+
 }
 
 
@@ -432,16 +435,12 @@ hr {
     height: 14.51px;
 }
 
-.initiale_Icon_List{
+.initiale_Icon_ListEdit{
     display: none;
     align-items: center;
     justify-content: flex-start;
-    position: absolute;
-    top:680px;
-    left:345px;
-    height:42px;
-    width: 175px;
-    margin-top: 10px;
+    margin-top: -30px;
+    margin-left: 25px;
   }
 
 

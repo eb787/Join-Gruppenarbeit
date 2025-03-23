@@ -11,8 +11,7 @@ function getExampleCard(index, layer) {
                                     <div id="Profile_badges_${index}_${layer}" class="profile_badges"></div>
                                     <img class="prio_icon ${currentTasks[index].prio}_${layer}" src="..//assets/icons/${currentTasks[index].prio}.svg" alt="priority indicator">
                                 </div>
-                                
-        
+                                       
                             </div>`
 }
 
@@ -304,15 +303,15 @@ function getAddTaskOverlay() {
     return ` 
 
         <div onclick="closeOverlay('addTask_overlay')" id="addTask_overlay" class="bg_overlay d_none">
-               
-              <div onclick="stopPropagation(event)" id="addTask_card" class="addTask_overlay">
-               <img onclick="closeOverlay('addTask_overlay')" class="close_btn_overlay" style="width: 100px;" src="..//assets/icons/close.svg" alt="close button">
-                              
+              
+            <div onclick="stopPropagation(event)" id="addTask_card" class="addTask_overlay">
+            <img  src="..//assets/icons/close.svg" onclick="closeOverlay('addTask_overlay')" class="close_btn_AddOverlay" >
+                                         
 
-
-                  <h1>Add Task</h1>
+             <p class="Title_AddTaskOver">Add Task</p>
+             
             <div class="section_AddTask">
-         
+             
                 <div class="section-title">
                         <div class="section-title-div">
                             <span class="title">Title<span class="star-red">*</span></span>
@@ -333,17 +332,25 @@ function getAddTaskOverlay() {
                         <div class="task_Contact_dropdown">
 
                             <div class="task_input_section">
-                                <input type="text" id="taskDropDownInput" class="task_dropdown_input" tabindex="3"
+                                <input type="text" id="taskDropDownInput" class="task_dropdown_input_AddOver" tabindex="3"
                                     placeholder="Select contacts to assign" onclick="taskContactListDrobdown()"
                                     onkeyup="taskContactFilterList()"  >
                                 <img src="../assets/icons/arrow_down.svg">
                             </div>
 
                             <div id="taskContactDrowdownMenue" class="task_dropdown_content">
-                            <div id="taskDropDownList" class="task_dropdown_list">
-                              </div>
+                            <div id="taskDropDownList" class="task_dropdown_list">                            </div>
                             </div>
-                        </div>
+                        
+                                                
+                        
+                            </div>
+
+                <div id="initialeIconList" class="initiale_Icon_List_AddOver icon_List_hide"></div> 
+                                <div class="required_text">
+                       <span><span class="star-red ">*</span class="required-text">This field is requiered</span>
+                </div>
+
                     </div>
 
                 </div>
@@ -422,22 +429,17 @@ function getAddTaskOverlay() {
                     </div>
 
                 <div class="button-bottom-task">
-                    <button id="btnClearTask" class="button-clear-task" onclick="addTaskClear()">Canel <img class="cancel"
+                    <button id="btnClearTask" class="button-clear-task" onclick="closeOverlay('addTask_overlay')">Canel <img class="cancel"
                             src="../assets/icons/iconoir_cancel.png" alt=""></button>
                     <button id="btnCreateTask" class="button-create-task" onclick="checkInputData()">Create Task <img
                          src="../assets/icons/check.png" alt=""></button>
                 </div>
                
              </div>
-               
-               
+                     
               
 
-                <div id="initialeIconList" class="initiale_Icon_List icon_List_hide"></div> 
-                
-                <div class="required_text">
-                    <span><span class="star-red ">*</span class="required-text">This field is requiered</span>
-                </div>
+               
             
             
             </div>

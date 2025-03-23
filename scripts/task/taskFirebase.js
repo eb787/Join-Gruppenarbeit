@@ -10,7 +10,7 @@ async function loadDataFirebase() {
         ])
             const DataTask = await responseTask.json();
             const DataContact = await responseContact.json();
-                    
+                 
             
             taskReadinArrayTask(DataTask);
             taskReadinArrayContact(DataContact);
