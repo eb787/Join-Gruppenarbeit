@@ -5,6 +5,23 @@ let currentTask = {};
 let elementToBeDropped = "";
 let newFinishedTasks = 0;
 
+window.addEventListener("load", adjustHeight);
+window.addEventListener("resize", adjustHeight);
+
+
+function adjustHeight() {
+    let maxHeight = 0;
+    document.querySelectorAll(".board_content_colums_cards").forEach(el => {
+        let height = el.scrollHeight;
+        if (height > maxHeight) {
+            maxHeight = height;
+        }
+    });
+    document.querySelectorAll(".board_content_box").forEach(el => {
+        el.style.minHeight = maxHeight + "px";
+    });
+}
+
 
 async function loadTaskData() {
     await fetchTaskData();
