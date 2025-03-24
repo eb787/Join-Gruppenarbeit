@@ -1,10 +1,13 @@
 
+
+
 .container_AddTask{
     display: flex;
     gap: 60px;
-    width: 100%;
     margin-top: 100px;
     margin-left: 80px;
+    background-color: aqua;
+   
    
 }
 
@@ -15,6 +18,7 @@
     left: 80px;
     font-size: 61px;
     font-weight: 700;
+    background-color: #FFA800;
   
     }
 
@@ -34,14 +38,12 @@ span {
 }
 
 
-
 .section_left {
     display: flex;
     flex-direction: column;
-
+    background-color: #FF8190;
   }
   
-
 
 .section_title {
     display: flex;
@@ -240,6 +242,7 @@ span {
 .section_right {
     display: flex;
     flex-direction: column;
+    background-color: blueviolet;
 
 }
 
