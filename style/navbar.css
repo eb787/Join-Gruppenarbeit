@@ -25,12 +25,13 @@ body {
     align-items: center;
     background-color: white;
     flex-grow: 1;
-    width: calc(100% - 232px);
+   width: calc(100% - 232px);
+
 }
 
 .main_contant {
-    background-color: rgb(246, 247, 249);
-    height: 928px;
+  background-color: rgb(246, 247, 249);
+  height: 928px;
 }
 
 .headline {
