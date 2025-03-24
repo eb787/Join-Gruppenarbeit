@@ -1,15 +1,8 @@
 
-                           
-                           
-                           
-
-
-
-
 .container_AddTask{
     display: flex;
-
     gap: 60px;
+    width: 100%;
     margin-top: 100px;
     margin-left: 80px;
    
@@ -40,6 +33,28 @@ span {
     font-weight: 400;
 }
 
+
+
+.section_left {
+    display: flex;
+    flex-direction: column;
+
+  }
+  
+
+
+.section_title {
+    display: flex;
+    gap: 4px;
+    flex-direction: column;
+
+    height: 96px;
+    margin-bottom: 30px;
+
+}
+
+
+
 .input_title {
     display: flex;
     height: 48px;
@@ -62,22 +77,8 @@ span {
 }
 
 
-.section_left {
-  display: flex;
-  flex-direction: column;
-   
-}
 
 
-.section_title {
-    display: flex;
-    gap: 4px;
-    flex-direction: column;
-    width: 440px;
-    height: 96px;
-margin-bottom: 30px;
-
-}
 
 .section_description {
     display: flex;
@@ -161,7 +162,7 @@ margin-bottom: 30px;
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
     text-align: left;
     background-color: white;
