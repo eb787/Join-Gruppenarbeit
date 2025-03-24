@@ -107,7 +107,7 @@ function btnPrioSelect(btnPrio) {
   }
 
   if (btnPrio == "medium") {
-    btnPrioBtnSelect("button-medium", "#FFA800", 1)
+    btnPrioBtnSelect("button_medium", "#FFA800", 1)
     taskPrioSelect = "medium_prio"
 
   }

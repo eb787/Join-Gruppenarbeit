@@ -173,7 +173,7 @@ button:hover {
     cursor: pointer;
 }
 
-.button-bottom-task {
+.button_bottom_task {
     position: absolute;
     display: flex;
     top: 793px;

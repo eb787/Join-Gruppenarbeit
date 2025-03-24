@@ -102,7 +102,7 @@ function generateContactList(contacts, userContainer, letter) {
             currentLetter = firstLetter;
             userContainer.innerHTML += `
                 <div class="contact-section">
-                    <h3 class="contact-section-title">${currentLetter}</h3>
+                    <h3 class="contact-section_left">${currentLetter}</h3>
                     <hr class="contact-divider">
                 </div>
             `;

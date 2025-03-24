@@ -172,23 +172,23 @@ function editTaskTemplate(index) {
         </div>
  
             
-                <div class="section-title-div">
+                <div class="section_title">
                     <span class="title">Title</span>
-                    <input id="taskTitle" class="input-title input-field" type="text" tabindex="1">
+                    <input id="taskTitle" class="input_title input-field" type="text" tabindex="1">
                     <span class="error_Field">&nbsp;</span>
                 </div>
             
 
-               <div class="section-description">
+               <div class="section_description">
                   <span>Description</span>
-                   <div class="textarea-description">
+                   <div class="textarea_description">
                         <textarea id="descriptionTask"  placeholder="Enter a Description" tabindex="2">${currentTasks[index].description}</textarea>
                    </div>
                 </div>
 
         
 
-            <div class="section-date-div">
+            <div class="section_date_div">
                 <span>Due date </span>
                <div class="task_Date_Input_Div">
                    <input type="date"  id="taskDate" class="date_input input-field" tabindex="4" >
@@ -199,7 +199,7 @@ function editTaskTemplate(index) {
           
 
 
-            <div class="section-prio">
+            <div class="section_prio">
                 <span>Priority</span>
 
 
@@ -209,7 +209,7 @@ function editTaskTemplate(index) {
                     </button>
                  
 
-                    <button onclick="btnPrioSelect('medium');checkPrioEditTask('medium_prio')" class="btn_prio button-medium" tabindex="6">Medium
+                    <button onclick="btnPrioSelect('medium');checkPrioEditTask('medium_prio')" class="btn_prio button_medium" tabindex="6">Medium
                         <div id="btnPrioGroup" class="prio_img prio_img_group">
                             <img src="../assets/icons/linePrio.svg">
                             <img src="../assets/icons/linePrio.svg">
@@ -227,8 +227,8 @@ function editTaskTemplate(index) {
 
 
 
-            <div class="section-assigned">
-                <span class="assigned-title">Assigned to</span>
+            <div class="section_assigned">
+                <span class="assigned_title">Assigned to</span>
                 <div class="task_Contact_dropdown">
 
                     <div class="task_input_section">
@@ -253,18 +253,18 @@ function editTaskTemplate(index) {
             <div class="section_Subtask">
 
                         <span>Subtasks</span>
-                        <div class="input-wrapper">
-                            <input type="text" placeholder="Add new subtask"   id="inputSubtask" class="input-subtasks" oninput="subTaskInputCheck()"
+                        <div class="input_wrapper">
+                            <input type="text" placeholder="Add new subtask"   id="inputSubtask" class="input_subtasks" oninput="subTaskInputCheck()"
                            
                                                       
                             <span class="error_Field">&nbsp;</span>                                      
 
-                                 <img id="subTaskAddIcon" class="add-subtasks ele_hide" onclick="subTaskInputCheck(true)"
+                                 <img id="subTaskAddIcon" class="add_subtasks ele_hide" onclick="subTaskInputCheck(true)"
                                 src="../assets/icons/add.png">
                        
                             
                             
-                            <div id="subTaskEditIocn" class="add-subtasks sub_Task_Edit_Iocn ele_hide">
+                            <div id="subTaskEditIocn" class="add_subtasks sub_Task_Edit_Iocn ele_hide">
                                 <img id="subTaskCloseIcon" onclick="subTaskClose()" src="../assets/icons/close.svg">
                                 <img src="../assets/icons/vectorV.svg">
                                 <img id="subTaskCheckIcon" onclick="taskCreateTaskEdit()" src="../assets/icons/checkSW.svg">
@@ -312,23 +312,23 @@ function getAddTaskOverlay() {
              
             <div class="section_AddTask">
              
-                <div class="section-title">
-                        <div class="section-title-div">
-                            <span class="title">Title<span class="star-red">*</span></span>
-                            <input id="taskTitle" class="input-title input-field" type="text" placeholder="Enter a title" tabindex="1">
+                <div class="section_left">
+                        <div class="section_title">
+                            <span class="title">Title<span class="star_red">*</span></span>
+                            <input id="taskTitle" class="input_title input-field" type="text" placeholder="Enter a title" tabindex="1">
                             <span  class="error_Field">&nbsp;</span>
                         </div>
                  
-                    <div class="section-description">
+                    <div class="section_description">
                         <span>Description</span>
-                        <div class="textarea-description">
+                        <div class="textarea_description">
                             <textarea  id="descriptionTask" placeholder="Enter a Description" tabindex="2"></textarea>
                         </div>
                     </div>
 
 
-                    <div class="section-assigned">
-                        <span class="assigned-title">Assigned to</span>
+                    <div class="section_assigned">
+                        <span class="assigned_title">Assigned to</span>
                         <div class="task_Contact_dropdown">
 
                             <div class="task_input_section">
@@ -348,7 +348,7 @@ function getAddTaskOverlay() {
 
                 <div id="initialeIconList" class="initiale_Icon_List_AddOver icon_List_hide"></div> 
                                 <div class="required_text">
-                       <span><span class="star-red ">*</span class="required-text">This field is requiered</span>
+                       <span><span class="star_red ">*</span class="required-text">This field is requiered</span>
                 </div>
 
                     </div>
@@ -360,16 +360,16 @@ function getAddTaskOverlay() {
 
 
 
-                <div class="section-date">
-                    <div class="section-date-div">
-                        <span>Due date<span class="star-red">*</span></span>
-                        <input type="date" id="taskDate"  class=" date_test date-input input-field " tabindex="4">
+                <div class="section_right">
+                    <div class="section_date_div">
+                        <span>Due date<span class="star_red">*</span></span>
+                        <input type="date" id="taskDate"  class=" date_test date_input input-field " tabindex="4">
                         <span class="error_Field">&nbsp;</span>
-                        <img src="../assets/icons/event.png" class="date-icon"  onclick="openDatePicker()">
+                        <img src="../assets/icons/event.png" class="date_icon"  onclick="openDatePicker()">
                     </div>
 
 
-                    <div class="section-prio">
+                    <div class="section_prio">
                         <span>Priority</span>
                         <div class="prio-buttons">
 
@@ -378,7 +378,7 @@ function getAddTaskOverlay() {
                             </button>
 
 
-                            <button onclick="btnPrioSelect('medium')" class="btn_prio button-medium" tabindex="6">Medium
+                            <button onclick="btnPrioSelect('medium')" class="btn_prio button_medium" tabindex="6">Medium
                                 <div id="btnPrioGroup" class="prio_img prio_img_group">
                                     <img src="../assets/icons/linePrio.svg">
                                     <img src="../assets/icons/linePrio.svg">
@@ -392,8 +392,8 @@ function getAddTaskOverlay() {
                         </div>
 
                     </div>
-                    <div class="section-category">
-                        <span>Category<span class="star-red">*</span></span>
+                    <div class="section_category">
+                        <span>Category<span class="star_red">*</span></span>
                         
                         <div class="category-wrapper">
                             <select id="taskCatergory" class="input-field">
@@ -408,16 +408,16 @@ function getAddTaskOverlay() {
 
 
 
-                    <div class="section-subtasks">
+                    <div class="section_subtasks">
                         <span>Subtasks</span>
-                        <div class="input-wrapper">
-                            <input type="text" id="inputSubtask" class="input-subtasks" oninput="subTaskInputCheck()"
+                        <div class="input_wrapper">
+                            <input type="text" id="inputSubtask" class="input_subtasks" oninput="subTaskInputCheck()"
                                 maxlength="40">
                             <span class="error_Field">&nbsp;</span>
-                            <img id="subTaskAddIcon" class="add-subtasks ele_hide" onclick="subTaskInputCheck(true)"
+                            <img id="subTaskAddIcon" class="add_subtasks ele_hide" onclick="subTaskInputCheck(true)"
                                 src="../assets/icons/add.png" alt="add-icon">
 
-                            <div id="subTaskEditIocn" class="add-subtasks sub_Task_Edit_Iocn ele_hide">
+                            <div id="subTaskEditIocn" class="add_subtasks sub_Task_Edit_Iocn ele_hide">
                                 <img id="subTaskCloseIcon" onclick="subTaskClose()" src="../assets/icons/close.svg"
                                     alt="add-icon">
                                 <img src="../assets/icons/vectorV.svg">
@@ -428,10 +428,10 @@ function getAddTaskOverlay() {
                          </div>
                     </div>
 
-                <div class="button-bottom-task">
+                <div class="button_bottom_task">
                     <button id="btnClearTask" class="button-clear-task" onclick="closeOverlay('addTask_overlay')">Canel <img class="cancel"
                             src="../assets/icons/iconoir_cancel.png" alt=""></button>
-                    <button id="btnCreateTask" class="button-create-task" onclick="checkInputData()">Create Task <img
+                    <button id="btnCreateTask" class="button-create-task" onclick="checkInputData();closeOverlay('addTask_overlay')">Create Task <img
                          src="../assets/icons/check.png" alt=""></button>
                 </div>
                

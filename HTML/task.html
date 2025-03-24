@@ -23,117 +23,136 @@
 
 <body onload="renderInitials(); init();">
     <div class="full_content">
-        <nav class="nav">
-            <div class="nav-icon-capa2">
-                <img src="../assets/icons/capa 2.svg">
-            </div>
+                    <nav class="nav">
+                        <div class="nav-icon-capa2">
+                            <img src="../assets/icons/capa 2.svg">
+                        </div>
 
-            <div class="div_nav_icons">
-                <a class="navbar_icon" href="../HTML/summary.html">
-                    <img src="../assets/icons/summary.svg">
-                </a>
-                <div class="navbar_current_icon" href="../HTML/task.html">
-                    <img src="../assets/icons/add_task.svg">
-                </div>
-                <a class="navbar_icon" href="../HTML/board.html">
-                    <img src="../assets/icons/board.svg">
-                </a>
-                <a class="navbar_icon" href="../HTML/contacts.html">
-                    <img src="../assets/icons/contacts.svg">
-                </a>
-            </div>
-            <div class="div_impressum">
-                <a class="nav_impressum" href="../HTML/policy.html">
-                    <p>Privacy Policy</p>
-                </a>
-                <a class="nav_impressum" href="../HTML/legal_notice.html">
-                    <p>Legal notice</p>
-                </a>
-            </div>
-        </nav>
+                        <div class="div_nav_icons">
+                            <a class="navbar_icon" href="../HTML/summary.html">
+                                <img src="../assets/icons/summary.svg">
+                            </a>
+                            <div class="navbar_current_icon" href="../HTML/task.html">
+                                <img src="../assets/icons/add_task.svg">
+                            </div>
+                            <a class="navbar_icon" href="../HTML/board.html">
+                                <img src="../assets/icons/board.svg">
+                            </a>
+                            <a class="navbar_icon" href="../HTML/contacts.html">
+                                <img src="../assets/icons/contacts.svg">
+                            </a>
+                        </div>
+                        <div class="div_impressum">
+                            <a class="nav_impressum" href="../HTML/policy.html">
+                                <p>Privacy Policy</p>
+                            </a>
+                            <a class="nav_impressum" href="../HTML/legal_notice.html">
+                                <p>Legal notice</p>
+                            </a>
+                        </div>
+                    </nav>
+
+   
+
 
         <section class="content_right">
-            <div class="headline">
-                <span class="headline_title font20">Kanban Project Management Tool</span>
-                <a class="headline_logo_help" href="../HTML/help.html">
-                    <img src="../assets/icons/help.svg" alt="">
-                </a>
-                <div id="logo_user_sign_in" onclick="toggleMenu()" class="headline_logo_user_sign_in">
-                </div>
-                <seperator class="navbar_seperator"></seperator>
-            </div>
-            
-            <div class="main_contant">
-                <p class="addTask_Title">Add Task</p>
-                <div class="div_submenu submenu_closed" id="submenu_toogle">
-                    <div class="submenu">
-                        <a href="../HTML/legal_notice.html">Legal Notice</a>
-                        <a href="../HTML/policy.html">Privacy Policy</a>
-                        <a href="../HTML/login.html">Log out</a>
-                    </div>
-                </div>
-            </div>
-            
-                <h1>Add Task</h1>
-
-                <div class="section-title">
-                    <form>
-                        <div class="section-title-div">
-                            <span class="title">Title<span class="star-red">*</span></span>
-                            <input id="taskTitle" class="input-title input-field" type="text" placeholder="Enter a title" tabindex="1">
-                            <span  class="error_Field">&nbsp;</span>
-                        </div>
-                    </form>
-                    <div class="section-description">
-                        <span>Description</span>
-                        <div class="textarea-description">
-                            <textarea  id="descriptionTask" placeholder="Enter a Description" tabindex="2"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="section-assigned">
-                        <span class="assigned-title">Assigned to</span>
-                        <div class="task_Contact_dropdown">
-
-                            <div class="task_input_section">
-                                <input type="text" id="taskDropDownInput" class="task_dropdown_input" tabindex="3"
-                                    placeholder="Select contacts to assign" onclick="taskContactListDrobdown()"
-                                    onkeyup="taskContactFilterList()"  >
-                                <img src="../assets/icons/arrow_down.svg">
+                    <div class="headline">
+                            <span class="headline_title font20">Kanban Project Management Tool</span>
+                            <a class="headline_logo_help" href="../HTML/help.html">
+                                <img src="../assets/icons/help.svg" alt="">
+                            </a>
+                            <div id="logo_user_sign_in" onclick="toggleMenu()" class="headline_logo_user_sign_in">
                             </div>
-
-                            <div id="taskContactDrowdownMenue" class="task_dropdown_content">
-                            <div id="taskDropDownList" class="task_dropdown_list">
-                              </div>
-                            </div>
-                        </div>
+                            <seperator class="navbar_seperator"></seperator>
                     </div>
-                </div>
+            
+                    <div class="main_contant">
+                           
+                            <div class="div_submenu submenu_closed" id="submenu_toogle">
+                                <div class="submenu">
+                                    <a href="../HTML/legal_notice.html">Legal Notice</a>
+                                    <a href="../HTML/policy.html">Privacy Policy</a>
+                                    <a href="../HTML/login.html">Log out</a>
+                                </div>
+                           </div>
+                   
+                           <p class="addTask_Title">Add Task</p>  
+                         
+
+                       <div class="container_AddTask">
+
+                           <div class="section_left">
+
+                               
+                                    <div class="section_title">
+                                        <h2 class="title">Title<span class="star_red">*</span></h2>
+                                        <input id="taskTitle" class="input_title input-field" type="text" placeholder="Enter a title" tabindex="1">
+                                        <span class="error_Field">&nbsp;</span>
+                                    </div>
+                               
+                                
+                                <div class="section_description">
+                                    <h2>Description</h2>
+                                    <div class="textarea_description">
+                                        <textarea id="descriptionTask" placeholder="Enter a Description" tabindex="2"></textarea>
+                                    </div>
+                                </div>
+                            
+
+                                <div class="section_assigned">
+                                    <h2 class="assigned_title">Assigned to</h2>
+                                    <div class="task_Contact_dropdown">
+                            
+                                        <div class="task_input_section">
+                                            <input type="text" id="taskDropDownInput" class="task_dropdown_input" tabindex="3"
+                                                placeholder="Select contacts to assign" onclick="taskContactListDrobdown()"
+                                                onkeyup="taskContactFilterList()">
+                                            <img src="../assets/icons/arrow_down.svg">
+                                        </div>
+                            
+                                        <div id="taskContactDrowdownMenue" class="task_dropdown_content">
+                                            <div id="taskDropDownList" class="task_dropdown_list">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="initialeIconList" class="initiale_Icon_List icon_List_hide">                      
+                                    </div> 
+                                
+                                </div>
+                          
+                          
+                            </div>
                 
              
-                <hr>
+                <div>
+               
+                  <hr>
+                   
+                </div>
+
+                <div class="section_right">
 
 
-
-                <div class="section-date">
-                    <div class="section-date-div">
-                        <span>Due date<span class="star-red">*</span></span>
-                        <input type="date" id="taskDate"  class=" date_test date-input input-field " tabindex="4">
+                    <div class="section_date_div">
+                        <h2>Due date<span class="star_red">*</span></h2>
+                        <img src="../assets/icons/event.png" class="date_icon" onclick="openDatePicker()">
+                        <input type="date" id="taskDate"  class="date_input input-field" tabindex="4">
                         <span class="error_Field">&nbsp;</span>
-                        <img src="../assets/icons/event.png" class="date-icon"  onclick="openDatePicker()">
                     </div>
+                    
+                
 
 
-                    <div class="section-prio">
-                        <span>Priority</span>
+
+                    <div class="section_prio">
+                        <h2>Priority</h2>
                         <div class="prio-buttons">
-
                             <button onclick="btnPrioSelect('urgent')" class="btn_prio button-urgent" tabindex="5">Urgent
                                 <img class="prio_img" src="../assets/icons/high_prio.svg" alt="urgent">
                             </button>
 
 
-                            <button onclick="btnPrioSelect('medium')" class="btn_prio button-medium" tabindex="6">Medium
+                            <button onclick="btnPrioSelect('medium')" class="btn_prio button_medium" tabindex="6">Medium
                                 <div id="btnPrioGroup" class="prio_img prio_img_group">
                                     <img src="../assets/icons/linePrio.svg">
                                     <img src="../assets/icons/linePrio.svg">
@@ -145,34 +164,32 @@
                                 <img class="prio_img" src="../assets/icons/low_prio.svg">
                             </button>
                         </div>
-
                     </div>
-                    <div class="section-category">
-                        <span>Category<span class="star-red">*</span></span>
-                        
-                        <div class="category-wrapper">
+
+                    <div class="section_category">
+                        <h2>Category<span class="star_red">*</span></h2>
+                         <div class="category-wrapper">
                             <select id="taskCatergory" class="input-field">
                                 <option value="" selected disabled>Select task category</option>
                                 <option value="1">Technical Task</option>
                                 <option value="2">User Story</option>
                             </select>
                            <span class="error_Field">&nbsp;</span>
-                        </div>
-                                
+                        </div>                     
                     </div>
 
 
 
-                    <div class="section-subtasks">
-                        <span>Subtasks</span>
-                        <div class="input-wrapper">
-                            <input type="text" id="inputSubtask" class="input-subtasks" oninput="subTaskInputCheck()"
+                    <div class="section_subtasks">
+                        <h2>Subtasks</h2>
+                        <div class="input_wrapper">
+                            <input type="text" id="inputSubtask" class="input_subtasks" oninput="subTaskInputCheck()"
                                 maxlength="40">
                             <span class="error_Field">&nbsp;</span>
-                            <img id="subTaskAddIcon" class="add-subtasks ele_hide" onclick="subTaskInputCheck(true)"
+                            <img id="subTaskAddIcon" class="add_subtasks_new ele_hide" onclick="subTaskInputCheck(true)"
                                 src="../assets/icons/add.png" alt="add-icon">
 
-                            <div id="subTaskEditIocn" class="add-subtasks sub_Task_Edit_Iocn ele_hide">
+                            <div id="subTaskEditIocn" class="add_subtasks sub_Task_Edit_Iocn ele_hide">
                                 <img id="subTaskCloseIcon" onclick="subTaskClose()" src="../assets/icons/close.svg"
                                     alt="add-icon">
                                 <img src="../assets/icons/vectorV.svg">
@@ -181,51 +198,43 @@
                             </div>
                             <div id="subTaskList" class="subtask_list">
                             </div>
-                        </div>
-
+                       </div>
                     </div>
                 </div>
-                <div class="button-bottom-task">
-                    <button id="btnClearTask" class="button-clear-task" onclick="addTaskClear()">Clear <img class="cancel"
-                            src="../assets/icons/iconoir_cancel.png" alt=""></button>
-                    <button id="btnCreateTask" class="button-create-task" onclick="checkInputData()">Create Task <img
-                            src="../assets/icons/check.png" alt=""></button>
-                </div>
-                
 
 
-                   <div id="initialeIconList" class="initiale_Icon_List icon_List_hide">
-                       
-                    </div> 
-                
-         
+                    <div class="button_bottom_task">
+                        <button id="btnClearTask" class="button-clear-task" onclick="addTaskClear()">Clear <img class="cancel"
+                                src="../assets/icons/iconoir_cancel.png" alt=""></button>
+                        <button id="btnCreateTask" class="button-create-task" onclick="checkInputData()">Create Task <img
+                                src="../assets/icons/check.png" alt=""></button>
+                    
+                            </div>
+                    
 
+                        
+                        <div class="required_text">
+                            <span><span class="star_red ">*</span class="required-text">This field is requiered</span>
+                        </div>
+                    
 
-                
-                <div class="required_text">
-                    <span><span class="star-red ">*</span class="required-text">This field is requiered</span>
-                </div>
-            </div>
+                    <div id="notificationFinish" class="message_Finish">
+                        <div class="message_Finish_contents">
+                            <p>Task added to board</p>
+                            <img src="../assets/icons/boardIcon.svg">
+                        </div>
+                    </div>
+             </div>
 
-            <div id="notificationFinish" class="message_Finish">
-                <div class="message_Finish_contents">
-                      <p>Task added to board</p>
-                      <img src="../assets/icons/boardIcon.svg">
-                </div>
-            </div>
+        </div>
+    </div>
+      </section>
 
-
-
-
-        </section>
-
+    
        
 
-    </div>
-
-
+  
 </div>
-
 </body>
 
 </html>
