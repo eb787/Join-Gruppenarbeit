@@ -15,15 +15,18 @@
     <link rel="stylesheet" href="../style/board.css">
     <link rel="stylesheet" href="../style/contact/contact.css">
     <link rel="stylesheet" href="../style/contact/contactCard.css">
+    <link rel="stylesheet" href="../style/mobile/navbar_mobile.css">
+    <link rel="stylesheet" href="../style/mobile/contact_mobile.css">
     <script src="../scripts/contact/contactFirebase.js"></script>
     <script src="../scripts/contact/contactMain.js"></script>
     <script src="../scripts/contact/contactTemplate.js"></script>
+    <script src="../scripts/policy legalnotice/policy legal_notices.js"></script>
     <script src="../scripts/script.js"></script>
 </head>
 
 <body onload=" renderInitials(); getUsersList()">
     <div class="full_content">
-        <nav class="nav">
+        <nav class="nav mobile_display_none">
             <div class="nav-icon-capa2">
                 <img src="../assets/icons/capa 2.svg">
             </div>
@@ -54,8 +57,11 @@
 
         <section class="content_right">
             <div class="headline">
+                <div class="mobile_join_logo desktop_display_none mobile_display_flex">
+                    <img src="../assets/icons/mobile_capa.svg">
+                </div>
                 <span class="headline_title font20">Kanban Project Management Tool</span>
-                <div class="headline_logo_help">
+                <div class="headline_logo_help mobile_display_none">
                     <img src="../assets/icons/help.svg" alt="">
                 </div>
                 <div id="logo_user_sign_in" onclick="toggleMenu()" class="headline_logo_user_sign_in">
@@ -100,7 +106,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="contact_Detail">
+                    <div class="contact_Detail contact_Detaile_mobile">
                         <div class="contact_Detail_Header">
                             <p class="contact_header_1">Contacts</p>
                             <div class="line_Vertikal"></div>
@@ -162,6 +168,20 @@
                     </div>
                 </div>
             </div>
+            <nav class="nav_mobile">
+                <div class="mobile_navbar_icon mobile_display_flex" onclick="openSummary('../HTML/summary.html')">
+                    <img src="../assets/icons/mobile_summary.svg">
+                </div>
+                <div class="mobile_navbar_icon mobile_display_flex" onclick="openTask('../HTML/task.html')">
+                    <img src="../assets/icons/mobile_task.svg">
+                </div>
+                <div class="mobile_navbar_icon mobile_display_flex" onclick="openBoard('../HTML/board.html')">
+                    <img src="../assets/icons/mobile_board.svg">
+                </div>
+                <div class="mobile_navbar_icon mobile_display_flex">
+                    <img src="../assets/icons/mobile_current_contact.svg">
+                </div>
+             </nav>
         </section>
     </div>
 </body>
