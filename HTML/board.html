@@ -6,6 +6,7 @@
     <title>Join</title>
     <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.svg">
     <link rel="stylesheet" href="../style/navbar.css">
+    <link rel="stylesheet" href="../style/mobile/navbar_mobile.css">
     <link rel="stylesheet" href="../style/buttons.css">
     <link rel="stylesheet" href="../style/color.css">
     <link rel="stylesheet" href="../style/template.css">
@@ -28,7 +29,7 @@
 
 <body onload="loadTaskData();renderInitials();">
     <div id="full_content" class="full_content">
-        <nav class="nav">
+        <nav class="nav mobile_display_none">
             <div class="nav-icon-capa2">
                 <img src="../assets/icons/Capa 2.svg">
             </div>
@@ -59,8 +60,11 @@
 
         <section class="content_right">
             <div class="headline">
+                <div class="mobile_join_logo desktop_display_none mobile_display_flex">
+                    <img src="../assets/icons/mobile_capa.svg">
+                </div>
                 <span class="headline_title font20">Kanban Project Management Tool</span>
-                <a class="headline_logo_help" href="../HTML/help.html">
+                <a class="headline_logo_help mobile_display_none" href="../HTML/help.html">
                     <img src="../assets/icons/help.svg" alt="">
                 </a>
                 <div id="logo_user_sign_in" onclick="toggleMenu()" class="headline_logo_user_sign_in">
@@ -77,6 +81,7 @@
                             <a href="../HTML/login.html">Log out</a>
                         </div>
                     </div>
+
                     <div class="board_header">
                         <h1 class="board_heading">Board</h1>
                         <div class="board_options">
@@ -98,47 +103,73 @@
                         </div>
                     </div>
                     <div class="board_table">
-                        <div class="board_table_headings">
-                            <div class="board_description_box">
-                                <h2 class="Board_description_text">To do</h2>
-                                <img onclick="showAddTaskOverlay()" class="add_task_icon" src="../assets/icons/plus button.png" alt="plus icon">
-                            </div>
-                            <div class="board_description_box">
-                                <h2 class="Board_description_text">In progress</h2>
-                                <img onclick="showAddTaskOverlay()" class="add_task_icon" src="../assets/icons/plus button.png" alt="plus icon">
-                            </div>
-                            <div class="board_description_box">
-                                <h2 class="Board_description_text">Await feedback</h2>
-                                <img onclick="showAddTaskOverlay()" class="add_task_icon" src="../assets/icons/plus button.png" alt="plus icon">
-                            </div>
-                            <div class="board_description_box">
-                                <h2 class="Board_description_text">Done</h2>
-                            </div>
-                        </div>
                         <div class="board_table_content">
+                            
+                                <div class="board_description_box">
+                                    <div class="board_category_header">
+                                        <h2 class="Board_description_text">To do</h2>
+                                        <img onclick="showAddTaskOverlay()" class="add_task_icon" src="../assets/icons/plus button.png" alt="plus icon">
+                                    </div>
+                                    <div class="board_content_box" ondrop="moveTo('toDo')" ondragover="allowDrop(event)">
+                                        <div id="toDo" class="board_content_colums_cards"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="board_description_box">
+                                        <div class="board_category_header">
+                                            <h2 class="Board_description_text">In progress</h2>
+                                            <img onclick="showAddTaskOverlay()" class="add_task_icon" src="../assets/icons/plus button.png" alt="plus icon">
+                                        </div>
+                                        <div class="board_content_box" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
+                                        <div id="inProgress" class="board_content_colums_cards"></div>
+                                        </div>
+                                    </div>
 
-                            <div class="board_content_box" ondrop="moveTo('toDo')" ondragover="allowDrop(event)">
-                                <div id="toDo" class="board_content_colums_cards"></div>
-                            </div>
-                           
-                            <div class="board_content_box" ondrop="moveTo('inProgress')"
-                                ondragover="allowDrop(event)">
-                                <div id="inProgress" class="board_content_colums_cards"></div>
-                            </div>
-
-                            <div class="board_content_box" ondrop="moveTo('awaitFeedback')"
-                                ondragover="allowDrop(event)">
-                                <div id="awaitFeedback" class="board_content_colums_cards"></div>
-                            </div>
-                            <div class="board_content_box"  ondrop="moveTo('done')" ondragover="allowDrop(event)">
-                                <div id="done" class="board_content_colums_cards"></div>
-                            </div>
+                                </div>
+                                <div>
+                                    <div class="board_description_box">
+                                        <div class="board_category_header">
+                                            <h2 class="Board_description_text">Await feedback</h2>
+                                            <img onclick="showAddTaskOverlay()" class="add_task_icon" src="../assets/icons/plus button.png" alt="plus icon">
+                                        </div>
+                                        <div class="board_content_box" ondrop="moveTo('awaitFeedback')" ondragover="allowDrop(event)">
+                                        <div id="awaitFeedback" class="board_content_colums_cards"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="board_description_box">
+                                        <div class="board_category_header">
+                                            <h2 class="Board_description_text">Done</h2>
+                                        </div>
+                                    </div>
+                                    <div class="board_content_box"  ondrop="moveTo('done')" ondragover="allowDrop(event)">
+                                        <div id="done" class="board_content_colums_cards"></div>
+                                    </div>
+                                </div>
+                            
                         </div>
                     </div>
                 </div>
             </div>
     
     </section>
+    <nav class="nav_mobile">
+                
+        <div class="mobile_navbar_icon mobile_display_flex">
+            <img src="../assets/icons/mobile_summary.svg">
+        </div>
+        <div class="mobile_navbar_icon mobile_display_flex">
+            <img src="../assets/icons/mobile_task.svg">
+        </div>
+        <div class="mobile_navbar_icon mobile_display_flex">
+            <img src="../assets/icons/mobile_board.svg">
+        </div>
+        <div class="mobile_navbar_icon mobile_display_flex">
+            <img src="../assets/icons/mobile_contact.svg">
+        </div>
+   
+</nav>
     </div>
 </div>
 </body>

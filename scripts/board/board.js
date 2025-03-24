@@ -5,29 +5,13 @@ let currentTask = {};
 let elementToBeDropped = "";
 let newFinishedTasks = 0;
 
-window.addEventListener("load", adjustHeight);
-window.addEventListener("resize", adjustHeight);
-
-
-function adjustHeight() {
-    let maxHeight = 0;
-    document.querySelectorAll(".board_content_colums_cards").forEach(el => {
-        let height = el.scrollHeight;
-        if (height > maxHeight) {
-            maxHeight = height;
-        }
-    });
-    document.querySelectorAll(".board_content_box").forEach(el => {
-        el.style.minHeight = maxHeight + "px";
-    });
-}
-
 
 async function loadTaskData() {
     await fetchTaskData();
     updateTaskBoard();
     document.getElementById("full_content").innerHTML += getCardOverlay(); 
     document.getElementById("full_content").innerHTML += getAddTaskOverlay();
+    adaptBoardHeight();
 }
 
 
@@ -151,6 +135,26 @@ function getContactInitials(index, i, layer) {
         initialsBoard += names[a].substr(0,1);
     }
     document.getElementById("profile_" + index + "_" + i + "_" + layer).innerHTML += initialsBoard.toUpperCase();
+}
+
+
+function adaptBoardHeight() {
+    window.addEventListener("load", adjustHeight());
+    window.addEventListener("resize", adjustHeight());
+}
+
+
+function adjustHeight() {
+    let maxHeight = 0;
+    document.querySelectorAll(".board_content_colums_cards").forEach(el => {
+        let height = el.scrollHeight;
+        if (height > maxHeight) {
+            maxHeight = height;
+        }
+    });
+    document.querySelectorAll(".board_content_box").forEach(el => {
+        el.style.minHeight = maxHeight + "px";
+    });
 }
 
 
