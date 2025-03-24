@@ -124,20 +124,20 @@
     height: 688px;
     max-height: calc(100vh - 364.5px);
     margin-bottom: 36px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow-y: auto;
     scrollbar-width: none;
 }
 
-
 .board_content_box {
     width: 276px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.board_content_colums_cards {
     display: flex;
     gap: 16px;
     flex-direction: column;
-    padding-top: 6px;
-    padding-bottom: 6px;
-    min-height: 100%;
 }
 
 .no_tasks {

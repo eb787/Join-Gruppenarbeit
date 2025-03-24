@@ -117,17 +117,21 @@
                         </div>
                         <div class="board_table_content">
 
-                            <div class="board_content_box" id="toDo" ondrop="moveTo(id)" ondragover="allowDrop(event)">
+                            <div class="board_content_box" ondrop="moveTo('toDo')" ondragover="allowDrop(event)">
+                                <div id="toDo" class="board_content_colums_cards"></div>
                             </div>
                            
-                            <div class="board_content_box" id="inProgress" ondrop="moveTo(id)"
+                            <div class="board_content_box" ondrop="moveTo('inProgress')"
                                 ondragover="allowDrop(event)">
+                                <div id="inProgress" class="board_content_colums_cards"></div>
                             </div>
 
-                            <div class="board_content_box" id="awaitFeedback" ondrop="moveTo(id)"
+                            <div class="board_content_box" ondrop="moveTo('awaitFeedback')"
                                 ondragover="allowDrop(event)">
+                                <div id="awaitFeedback" class="board_content_colums_cards"></div>
                             </div>
-                            <div class="board_content_box" id="done" ondrop="moveTo(id)" ondragover="allowDrop(event)">
+                            <div class="board_content_box"  ondrop="moveTo('done')" ondragover="allowDrop(event)">
+                                <div id="done" class="board_content_colums_cards"></div>
                             </div>
                         </div>
                     </div>
