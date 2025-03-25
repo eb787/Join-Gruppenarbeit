@@ -152,9 +152,13 @@ function adjustHeight() {
             maxHeight = height;
         }
     });
-    document.querySelectorAll(".board_content_box").forEach(el => {
-        el.style.minHeight = maxHeight + "px";
-    });
+    if (window.innerWidth >= 1000) {
+        document.querySelectorAll(".board_content_box").forEach(el => {
+                el.style.minHeight = maxHeight + "px";
+            });
+
+    }
+   
 }
 
 
