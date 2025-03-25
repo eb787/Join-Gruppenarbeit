@@ -1,0 +1,312 @@
+@media (max-width: 1400px) {
+    .container-morning {
+        top: 575px;
+        left: 925px;
+    }
+
+    .titel-one {
+        font-size: 26px;
+        line-height: 0;
+
+    }
+
+    .titel-two {
+        font-size: 34px;
+        line-height: 56.4px;
+    }
+}
+
+@media (max-width: 1150px) {
+    .container-morning {
+        display: none;
+    }
+}
+
+@media (max-width: 1050px) {
+    .content {
+        top: 270px;
+        left: 165px;
+    }
+
+    .first-container {
+        top: 130px;
+        left: 165px;
+    }
+}
+
+@media (max-width: 880px) {
+    .content {
+        top: 270px;
+        left: 100px;
+    }
+
+    .first-container {
+        top: 150px;
+        left: 100px;
+
+        span {
+            font-size: 20px;
+        }
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 780px) {
+    .content {
+        top: 270px;
+        left: 100px;
+    }
+
+    .first-container {
+        top: 150px;
+        left: 100px;
+
+        span {
+            font-size: 20px;
+        }
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .content-to-do {
+        width: 440px;
+        height: 140px;
+    }
+
+    .content-pen {
+        width: 205px;
+        height: 140px;
+    }
+
+    .img-pen {
+        width: 49px;
+        height: 49px;
+    }
+
+    .one-done {
+        font-size: 44px;
+    }
+
+    .content-success {
+        width: 205px;
+        height: 140px;
+        left: 240px;
+    }
+
+    .img-up {
+        width: 49px;
+        height: 49px;
+    }
+
+    .content-date {
+        width: 440px;
+        height: 140px;
+        top: 170px;
+        gap: 70px
+    }
+
+    .one-urgent {
+        font-size: 49px;
+        line-height: 93.8px;
+    }
+
+    .task-text-big {
+        font-size: 44px;
+        height: 65px;
+    }
+
+    .task-text-small {
+        font-size: 16px;
+
+    }
+
+    .container-task {
+        width: 440px;
+        height: 140px;
+        top: 340px;
+    }
+
+    .container-task-one {
+        width: 140px;
+        padding: 0;
+    }
+
+    .container-task-two {
+        width: 140px;
+        padding: 0;
+        left: 155px;
+    }
+
+    .container-task-three {
+        width: 140px;
+        padding: 0;
+        left: 310px;
+    }
+}
+
+@media (max-width: 780px) {
+    .content {
+        top: 270px;
+        left: 50px;
+    }
+
+    .first-container {
+        top: 150px;
+        left: 50px;
+    }
+}
+
+@media (max-width: 550px) {
+    .content {
+        top: 305px;
+        left: 25px;
+    }
+
+    .first-container {
+        top: 150px;
+        left: 25px;
+        flex-direction: column;
+
+        span {
+            font-size: 20px;
+            line-height: 20px;
+        }
+    }
+
+    h1 {
+        font-size: 50px;
+        line-height: 30px;
+    }
+
+    hr {
+        width: 112px;
+        position: absolute;
+        top: 100px;
+        height: 0px;
+    }
+
+    .content-to-do {
+        width: 440px;
+        height: 140px;
+    }
+
+    .content-pen {
+        width: 140px;
+        height: 130px;
+    }
+
+    .img-pen {
+        width: 38px;
+        height: 38px;
+    }
+
+    .one-done {
+        font-size: 38px;
+    }
+
+    .text-to-do {
+        font-size: 18px;
+    }
+
+    .content-success {
+        width: 140px;
+        height: 130px;
+        left: 160px;
+    }
+
+    .img-up {
+        width: 24px;
+        height: 24px;
+    }
+
+    .content-date {
+        width: 300px;
+        height: 130px;
+        top: 170px;
+        gap: 70px
+    }
+
+    .content-date-div {
+        width: 65px;
+    }
+
+    .line-between {
+        width: 0;
+        height: 60px;
+        top: 30px;
+    }
+
+    .line-between-div {
+        padding-left: 0;
+    }
+
+    .one-urgent {
+        font-size: 38px;
+        line-height: 93.8px;
+
+    }
+
+    .content-deadline {
+        width: 150px;
+        height: 57px;
+        display: flex;
+        gap: 10px;
+    }
+
+    .task-text-big {
+        font-size: 30px;
+        height: 55px;
+        line-height: 64px;
+    }
+
+    .task-text-small {
+        font-size: 14px;
+        width: 55px;
+        height: 60px;
+        line-height: 16px;
+    }
+
+    .container-task {
+        width: 440px;
+        height: 140px;
+        top: 340px;
+    }
+
+    .container-task-one {
+        width: 90px;
+        padding: 0;
+    }
+
+    .container-task-two {
+        width: 90px;
+        padding: 0;
+        left: 105px;
+    }
+
+    .task-text {
+        height: 100px;
+    }
+
+    .container-task-three {
+        width: 90px;
+        padding: 0;
+        left: 210px;
+    }
+}
+
+@media (max-width: 380px){
+    .content {
+        top: 305px;
+        left: 8px;
+    }
+
+    .first-container {
+        top: 150px;
+        left: 8px;
+    }
+}
