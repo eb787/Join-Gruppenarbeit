@@ -412,6 +412,7 @@ span {
 
 
 hr {
+    display: flex;
       width: 0px;
       height: 424px;
       margin-left: 60px;

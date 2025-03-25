@@ -48,16 +48,25 @@ hr {
 
 @media (max-width: 616px) {
    
+    .main_contant{
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+                
+        
+    }
+    
     .container_AddTask{
         display: flex;
         flex-direction: column;
         margin-top: 60px;
-        width: 400px;
-        height: 100vh;  
+        
         overflow: auto;
     }
     
-
+hr{
+    display: none;
+}
 
 
 
