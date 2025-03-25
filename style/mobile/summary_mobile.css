@@ -22,7 +22,7 @@
     }
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 1000px) {
     .content {
         top: 270px;
         left: 165px;
