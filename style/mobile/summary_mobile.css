@@ -43,26 +43,19 @@
     .first-container {
         top: 150px;
         left: 100px;
-
-        span {
-            font-size: 20px;
-        }
     }
 
-    h1 {
-        font-size: 30px;
-    }
 }
 
 @media (max-width: 780px) {
     .content {
         top: 270px;
-        left: 100px;
+        left: 140px;
     }
 
     .first-container {
         top: 150px;
-        left: 100px;
+        left: 140px;
 
         span {
             font-size: 20px;
@@ -149,27 +142,56 @@
     }
 }
 
-@media (max-width: 780px) {
+@media (max-width: 720px) {
     .content {
         top: 270px;
-        left: 50px;
+        left: 80px;
     }
 
     .first-container {
         top: 150px;
-        left: 50px;
+        left: 80px;
+    }
+}
+
+@media (max-width: 650px) {
+    .content {
+        top: 270px;
+        left: 60px;
+    }
+
+    .first-container {
+        top: 150px;
+        left: 60px;
     }
 }
 
 @media (max-width: 550px) {
     .content {
         top: 305px;
-        left: 25px;
+        left: 35px;
     }
 
     .first-container {
         top: 150px;
-        left: 25px;
+        left: 35px;
+
+        span {
+            font-size: 20px;
+            line-height: 20px;
+        }
+    }
+}
+
+@media (max-width: 520px) {
+    .content {
+        top: 305px;
+        left: 80px;
+    }
+
+    .first-container {
+        top: 150px;
+        left: 80px;
         flex-direction: column;
 
         span {
@@ -188,6 +210,14 @@
         position: absolute;
         top: 100px;
         height: 0px;
+    }
+
+    .hr_first_container {
+        width: 112px;
+        position: absolute;
+        top: 100px;
+        height: 0px;
+        left: 0px;
     }
 
     .content-to-do {
@@ -227,7 +257,7 @@
     .content-date {
         width: 300px;
         height: 130px;
-        top: 170px;
+        top: 150px;
         gap: 70px
     }
 
@@ -274,7 +304,7 @@
     .container-task {
         width: 440px;
         height: 140px;
-        top: 340px;
+        top: 300px;
     }
 
     .container-task-one {
@@ -299,7 +329,41 @@
     }
 }
 
-@media (max-width: 380px){
+@media (max-width: 450px) {
+    .content {
+        top: 305px;
+        left: 50px;
+    }
+
+    .first-container {
+        top: 150px;
+        left: 50px;
+
+        span {
+            font-size: 20px;
+            line-height: 20px;
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .content {
+        top: 305px;
+        left: 25px;
+    }
+
+    .first-container {
+        top: 150px;
+        left: 25px;
+
+        span {
+            font-size: 20px;
+            line-height: 20px;
+        }
+    }
+}
+
+@media (max-width: 365px) {
     .content {
         top: 305px;
         left: 8px;

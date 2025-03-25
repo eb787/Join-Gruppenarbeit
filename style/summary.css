@@ -10,6 +10,12 @@ hr {
     border-color: #29ABE2;
 }
 
+.hr_first_container{
+    border: 3px solid;
+    height: 59px;
+    border-color: #29ABE2;
+}
+
 .border-style {
     border-radius: 30px;
     text-decoration: none;
