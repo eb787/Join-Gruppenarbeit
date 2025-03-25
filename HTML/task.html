@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../style/taskstyle.css">
     <link rel="stylesheet" href="../style/navbar.css">
     <link rel="stylesheet" href="../style/mobile/navbar_mobile.css">
+    <link rel="stylesheet" href="../style/mobile/task_mobile.css">
     <script src="../scripts/task/taskMain.js"></script>
     <script src="../scripts/task/taskFirebase.js"></script>
     <script src="../scripts/task/tastTemplate.js"></script>
@@ -124,6 +125,11 @@
                             <div id="initialeIconList" class="initiale_Icon_List icon_List_hide">
                             </div>
                         </div>
+
+                        <div class="required_text">
+                            <span><span class="star_red ">*</span class="required-text">This field is requiered</span>
+                        </div>
+
                     </div>
                     <div>
                         <hr>
@@ -139,8 +145,10 @@
                                 <input type="date" id="taskDate" class="date_input_field input-field" tabindex="4">
                                 <img src="../assets/icons/event.png" class="date_icon" onclick="openDatePicker()">
                             </div>
-                            <span class="error_Field">&nbsp;</span>
+                            <span class="error_Field">&nbsp;</span>                    
                         </div>
+
+                      
 
                         <div class="section_prio">
                             <h2>Priority</h2>
@@ -177,22 +185,29 @@
                         <div class="section_subtasks">
                             <h2>Subtasks</h2>
                             <div class="input_wrapper">
+                                <div class="input_group">
                                 <input type="text" id="inputSubtask" class="input_subtasks"
                                     oninput="subTaskInputCheck()" maxlength="40">
-                                <span class="error_Field">&nbsp;</span>
-                                <img id="subTaskAddIcon" class="add_subtasks_new ele_hide"
+                                    <img id="subTaskAddIcon" class="add_subtasks_new ele_hide"
                                     onclick="subTaskInputCheck(true)" src="../assets/icons/add.png" alt="add-icon">
+                               
+                                    <div id="subTaskEditIocn" class="add_subtasks sub_Task_Edit_Iocn ele_hide">
+                                        <img id="subTaskCloseIcon" onclick="subTaskClose()" src="../assets/icons/close.svg"
+                                            alt="add-icon">
+                                        <img src="../assets/icons/vectorV.svg">
+                                        <img id="subTaskCheckIcon" onclick="taskCreateTask()"
+                                            src="../assets/icons/checkSW.svg" alt="add-icon">
+                                    </div>
+                               
+                                </div>
+                                <span class="error_Field">&nbsp;</span>
+                                
+                               
 
-                                <div id="subTaskEditIocn" class="add_subtasks sub_Task_Edit_Iocn ele_hide">
-                                    <img id="subTaskCloseIcon" onclick="subTaskClose()" src="../assets/icons/close.svg"
-                                        alt="add-icon">
-                                    <img src="../assets/icons/vectorV.svg">
-                                    <img id="subTaskCheckIcon" onclick="taskCreateTask()"
-                                        src="../assets/icons/checkSW.svg" alt="add-icon">
-                                </div>
-                                     <div id="subTaskList" class="subtask_list">
-                                </div>
-                            </div>
+                                
+                        </div>
+                        <div id="subTaskList" class="subtask_list">
+                   </div>
                         </div>
 
 
@@ -210,9 +225,7 @@
 
 
 
-                    <div class="required_text">
-                        <span><span class="star_red ">*</span class="required-text">This field is requiered</span>
-                    </div>
+                   
                     <div id="notificationFinish" class="message_Finish">
                         <div class="message_Finish_contents">
                             <p>Task added to board</p>
