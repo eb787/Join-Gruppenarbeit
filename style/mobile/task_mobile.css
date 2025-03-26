@@ -1,5 +1,18 @@
 @media (max-width: 1183px) {
+
+
+
+
+  .addTask_Title{
+        font-size: 50px;
+  }  
     
+
+  h2{
+    font-size:18px ;
+  }
+
+
 .prio-buttons {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -41,32 +54,68 @@ hr {
 .button_bottom_task {
     margin-top: 90px;
 }
+}
+
+/*---------------------------------------------------------------*/
+
+@media (max-width: 616px) {
+   
+ .addTask_Title{
+        display: flex;
+        font-size: 36px;
+            }  
+    
+
+  .addTask_Title{
+    font-size: 50px;
+  }  
+        
+  .main_contant{
+    display: grid;
+    flex-direction: row;
+    background-color: aqua;
+    width: auto;
+    overflow-x: auto;
+  
+    
 
 }
 
 
+.container_AddTask{
+    display: grid;
+    background-color: blueviolet;
+    width: 100%;
+    height: auto;
+    margin-bottom: 200px;
 
-@media (max-width: 616px) {
-   
-    .main_contant{
-        display: flex;
-        flex-direction: row;
-        height: 100vh;
-                
-        
-    }
-    
-    .container_AddTask{
-        display: flex;
-        flex-direction: column;
-        margin-top: 60px;
-        
-        overflow: auto;
-    }
+ 
+}
+
     
 hr{
     display: none;
 }
+
+
+.section_left{
+    background-color:chartreuse;
+    width: 100%;
+    margin-left: 0;
+ }
+
+
+ .section_description textarea{
+    width:100%;
+
+
+ }
+
+.section_right{
+    background-color: chocolate;
+    width: 100%;
+ }
+
 
 
 

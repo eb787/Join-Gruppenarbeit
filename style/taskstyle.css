@@ -147,10 +147,9 @@ span {
 }
 
 .task_input_section img {
-    width: 7.21px;
-    height: 4.6px;
-    position: relative;
-    right: 30px;
+  margin-left: -20px;
+  margin-right: 10px;
+  margin-top: 2px;
 
 }
 
@@ -172,6 +171,7 @@ span {
     cursor: pointer;
     text-align: left;
     background-color: white;
+    
 }
 
 
@@ -179,7 +179,7 @@ span {
 
 .task_dropdown_content {
     display: none;
-    width: 430px;
+    width: 100%;
     background-color: white;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
