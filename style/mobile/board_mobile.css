@@ -69,14 +69,22 @@
     .add_task_icon{
         display: none;
     }
-    .add_task_icon_mobile{
-        width: 30px;
-        height: 30px;
-        display: unset;
-    }
-    .add_task_icon_mobile:hover {
+    .add_task_mobile:hover {
         cursor: pointer;
         filter: invert(50%) sepia(100%) saturate(200%) hue-rotate(165deg) brightness(100%) contrast(100%);
+    }
+    .board_description_box{
+        width: 100%;
+    }
+    .no_tasks{
+        width: unset;
+    }
+}
+
+@media (max-width: 1180px) {
+    .addTask_overlay{
+        width: 445px;
+        position: unset;
     }
 }
 
@@ -137,6 +145,41 @@
         z-index: 99;
     }
 }
+@media (max-width: 600px) {
+    .card_overlay{
+        padding: 32px 24px;
+        width: 348px;
+    }
+    .board_heading {
+        font-size: 36px;
+    }
+    .technical_task_overlay {
+        min-width: 113px !important;
+    }
+    .task_category_overlay{
+        height: 19px !important;
+        width: 81px !important;
+        font-size: 16px !important;
+        padding: 4px 16px !important;
+    }
+    .close_btn_overlay {
+        width: 13.5px !important;
+        height: 13.5px !important;
+        padding: 9.25px 9.25px !important;
+    }
+    .task_description_overlay{
+        font-size: 16px;
+    }
+    .font_19{
+        font-size: 16px;
+    }
+    .font_weight_700{
+        font-weight: 700;
+    }
+    .addTask_overlay{
+        width: 348px;
+    }
+}
 
 @media (max-width: 680px) {
     .card{
@@ -158,9 +201,6 @@
     .board_options{
         width: 100%;
     }
-    .board_description_box{
-        width: 100%;
-    }
     .inputfield_board {
         width: 180px;
     }
@@ -175,10 +215,18 @@
     .mobile_join_logo{
         left: 16px;
     }
+   
 }
 @media(max-width: 375px){
     .inputfield_board {
         width: 140px;
+    }
+    .card_overlay{
+        padding: 16px 14px;
+        width: 280px;
+    }
+    .addTask_overlay{
+        width: 280px;
     }
 }
 @media(max-width: 345px){
@@ -186,3 +234,4 @@
         width: 120px;
     } 
 }
+
