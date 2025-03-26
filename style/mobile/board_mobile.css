@@ -1,0 +1,188 @@
+@media (max-width: 1462px) {
+    .board_table_content{
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    .board_header{
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
+@media(max-width: 1370px) {
+    .content_right{
+        width: calc(100vw - 232px);
+    }
+    .navbar_seperator{
+        right: 0;
+    }
+    .headline_logo_user_sign_in {
+        padding-right: 32px;
+    }
+    .headline{
+        width: unset;
+    }
+    .main_content{
+        width: 100%;
+    }
+    .board_table_content{
+        flex-direction: column;
+        align-items: center;
+        padding: 0 16px;
+    }
+    .board_header{
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+    }
+    .board_content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 64px;
+        width: unset;
+    }
+    .board_content_box{
+        min-height: auto;
+    }
+    .add_task_btn{
+        width: 166px;
+    }
+    .card{
+        width: 380px;
+    }
+    .board_category_header{
+        width: 100%;
+    }
+    .heading_mobile_div{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+    }
+    .Board_description_text{
+        font-size: 27px;
+    }
+    .board_table{
+        padding-top: 24px;
+    }
+    .add_task_icon{
+        display: none;
+    }
+    .add_task_icon_mobile{
+        width: 30px;
+        height: 30px;
+        display: unset;
+    }
+    .add_task_icon_mobile:hover {
+        cursor: pointer;
+        filter: invert(50%) sepia(100%) saturate(200%) hue-rotate(165deg) brightness(100%) contrast(100%);
+    }
+}
+
+@media(max-width: 1164px) {
+    .board_content{
+        padding: 0 64px;
+        align-items: flex-start;
+    }
+    .board_heading {
+        font-size: 47px;
+    }
+    .board_header{
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        width: 100%;
+        padding-top: 48px;
+        gap: 16px;
+    }
+    .heading_mobile_div{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+    }
+    .add_task_mobile{
+        background-color: #2A3647;
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .add_task_btn{
+        display: none;
+    }
+    .input_board{
+        width: 362px;
+    }
+    
+    .inputfield_board{
+        width: 312px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .content_right{
+        width: 100vw;
+    }
+    .board_table_content{
+        height: calc(100vh - 373.5px);
+    }
+    .board_table_content{
+        padding: 0;
+    }
+    .nav_mobile{
+        z-index: 99;
+    }
+}
+
+@media (max-width: 680px) {
+    .card{
+        width: 220px;
+    }
+    .board_content{
+        width: unset;
+    }
+    .board_table{
+        width: 100%;
+    }
+    .input_board{
+        width: unset;
+        justify-content: space-between;
+    }
+    .input_mobile{
+        width: 100%;
+    }
+    .board_options{
+        width: 100%;
+    }
+    .board_description_box{
+        width: 100%;
+    }
+    .inputfield_board {
+        width: 180px;
+    }
+}
+@media(max-width: 477px){
+    .inputfield_board {
+        width: 180px;
+    }
+    .board_content{
+        padding: 0 16px;
+    }
+    .mobile_join_logo{
+        left: 16px;
+    }
+}
+@media(max-width: 375px){
+    .inputfield_board {
+        width: 140px;
+    }
+}
+@media(max-width: 345px){
+    .inputfield_board {
+        width: 120px;
+    } 
+}
