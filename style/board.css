@@ -113,6 +113,10 @@
     filter: invert(50%) sepia(100%) saturate(200%) hue-rotate(165deg) brightness(100%) contrast(100%);
 }
 
+.add_task_icon_mobile {
+    display: none;
+}
+
 .board_table_content {
     padding-left: 64px;
     display: flex;
@@ -496,6 +500,9 @@
 }
 
 @media (max-width: 1000px) {
+    .content_right{
+        width: 100vw;
+    }
     .board_table_content{
         flex-direction: column;
         align-items: center;
@@ -504,7 +511,7 @@
     }
 
     .board_content{
-        width: auto;
+        width: 100vw;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -526,7 +533,7 @@
         display: flex;
         align-items: flex-start;
         flex-direction: column;
-        width: 396px;
+        width: 100%;
         padding-top: 48px;
         gap: 16px;
         padding-left: 16px;
@@ -565,6 +572,27 @@
         width: 100%;
         align-items: center;
     }
+    .board_heading {
+        font-size: 47px;
+    }
+    .Board_description_text{
+        font-size: 27px;
+    }
+    .board_table{
+        padding-top: 24px;
+    }
+    .add_task_icon{
+        display: none;
+    }
+    .add_task_icon_mobile{
+        width: 30px;
+        height: 30px;
+        display: unset;
+    }
+    .add_task_icon_mobile:hover {
+        cursor: pointer;
+        filter: invert(50%) sepia(100%) saturate(200%) hue-rotate(165deg) brightness(100%) contrast(100%);
+    }
 
 
 
@@ -572,4 +600,46 @@
 
 
 }
+@media (max-width: 320px) {
+    .main_content{
+        padding: 0 16px;
+    }
+    .board_content{
+        width: 100%;
+    }
+    .board_table{
+        width: 100%;
+    }
 
+    .board_table_content{
+        padding: 0;
+    }
+
+
+
+
+    .input_board{
+        width: unset;
+        justify-content: space-between;
+    }
+    .input_mobile{
+        width: 100%;
+    }
+    .board_options{
+        width: 100%;
+    }
+    .board_description_box{
+        width: 100%;
+    }
+    .board_category_header{
+        width: unset;
+    }
+
+
+
+
+    .inputfield_board{
+        width: 180px;
+    }
+
+}

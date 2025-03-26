@@ -24,6 +24,7 @@
     <script src="../scripts/task/tastTemplate.js"></script>
     <script src="../scripts/task/taskFirebase.js"></script>
    <script src="..//scripts/script.js"></script> 
+   <script src="..//scripts/policy legalnotice/policy legal_notices.js"></script> 
 </head>
 
 
@@ -72,7 +73,7 @@
                 <seperator class="navbar_seperator"></seperator>
             </div>
 
-            <div class="main_contant">
+            <div class="main_content">
                 <div class="board_content">
                     <div class="div_submenu submenu_closed" id="submenu_toogle">
                         <div class="submenu">
@@ -85,12 +86,11 @@
                     <div class="board_header">
                         <div class="heading_mobile_div">
                             <h1 class="board_heading">Board</h1>
-                            <div class="add_task_mobile"><img class="add_icon"
-                                src="../assets/icons/add.svg" alt="add task">
+                            <div class="add_task_mobile"><img src="../assets/icons/add.svg" alt="add task">
                             </div>
                         </div>
                         <div class="board_options">
-                            <div>
+                            <div class="input_mobile">
                             <div id="input_board" class="input_board">
                                 <input onkeyup="startTyping()" id="inputfield_board" class="inputfield_board" type="text" placeholder="Find Task"
                                     alt="input find task">
@@ -105,7 +105,7 @@
                             
                             <button onclick="showAddTaskOverlay();taskAddOverlayInit();" type="button" class="add_task_btn">Add task<img class="add_icon"
                                     src="../assets/icons/add.svg" alt="add task"></button>
-                        </div>
+                            </div>
                     </div>
                     <div class="board_table">
                         <div class="board_table_content">
@@ -114,35 +114,38 @@
                                     <div class="board_category_header">
                                         <h2 class="Board_description_text">To do</h2>
                                         <img onclick="showAddTaskOverlay()" class="add_task_icon" src="../assets/icons/plus button.png" alt="plus icon">
+                                        <img onclick="showAddTaskOverlay()" class="add_task_icon_mobile" src="../assets/icons/plus_button_mobile.svg" alt="plus icon">
                                     </div>
                                     <div class="board_content_box" ondrop="moveTo('toDo')" ondragover="allowDrop(event)">
                                         <div id="toDo" class="board_content_colums_cards"></div>
                                     </div>
                                 </div>
-                                <div>
+                               
                                     <div class="board_description_box">
                                         <div class="board_category_header">
                                             <h2 class="Board_description_text">In progress</h2>
                                             <img onclick="showAddTaskOverlay()" class="add_task_icon" src="../assets/icons/plus button.png" alt="plus icon">
+                                            <img onclick="showAddTaskOverlay()" class="add_task_icon_mobile" src="../assets/icons/plus_button_mobile.svg" alt="plus icon">
                                         </div>
                                         <div class="board_content_box" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
                                         <div id="inProgress" class="board_content_colums_cards"></div>
                                         </div>
                                     </div>
 
-                                </div>
-                                <div>
+                               
+                                
                                     <div class="board_description_box">
                                         <div class="board_category_header">
                                             <h2 class="Board_description_text">Await feedback</h2>
                                             <img onclick="showAddTaskOverlay()" class="add_task_icon" src="../assets/icons/plus button.png" alt="plus icon">
+                                            <img onclick="showAddTaskOverlay()" class="add_task_icon_mobile" src="../assets/icons/plus_button_mobile.svg" alt="plus icon">
                                         </div>
                                         <div class="board_content_box" ondrop="moveTo('awaitFeedback')" ondragover="allowDrop(event)">
                                         <div id="awaitFeedback" class="board_content_colums_cards"></div>
                                         </div>
                                     </div>
-                                </div>
-                                <div>
+                                
+                                
                                     <div class="board_description_box">
                                         <div class="board_category_header">
                                             <h2 class="Board_description_text">Done</h2>
@@ -151,7 +154,7 @@
                                     <div class="board_content_box"  ondrop="moveTo('done')" ondragover="allowDrop(event)">
                                         <div id="done" class="board_content_colums_cards"></div>
                                     </div>
-                                </div>
+                                
                             
                         </div>
                     </div>
@@ -161,16 +164,16 @@
     </section>
     <nav class="nav_mobile">
                 
-        <div class="mobile_navbar_icon mobile_display_flex">
+        <div class="mobile_navbar_icon mobile_display_flex" onclick="openTask('summary.html')">
             <img src="../assets/icons/mobile_summary.svg">
         </div>
-        <div class="mobile_navbar_icon mobile_display_flex">
+        <div class="mobile_navbar_icon mobile_display_flex" onclick="openTask('task.html')">
             <img src="../assets/icons/mobile_task.svg">
         </div>
         <div class="mobile_navbar_icon mobile_display_flex">
-            <img src="../assets/icons/mobile_board.svg">
+            <img src="../assets/icons/mobile_current_board.svg">
         </div>
-        <div class="mobile_navbar_icon mobile_display_flex">
+        <div class="mobile_navbar_icon mobile_display_flex" onclick="openTask('contact.html')">
             <img src="../assets/icons/mobile_contact.svg">
         </div>
    
