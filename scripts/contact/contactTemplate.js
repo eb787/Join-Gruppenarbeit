@@ -1,9 +1,9 @@
-function contactCardScrollList(newContact, contactsId, color, letter ) {
-    let nameParts = newContact.name.trim().split(" "); 
-    let initials = nameParts[0].charAt(0).toUpperCase(); 
+function contactCardScrollList(newContact, contactsId, color, letter) {
+    let nameParts = newContact.name.trim().split(" ");
+    let initials = nameParts[0].charAt(0).toUpperCase();
     let backgroundColor = color || "#ccc";
     if (nameParts.length > 1) {
-        initials += nameParts[1].charAt(0).toUpperCase(); 
+        initials += nameParts[1].charAt(0).toUpperCase();
     }
 
     return `
@@ -19,11 +19,11 @@ function contactCardScrollList(newContact, contactsId, color, letter ) {
 
 
 function contactCardMiddle(user, contactIndex, firstLetter, color) {
-    let nameParts = user.name.trim().split(" "); 
-    let initials = nameParts[0].charAt(0).toUpperCase(); 
+    let nameParts = user.name.trim().split(" ");
+    let initials = nameParts[0].charAt(0).toUpperCase();
     let backgroundColor = color || "#ccc";
     if (nameParts.length > 1) {
-        initials += nameParts[1].charAt(0).toUpperCase(); 
+        initials += nameParts[1].charAt(0).toUpperCase();
     }
     return `
         <div class="contact_Detail_Frame" >
@@ -45,6 +45,10 @@ function contactCardMiddle(user, contactIndex, firstLetter, color) {
             <h3>Phone</h3>
             <h3 class="font_weight_400">${user.number}</h3>
         </div>
+            <div class = "mobile_button_options_div" id = "mobile_window">
+                <img src="../assets/icons/Menu Contact options.png" alt="mobile-options" class="mobile-options" onclick = "openWindowMobile('${contactIndex}',' ${firstLetter}','${color}')">
+            </div>
+
     `;
 }
 
@@ -82,11 +86,32 @@ function cardNewContactEdit() {
 }
 
 
-function  alertSuccess() {
+function alertSuccess() {
     return `
     <div id ="alert">
         <div class="alert-div">
             <p class="alert-text">Contact succesfully created</p>  
         </div>
     </div>`
+}
+
+function openWindowMobile(contactIndex, firstLetter, color) {
+    let background = document.getElementById('contact-big-middle');
+    let mobileWindow = document.getElementById('mobile_window');
+    mobileWindow.innerHTML =
+        `
+<div class="mobile_options_div">
+    <div class="edit_mobile" onclick = "editContact('${contactIndex}', '${firstLetter}','${color}')">
+        <img src="../assets/icons/edit.svg" alt="">
+        <p>Edit</p>
+    </div>
+    <div class="delete_mobile" onclick= "deleteContact('${contactIndex}', '${firstLetter}')">
+        <img src="../assets/icons/delete.svg" alt="">
+        <p>Delete</p>
+    </div>
+
+</div>`
+    if (onclick = background) {
+        mobileWindow = "";
+    }
 }

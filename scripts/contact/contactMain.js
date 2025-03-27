@@ -18,8 +18,20 @@ async function openContactBigMiddle(contactsId, letter) {
       let color = getUserColor(contactsIdColor, letter);
       renderContact(contactMiddle, user, contactIndex, firstLetter, color);
       highlightActiveContact(contactsId);
+      if (window.innerWidth < 1000) {
+          contactMiddle.classList.add("show");
+          document.querySelector(".contact_Detail").classList.add("show");
+      }
   } else {
       console.error("Kein Benutzer gefunden mit ID:", contactsId);
+  }
+}
+
+function closeContactBigMiddle() {
+  let contactMiddle = getContactElement();
+  if (window.innerWidth < 1000) {
+      contactMiddle.classList.remove("show");
+      document.querySelector(".contact_Detail").classList.remove("show");
   }
 }
 
@@ -294,7 +306,7 @@ function deleteData() {
 
 
 async function showAlertSuccess(currentLetter, index) {
-  let mainDiv = document.getElementById('contact_card');
+  let mainDiv = document.getElementById('contact_Card');
   mainDiv.innerHTML += alertSuccess();  // Fügt das Alert hinzu
 
   let alert = document.getElementById('alert'); // Holt das Alert-Element
