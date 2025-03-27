@@ -121,7 +121,7 @@
                             <p class="contact_header_1">Contacts</p>
                             <div class="line_Vertikal"></div>
                             <p class="contact_header_2">Better with a team</p>
-                            <img src="../assets/icons/arrow-left-line.png" alt="" class="arrow_back_mobile">
+                            <img src="../assets/icons/arrow-left-line.png" alt="" class="arrow_back_mobile" onclick = "closeContactBigMiddle()">
 
                         </div>
                         <div id="contact-big-middle">
@@ -134,8 +134,9 @@
 
                 <div class="card_contact" id="content-card-big">
                     <div class="contact_Card_Frame" id="headline">
+
                     </div>
-                    <div class="contact_Card_Input_Frame">
+                    <div class="contact_Card_Input_Frame_one">
                         <div class="contact_Card_Close_btn">
                             <img class="contact_Card_Close_img" src="../assets/icons/close.svg"
                                 onclick="clearInputsAndClose()">
@@ -144,7 +145,7 @@
                             <div class="contact_Card_abbreviation" id="picture-edit">
                                 <img src="../assets/icons/Group 13.png" alt="pic-edit" class="pic-edit">
                             </div>
-                            <div class="contact_Card_Input_Frame">
+                            <div class="contact_Card_Input_Frame_two ">
                                 <div class="contact_Card_Input">
                                     <input type="text" placeholder="Name" id="name_input" oninput="updateCancelButton()"
                                         required>
@@ -165,6 +166,8 @@
                                     <img src="../assets/icons/call.svg">
                                 </div>
                                 <div class="contact_Card_button">
+                                    <button class="button_create_contact_mobile">Create Contact <img src="../assets/icons/check.svg" alt="" onclick="addContact()"></button>
+
                                     <button class="contact_Card_button1 btn_hover_white" onclick="cancelStatus()"
                                         id="cancel-button">
                                         Cancel
@@ -234,6 +237,5 @@
     <!--button_back_ausgeblendet-->
     
 </body>
-
 
 </html>

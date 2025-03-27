@@ -63,7 +63,10 @@ function cardNewContact(mode) {
     let title = mode === "edit" ? "Edit Contact" : "Add Contact";
     let text = "Task are better with a team!"
     return `
-            <img src="../assets/icons/logocontact.svg">
+        <div class = "close_button_mobile_div">
+            <img src="../assets/icons/Close.png" alt="close_button" class="close_button_mobile" onclick = "clearInputsAndClose()">
+        </div>
+            <img src="../assets/icons/logocontact.svg" class = "logo_mobile">
             <p>${title}</p>
             <span>${text}</span>
             <hr class= "line-contact">

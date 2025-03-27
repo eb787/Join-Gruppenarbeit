@@ -35,7 +35,7 @@
 }
 
 
-.contact_Card_Input_Frame {
+.contact_Card_Input_Frame_one {
   width: 759px;
   background-color: #FFFFFF;
   border-radius: 0 24px 24px 0;
@@ -96,7 +96,7 @@
 }
 
 
-.contact_Card_Frame img {
+.contact_Card_Frame .logo_mobile {
   width: 53.93px;
   height: 66.48px;
 }
@@ -123,22 +123,16 @@
 }
 
 
-.contact_Card_Frame div {
-  width: 90px;
-  height: 3px;
-  border-radius: 3px;
-  background-color: rgb(41, 171, 226);
-}
 
 
-.contact_Card_Input_Frame {
+.contact_Card_Input_Frame_two {
   display: flex;
   flex-direction: column;
   gap: 32px;
 }
 
 
-.contact_Card_Input_Frame input {
+.contact_Card_Input_Frame_two input {
   border: none;
   outline: none;
   font-size: 24px;
