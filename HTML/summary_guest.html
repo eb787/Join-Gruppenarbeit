@@ -14,13 +14,15 @@
     <link rel="stylesheet" href="../style/fonts.css">
     <link rel="stylesheet" href="../style/board.css">
     <link rel="stylesheet" href="../style/summary.css">
+    <link rel="stylesheet" href="../style/mobile/navbar_mobile.css">
+    <link rel="stylesheet" href="../style/mobile/summary_mobile.css">
     <script src="../scripts/summary/guest_summary.js"></script>
 
 </head>
 
 <body onload="fetchData()">
     <div class="full_content">
-        <nav class="nav">
+        <nav class="nav mobile_display_none">
             <div class="nav-icon-capa2">
                 <img src="../assets/icons/capa 2.svg">
             </div>
@@ -53,10 +55,10 @@
 
             <div class="headline">
                 <span class="headline_title font20">Kanban Project Management Tool</span>
-                <a class="headline_logo_help" href="../HTML/help.html">
+                <a class="headline_logo_help  mobile_display_none" href="../HTML/help.html">
                     <img src="../assets/icons/help.svg" alt="">
                 </a>
-                <div  class="headline_logo_user_sign_in">
+                <div class="headline_logo_user_sign_in">
                     <div id="guest_logo_user_sign_in" onclick="toggleMenu()" class="user_logo">
                         <span>G</span>
                     </div>
@@ -64,7 +66,7 @@
                 <seperator class="navbar_seperator"></seperator>
             </div>
 
-            <div class="main_contant">
+            <div class="main_content">
                 <div class="div_submenu submenu_closed" id="submenu_toogle">
                     <div class="submenu">
                         <a href="../HTML/guest_legal_notice.html">Legal Notice</a>
@@ -144,7 +146,22 @@
                 <h3 id="content_welcome" class="titel-one"></h3>
             </div>
 
-    </div>
+    <nav class="nav_mobile">
+
+        <div class="mobile_navbar_icon mobile_display_flex">
+            <img src="../assets/icons/mobile_current_summary.svg">
+        </div>
+        <div class="mobile_navbar_icon mobile_display_flex" onclick="openTask('../HTML/task.html')">
+            <img src="../assets/icons/mobile_task.svg">
+        </div>
+        <div class="mobile_navbar_icon mobile_display_flex" onclick="openBoard('../HTML/board.html')">
+            <img src="../assets/icons/mobile_board.svg">
+        </div>
+        <div class="mobile_navbar_icon mobile_display_flex" onclick="openContact('../HTML/contacts.html')">
+            <img src="../assets/icons/mobile_contact.svg">
+        </div>
+
+    </nav>
     </section>
     </div>
 </body>

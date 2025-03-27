@@ -32,21 +32,25 @@ function requiredInputAddTask() {
  document.querySelectorAll(".input-field").forEach(input => {
     input.addEventListener("blur", function () {
       let errorMsg = this.nextElementSibling;
-      if (this.value.trim() === "") {
+        if (this.value.trim() === "") {
         this.classList.add('error_Msg_Input')
         errorMsg.textContent = "This field is required";
         console.log("Keine Eingabe");
-      } else {
-
+       } else{
+     
+       
         if (this.type === "date" && !correctDateInput(this.value)) {
+          console.log("Datum falsch");
+          
           errorMsg.textContent = "no valid date";
           this.classList.add('error_Msg_Input')
         } else {
           console.log("OK Eingabe");
           this.classList.remove('error_Msg_Input')
           errorMsg.textContent = "\u00A0";
-        }
+        
       }
+    }
     })
   })
 }

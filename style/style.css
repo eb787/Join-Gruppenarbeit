@@ -42,7 +42,7 @@
     top: 99px;
     right: 20px;
     transition: all 250ms ease-in-out;
-    
+    z-index: 1;
 }
 
 .submenu {

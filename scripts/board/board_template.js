@@ -85,11 +85,11 @@ function getCardOverlayContent(index) {
                         <h1 class="board_heading">${currentTasks[index].title}</h1>
                         <div class="task_description_overlay">${currentTasks[index].description}</div>
                         <div class="task_description_overlay">
-                            <p class="color_blue">Due Date:</p>
+                            <p class="color_blue font_weight_700">Due Date:</p>
                            <p>${currentTasks[index].deadline}</p>
                         </div>
                          <div class="task_description_overlay">
-                            <p class="color_blue al_center">Priority:</p>
+                            <p class="color_blue al_center font_weight_700">Priority:</p>
                            <div class="priority_div"><div id="prio_text_${index}">Medium</div><img class="prio_icon" src="..//assets/icons/${currentTasks[index].prio}.svg" alt="priority indicator"></div>
                            
                         </div>
@@ -117,7 +117,7 @@ function getCardOverlayContent(index) {
 function getSubtasksOverlay(index) {
     return `
     <div class="task_description_overlay fd_column gap_8">
-                            <p class="color_blue">Subtasks</p>
+                            <p class="color_blue font_weight_700">Subtasks</p>
                             <div id="tasks_box${index}"> 
                             </div>
                         </div>
@@ -139,7 +139,7 @@ function getTaskOverlay(index, i) {
 
 function getContactBoxOverlay(index) {
     return `
-    <p class="color_blue">Assigned To:</p>
+    <p class="color_blue font_weight_700">Assigned To:</p>
                             <div id="profile_badges_overlay${index}">
                                 
                             </div>

@@ -21,6 +21,7 @@
     <script src="../scripts/contact/contactFirebase.js"></script>
     <script src="../scripts/contact/contactMain.js"></script>
     <script src="../scripts/contact/contactTemplate.js"></script>
+    <script src="../scripts/policy legalnotice/policy legal_notices.js"></script>
     <script src="../scripts/script.js"></script>
 </head>
 
@@ -73,8 +74,16 @@
                 <seperator class="navbar_seperator"></seperator>
             </div>
 
-            <div class="main_contant">
-                <div class="contact_Card" id="contact_Card">
+            <div class="main_content">
+                <!--  CSS Datei contact.css-->
+                <div class="div_submenu submenu_closed" id="submenu_toogle">
+                    <div class="submenu">
+                        <a href="../HTML/legal_notice.html">Legal Notice</a>
+                        <a href="../HTML/policy.html">Privacy Policy</a>
+                        <a href="../HTML/login.html">Log out</a>
+                    </div>
+                </div>
+                <div class="contact_Card">
                     <div class="contact_List_Frame">
                         <div class="contact_scroll">
                             <div class="contac_List_Sec_Header">
@@ -107,7 +116,7 @@
 
                         </div>
                     </div>
-                    <div class="contact_Detail">
+                    <div class="contact_Detail contact_Detaile_mobile">
                         <div class="contact_Detail_Header">
                             <p class="contact_header_1">Contacts</p>
                             <div class="line_Vertikal"></div>
@@ -206,6 +215,20 @@
                 </div>
 
             </div>
+            <nav class="nav_mobile">
+                <div class="mobile_navbar_icon mobile_display_flex" onclick="openSummary('../HTML/summary.html')">
+                    <img src="../assets/icons/mobile_summary.svg">
+                </div>
+                <div class="mobile_navbar_icon mobile_display_flex" onclick="openTask('../HTML/task.html')">
+                    <img src="../assets/icons/mobile_task.svg">
+                </div>
+                <div class="mobile_navbar_icon mobile_display_flex" onclick="openBoard('../HTML/board.html')">
+                    <img src="../assets/icons/mobile_board.svg">
+                </div>
+                <div class="mobile_navbar_icon mobile_display_flex">
+                    <img src="../assets/icons/mobile_current_contact.svg">
+                </div>
+             </nav>
         </section>
     </div>
     <!--button_back_ausgeblendet-->
