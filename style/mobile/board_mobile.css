@@ -9,6 +9,9 @@
     }
 }
 
+
+
+
 @media(max-width: 1370px) {
     .content_right{
         width: calc(100vw - 232px);
@@ -44,12 +47,11 @@
     }
     .board_content_box{
         min-height: auto;
+        overflow-y: auto;
+        scrollbar-width: none;
     }
     .add_task_btn{
         width: 166px;
-    }
-    .card{
-        width: 380px;
     }
     .board_category_header{
         width: 100%;
@@ -65,19 +67,28 @@
     }
     .board_table{
         padding-top: 24px;
+        width: 100%;
     }
     .add_task_icon{
         display: none;
     }
-    .add_task_mobile:hover {
+    .add_task_icon_mobile{
+        display: unset;
+    }
+    .add_task_icon_mobile:hover{
         cursor: pointer;
-        filter: invert(50%) sepia(100%) saturate(200%) hue-rotate(165deg) brightness(100%) contrast(100%);
+        filter: invert(56%) sepia(99%) saturate(880%) hue-rotate(168deg) brightness(93%) contrast(98%);
     }
     .board_description_box{
         width: 100%;
     }
+    .board_content_colums_cards {
+        flex-direction: row;
+        width: fit-content;
+        width: 100%;
+    }
     .no_tasks{
-        width: unset;
+        width: 100%;
     }
 }
 
@@ -93,9 +104,7 @@
         padding: 0 64px;
         align-items: flex-start;
     }
-    .board_heading {
-        font-size: 47px;
-    }
+   
     .board_header{
         display: flex;
         align-items: flex-start;
@@ -118,6 +127,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    .add_task_mobile:hover {
+        cursor: pointer;
+        background-color: #29ABE2;
     }
     .add_task_btn{
         display: none;
@@ -144,14 +157,14 @@
     .nav_mobile{
         z-index: 99;
     }
+    .board_heading {
+        font-size: 47px;
+    }
 }
 @media (max-width: 600px) {
     .card_overlay{
         padding: 32px 24px;
         width: 348px;
-    }
-    .board_heading {
-        font-size: 36px;
     }
     .technical_task_overlay {
         min-width: 113px !important;
@@ -182,9 +195,6 @@
 }
 
 @media (max-width: 680px) {
-    .card{
-        width: 220px;
-    }
     .board_content{
         width: unset;
     }
