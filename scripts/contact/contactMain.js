@@ -105,6 +105,7 @@ async function editContact(contactsId, firstLetter, color) {
     document.getElementById('tel_input').value = contact.number;
     let saveButton = document.getElementById('save-button');
     updatePicture(contact, color)
+    disabledButton();
     saveButton.onclick = async function () {
       await saveEditedContact(contactsId, firstLetter, color);
     };
@@ -126,6 +127,20 @@ async function saveEditedContact(contactsId, firstLetter) {
   validateName();
   validateEmail(updatedContact.email);
     location.reload();
+}
+
+
+function disabledButton() {
+  let saveButton = document.getElementById('save-button');
+  let nameInput = document.getElementById('name_input');
+  let emailInput = document.getElementById('email_input');
+  if (nameInput.value.trim() === "" || emailInput.value.trim() === "") {
+    saveButton.disabled = true;  // Button deaktivieren
+  } else {
+    saveButton.disabled = false; // Button aktivieren
+  }
+  nameInput.addEventListener('input', disabledButton);
+emailInput.addEventListener('input', disabledButton);
 }
 
 

@@ -1,0 +1,13 @@
+@media (max-width: 1000px) {
+.contact_Detail{
+    display: none;
+}
+.contact_List_Frame {
+    width: 100%;
+    background-color: white;
+}
+
+.contact_Add_btn {
+    display: none;
+}
+}
