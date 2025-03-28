@@ -46,10 +46,11 @@ span {
     height: 48px;
     border-radius: 10px;
     border: 1px solid;
-    padding: 12px 16px 12px 16px;
+    padding: 12px 16px 12px 16px;*/
     gap: 10px;
     font-size: 20px;
     font-weight: 400;
+   
 }
 
 
@@ -254,7 +255,7 @@ border-width: 0.5px;
 
 .date_input {
     background-size: 20px;
-    padding: 12px 16px 12px 16px;
+    /*padding: 12px 16px 12px 16px;*/
     border: 1px solid;
     border-radius: 10px;
     font-size: 20px;

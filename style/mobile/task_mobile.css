@@ -1,8 +1,4 @@
 @media (max-width: 1183px) {
-
-
-
-
   .addTask_Title{
         font-size: 50px;
   }  
@@ -20,6 +16,7 @@
     button {
         padding: 16px 6px 16px 6px;
         height: 48px;
+     
         display: flex;
         gap: 3px;
         align-items: center;
@@ -59,37 +56,43 @@ hr {
 /*---------------------------------------------------------------*/
 
 @media (max-width: 616px) {
-   
- .addTask_Title{
-        display: flex;
-        font-size: 36px;
-            }  
-    
+    h2{
+        font-size: 16px !important;
+        font-weight: 400;
+    }
 
-  .addTask_Title{
-    font-size: 50px;
-  }  
-        
-  .main_contant{
-    display: grid;
-    flex-direction: row;
-    background-color: aqua;
-    width: auto;
-    overflow-x: auto;
   
     
 
+.main_content{
+    display: flex;
+    flex-direction: column;    
+    height: calc(100% - 190px); 
 }
 
 
+ .addTask_Title{
+        display: flex;
+        font-size: 47px;
+         font-weight: 700;
+         margin-left: 10px;
+       }  
+   
+  
+
 .container_AddTask{
     display: grid;
-    background-color: blueviolet;
-    width: 100%;
-    height: auto;
-    margin-bottom: 200px;
+    width: auto;
+    overflow-x: auto ;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 30px;
+   
+}
 
- 
+
+.container_AddTask::-webkit-scrollbar{
+        display: none;
 }
 
     
@@ -99,22 +102,70 @@ hr{
 
 
 .section_left{
-    background-color:chartreuse;
+
     width: 100%;
     margin-left: 0;
+    /*background-color:chartreuse;*/
+  
  }
 
+.section_title{
+    margin-bottom: 5px;
+}
 
  .section_description textarea{
     width:100%;
-
-
  }
 
-.section_right{
-    background-color: chocolate;
+
+ .required_text{
+    margin-top: 10px;
+   
+  }
+
+
+
+  .section_right{
+
     width: 100%;
+   /*background-color: chocolate;*/
+
  }
+
+ .section_prio {
+    margin-bottom: 10px;
+
+}
+
+.section_category{
+    margin-bottom:10px ;
+}
+
+
+.required_text{
+    display: none;
+}
+
+
+.required_text_mobile{
+    display: flex;
+    margin-top: 10px;
+
+}
+
+.button_bottom_task {
+    display: none 
+}
+
+.button_bottom_task_mobile {
+   display: flex;
+   margin-top: 10px;
+   margin-right: 10px;
+
+   
+}
+ 
+
 
 
 

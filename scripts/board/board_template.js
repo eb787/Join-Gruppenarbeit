@@ -166,6 +166,8 @@ function getContactIconOverlay(index, i) {
 function editTaskTemplate(index) {
        
     return `
+
+    
         <div class="card_overlay_header">
             <div id="category_overlay${index}" class="task_category task_category_overlay  "></div>
             <img onclick="closeOverlay('bg_overlay')" class="close_btn_overlay" src="..//assets/icons/close.svg" alt="close button">
@@ -173,23 +175,23 @@ function editTaskTemplate(index) {
  
             
                 <div class="section_title">
-                    <span class="title">Title</span>
+                    <h2 class="title">Title</h2>
                     <input id="taskTitle" class="input_title input-field" type="text" tabindex="1">
                     <span class="error_Field">&nbsp;</span>
                 </div>
             
 
                <div class="section_description">
-                  <span>Description</span>
+                  <h2>Description</h2>
                    <div class="textarea_description">
-                        <textarea id="descriptionTask"  placeholder="Enter a Description" tabindex="2">${currentTasks[index].description}</textarea>
+                        <textarea id="descriptionTask" class="textarea"  placeholder="Enter a Description" tabindex="2">${currentTasks[index].description}</textarea>
                    </div>
                 </div>
 
         
 
             <div class="section_date_div">
-                <span>Due date </span>
+                <h2>Due date </h2>
                <div class="task_Date_Input_Div">
                    <input type="date"  id="taskDate" class="date_input input-field" tabindex="4" >
                    <img src="../assets/icons/event.png" class="date_icon_Edit"  onclick="openDatePicker()" >
@@ -282,7 +284,7 @@ function editTaskTemplate(index) {
                                         </div>
 
     
-    </div>
+  
    `
 
 }
@@ -320,9 +322,9 @@ function getAddTaskOverlay() {
                         </div>
                  
                     <div class="section_description">
-                        <span>Description</span>
+                        <h2>Description</h2>
                         <div class="textarea_description">
-                            <textarea  id="descriptionTask" placeholder="Enter a Description" tabindex="2"></textarea>
+                            <textarea  id="descriptionTask" class="textarea" placeholder="Enter a Description" tabindex="2"></textarea>
                         </div>
                     </div>
 

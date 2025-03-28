@@ -81,6 +81,9 @@
 
 
                 <p class="addTask_Title">Add Task</p>
+                
+               
+
 
                 <div class="container_AddTask">
 
@@ -205,9 +208,18 @@
                                
 
                                 
+                           </div>
+                                <div id="subTaskList" class="subtask_list">
+                                  </div>
+
+
+                                  
+
+
                         </div>
-                        <div id="subTaskList" class="subtask_list">
-                   </div>
+
+                        <div class="required_text_mobile">
+                            <span><span class="star_red ">*</span class="required-text">This field is requiered</span>
                         </div>
 
 
@@ -222,9 +234,6 @@
                     </div>
 
 
-
-
-
                    
                     <div id="notificationFinish" class="message_Finish">
                         <div class="message_Finish_contents">
@@ -233,6 +242,17 @@
                         </div>
                     </div>
                 </div>
+            
+                
+                <div class="button_bottom_task_mobile">
+                    <button id="btnClearTask" class="button-clear-task" onclick="addTaskClear()">Clear <img
+                            class="cancel" src="../assets/icons/iconoir_cancel.png" alt=""></button>
+                    <button id="btnCreateTask" class="button-create-task" onclick="checkInputData()">Create Task
+                        <img src="../assets/icons/check.png" alt=""></button>
+                </div>
+            
+            
+            
             </div>
 
 
