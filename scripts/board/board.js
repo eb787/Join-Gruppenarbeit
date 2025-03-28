@@ -30,7 +30,6 @@ async function fetchTaskData(){
 
 function updateTaskBoard() {
     emptyBoard();
-
     for (let index = 0; index < currentTasks.length; index++) {
         if (currentTasks[index]) {
         showCardOnBoard(index);
@@ -156,9 +155,7 @@ function adjustHeight() {
         document.querySelectorAll(".board_content_box").forEach(el => {
                 el.style.minHeight = maxHeight + "px";
             });
-
     }
-   
 }
 
 
@@ -255,6 +252,7 @@ function stopPropagation(event){
 
 
 async function changeSubtaskCategory(index, i){
+    document.getElementById('subtasks_box_overlay' + index).classList.add('disable');
     let div =  document.getElementById("check_box_" + index + "_btn" + i);
     let box = document.getElementById("check_box_" + index + "_info" + i);
     let task = Object.keys(currentTasks[index].subtasks.subtasks_todo)[i];
@@ -264,6 +262,7 @@ async function changeSubtaskCategory(index, i){
     await checkCurrentCategory(div, index, task, newFinishedTasks);
     await fetchTaskData();
     updateTaskBoard();
+    document.getElementById('subtasks_box_overlay' + index).classList.remove('disable');
 }
 
 
@@ -320,6 +319,9 @@ function startTyping() {
     document.getElementById('input_board').classList.add('input_board_searching');
     if (document.getElementById('inputfield_board').value == "") {
         document.getElementById('input_board').classList.remove('input_board_searching');
+        updateTaskBoard();
+    } else{
+        compareTitleWithCurrentTasks(0, document.getElementById('inputfield_board').value);
     }
 }
 
@@ -327,8 +329,12 @@ function startTyping() {
 function findTask() {
     let titleToFind = document.getElementById('inputfield_board').value;
     let counter = 0;
-    compareTitleWithCurrentTasks(counter, titleToFind);
-    document.getElementById('inputfield_board').value = "";
+    if (titleToFind == "") {
+        showNoTaskFoundAlert(counter);
+    } else {
+        compareTitleWithCurrentTasks(counter, titleToFind);
+        document.getElementById('inputfield_board').value = "";
+    }
     document.getElementById('input_board').classList.remove('input_board_searching'); 
 }
 
@@ -342,6 +348,7 @@ function compareTitleWithCurrentTasks(counter, titleToFind) {
                     emptyBoard();
                 }
                 showCardOnBoard(index);
+                closeAlert();
             }
         }
     } 
@@ -354,11 +361,16 @@ function showNoTaskFoundAlert(counter) {
         document.getElementById('no_element_found_alert').classList.remove('d_none');
         document.getElementById('input_board').classList.add('alert_input');
         setTimeout(() => {
-            document.getElementById('no_element_found_alert').classList.add('d_none');
-            document.getElementById('input_board').classList.remove('alert_input');
+            closeAlert();
         }, 5000);
         updateTaskBoard();
     }
+    
+}
+
+function closeAlert() {
+    document.getElementById('no_element_found_alert').classList.add('d_none');
+    document.getElementById('input_board').classList.remove('alert_input');
 }
 
 

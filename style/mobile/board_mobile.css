@@ -46,7 +46,7 @@
         width: unset;
     }
     .board_content_box{
-        min-height: auto;
+        min-height: auto !important;
         overflow-y: auto;
         scrollbar-width: none;
     }

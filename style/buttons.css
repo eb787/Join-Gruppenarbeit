@@ -283,3 +283,7 @@ button:hover {
 .close_btn_overlay:hover {
     cursor: pointer;
 }
+
+.disable {
+    pointer-events: none;
+}
