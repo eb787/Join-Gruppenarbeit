@@ -416,3 +416,32 @@ hr {
 .container-task div:hover .task-text-small {
     color: white;
 }
+
+.mobile_container-morning {
+    top: 105px;
+    position: absolute;
+    background-color: rgb(246, 247, 249);
+    height: 760px;
+    display: flex;
+    z-index: 1;
+    width: -webkit-fill-available;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: none;
+}
+
+.mobile_titel-one{
+    font-size: 40px;
+    line-height: 56.4px;
+    font-weight: 500;
+    color: #2A3647;
+}
+
+.mobile_titel-two{
+    height: 77px;
+    color: #29ABE2;
+    font-size: 50px;
+    line-height: 76.8px;
+    font-weight: 700;
+}
