@@ -30,7 +30,9 @@ function contactColorAssign(color){
 
 
 function taskInitialLettersCreate(name){
-let initials = name.split(" ").map(word => word[0]).join("");
+  console.log("IN Name ",name);
+  
+let initials = name.split(" ").map(name => name[0]).join("");
 return initials;
 
 }

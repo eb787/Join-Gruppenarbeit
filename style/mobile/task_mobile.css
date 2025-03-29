@@ -47,11 +47,35 @@ hr {
     margin-left: 5%;
 }
 
+.subtask_list {
+    max-height: 60px;
+}
+
 
 .button_bottom_task {
-    margin-top: 90px;
+    margin-bottom: 120px;
 }
 }
+
+
+@media (max-width: 837px) {
+
+    .prio-buttons {
+           button {
+            display: flex;
+            flex-direction: column;
+            width: 70px;
+             }
+    }
+       
+
+}
+
+
+
+
+
+
 
 /*---------------------------------------------------------------*/
 
@@ -61,8 +85,8 @@ hr {
         font-weight: 400;
     }
 
-  
-    
+
+
 
 .main_content{
     display: flex;
@@ -117,18 +141,14 @@ hr{
     width:100%;
  }
 
-
  .required_text{
     margin-top: 10px;
-   
   }
 
 
-
   .section_right{
-
     width: 100%;
-   /*background-color: chocolate;*/
+
 
  }
 
@@ -149,8 +169,20 @@ hr{
 
 .required_text_mobile{
     display: flex;
-    margin-top: 10px;
+    margin-top: 50px;
 
+}
+
+
+
+.initiale_Icon_List {
+    margin-bottom: 20px;
+
+}
+
+
+.subtask_list{
+    margin-top: 20px;
 }
 
 .button_bottom_task {
@@ -161,12 +193,20 @@ hr{
    display: flex;
    margin-top: 10px;
    margin-right: 10px;
-
-   
+  
 }
  
 
-
+.prio-buttons {
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+    button {
+     display: flex;
+     flex-direction: row;
+     width: 100px;
+          }
+}
 
 
 

@@ -234,16 +234,22 @@ function taskContactFilterList() {
 }
 
 function contactCheckOKinArray() {
+  console.log("Mache Hacken");
   selectedTaskContacts = [];
   document.querySelectorAll(".contact_Label_Item").forEach((entry,contactID) => {
     let checkbox = entry.querySelector("input[type='checkbox']")
     if (checkbox && checkbox.checked) {
       selectedTaskContacts.push(taskContacteArray[contactID]);
       document.getElementById('initialeIconList').innerHTML="";
+       taskContacInitialRender(selectedTaskContacts);
+     }else{
+      document.getElementById('initialeIconList').innerHTML="";
       taskContacInitialRender(selectedTaskContacts);
+
      }
   })
  }
+
 
 function checkInputData() {
   let mandatoryFields = document.querySelectorAll('.input-field');

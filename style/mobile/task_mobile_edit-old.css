@@ -1,0 +1,94 @@
+@media (max-width: 1183x) {
+
+   h2{
+    font-size: 16px;
+   } 
+    
+    .card_overlay{
+        display: flex;
+        padding: 5 0 0 5;
+        margin: 0;
+      
+    }
+
+
+.section_title{
+    width: 100%;
+}
+
+
+
+.textarea_description {
+    width: 100%;
+   
+
+}
+
+
+.date_input{  
+
+}
+
+
+
+.section_prio{
+    width: 100%;
+}
+
+.prio-buttons {
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+
+
+     button {
+        display: flex;
+        flex-direction: row;
+        padding: 16px 6px 16px 6px;
+        width: 100px;
+       height: 48px;
+            font-size: 16px;
+        line-height: 24px;
+        border-radius: 10px;
+        border: 0.1px solid;
+        border-color: #D1D1D1;
+    }
+}
+   
+
+.section_assigned{
+    width: 100%;
+
+}
+
+
+.task_dropdown_input{
+     width: 100%;
+
+}
+
+
+.task_dropdown_list{
+    margin-right: 10px;
+}
+
+
+.task_dropdown_content {
+  width: 90%;
+
+}
+
+
+
+.section_Subtask{
+width: 100%;
+
+}
+
+.subtask_list{
+    width: 90%;
+    
+}
+
+
+}

@@ -304,9 +304,9 @@ function getAddTaskOverlay() {
    
     return ` 
 
-        <div onclick="closeOverlay('addTask_overlay')" id="addTask_overlay" class="bg_overlay d_none">
+     <div onclick="closeOverlay('addTask_overlay')" id="addTask_overlay" class="bg_overlay d_none">
               
-            <div onclick="stopPropagation(event)" id="addTask_card" class="addTask_overlay">
+         <div onclick="stopPropagation(event)" id="addTask_card" class="addTask_overlay">
             <img  src="..//assets/icons/close.svg" onclick="closeOverlay('addTask_overlay')" class="close_btn_AddOverlay" >
                                          
 
@@ -343,8 +343,7 @@ function getAddTaskOverlay() {
                             <div id="taskContactDrowdownMenue" class="task_dropdown_content">
                             <div id="taskDropDownList" class="task_dropdown_list">                            </div>
                             </div>
-                        
-                                                
+                                                                       
                         
                             </div>
 
@@ -438,12 +437,7 @@ function getAddTaskOverlay() {
                 </div>
                
              </div>
-                     
-              
-
-               
-            
-            
+                             
             </div>
 
 
@@ -457,6 +451,6 @@ function getAddTaskOverlay() {
             
             
             </div>
-            </div>
+        </div>
     `
 }
