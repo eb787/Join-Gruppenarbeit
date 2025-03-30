@@ -1,0 +1,158 @@
+@media (max-width: 1000px) {
+    .login_logo img {
+        transform: translate(-20%, -50%);
+    }
+}
+
+@media (max-width: 900px) {
+    .login_field {
+        padding: 48px 75px;
+    }
+}
+
+@media (max-width: 750px) {
+    .login_field {
+        padding: 48px 45px;
+    }
+}
+
+@media (max-width: 700px) {
+    .login_field {
+        padding: 35px 20px;
+    }
+
+    .login_content{
+        padding-top: 170px;
+    }
+    .mobile_login_field {
+        display: flex;
+        justify-content: center;
+        padding-top: 80px;
+    }
+
+    .mobile_sign_up_div {
+        display: flex;
+        flex-direction: row;
+        gap: 35px;
+        align-items: center;
+        padding-right: 24px;
+    }
+
+    .sign_up_div {
+        display: none;
+    }
+
+    .login_footer {
+        padding-top: 65px;
+    }
+}
+
+@media (max-width: 600px) {
+   .login_content{
+    padding-top: 170px;
+   }
+
+   .heading_login{
+    font-size: 48px;
+   }
+
+   .input_login{
+    width: 320px;
+   }
+
+   .input_mail[type=email] {
+    background-position: 320px 11px;
+   }
+
+   .input_pw[type=password] {
+    background-position: 320px 11px;
+   }
+}
+
+@media (max-width: 500px) {
+    .login_content{
+     padding-top: 170px;
+    }
+ 
+    .heading_login{
+     font-size: 48px;
+    }
+
+    .login_btns{
+        gap:20px;
+    }
+    
+    .input_login{
+     width: 250px;
+    }
+ 
+    .input_mail[type=email] {
+     background-position: 260px 11px;
+    }
+ 
+    .input_pw[type=password] {
+     background-position: 260px 11px;
+    }
+ }
+
+ @media (max-width: 450px) {
+    .login_btns{
+        gap:20px;
+        flex-direction: column;
+    }
+
+    .input_login{
+     width: 250px;
+    }
+
+    .login_inputs{
+        padding-bottom: 0px;
+    }
+
+    .login_field{
+        height: 400px;
+    }
+
+    .login_btn{
+        width: 180px;
+    }
+ 
+    .input_mail[type=email] {
+     background-position: 260px 11px;
+    }
+ 
+    .input_pw[type=password] {
+     background-position: 260px 11px;
+    }
+
+    .login_footer{
+        padding-top: 25px;
+    }
+
+ }
+
+ @media (max-width: 450px) {
+    .login_logo img {
+        transform: translate(-5%, -50%);
+    }
+  
+    .login_heading_div{
+        width: 250px;
+    }
+
+    .input_login{
+     width: 200px;
+    }
+
+    .login_field{
+        height: 400px;
+    }
+
+    .input_mail[type=email] {
+     background-position: 205px 11px;
+    }
+ 
+    .input_pw[type=password] {
+     background-position: 205px 11px;
+    }
+ }

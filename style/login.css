@@ -26,7 +26,6 @@ body {
 
 }
 
-
 .sign_up_div {
     display: flex;
     flex-direction: row;
@@ -36,7 +35,7 @@ body {
 }
 
 .login_content {
-    min-height: calc(100vh - 230px);
+    padding-top: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -125,6 +124,7 @@ body {
 
 .login_footer {
     height: 60px;
+    padding-top: 100px;
     display: flex;
     justify-content: center;
 }
@@ -246,7 +246,6 @@ body {
 
 }
 
-
 .login_logo img {
     width: 274px;
     height: 334.07px;
@@ -255,6 +254,10 @@ body {
     animation: slide-in 1.0s ease-out forwards;
     z-index: 1000;
 
+}
+
+.mobile_sign_up_div{
+    display: none;
 }
 
 
@@ -275,15 +278,12 @@ body {
     }
 }
 
-
-
 .main_container {
     opacity: 0;
     transition: 0.5s ease-in;
     animation: fadeIn 1s ease-in 0.5s forwards;
 
 }
-
 
 @keyframes fadeIn {
     from {
