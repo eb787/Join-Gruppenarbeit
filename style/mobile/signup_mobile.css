@@ -1,0 +1,118 @@
+@media (max-width: 1050px) {
+    .header_login {
+        justify-content: flex-start;
+        padding-top: 40px;
+    }
+
+    .signup_footer{
+        padding-top: 27px;}
+}
+
+@media (max-width: 1000px) {
+    .header_login {
+        padding-top: 20px;
+        padding-left: 50px;
+    }
+    .signup_footer{
+        padding-top: 47px;
+    }
+}
+
+@media (max-width: 850px) {
+    .signup_field_header {
+        width: 450px;
+        gap: 20px;
+    }
+    .input_login{
+        width: 310px;
+    }
+
+    .input_name{
+        background-position: 315px 11px;
+    }
+
+    .input_mail[type=email]{
+        background-position: 315px 11px;
+    }
+
+    .input_pw[type=password]{
+        background-position: 315px 11px;
+    }
+
+    .input_pw[type=password]{
+        background-position: 315px 11px;
+    }
+}
+
+@media (max-width: 650px) {
+    .signup_field_header {
+        width: 340px;
+        gap: 0;
+        padding-left: 40px;
+    }
+
+    .login_heading_div{
+        width: 250px;
+    }
+
+    .input_login{
+        width: 230px;
+    }
+
+    .input_name{
+        background-position: 235px 11px;
+    }
+
+    .input_mail[type=email]{
+        background-position: 235px 11px;
+    }
+
+    .input_pw[type=password]{
+        background-position: 235px 11px;
+    }
+
+    .input_pw[type=password]{
+        background-position: 235px 11px;
+    }
+}
+
+@media (max-width: 450px) {
+    .signup_field_header {
+        width: 280px;
+        gap: 0;
+        padding-left: 15px;
+    }
+
+    .heading_login{
+        font-size: 50px;
+    }
+
+    .login_heading_div{
+        width: 250px;
+    }
+
+    .input_login{
+        width: 200px;
+    }
+
+    .input_name{
+        background-position: 205px 11px;
+    }
+
+    .input_mail[type=email]{
+        background-position: 205px 11px;
+    }
+
+    .input_pw[type=password]{
+        background-position: 205px 11px;
+    }
+
+    .input_pw[type=password]{
+        background-position: 205px 11px;
+    }
+
+    .wrong_data_alert{
+        font-size: 13px;
+        top: 550px;
+    }
+}

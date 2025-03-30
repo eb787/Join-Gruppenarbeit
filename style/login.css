@@ -129,6 +129,13 @@ body {
     justify-content: center;
 }
 
+.signup_footer{
+    height: 60px;
+    padding-top: 0;
+    display: flex;
+    justify-content: center;
+}
+
 .links_footer_login {
     display: flex;
     width: 246px;
