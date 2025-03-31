@@ -67,6 +67,11 @@ function getNoTasksDoneCard() {
 }
 
 
+function getPlaceholder() {
+    return `<div class="placeholder"></div>`
+}
+
+
 function getCardOverlay() {
     return `    <div onclick="closeOverlay('bg_overlay')" id="bg_overlay" class="bg_overlay d_none">
                 <div onclick="stopPropagation(event)" id="card_overlay" class="card_overlay">

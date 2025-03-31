@@ -505,3 +505,10 @@
     width: 20px;
 }
 
+.placeholder {
+    width: 80px;
+    height:80px;
+    background-color: red;
+    bottom: 10px;
+    display: none;
+}
