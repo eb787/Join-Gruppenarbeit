@@ -119,8 +119,8 @@
                                 <div class="board_description_box">
                                     <div class="board_category_header">
                                         <h2 class="Board_description_text">To do</h2>
-                                        <img onclick="showAddTaskOverlay()" class="add_task_icon" src="../assets/icons/plus button.png" alt="plus icon">
-                                        <img onclick="showAddTaskOverlay()" class="add_task_icon_mobile" src="../assets/icons/plus_button_mobile.svg" alt="plus icon">
+                                        <img onclick="showAddTaskOverlay('toDo')" class="add_task_icon" src="../assets/icons/plus button.png" alt="plus icon">
+                                        <img onclick="showAddTaskOverlay('toDo')" class="add_task_icon_mobile" src="../assets/icons/plus_button_mobile.svg" alt="plus icon">
                                     </div>
                                     <div class="board_content_box" ondrop="moveTo('toDo')" ondragover="allowDrop(event)">
                                         <div id="toDo" class="board_content_colums_cards"></div>
@@ -130,8 +130,8 @@
                                     <div class="board_description_box">
                                         <div class="board_category_header">
                                             <h2 class="Board_description_text">In progress</h2>
-                                            <img onclick="showAddTaskOverlay()" class="add_task_icon" src="../assets/icons/plus button.png" alt="plus icon">
-                                            <img onclick="showAddTaskOverlay()" class="add_task_icon_mobile" src="../assets/icons/plus_button_mobile.svg" alt="plus icon">
+                                            <img onclick="showAddTaskOverlay('inProgress')" class="add_task_icon" src="../assets/icons/plus button.png" alt="plus icon">
+                                            <img onclick="showAddTaskOverlay('inProgress')" class="add_task_icon_mobile" src="../assets/icons/plus_button_mobile.svg" alt="plus icon">
                                         </div>
                                         <div class="board_content_box" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
                                         <div id="inProgress" class="board_content_colums_cards"></div>
@@ -143,8 +143,8 @@
                                     <div class="board_description_box">
                                         <div class="board_category_header">
                                             <h2 class="Board_description_text">Await feedback</h2>
-                                            <img onclick="showAddTaskOverlay()" class="add_task_icon" src="../assets/icons/plus button.png" alt="plus icon">
-                                            <img onclick="showAddTaskOverlay()" class="add_task_icon_mobile" src="../assets/icons/plus_button_mobile.svg" alt="plus icon">
+                                            <img onclick="showAddTaskOverlay('awaitFeedback')" class="add_task_icon" src="../assets/icons/plus button.png" alt="plus icon">
+                                            <img onclick="showAddTaskOverlay('awaitFeedback')" class="add_task_icon_mobile" src="../assets/icons/plus_button_mobile.svg" alt="plus icon">
                                         </div>
                                         <div class="board_content_box" ondrop="moveTo('awaitFeedback')" ondragover="allowDrop(event)">
                                         <div id="awaitFeedback" class="board_content_colums_cards"></div>
