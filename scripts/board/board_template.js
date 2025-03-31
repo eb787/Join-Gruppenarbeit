@@ -300,8 +300,9 @@ function dateConversation(dateStr){
 
 
 
-function getAddTaskOverlay() {
+function getAddTaskOverlay(test) {
    
+    
     return ` 
      
 
@@ -311,144 +312,7 @@ function getAddTaskOverlay() {
             <img  src="..//assets/icons/close.svg" onclick="closeOverlay('addTask_overlay')" class="close_btn_AddOverlay" >
                                          
 
-             <p class="Title_AddTaskOver">Add Task</p>
-             
-            <div class="section_AddTask">
-             
-                <div class="section_left">
-                        <div class="section_title">
-                            <span class="title">Title<span class="star_red">*</span></span>
-                            <input id="taskTitle" class="input_title input-field" type="text" placeholder="Enter a title" tabindex="1">
-                            <span  class="error_Field">&nbsp;</span>
-                        </div>
-                 
-                    <div class="section_description">
-                        <h2>Description</h2>
-                        <div class="textarea_description">
-                            <textarea  id="descriptionTask" class="textarea" placeholder="Enter a Description" tabindex="2"></textarea>
-                        </div>
-                    </div>
-
-
-                    <div class="section_assigned">
-                        <span class="assigned_title">Assigned to</span>
-                        <div class="task_Contact_dropdown">
-
-                            <div class="task_input_section">
-                                <input type="text" id="taskDropDownInput" class="task_dropdown_input_AddOver" tabindex="3"
-                                    placeholder="Select contacts to assign" onclick="taskContactListDrobdown()"
-                                    onkeyup="taskContactFilterList()"  >
-                                <img src="../assets/icons/arrow_down.svg">
-                            </div>
-
-                            <div id="taskContactDrowdownMenue" class="task_dropdown_content">
-                            <div id="taskDropDownList" class="task_dropdown_list">                            </div>
-                            </div>
-                                                                       
-                        
-                            </div>
-
-                <div id="initialeIconList" class="initiale_Icon_List_AddOver icon_List_hide"></div> 
-                                <div class="required_text">
-                       <span><span class="star_red ">*</span class="required-text">This field is requiered</span>
-                </div>
-
-                    </div>
-
-                </div>
-                
-             
-                <hr>
-
-
-
-                <div class="section_right">
-                    <div class="section_date_div">
-                        <span>Due date<span class="star_red">*</span></span>
-                        <input type="date" id="taskDate"  class=" date_test date_input input-field " tabindex="4">
-                        <span class="error_Field">&nbsp;</span>
-                        <img src="../assets/icons/event.png" class="date_icon"  onclick="openDatePicker()">
-                    </div>
-
-
-                    <div class="section_prio">
-                        <span>Priority</span>
-                        <div class="prio-buttons">
-
-                            <button onclick="btnPrioSelect('urgent')" class="btn_prio button-urgent" tabindex="5">Urgent
-                                <img class="prio_img" src="../assets/icons/high_prio.svg" alt="urgent">
-                            </button>
-
-
-                            <button onclick="btnPrioSelect('medium')" class="btn_prio button_medium" tabindex="6">Medium
-                                <div id="btnPrioGroup" class="prio_img prio_img_group">
-                                    <img src="../assets/icons/linePrio.svg">
-                                    <img src="../assets/icons/linePrio.svg">
-                                </div>
-                            </button>
-
-
-                            <button onclick="btnPrioSelect('low')" class="btn_prio button-low" tabindex="7">Low
-                                <img class="prio_img" src="../assets/icons/low_prio.svg">
-                            </button>
-                        </div>
-
-                    </div>
-                    <div class="section_category">
-                        <span>Category<span class="star_red">*</span></span>
-                        
-                        <div class="category-wrapper">
-                            <select id="taskCatergory" class="input-field">
-                                <option value="" selected disabled>Select task category</option>
-                                <option value="1">Technical Task</option>
-                                <option value="2">User Story</option>
-                            </select>
-                           <span class="error_Field">&nbsp;</span>
-                        </div>
-                           
-                    </div>
-
-
-
-                    <div class="section_subtasks">
-                        <span>Subtasks</span>
-                        <div class="input_wrapper">
-                            <input type="text" id="inputSubtask" class="input_subtasks" oninput="subTaskInputCheck()"
-                                maxlength="40">
-                            <span class="error_Field">&nbsp;</span>
-                            <img id="subTaskAddIcon" class="add_subtasks ele_hide" onclick="subTaskInputCheck(true)"
-                                src="../assets/icons/add.png" alt="add-icon">
-
-                            <div id="subTaskEditIocn" class="add_subtasks sub_Task_Edit_Iocn ele_hide">
-                                <img id="subTaskCloseIcon" onclick="subTaskClose()" src="../assets/icons/close.svg"
-                                    alt="add-icon">
-                                <img src="../assets/icons/vectorV.svg">
-                                <img id="subTaskCheckIcon" onclick="taskCreateTask()" src="../assets/icons/checkSW.svg"
-                                    alt="add-icon">
-                            </div>
-                            <div id="subTaskList" class="subtask_list"></div>
-                         </div>
-                    </div>
-
-                <div class="button_bottom_task">
-                    <button id="btnClearTask" class="button-clear-task" onclick="closeOverlay('addTask_overlay')">Canel <img class="cancel"
-                            src="../assets/icons/iconoir_cancel.png" alt=""></button>
-                    <button id="btnCreateTask" class="button-create-task" onclick="checkInputData();closeOverlay('addTask_overlay')">Create Task <img
-                         src="../assets/icons/check.png" alt=""></button>
-                </div>
-               
-             </div>
-                             
-            </div>
-
-
-            <div id="notificationFinish" class="message_Finish">
-                <div class="message_Finish_contents">
-                      <p>Task added to board</p>
-                      <img src="../assets/icons/boardIcon.svg">
-                </div>
-            </div>
-              
+         
             
             
             </div>

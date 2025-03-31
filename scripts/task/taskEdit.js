@@ -95,7 +95,6 @@ function contactColorAssignEdit(color) {
 }
 
 
-
 function subTaskListLoadEdit() {
         document.getElementById('subTaskAddIcon').classList.remove('ele_hide')
         document.getElementById('subTaskEditIocn').classList.add('ele_hide')
@@ -158,8 +157,6 @@ function editSubTaskEdit(index) {
 }
 
 
-
-
 function deleteSubTaskEdit(posi) {
         DataSubTaskListEdit.splice(posi, 1);
         subTaskListRenderEdit(DataSubTaskListEdit);
@@ -170,7 +167,6 @@ async function TaskEditSave() {
          collectDataEdit();
          await postTaskDataEdit(`/tasks/${parseInt(indexEdit)}`, currentTaskEdit);
          await fetchTaskData();
-              
          updateTaskBoard();
          closeOverlay('bg_overlay')
 }
@@ -203,8 +199,7 @@ function collectDataEdit() {
 function checkContacts(){
    if (selectedTaskContacts.length>0){
         return selectedTaskContacts
-  
-    }
+      }
     else{
         if(DataTaskContactsTask.length>0){
                return DataTaskContactsTask;

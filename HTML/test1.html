@@ -8,66 +8,72 @@
     <link rel="stylesheet" href="../style/fonts.css">
     <link rel="stylesheet" href="../style/buttons.css">
     <link rel="stylesheet" href="../style/style.css">
-    <link rel="stylesheet" href="../style/taskstyle.css">
+    <link rel="stylesheet" href="../style/test1.css">
     <link rel="stylesheet" href="../style/mobile/task_mobile.css">
+
+    <script src="../scripts/task/taskMain.js"></script>
+    <script src="../scripts/task/taskFirebase.js"></script>
+    <script src="../scripts/task/tastTemplate.js"></script>
+    <script src="../scripts/task/taskRender.js"></script>
+
 </head>
 <body>
     
   
 
-        <div class="main_content">
+        <div class="main_content_ol">
          
-            <p class="addTask_Title">Add Task</p>
+            <p class="addTask_Title_ol">Add Task</p>
             
            
-            <div class="container_AddTask">
+            <div class="container_AddTask_ol">
 
 
 
-                <div class="section_left">
+                <div class="section_left_ol">
 
 
-                    <div class="section_title">
-                        <h2 class="title">Title<span class="star_red">*</span></h2>
-                        <input id="taskTitle" class="input_title input-field" type="text"
+                    <div class="section_title_ol">
+                        <h2 class="title">Title<span class="star_red_ol">*</span></h2>
+                        <input id="taskTitle" class="input_title_ol input-field_ol" type="text"
                             placeholder="Enter a title" tabindex="1">
-                        <span class="error_Field">&nbsp;</span>
+                        <span class="error_Field_ol">&nbsp;</span>
                     </div>
 
 
-                    <div class="section_description">
+                    <div class="section_description_ol">
                         <h2>Description</h2>
-                        <div class="textarea_description">
-                            <textarea id="descriptionTask" class="text_area" placeholder="Enter a Description"
+                        <div class="textarea_description_ol">
+                            <textarea id="descriptionTask" class="text_area_ol" placeholder="Enter a Description"
                                 tabindex="2"></textarea>
                         </div>
                     </div>
 
 
-                    <div class="section_assigned">
-                        <h2 class="assigned_title">Assigned to</h2>
-                        <div class="task_Contact_dropdown">
+                    <div class="section_assigned_ol">
+                        <h2 class="assigned_title_ol">Assigned to</h2>
+                        <div class="task_Contact_dropdown_ol">
 
-                            <div class="task_input_section">
-                                <input type="text" id="taskDropDownInput" class="task_dropdown_input" tabindex="3"
+                            <div class="task_input_section_ol">
+                                <input type="text" id="taskDropDownInput" class="task_dropdown_input_ol" tabindex="3"
                                     placeholder="Select contacts to assign" onclick="taskContactListDrobdown()"
                                     onkeyup="taskContactFilterList()">
                                 <img src="../assets/icons/arrow_down.svg">
                             </div>
 
-                            <div id="taskContactDrowdownMenue" class="task_dropdown_content">
-                                <div id="taskDropDownList" class="task_dropdown_list">
+                            <div id="taskContactDrowdownMenue" class="task_dropdown_content_ol">
+                                <div id="taskDropDownList" class="task_dropdown_list_ol">
                                 </div>
                             </div>
                         </div>
-                        <div id="initialeIconList" class="initiale_Icon_List icon_List_hide">
+                        <div id="initialeIconList" class="initiale_Icon_List icon_List_hide_ol">
                         </div>
                     
                     
                     </div>
 
-                    <div class="required_text">
-                        <span><span class="star_red ">*</span class="required-text">This field is requiered</span>
+                    <div class="required_text_ol">
+                        <span><span class="star_red_ol">*</span class="required-text_ol">This field is requiered</span>
                     </div>
 
                 </div>
@@ -76,20 +82,20 @@
                 </div>
 
 
-                <div class="section_right">
+                <div class="section_right_ol">
 
-                    <div class="section_date_div">
-                        <h2>Due date<span class="star_red">*</span></h2>
+                    <div class="section_date_div_ol">
+                        <h2>Due date<span class="star_red_ol">*</span></h2>
 
-                        <div class="date_input">
-                            <input type="date" id="taskDate" class="date_input_field input-field" tabindex="4">
-                            <img src="../assets/icons/event.png" class="date_icon" onclick="openDatePicker()">
+                        <div class="date_input_ol">
+                            <input type="date" id="taskDate" class="date_input_field_ol input-field_ol" tabindex="4">
+                            <img src="../assets/icons/event.png" class="date_icon_ol" onclick="openDatePicker()">
                         </div>
-                        <span class="error_Field">&nbsp;</span>                    
+                        <span class="error_Field_ol">&nbsp;</span>                    
                     </div>
                   
 
-                    <div class="section_prio">
+                    <div class="section_prio_ol">
                         <h2>Priority</h2>
                         <div class="prio-buttons">
                             <button onclick="btnPrioSelect('urgent')" class="btn_prio button-urgent"
@@ -108,29 +114,30 @@
                             </button>
                         </div>
                     </div>
-                    <div class="section_category">
-                        <h2>Category<span class="star_red">*</span></h2>
-                        <div class="category-wrapper">
-                            <select id="taskCatergory" class="input_field_catergory input-field">
+                   
+                    <div class="section_category_ol">
+                        <h2>Category<span class="star_red_ol">*</span></h2>
+                        <div class="category-wrapper_ol">
+                            <select id="taskCatergory" class="input_field_catergory_ol input-field_ol">
                                 <option value="" selected disabled>Select task category</option>
                                 <option value="1">Technical Task</option>
                                 <option value="2">User Story</option>
                             </select>
-                            <span class="error_Field">&nbsp;</span>
+                            <span class="error_Field_ol">&nbsp;</span>
                         </div>
                     </div>
 
 
-                    <div class="section_subtasks">
+                    <div class="section_subtasks_ol">
                         <h2>Subtasks</h2>
-                        <div class="input_wrapper">
-                            <div class="input_group">
-                            <input type="text" id="inputSubtask" class="input_subtasks"
+                        <div class="input_wrapper_ol">
+                            <div class="input_group_ol">
+                            <input type="text" id="inputSubtask" class="input_subtasks_ol"
                                 oninput="subTaskInputCheck()" maxlength="40">
-                                <img id="subTaskAddIcon" class="add_subtasks_new ele_hide"
+                                <img id="subTaskAddIcon" class="add_subtasks_new_ol ele_hide_ol"
                                 onclick="subTaskInputCheck(true)" src="../assets/icons/add.png" alt="add-icon">
                            
-                                <div id="subTaskEditIocn" class="add_subtasks sub_Task_Edit_Iocn ele_hide">
+                                <div id="subTaskEditIocn" class="add_subtasks_ol sub_Task_Edit_Iocn_ol ele_hide_ol">
                                     <img id="subTaskCloseIcon" onclick="subTaskClose()" src="../assets/icons/close.svg"
                                         alt="add-icon">
                                     <img src="../assets/icons/vectorV.svg">
@@ -139,13 +146,13 @@
                                 </div>
                            
                             </div>
-                            <span class="error_Field">&nbsp;</span>
+                            <span class="error_Field_ol">&nbsp;</span>
                             
                            
 
                             
                        </div>
-                            <div id="subTaskList" class="subtask_list">
+                            <div id="subTaskList" class="subtask_list_ol">
                               </div>
 
                              
@@ -154,9 +161,9 @@
                     </div>
                     
 
-                    <div class="button_bottom_task">
+                    <div class="button_bottom_task_ol">
                         <button id="btnClearTask" class="button-clear-task" onclick="addTaskClear()">Clear <img
-                                class="cancel" src="../assets/icons/iconoir_cancel.png" alt=""></button>
+                                class="cancel_ol" src="../assets/icons/iconoir_cancel.png" alt=""></button>
                         <button id="btnCreateTask" class="button-create-task" onclick="checkInputData()">Create Task
                             <img src="../assets/icons/check.png" alt=""></button>
                     </div>
@@ -166,8 +173,8 @@
 
 
 
-                <div class="required_text_mobile">
-                    <span><span class="star_red ">*</span class="required-text">This field is requiered</span>
+                <div class="required_text_mobile_ol">
+                    <span><span class="star_red_ol ">*</span class="required-text_ol">This field is requiered</span>
                 </div>
 
 
@@ -176,8 +183,8 @@
 
                 
                
-                <div id="notificationFinish" class="message_Finish">
-                    <div class="message_Finish_contents">
+                <div id="notificationFinish" class="message_Finish_ol">
+                    <div class="message_Finish_contents_ol">
                         <p>Task added to board</p>
                         <img src="../assets/icons/boardIcon.svg">
                     </div>
@@ -190,9 +197,9 @@
 
             
             
-            <div class="button_bottom_task_mobile">
+            <div class="button_bottom_task_mobile_ol">
                 <button id="btnClearTask" class="button-clear-task" onclick="addTaskClear()">Clear <img
-                        class="cancel" src="../assets/icons/iconoir_cancel.png" alt=""></button>
+                        class="cancel_ol" src="../assets/icons/iconoir_cancel.png" alt=""></button>
                 <button id="btnCreateTask" class="button-create-task" onclick="checkInputData()">Create Task
                     <img src="../assets/icons/check.png" alt=""></button>
             </div>
