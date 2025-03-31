@@ -157,10 +157,25 @@ function adjustHeight() {
             });
     }
 }
-
+let DragCounter = 0;
 
 function allowDrop(event) {
     event.preventDefault();
+}
+
+
+function showDottedBox(event) {
+    event.preventDefault();
+    DragCounter++;
+    event.currentTarget.classList.add('input_board_searching');
+}
+
+
+function removeDottedBox(event) {
+    DragCounter--;
+    if (DragCounter == 0) {
+         event.currentTarget.classList.remove('input_board_searching');
+    }
 }
 
 
@@ -170,7 +185,10 @@ function startDragging(index) {
 }
 
 
-async function moveTo(category) {
+async function moveTo(category, event) {
+    event.preventDefault();
+    DragCounter = 0;
+    event.currentTarget.classList.remove('input_board_searching');
     currentTasks[elementToBeDropped].status = category;
     currentTask = currentTasks[elementToBeDropped];
     await changeCategory(`/tasks/${elementToBeDropped}`, currentTask);

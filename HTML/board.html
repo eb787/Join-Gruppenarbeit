@@ -122,7 +122,7 @@
                                         <img onclick="showAddTaskOverlay('toDo')" class="add_task_icon" src="../assets/icons/plus button.png" alt="plus icon">
                                         <img onclick="showAddTaskOverlay('toDo')" class="add_task_icon_mobile" src="../assets/icons/plus_button_mobile.svg" alt="plus icon">
                                     </div>
-                                    <div class="board_content_box" ondrop="moveTo('toDo')" ondragover="allowDrop(event)">
+                                    <div class="board_content_box" ondrop="moveTo('toDo', event)" ondragover="allowDrop(event)" ondragenter="showDottedBox(event)" ondragleave="removeDottedBox(event)">
                                         <div id="toDo" class="board_content_colums_cards"></div>
                                     </div>
                                 </div>
@@ -133,7 +133,7 @@
                                             <img onclick="showAddTaskOverlay('inProgress')" class="add_task_icon" src="../assets/icons/plus button.png" alt="plus icon">
                                             <img onclick="showAddTaskOverlay('inProgress')" class="add_task_icon_mobile" src="../assets/icons/plus_button_mobile.svg" alt="plus icon">
                                         </div>
-                                        <div class="board_content_box" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
+                                        <div class="board_content_box" ondrop="moveTo('inProgress', event)" ondragover="allowDrop(event)" ondragenter="showDottedBox(event)" ondragleave="removeDottedBox(event)">
                                         <div id="inProgress" class="board_content_colums_cards"></div>
                                         </div>
                                     </div>
@@ -146,7 +146,7 @@
                                             <img onclick="showAddTaskOverlay('awaitFeedback')" class="add_task_icon" src="../assets/icons/plus button.png" alt="plus icon">
                                             <img onclick="showAddTaskOverlay('awaitFeedback')" class="add_task_icon_mobile" src="../assets/icons/plus_button_mobile.svg" alt="plus icon">
                                         </div>
-                                        <div class="board_content_box" ondrop="moveTo('awaitFeedback')" ondragover="allowDrop(event)">
+                                        <div class="board_content_box" ondrop="moveTo('awaitFeedback', event)" ondragover="allowDrop(event)" ondragenter="showDottedBox(event)" ondragleave="removeDottedBox(event)">
                                         <div id="awaitFeedback" class="board_content_colums_cards"></div>
                                         </div>
                                     </div>
@@ -156,7 +156,7 @@
                                         <div class="board_category_header">
                                             <h2 class="Board_description_text">Done</h2>
                                         </div>
-                                    <div class="board_content_box"  ondrop="moveTo('done')" ondragover="allowDrop(event)">
+                                    <div class="board_content_box"  ondrop="moveTo('done', event)" ondragover="allowDrop(event)" ondragenter="showDottedBox(event)" ondragleave="removeDottedBox(event)">
                                         <div id="done" class="board_content_colums_cards"></div>
                                     </div>
                                     </div>
