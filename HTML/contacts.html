@@ -21,6 +21,7 @@
     <script src="../scripts/contact/contactFirebase.js"></script>
     <script src="../scripts/contact/contactMain.js"></script>
     <script src="../scripts/contact/contactTemplate.js"></script>
+    <script src="../scripts/contact/contactMobile.js"></script>
     <script src="../scripts/policy legalnotice/policy legal_notices.js"></script>
     <script src="../scripts/script.js"></script>
 </head>
@@ -83,7 +84,7 @@
                         <a href="../HTML/login.html">Log out</a>
                     </div>
                 </div>
-                <div class="contact_Card">
+                <div class="contact_Card" id="contact_Card">
                     <div class="contact_List_Frame">
                         <div class="contact_scroll">
                             <div class="contac_List_Sec_Header">
@@ -116,18 +117,21 @@
 
                         </div>
                     </div>
-                    <div class="contact_Detail contact_Detaile_mobile">
+                    <div class="contact_Detail contact_Detaile_mobile" >
                         <div class="contact_Detail_Header">
                             <p class="contact_header_1">Contacts</p>
                             <div class="line_Vertikal"></div>
                             <p class="contact_header_2">Better with a team</p>
-                            <img src="../assets/icons/arrow-left-line.png" alt="" class="arrow_back_mobile" onclick = "closeContactBigMiddle()">
+                            <img src="../assets/icons/arrow-left-line.png" alt="" class="arrow_back_mobile" onclick = "closeContactBigMiddleMobil(), closeWindowMobile()">
 
                         </div>
                         <div id="contact-big-middle">
                             
                         </div>
+                        
                     </div>
+                    <div id="mobile_window"></div>
+                    
                 </div>
 
                 <!--  CSS Datei contactCarrd.css    sichtbar mit flex-->
@@ -166,7 +170,7 @@
                                     <img src="../assets/icons/call.svg">
                                 </div>
                                 <div class="contact_Card_button">
-                                    <button class="button_create_contact_mobile">Create Contact <img src="../assets/icons/check.svg" alt="" onclick="addContact()"></button>
+                                    <button class="button_create_contact_mobile" onclick="addContact()" id="button_create_mobile">Create Contact <img src="../assets/icons/check.svg" alt="" ></button>
 
                                     <button class="contact_Card_button1 btn_hover_white" onclick="cancelStatus()"
                                         id="cancel-button">
@@ -235,7 +239,7 @@
         </section>
     </div>
     <!--button_back_ausgeblendet-->
-    
+   
 </body>
 
 </html>

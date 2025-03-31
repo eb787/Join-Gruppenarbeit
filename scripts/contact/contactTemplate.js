@@ -46,7 +46,7 @@ function contactCardMiddle(user, contactIndex, firstLetter, color) {
             <h3 class="font_weight_400">${user.number}</h3>
         </div>
             <div class = "mobile_button_options_div" id = "mobile_window">
-                <img src="../assets/icons/Menu Contact options.png" alt="mobile-options" class="mobile-options" onclick = "openWindowMobile('${contactIndex}',' ${firstLetter}','${color}')">
+                <img src="../assets/icons/Menu Contact options.png" alt="mobile-options" class="mobile-options" onclick = "openWindowMobile('${contactIndex}','${firstLetter}','${color}')">
             </div>
 
     `;
@@ -82,8 +82,10 @@ function contactcardHeadlineEdit() {
 
 function cardNewContactEdit() {
     let title = "Edit Contact";
-    return `
-            <img src="../assets/icons/logocontact.svg">
+    return `   <div class = "close_button_mobile_div">
+            <img src="../assets/icons/Close.png" alt="close_button" class="close_button_mobile" onclick = "clearInputsAndClose()">
+        </div>
+            <img src="../assets/icons/logocontact.svg " class = "logo_mobile">
             <p>${title}</p>
     `;
 }
@@ -99,22 +101,27 @@ function alertSuccess() {
 }
 
 function openWindowMobile(contactIndex, firstLetter, color) {
-    let background = document.getElementById('contact-big-middle');
     let mobileWindow = document.getElementById('mobile_window');
     mobileWindow.innerHTML =
         `
-<div class="mobile_options_div">
+<div class="mobile_options_div" id = "window_options">
     <div class="edit_mobile" onclick = "editContact('${contactIndex}', '${firstLetter}','${color}')">
         <img src="../assets/icons/edit.svg" alt="">
         <p>Edit</p>
     </div>
-    <div class="delete_mobile" onclick= "deleteContact('${contactIndex}', '${firstLetter}')">
+<div class="delete_mobile" onclick="deleteContact('${contactIndex}','${firstLetter}')" ; closeContactBigMiddleMobil();">
         <img src="../assets/icons/delete.svg" alt="">
         <p>Delete</p>
     </div>
 
 </div>`
-    if (onclick = background) {
-        mobileWindow = "";
-    }
 }
+
+
+function buttonsEditMobile() {
+    return `
+    
+    `
+}
+
+
