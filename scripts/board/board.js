@@ -40,9 +40,13 @@ function updateTaskBoard() {
 
 function emptyBoard() {
     document.getElementById("toDo").innerHTML = getNoTasksToDoCard();
+    document.getElementById("toDo").innerHTML += getPlaceholder();
     document.getElementById("inProgress").innerHTML = getNoTasksInProgressCard();
+    document.getElementById("inProgress").innerHTML += getPlaceholder();
     document.getElementById("awaitFeedback").innerHTML = getNoTasksAwaitFeedbackCard();
+    document.getElementById("awaitFeedback").innerHTML += getPlaceholder();
     document.getElementById("done").innerHTML = getNoTasksDoneCard();
+    document.getElementById("done").innerHTML += getPlaceholder();
 }
 
 
@@ -157,10 +161,44 @@ function adjustHeight() {
             });
     }
 }
-
+let DragCounter = 0;
 
 function allowDrop(event) {
     event.preventDefault();
+}
+
+
+function showDottedBox(event) {
+    event.preventDefault();
+    let dropzone = event.currentTarget;
+    let placeholder = dropzone.querySelector('.placeholder');
+    if (placeholder) {
+        placeholder.style.display = "block";
+    }
+
+
+    DragCounter++;
+    // event.currentTarget.classList.add('input_board_searching');
+}
+
+
+function removeDottedBox(event) {
+    let dropzone = event.currentTarget;
+    let placeholder = dropzone.querySelector('.placeholder');
+    // if (placeholder) {
+    //     placeholder.style.display = "none";
+    // }
+
+
+    DragCounter--;
+    if (DragCounter == 0) {
+        if (placeholder) {
+            placeholder.style.display = "none";
+        }
+    }
+    // if (DragCounter == 0) {
+    //      event.currentTarget.classList.remove('input_board_searching');
+    // }
 }
 
 
@@ -170,7 +208,18 @@ function startDragging(index) {
 }
 
 
-async function moveTo(category) {
+async function moveTo(category, event) {
+    event.preventDefault();
+    let dropzone = event.currentTarget;
+    let placeholder = dropzone.querySelector('.placeholder');
+    if (placeholder) {
+        placeholder.style.display = "none";
+    }
+
+
+
+    DragCounter = 0;
+    // event.currentTarget.classList.remove('input_board_searching');
     currentTasks[elementToBeDropped].status = category;
     currentTask = currentTasks[elementToBeDropped];
     await changeCategory(`/tasks/${elementToBeDropped}`, currentTask);
