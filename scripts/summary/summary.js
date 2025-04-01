@@ -49,6 +49,18 @@ function openPage() {
   window.location.href = "../HTML/board.html"; 
 }
 
+function showHelpIconMobile() {
+  let helpLink = document.getElementById("mobile_help_link");
+
+  if (window.innerWidth <= 1000) {
+    helpLink.style.display = "flex"; 
+  } else {
+    helpLink.style.display = "none"; 
+  }
+}
+// Auch bei jeder Fenstergrößenänderung die Funktion aufrufen
+window.onresize = showHelpIconMobile;
+
 function updateHTML() {
   document.getElementById("content_urgent").innerHTML = getNumberUrgent();
   document.getElementById("content_to_do").innerHTML = getNumberToDo();

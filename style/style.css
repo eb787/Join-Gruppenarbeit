@@ -15,7 +15,6 @@
     display: block;
 }
 
-
 .user_logo {
     height: 32px;
     width: 32px;
@@ -59,7 +58,7 @@
 
 .submenu a:hover{
     background-color: rgba(6, 94, 209, 0.445);
-    width: 148px;
+    width: 140px;
 }
 
 .submenu a {
@@ -70,4 +69,11 @@
     align-items: center;
     display: flex;
     justify-content: center;
+}
+
+@media (max-width: 1000px) {
+    .submenu{
+        height: 200px;
+    }
+
 }
