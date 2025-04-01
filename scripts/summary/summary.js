@@ -20,6 +20,7 @@ function update() {
   renderInitials();
   renderCurrentUser();
   renderWelcome();
+  showHelpIconMobile()
 }
 
 
