@@ -25,3 +25,8 @@ function openBoard(){
 function openContact(){
   window.location.href = "../HTML/contacts.html"; 
 }
+
+function logoutGuest() {
+  localStorage.removeItem('userLoggedIn');
+  localStorage.setItem('greetingShown', 'false');
+  }
