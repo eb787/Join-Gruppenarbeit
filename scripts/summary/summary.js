@@ -85,6 +85,8 @@ function showHelpIconMobile() {
   }
 }
 
+window.onresize = showHelpIconMobile;
+
 
 /**
  * This function updates the HTML content based on the current task data.
