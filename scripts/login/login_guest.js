@@ -5,13 +5,8 @@ async function guestLogin() {
     if (!localStorage.getItem('greetingShown')) {
         localStorage.setItem('greetingShown', 'false');
     }
-    setGreetingFlagGuest();
-}
-
-function setGreetingFlagGuest() {
     openGuestLoginPage();
 }
-
 
 
 function openGuestLoginPage() {
@@ -35,6 +30,6 @@ async function guestLogin() {
     }
     localStorage.setItem('userLoggedIn', 'true');
     localStorage.setItem('greetingShown', 'false');
-    setGreetingFlagGuest();
+    openGuestLoginPage();
 }
 
