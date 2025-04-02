@@ -23,6 +23,7 @@ async function userLogin() {
     window.location.href = "../HTML/summary.html";
 }
 
+
 /**
  * This function sets the greeting flag for the user
  * 
@@ -32,6 +33,7 @@ function setGreetingFlag() {
         localStorage.setItem('greetingShown', 'true'); 
     }
 }
+
 
 /**
  * This function checks if a user with the given email exists
@@ -49,6 +51,7 @@ async function checkIfContactExists(email) {
     }
 }
 
+
 /**
  * This function searches for a user by their email address in the data
  * @param {Object} data - The user data from the database
@@ -62,6 +65,7 @@ function findUserByEmail(data, email) {
     return null;
 }
 
+
 /**
  * This function resets the error message by removing its display
  * @param {HTMLElement} errorMessage - The DOM element containing the error message
@@ -69,6 +73,7 @@ function findUserByEmail(data, email) {
 function resetErrorMessage(errorMessage) {
     errorMessage.classList.remove("show");
 }
+
 
 /**
  * This function displays an error message when there's an issue with the login
@@ -78,6 +83,7 @@ function showErrorMessage(errorMessage, message) {
     errorMessage.textContent = message;
     errorMessage.classList.add("show");
 }
+
 
 /**
  * This function creates a folder for the user in the Firebase database

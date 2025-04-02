@@ -14,6 +14,7 @@ async function guestLogin() {
     openGuestLoginPage();
 }
 
+
 /**
  * This function opens the guest login page by redirecting the browser
  * @throws {Error} Throws an error if the URL is invalid
