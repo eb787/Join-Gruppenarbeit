@@ -423,15 +423,17 @@ function closeAlert() {
 }
 
 
-function showAddTaskOverlay() {
+function showAddTaskOverlay(category) {
+    if(category){
+        localStorage.setItem("category", category); 
+    }
     if (window.innerWidth >= 1180) {
-      document.getElementById("addTask_overlay").classList.remove("brighter_background");
+        document.getElementById("addTask_overlay").classList.remove("brighter_background");
         document.getElementById("addTask_overlay").classList.remove("d_none");
         document.getElementById("addTask_card").classList.remove("slide-out");
         document.getElementById("addTask_card").classList.add("slide-in");  
     } else{
-        window.open('../HTML/task.html', '_self')
-    }
-    
+        window.open('../HTML/task.html', '_self');
+    }    
 }
 
