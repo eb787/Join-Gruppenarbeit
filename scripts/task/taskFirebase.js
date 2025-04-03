@@ -34,8 +34,9 @@ async function postTaskData(path = "", task) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(task)
-    });
-}
+       });
+    
+    }
 
 
 //Hilffunction zum DB refreshen 

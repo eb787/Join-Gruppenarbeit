@@ -384,15 +384,6 @@ border-width: 0.5px;
 }
 
 
-hr {
-    position: relative;
-    top: 80px;
-    left: 100px;
-    width: 0px;
-    height: 424px;
-    motion-rotation: 0;
-}
-
 
 .check {
     width: 15.49px;

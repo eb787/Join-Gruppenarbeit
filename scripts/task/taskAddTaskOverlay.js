@@ -9,7 +9,13 @@ function taskAddOverlayInit() {
     requiredInputAddTask();
     focusOnRequiredFields();
     loadDataFirebase();
+    addTaskClear();
+
 }
+
+
+
+
 
 
 

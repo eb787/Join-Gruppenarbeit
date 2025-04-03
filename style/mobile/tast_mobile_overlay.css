@@ -1,0 +1,98 @@
+@media (max-width: 1180px) {
+
+    .addTask_Title_ol{
+        font-size: 50px;
+        margin-left: 10px;
+        margin-right: 10px;
+  }  
+
+
+  h2{
+    font-size:16px ;
+  }
+
+  
+  
+.addTask_overlay{
+height: auto;
+width: 100%;
+margin: 0;
+
+
+}
+
+.container_AddTask_ol {
+    height: calc(100% - 200px); 
+    overflow-y: auto;
+    overflow-x: hidden;  
+    justify-content:flex-start;
+
+}
+
+.container_AddTask_ol::-webkit-scrollbar{
+    display: none;
+}
+
+
+    .section_left_ol{
+     margin-left: 10px;
+     margin-right: 10px;
+
+    }
+       
+    
+    .section_right_ol{
+        margin-left: 10px;
+        margin-right: 10px;
+      
+      
+    }
+       
+
+
+   
+    
+    .container_AddTask_ol {
+        flex-direction: column;
+      
+
+     }
+
+
+    .section_title_ol {
+    height: 40px ;
+      }
+
+
+    .required_text_ol{
+        display: none;
+    }
+
+    .required_text_mobile_ol{
+        display: flex;
+    }
+
+
+    .hr_ol{
+        display: none;
+    }
+
+
+    .button_bottom_task_ol {
+        display: none;
+       
+    }
+
+    .button_bottom_task_mobile_ol {
+          display: flex;
+          margin-top: 30px;
+          margin-right: 10px;
+    }
+
+
+    .section_right_ol {
+           margin-bottom: 80px;
+    }
+
+
+}

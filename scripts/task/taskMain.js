@@ -251,7 +251,7 @@ function contactCheckOKinArray() {
  }
 
 
-function checkInputData() {
+ function checkInputData(template) {
   let mandatoryFields = document.querySelectorAll('.input-field');
      mandatoryFields.forEach(field => {
     if (field.value.trim() == "") {
@@ -261,11 +261,14 @@ function checkInputData() {
       pushTaskToServer();
       timePopUp(2000);
       addTaskClear();
+      if(template=="overlay"){
+        closeOverlay('addTask_overlay')
+     }
     }
   });
-     
-  
+
 }
+
 
  function timePopUp(duration){
   let notification = document.getElementById('notificationFinish');
