@@ -578,10 +578,11 @@ textarea:hover {
 
 
 .error_Field_ol {
+    display: none;;
     font-size: 10px;
     color: red;
     margin-top: 3px;
-    margin-bottom: 3px;
+    margin-bottom: 3px;*/
     
 }
 

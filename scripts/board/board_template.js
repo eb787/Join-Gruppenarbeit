@@ -310,19 +310,14 @@ function getAddTaskOverlay(test) {
 
     return ` 
      
-
      <div onclick="closeOverlay('addTask_overlay')" id="addTask_overlay" class="bg_overlay d_none">
               
          <div onclick="stopPropagation(event)" id="addTask_card" class="addTask_overlay">
             <img  src="..//assets/icons/close.svg" onclick="closeOverlay('addTask_overlay')" class="close_btn_AddOverlay" >
-                
-        
+                        
                      <p class="addTask_Title_ol">Add Task</p>
-
                          <div class="container_AddTask_ol"> 
-
                                    <div class="section_left_ol">
-
                                         <div class="section_title_ol">
                                             <h2 class="title">Title<span class="star_red_ol">*</span></h2>
                                             <input id="taskTitle" class="input_title_ol input-field" type="text"
@@ -465,9 +460,6 @@ function getAddTaskOverlay(test) {
                                     </div>
                                 </div>
 
-
-
-
                        </div>  
       
         
@@ -480,11 +472,6 @@ function getAddTaskOverlay(test) {
                       
 
         </div> 
-
-                        
-                               
-
-
       </div>
     `
 }

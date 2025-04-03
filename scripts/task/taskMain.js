@@ -251,7 +251,7 @@ function contactCheckOKinArray() {
  }
 
 
- function checkInputData(template) {
+ async function checkInputData(template) {
   let mandatoryFields = document.querySelectorAll('.input-field');
      mandatoryFields.forEach(field => {
     if (field.value.trim() == "") {
@@ -263,6 +263,7 @@ function contactCheckOKinArray() {
       addTaskClear();
       if(template=="overlay"){
         closeOverlay('addTask_overlay')
+     
      }
     }
   });
