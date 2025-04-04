@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,10 +13,8 @@
     <link rel="stylesheet" href="../style/fonts.css">
     <link rel="stylesheet" href="../style/navbar.css">
     <link rel="stylesheet" href="../style/mobile/navbar_mobile.css">
-    
-   <link rel="stylesheet" href="../style/taskstyle.css">
+    <link rel="stylesheet" href="../style/taskstyle.css">
     <link rel="stylesheet" href="../style/mobile/task_mobile.css">
-    
     <script src="../scripts/task/taskMain.js"></script>
     <script src="../scripts/task/taskFirebase.js"></script>
     <script src="../scripts/task/tastTemplate.js"></script>
@@ -25,14 +22,12 @@
     <script src="..//scripts/script.js"></script>
     <script src="../scripts/policy legalnotice/policy legal_notices.js"></script>
 </head>
-
 <body onload="renderInitials(); init();">
     <div class="full_content">
         <nav class="nav mobile_display_none">
             <div class="nav-icon-capa2">
                 <img src="../assets/icons/capa 2.svg">
             </div>
-
             <div class="div_nav_icons">
                 <a class="navbar_icon" href="../HTML/summary.html">
                     <img src="../assets/icons/summary.svg">
@@ -56,7 +51,6 @@
                 </a>
             </div>
         </nav>
-
         <section class="content_right">
             <div class="headline">
                 <div class="mobile_join_logo desktop_display_none mobile_display_flex">
@@ -70,9 +64,7 @@
                 </div>
                 <seperator class="navbar_seperator"></seperator>
             </div>
-
             <div class="main_content">
-
                 <div class="div_submenu submenu_closed" id="submenu_toogle">
                     <div class="submenu">
                         <a href="../HTML/legal_notice.html">Legal Notice</a>
@@ -80,28 +72,14 @@
                         <a href="../HTML/login.html">Log out</a>
                     </div>
                 </div>
-
-
                 <p class="addTask_Title">Add Task</p>
-                
-               
-
-
                 <div class="container_AddTask">
-
-
-
                     <div class="section_left">
-
-
                         <div class="section_title">
                             <h2 class="title">Title<span class="star_red">*</span></h2>
                             <input id="taskTitle" class="input_title input-field" type="text"
                                 placeholder="Enter a title" tabindex="1">
-                         
                         </div>
-
-
                         <div class="section_description">
                             <h2>Description</h2>
                             <div class="textarea_description">
@@ -109,19 +87,15 @@
                                     tabindex="2"></textarea>
                             </div>
                         </div>
-
-
                         <div class="section_assigned">
                             <h2 class="assigned_title">Assigned to</h2>
                             <div class="task_Contact_dropdown">
-
                                 <div class="task_input_section">
                                     <input type="text" id="taskDropDownInput" class="task_dropdown_input" tabindex="3"
                                         placeholder="Select contacts to assign" onclick="taskContactListDrobdown()"
                                         onkeyup="taskContactFilterList()">
                                     <img src="../assets/icons/arrow_down.svg">
                                 </div>
-
                                 <div id="taskContactDrowdownMenue" class="task_dropdown_content">
                                     <div id="taskDropDownList" class="task_dropdown_list">
                                     </div>
@@ -129,154 +103,112 @@
                             </div>
                             <div id="initialeIconList" class="initiale_Icon_List icon_List_hide">
                             </div>
-                        
-                        
                         </div>
-
                         <div class="required_text">
                             <span><span class="star_red ">*</span class="required-text">This field is requiered</span>
                         </div>
-
                     </div>
                     <div>
                         <hr>
                     </div>
-
-
                     <div class="section_right">
-
                         <div class="section_date_div">
                             <h2>Due date<span class="star_red">*</span></h2>
-
                             <div class="date_input">
                                 <input type="date" id="taskDate" class="date_input_field input-field" tabindex="4">
                                 <img src="../assets/icons/event.png" class="date_icon" onclick="openDatePicker()">
                             </div>
-                           
-
-                      
-
-                        <div class="section_prio">
-                            <h2>Priority</h2>
-                            <div class="prio-buttons">
-                                <button onclick="btnPrioSelect('urgent')" class="btn_prio button-urgent"
-                                    tabindex="5">Urgent
-                                    <img class="prio_img" src="../assets/icons/high_prio.svg" alt="urgent">
-                                </button>
-                                <button onclick="btnPrioSelect('medium')" class="btn_prio button_medium"
-                                    tabindex="6">Medium
-                                    <div id="btnPrioGroup" class="prio_img prio_img_group">
-                                        <img src="../assets/icons/linePrio.svg">
-                                        <img src="../assets/icons/linePrio.svg">
-                                    </div>
-                                </button>
-                                <button onclick="btnPrioSelect('low')" class="btn_prio button-low" tabindex="7">Low
-                                    <img class="prio_img" src="../assets/icons/low_prio.svg">
-                                </button>
-                            </div>
-                        </div>
-                        <div class="section_category">
-                            <h2>Category<span class="star_red">*</span></h2>
-                            <div class="category-wrapper">
-                                <select id="taskCatergory" class="input_field_catergory input-field">
-                                    <option value="" selected disabled>Select task category</option>
-                                    <option value="1">Technical Task</option>
-                                    <option value="2">User Story</option>
-                                </select>
-                            
-                            </div>
-                        </div>
-
-
-                        <div class="section_subtasks">
-                            <h2>Subtasks</h2>
-                            <div class="input_wrapper">
-                                <div class="input_group">
-                                <input type="text" id="inputSubtask" class="input_subtasks"
-                                    oninput="subTaskInputCheck()" maxlength="40">
-                                    <img id="subTaskAddIcon" class="add_subtasks_new ele_hide"
-                                    onclick="subTaskInputCheck(true)" src="../assets/icons/add.png" alt="add-icon">
-                               
-                                    <div id="subTaskEditIocn" class="add_subtasks sub_Task_Edit_Iocn ele_hide">
-                                        <img id="subTaskCloseIcon" onclick="subTaskClose()" src="../assets/icons/close.svg"
-                                            alt="add-icon">
-                                        <img src="../assets/icons/vectorV.svg">
-                                        <img id="subTaskCheckIcon" onclick="taskCreateTask()"
-                                            src="../assets/icons/checkSW.svg" alt="add-icon">
-                                    </div>
-                               
+                           <div class="section_prio">
+                                <h2>Priority</h2>
+                                <div class="prio-buttons">
+                                    <button onclick="btnPrioSelect('urgent')" class="btn_prio button-urgent"
+                                        tabindex="5">Urgent
+                                        <img class="prio_img" src="../assets/icons/high_prio.svg" alt="urgent">
+                                    </button>
+                                    <button onclick="btnPrioSelect('medium')" class="btn_prio button_medium"
+                                        tabindex="6">Medium
+                                        <div id="btnPrioGroup" class="prio_img prio_img_group">
+                                            <img src="../assets/icons/linePrio.svg">
+                                            <img src="../assets/icons/linePrio.svg">
+                                        </div>
+                                    </button>
+                                    <button onclick="btnPrioSelect('low')" class="btn_prio button-low" tabindex="7">Low
+                                        <img class="prio_img" src="../assets/icons/low_prio.svg">
+                                    </button>
                                 </div>
-                                              
-                               
+                            </div>
+                            <div class="section_category">
+                                <h2>Category<span class="star_red">*</span></h2>
+                                <div class="category-wrapper">
+                                    <select id="taskCatergory" class="input_field_catergory input-field">
+                                        <option value="" selected disabled>Select task category</option>
+                                        <option value="1">Technical Task</option>
+                                        <option value="2">User Story</option>
+                                    </select>
 
-                                
-                           </div>
+                                </div>
+                            </div>
+                            <div class="section_subtasks">
+                                <h2>Subtasks</h2>
+                                <div class="input_wrapper">
+                                    <div class="input_group">
+                                        <input type="text" id="inputSubtask" class="input_subtasks"
+                                            oninput="subTaskInputCheck()" maxlength="40">
+                                        <img id="subTaskAddIcon" class="add_subtasks_new ele_hide"
+                                            onclick="subTaskInputCheck(true)" src="../assets/icons/add.png"
+                                            alt="add-icon">
+                                        <div id="subTaskEditIocn" class="add_subtasks sub_Task_Edit_Iocn ele_hide">
+                                            <img id="subTaskCloseIcon" onclick="subTaskClose()"
+                                                src="../assets/icons/close.svg" alt="add-icon">
+                                            <img src="../assets/icons/vectorV.svg">
+                                            <img id="subTaskCheckIcon" onclick="taskCreateTask()"
+                                                src="../assets/icons/checkSW.svg" alt="add-icon">
+                                        </div>
+                                    </div>
+                                </div>
                                 <div id="subTaskList" class="subtask_list">
-                                  </div>
+                                </div>
+                            </div>
+                            <div class="button_bottom_task">
+                                <button id="btnClearTask" class="button-clear-task" onclick="addTaskClear()">Clear <img
+                                        class="cancel" src="../assets/icons/iconoir_cancel.png" alt=""></button>
+                                <button id="btnCreateTask" class="button-create-task" onclick="checkInputData()">Create
+                                    Task
+                                    <img src="../assets/icons/check.png" alt=""></button>
+                            </div>
                         </div>
-
-
-
-                        <div class="button_bottom_task">
-                            <button id="btnClearTask" class="button-clear-task" onclick="addTaskClear()">Clear <img
-                                    class="cancel" src="../assets/icons/iconoir_cancel.png" alt=""></button>
-                            <button id="btnCreateTask" class="button-create-task" onclick="checkInputData()">Create Task
-                                <img src="../assets/icons/check.png" alt=""></button>
+                        <div class="required_text_mobile">
+                            <span><span class="star_red ">*</span class="required-text">This field is requiered</span>
                         </div>
-                    </div>
-
-
-
-                    <div class="required_text_mobile">
-                        <span><span class="star_red ">*</span class="required-text">This field is requiered</span>
-                    </div>
-
-
-                    
-                   
-                    <div id="notificationFinish" class="message_Finish">
-                        <div class="message_Finish_contents">
-                            <p>Task added to board</p>
-                            <img src="../assets/icons/boardIcon.svg">
+                        <div id="notificationFinish" class="message_Finish">
+                            <div class="message_Finish_contents">
+                                <p>Task added to board</p>
+                                <img src="../assets/icons/boardIcon.svg">
+                            </div>
                         </div>
                     </div>
                 </div>
-            
-               
-                
-               
-                    
-            
-            </div>
-
-
-            <div class="button_bottom_task_mobile">
-                <button id="btnClearTask" class="button-clear-task" onclick="addTaskClear()">Clear <img
-                        class="cancel" src="../assets/icons/iconoir_cancel.png" alt=""></button>
-                <button id="btnCreateTask" class="button-create-task" onclick="checkInputData()">Create Task
-                    <img src="../assets/icons/check.png" alt=""></button>
-            </div>
-
-
-
-
-
-            <nav class="nav_mobile">
-                <div class="mobile_navbar_icon mobile_display_flex" onclick="openSummary('../HTML/summary.html')">
-                    <img src="../assets/icons/mobile_summary.svg">
+                <div class="button_bottom_task_mobile">
+                    <button id="btnClearTask" class="button-clear-task" onclick="addTaskClear()">Clear <img
+                            class="cancel" src="../assets/icons/iconoir_cancel.png" alt=""></button>
+                    <button id="btnCreateTask" class="button-create-task" onclick="checkInputData()">Create Task
+                        <img src="../assets/icons/check.png" alt=""></button>
                 </div>
-                <div class="mobile_navbar_icon mobile_display_flex">
-                    <img src="../assets/icons/mobile_current_task.svg">
-                </div>
-                <div class="mobile_navbar_icon mobile_display_flex" onclick="openBoard('../HTML/board.html')">
-                    <img src="../assets/icons/mobile_board.svg">
-                </div>
-                <div class="mobile_navbar_icon mobile_display_flex" onclick="openContact('../HTML/contacts.html')">
-                    <img src="../assets/icons/mobile_contact.svg">
-                </div>
-            </nav>
+                <nav class="nav_mobile">
+                    <div class="mobile_navbar_icon mobile_display_flex" onclick="openSummary('../HTML/summary.html')">
+                        <img src="../assets/icons/mobile_summary.svg">
+                    </div>
+                    <div class="mobile_navbar_icon mobile_display_flex">
+                        <img src="../assets/icons/mobile_current_task.svg">
+                    </div>
+                    <div class="mobile_navbar_icon mobile_display_flex" onclick="openBoard('../HTML/board.html')">
+                        <img src="../assets/icons/mobile_board.svg">
+                    </div>
+                    <div class="mobile_navbar_icon mobile_display_flex" onclick="openContact('../HTML/contacts.html')">
+                        <img src="../assets/icons/mobile_contact.svg">
+                    </div>
+                </nav>
         </section>
     </div>
 </body>
-
 </html>

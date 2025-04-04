@@ -10,7 +10,7 @@ let currentTaskAdd = {};
 taskContacteArray
 
 
-function init(){  
+function init() {
   startAddTask();
   loadDataFirebase();
   requiredInputAddTask();
@@ -19,38 +19,31 @@ function init(){
 }
 
 
-//Tasten Clear und Create Task sperren*/
 function startAddTask() {
   document.getElementById('subTaskAddIcon').classList.remove('ele_hide')
-
-
 }
 
 
 //Felder prüfen ob Eingabe erfolgte mit QuerySelector
 function requiredInputAddTask() {
- document.querySelectorAll(".input-field").forEach(input => {
+  document.querySelectorAll(".input-field").forEach(input => {
     input.addEventListener("blur", function () {
       let errorMsg = this.nextElementSibling;
-        if (this.value.trim() === "") {
+      if (this.value.trim() === "") {
         this.classList.add('error_Msg_Input')
         errorMsg.textContent = "This field is required";
         console.log("Keine Eingabe");
-       } else{
-     
-       
+      } else {
         if (this.type === "date" && !correctDateInput(this.value)) {
           console.log("Datum falsch");
-          
           errorMsg.textContent = "no valid date";
           this.classList.add('error_Msg_Input')
         } else {
           console.log("OK Eingabe");
-          this.classList.remove('error_Msg_Input')
-          errorMsg.textContent = "\u00A0";
-        
+          // this.classList.remove('error_Msg_Input')
+          // errorMsg.textContent = "\u00A0";
+        }
       }
-    }
     })
   })
 }
@@ -67,7 +60,6 @@ function focusOnRequiredFields() {
 }
 
 
-
 function correctDateInput(dateString) {
   let date = new Date(dateString);
   let year = date.getFullYear();
@@ -81,16 +73,16 @@ function correctDateInput(dateString) {
   }
 }
 
-//Datum Picker öffnen
+
 function openDatePicker() {
-  let dateInput=document.getElementById('taskDate');
-     if (dateInput.showPicker) {
-      dateInput.showPicker();
-      document.getElementById('taskDate').focus();
-    } else {
-      dateInput.focus();
-    }
- }
+  let dateInput = document.getElementById('taskDate');
+  if (dateInput.showPicker) {
+    dateInput.showPicker();
+    document.getElementById('taskDate').focus();
+  } else {
+    dateInput.focus();
+  }
+}
 
 
 function btnPrioSelect(btnPrio) {
@@ -102,24 +94,17 @@ function btnPrioSelect(btnPrio) {
     button.style.backgroundColor = "white";
     button.style.color = "black";
   });
-
-
   if (btnPrio == "urgent") {
     btnPrioBtnSelect("button-urgent", "#FF3D00", 0)
     taskPrioSelect = "high_prio";
-  
   }
-
   if (btnPrio == "medium") {
     btnPrioBtnSelect("button_medium", "#FFA800", 1)
     taskPrioSelect = "medium_prio"
-
   }
-
   if (btnPrio == "low") {
     btnPrioBtnSelect("button-low", "#7AE229", 2)
     taskPrioSelect = "low_prio";
-  
   }
 }
 
@@ -169,7 +154,6 @@ function taskCreateTask() {
   }
   subTaskClose();
   subTaskListRender();
-
 }
 
 
@@ -194,27 +178,22 @@ function taskReadinArrayTask(taskData) {
 }
 
 
-
 function taskReadinArrayContact(DataContact) {
-  let= index=0;
-  document.getElementById('taskDropDownList').innerHTML="";
+  let = index = 0;
+  document.getElementById('taskDropDownList').innerHTML = "";
   taskContacteArray = Object.values(DataContact)
-  .flatMap(array=>array.map(entry=>({
-    name:entry.name,
-    email:entry.email,
-    color: entry.color || "10"
-  })));
-  taskContacteArray.map((contact,index) =>{
-      taskRenderContactList(index,contact.name,contact.color ||  "10",contact.email);
-      });
-      
-   }
-
+    .flatMap(array => array.map(entry => ({
+      name: entry.name,
+      email: entry.email,
+      color: entry.color || "10"
+    })));
+  taskContacteArray.map((contact, index) => {
+    taskRenderContactList(index, contact.name, contact.color || "10", contact.email);
+  });
+}
 
 
 function taskContactListDrobdown() {
-  console.log("Starte Contactliste");
-  
   document.getElementById('taskContactDrowdownMenue').classList.toggle('ele_show');
   document.getElementById('initialeIconList').classList.toggle('icon_List_hide')
 }
@@ -233,76 +212,74 @@ function taskContactFilterList() {
   });
 }
 
+
 function contactCheckOKinArray() {
   console.log("Mache Hacken");
   selectedTaskContacts = [];
-  document.querySelectorAll(".contact_Label_Item").forEach((entry,contactID) => {
+  document.querySelectorAll(".contact_Label_Item").forEach((entry, contactID) => {
     let checkbox = entry.querySelector("input[type='checkbox']")
     if (checkbox && checkbox.checked) {
       selectedTaskContacts.push(taskContacteArray[contactID]);
-      document.getElementById('initialeIconList').innerHTML="";
-       taskContacInitialRender(selectedTaskContacts);
-     }else{
-      document.getElementById('initialeIconList').innerHTML="";
+      document.getElementById('initialeIconList').innerHTML = "";
       taskContacInitialRender(selectedTaskContacts);
-
-     }
+    } else {
+      document.getElementById('initialeIconList').innerHTML = "";
+      taskContacInitialRender(selectedTaskContacts);
+    }
   })
- }
+}
 
 
- async function checkInputData(template) {
+async function checkInputData(template) {
   let mandatoryFields = document.querySelectorAll('.input-field');
-     mandatoryFields.forEach(field => {
+  mandatoryFields.forEach(field => {
     if (field.value.trim() == "") {
-       field.classList.add('error_Msg_Input');
-            return;
+      field.classList.add('error_Msg_Input');
+      return;
     } else {
       pushTaskToServer();
       timePopUp(2000);
       addTaskClear();
-      if(template=="overlay"){
+      if (template == "overlay") {
         closeOverlay('addTask_overlay')
-     
-     }
+      }
     }
   });
-
 }
 
 
- function timePopUp(duration){
+function timePopUp(duration) {
   let notification = document.getElementById('notificationFinish');
-  notification.style.display="flex";
-    setTimeout(()=>{
-    notification.style.display="none";
-  },duration);
+  notification.style.display = "flex";
+  setTimeout(() => {
+    notification.style.display = "none";
+  }, duration);
 }
 
 
 function collectData() {
   currentTaskAdd = {
     title: document.getElementById('taskTitle').value,
-    description: document.getElementById('descriptionTask').value.trim(),// || "empty",  // oder "empty" reinschreiben wenn es leer bleibt
-    contacts: selectedTaskContacts, //
-      deadline: dateConversion(document.getElementById('taskDate').value),
-    prio: taskPrioSelect, // "medium_prio" , oder "low_prio", oder "hgh_prioi"
-    category: taskCatergoryRetrieve(document.getElementById('taskCatergory').value), // "Technical Task" oder "User Story"
+    description: document.getElementById('descriptionTask').value.trim(),
+    contacts: selectedTaskContacts,
+    deadline: dateConversion(document.getElementById('taskDate').value),
+    prio: taskPrioSelect, 
+    category: taskCatergoryRetrieve(document.getElementById('taskCatergory').value), 
     subtasks: {
-      total: taskSubTaskList.length, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
-      number_of_finished_subtasks: 0, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
+      total: taskSubTaskList.length, 
+      number_of_finished_subtasks: 0, 
       subtasks_todo: subTasksObjects(),
     },
-    status: "toDo" //  "toDo",  "inProgress", "awaitFeedback", oder "done" 
+    status: statusSave() 
   }
 }
 
 
 function dateConversion(dateOld) {
   let date = new Date(dateOld);
-  let day = String(date.getDate()).padStart(2, '0'); // 25
-  let month = String(date.getMonth() + 1).padStart(2, '0'); // 02
-  let year = String(date.getFullYear()).slice(-2); // 25 (letzte 2 Stellen)
+  let day = String(date.getDate()).padStart(2, '0'); 
+  let month = String(date.getMonth() + 1).padStart(2, '0'); 
+  let year = String(date.getFullYear()).slice(-2); 
   return `${day}/${month}/${year}`;
 }
 
@@ -312,6 +289,17 @@ function taskCatergoryRetrieve(number) {
     return "Technical Task";
   } else {
     return "User Story"
+  }
+}
+
+
+function statusSave() {
+  let catergory = localStorage.getItem("category")
+  if (catergory) {
+    localStorage.setItem("category", "");
+    return catergory;
+  } else {
+    return "toDo";
   }
 }
 
@@ -330,20 +318,17 @@ function addTaskClear() {
   document.getElementById('taskTitle').value = "";
   document.getElementById('descriptionTask').value = "";
   loadDataFirebase();
-
   document.getElementById('taskContactDrowdownMenue').classList.remove("ele_show");
   selectedTaskContacts = [];
-  document.getElementById('initialeIconList').innerHTML="";
+  document.getElementById('initialeIconList').innerHTML = "";
   document.getElementById('taskDate').value = "";
   btnPrioSelect('medium');
   document.getElementById('taskCatergory').value = "";
   document.getElementById('inputSubtask').value = "";
- 
   subTaskClose();
   taskSubTaskList = [];
   subTaskClose();
   subTaskListRender();
   document.getElementById('taskTitle').focus();
-  
 }
 

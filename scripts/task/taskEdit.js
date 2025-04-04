@@ -1,7 +1,3 @@
-
-//Ab hier Task Edit
-console.log("taskEdit.js aufgerufen");
-
 //Variablen Global
 let currentTaskEdit = {};
 let indexEdit = 0;
@@ -12,8 +8,8 @@ let DataTaskContactsTask = [];
 let DataSubTaskListEdit = [];
 let editIndexEdit = false;
 let editTaskNrEdit = 0;
-selectedTaskContacts="";
-subTaskArray="";
+selectedTaskContacts = "";
+subTaskArray = "";
 
 
 dataFromFirebase();
@@ -41,28 +37,26 @@ function TaskEditOverlayRender() {
 
 
 function checkPrioEditTask(prio) {
-           switch (prio) {
+        switch (prio) {
                 case "high_prio":
                         DataTaskPrio = "high_prio"
                         btnPrioSelect('urgent')
-                
+
                         break;
                 case "medium_prio":
                         DataTaskPrio = "medium_prio";
                         btnPrioSelect('medium')
-               
+
                         break;
                 case "low_prio":
                         DataTaskPrio = "low_prio";
                         btnPrioSelect('low')
-                   break;
+                        break;
         }
 }
 
 
 function taskContactListDrobdownEdit() {
-        console.log("Starte Adressen");
-        
         document.getElementById('taskContactDrowdownMenue').classList.toggle('ele_show');
         document.getElementById('initialeIconList').classList.toggle('icon_List_hide')
 }
@@ -102,8 +96,6 @@ function subTaskListLoadEdit() {
                 DataSubTaskListEdit = Object.keys(DataTaskEdit[indexEdit].subtasks.subtasks_todo);
                 subTaskListRenderEdit(DataSubTaskListEdit);
         }
-
-
 }
 
 function subTaskListRenderEdit(taskSubList) {
@@ -164,16 +156,16 @@ function deleteSubTaskEdit(posi) {
 
 
 async function TaskEditSave() {
-         collectDataEdit();
-         await postTaskDataEdit(`/tasks/${parseInt(indexEdit)}`, currentTaskEdit);
-         await fetchTaskData();
-         updateTaskBoard();
-         closeOverlay('bg_overlay')
+        collectDataEdit();
+        await postTaskDataEdit(`/tasks/${parseInt(indexEdit)}`, currentTaskEdit);
+        await fetchTaskData();
+        updateTaskBoard();
+        closeOverlay('bg_overlay')
 }
 
 
-function subtaskinObjekt(subTaskArray){
-       return subTask = Object.fromEntries(subTaskArray.map(item => [item, "todo"]));
+function subtaskinObjekt(subTaskArray) {
+        return subTask = Object.fromEntries(subTaskArray.map(item => [item, "todo"]));
 }
 
 
@@ -181,14 +173,14 @@ function collectDataEdit() {
         currentTaskEdit = {
                 title: document.getElementById('taskTitle').value,
                 description: document.getElementById('descriptionTask').value.trim(),  // oder "empty" reinschreiben wenn es leer bleibt
-                contacts: checkContacts() ,//
+                contacts: checkContacts(),//
                 deadline: dateConversion(document.getElementById('taskDate').value),
                 prio: DataTaskPrio, // "medium_prio" , oder "low_prio", oder "hgh_prioi"
-                category:DataTaskEdit[indexEdit].category,
+                category: DataTaskEdit[indexEdit].category,
                 subtasks: {
                         total: DataSubTaskListEdit.length, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
                         number_of_finished_subtasks: 0, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
-                        subtasks_todo:subtaskinObjekt(DataSubTaskListEdit),
+                        subtasks_todo: subtaskinObjekt(DataSubTaskListEdit),
                 },
                 status: DataTaskEdit[indexEdit].status,  //  "toDo",  "inProgress", "awaitFeedback", oder "done" 
         }
@@ -196,22 +188,22 @@ function collectDataEdit() {
 
 
 
-function checkContacts(){
-   if (selectedTaskContacts.length>0){
-        return selectedTaskContacts
-      }
-    else{
-        if(DataTaskContactsTask.length>0){
-               return DataTaskContactsTask;
+function checkContacts() {
+        if (selectedTaskContacts.length > 0) {
+                return selectedTaskContacts
         }
+        else {
+                if (DataTaskContactsTask.length > 0) {
+                        return DataTaskContactsTask;
+                }
                 return "";
-   }
+        }
 }
 
 
 
 async function postTaskDataEdit(path = "", task) {
-          let CurrentTaskResponse = await fetch(Base_URL + path + ".json", {
+        let CurrentTaskResponse = await fetch(Base_URL + path + ".json", {
                 method: "PUT",
                 header: {
                         "Content-Type": "application/json",
@@ -225,7 +217,7 @@ async function dataFromFirebase() {
         const { DataTask, DataContact } = await loadDataFirebaseEdit();
         DataTaskEdit = DataTask;
         DataContactsAll = DataContact
-  }
+}
 
 
 async function loadDataFirebaseEdit() {

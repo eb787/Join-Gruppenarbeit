@@ -427,6 +427,7 @@ function showAddTaskOverlay(category) {
     if(category){
         localStorage.setItem("category", category); 
         console.log("Rufe folgende Category auf ",category);
+        taskAddOverlayInit(); 
         
     }
     if (window.innerWidth >= 1180) {

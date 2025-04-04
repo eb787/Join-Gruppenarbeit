@@ -1,6 +1,4 @@
-
 function subTaskListRender(){
-console.log("Render Sub TaskList");
 element= document.getElementById('subTaskList');
 element.innerHTML="";
 element.innerHTML += taskSubTaskList.map((designation, index)=>
@@ -13,6 +11,7 @@ function taskRenderContactList(index,name,color,email){
   let element= document.getElementById('taskDropDownList');
   element.innerHTML += taskContacListTemplate(index,name,contactColorAssign(color),taskInitialLettersCreate(name),email);
 }
+
 
 function taskContacInitialRender(selectContact){
   let element= document.getElementById('initialeIconList');
@@ -30,11 +29,8 @@ function contactColorAssign(color){
 
 
 function taskInitialLettersCreate(name){
-  console.log("IN Name ",name);
-  
 let initials = name.split(" ").map(name => name[0]).join("");
 return initials;
-
 }
 
 
