@@ -23,7 +23,7 @@
     }
 
     .nav_mobile {
-        display: flex;
+        display: flex !important;
         background-color: rgba(42, 54, 71);
         height: 80px;
         align-items: center;
