@@ -431,11 +431,9 @@ function showAddTaskOverlay(category) {
     if(category){
         localStorage.setItem("category", category); 
         console.log("Rufe folgende Category auf ",category);
-<<<<<<< HEAD
         taskAddOverlayInit(); 
         
-=======
->>>>>>> 57d6069f8fcd9e13a3c03744e38cd96045b74639
+        
     }
     if (window.innerWidth >= 1180) {
         document.getElementById("addTask_overlay").classList.remove("brighter_background");

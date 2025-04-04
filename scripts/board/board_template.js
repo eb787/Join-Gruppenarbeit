@@ -298,6 +298,7 @@ function editTaskTemplate(index) {
 }
 
 
+
 function dateConversation(dateStr) {
     let parts = dateStr.split("/"); // Teilt das Datum in ["13", "03", "25"]
     let day = parts[0];
@@ -309,6 +310,7 @@ function dateConversation(dateStr) {
 
 
 function getAddTaskOverlay() {
+    
    
     return ` 
      

@@ -135,7 +135,6 @@ function taskCreateTaskEdit() {
         }
         subTaskClose();
         subTaskListRenderEdit(DataSubTaskListEdit);
-
 }
 
 
