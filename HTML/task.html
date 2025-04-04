@@ -20,13 +20,13 @@
     <script src="../scripts/task/tastTemplate.js"></script>
     <script src="../scripts/task/taskRender.js"></script>
     <script src="..//scripts/script.js"></script>
-    <script src="../scripts/policy legalnotice/policy legal_notices.js"></script>
+    <script src="../scripts/policy_legalnotice/policy_legal_notices.js"></script>
 </head>
 <body onload="renderInitials(); init();">
     <div class="full_content">
         <nav class="nav mobile_display_none">
             <div class="nav-icon-capa2">
-                <img src="../assets/icons/capa 2.svg">
+                <img src="../assets/icons/capa_2.svg">
             </div>
             <div class="div_nav_icons">
                 <a class="navbar_icon" href="../HTML/summary.html">
@@ -67,9 +67,10 @@
             <div class="main_content">
                 <div class="div_submenu submenu_closed" id="submenu_toogle">
                     <div class="submenu">
+                        <a id="mobile_help_link" href="../HTML/help.html">Help</a>
                         <a href="../HTML/legal_notice.html">Legal Notice</a>
                         <a href="../HTML/policy.html">Privacy Policy</a>
-                        <a href="../HTML/login.html">Log out</a>
+                        <a onclick="logout()" href="../HTML/login.html">Log out</a>
                     </div>
                 </div>
                 <p class="addTask_Title">Add Task</p>

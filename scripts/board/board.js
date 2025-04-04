@@ -12,6 +12,7 @@ async function loadTaskData() {
     document.getElementById("full_content").innerHTML += getBgOverlay(); 
     document.getElementById("full_content").innerHTML += getAddTaskOverlay();
     adaptBoardHeight();
+    showHelpIconMobile();
 }
 
 
@@ -36,6 +37,32 @@ function updateTaskBoard() {
         }    
     }
 }
+
+
+/**
+ * This function logs out the user by removing the 'userLoggedIn' flag from localStorage
+ * and resetting the greetingShown flag.
+ */
+function logout() {
+    localStorage.removeItem('userLoggedIn');
+    localStorage.setItem('greetingShown', 'false');
+  }
+
+
+  /**
+ * This function shows the help icon on mobile screens (below 1000px width).
+ */
+function showHelpIconMobile() {
+    let helpLink = document.getElementById("mobile_help_link");
+  
+    if (window.innerWidth <= 1000) {
+      helpLink.style.display = "flex"; 
+    } else {
+      helpLink.style.display = "none"; 
+    }
+  }
+  
+  window.onresize = showHelpIconMobile;
 
 
 function emptyBoard() {
