@@ -426,6 +426,8 @@ function closeAlert() {
 function showAddTaskOverlay(category) {
     if(category){
         localStorage.setItem("category", category); 
+        console.log("Rufe folgende Category auf ",category);
+        
     }
     if (window.innerWidth >= 1180) {
         document.getElementById("addTask_overlay").classList.remove("brighter_background");
