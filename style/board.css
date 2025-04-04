@@ -294,12 +294,24 @@
     max-height: calc(100vh - 196px);
     scrollbar-width: none;
     height: fit-content;
-
-
+    position: absolute;
 }
 
 .card_overlay:hover {
     cursor: default;
+}
+
+.slide-in-overlay {
+    animation: slide-in-overlay 0.2s ease-out forwards;
+}
+
+@keyframes slide-in-overlay {
+    from {
+        right: -100vw;
+    }
+    to {
+        right: calc((100vw - 525px) / 2);
+    }
 }
 
 .technical_task_overlay {
@@ -511,6 +523,10 @@
     border-radius: 30px;
     border: 1px dashed #A8A8A8;
     box-shadow: 0 0 4px 0 rgb(0, 0, 0, 0.16);
+    display: none;
+}
+
+.nav_mobile{
     display: none;
 }
     

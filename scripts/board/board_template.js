@@ -72,17 +72,19 @@ function getPlaceholder() {
 }
 
 
-function getCardOverlay() {
+function getBgOverlay() {
     return `    <div onclick="closeOverlay('bg_overlay')" id="bg_overlay" class="bg_overlay d_none">
-                <div onclick="stopPropagation(event)" id="card_overlay" class="card_overlay">
-                    
-                            </div>
-                                </div>`
+    
+    </div>`
+}
+
+function getCardOverlay() {
+    return `    `
 }
 
 
 function getCardOverlayContent(index) {
-    return `   
+    return `   <div onclick="stopPropagation(event)" id="card_overlay" class="card_overlay slide-in-overlay">
             <div class="card_overlay_header">
             <div id="category_${index}_overlay" class="task_category task_category_overlay technical_task_overlay ">${currentTasks[index].category}</div>
             <img onclick="closeOverlay('bg_overlay')" class="close_btn_overlay" src="..//assets/icons/close.svg" alt="close button">
@@ -113,6 +115,7 @@ function getCardOverlayContent(index) {
                                 <img class="edit_icon" src="..//assets/icons/edit.svg" alt="edit button">
                                 <p >Edit</p>
                             </div>
+                        </div>
                         </div>
                `
 

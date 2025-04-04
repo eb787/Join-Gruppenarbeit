@@ -9,7 +9,7 @@ let newFinishedTasks = 0;
 async function loadTaskData() {
     await fetchTaskData();
     updateTaskBoard();
-    document.getElementById("full_content").innerHTML += getCardOverlay(); 
+    document.getElementById("full_content").innerHTML += getBgOverlay(); 
     document.getElementById("full_content").innerHTML += getAddTaskOverlay();
     adaptBoardHeight();
 }
@@ -240,12 +240,13 @@ async function changeCategory(path = "", newObj) {
 
 function showCardOverlay(index) {
     document.getElementById("bg_overlay").classList.remove("d_none");
-    document.getElementById("card_overlay").innerHTML = getCardOverlayContent(index);
+    document.getElementById("bg_overlay").innerHTML = getCardOverlayContent(index);
     let layer = "_overlay";
     checkCategory(index, layer)
     checkPriority(index);
     showSubtasksOnOverlay(index);
-    showContactsOnOverlay(index);  
+    showContactsOnOverlay(index);
+
 }
 
 
@@ -282,16 +283,19 @@ function showContactsOnOverlay(index) {
 
 function closeOverlay(specifier) {
     if (specifier == "bg_overlay") {
-        document.getElementById('card_overlay').innerHTML = "";
-        document.getElementById(specifier).classList.add("d_none");
+        document.getElementById("card_overlay").classList.remove("slide-in");
+        document.getElementById("card_overlay").classList.add("slide-out");
     } else if (specifier == "addTask_overlay") {
         document.getElementById("addTask_card").classList.remove("slide-in");
         document.getElementById("addTask_card").classList.add("slide-out");
         document.getElementById(specifier).classList.add("brighter_background");
-        setTimeout(() => {
+    }
+    setTimeout(() => {
+            if (specifier == "bg_overlay") {
+            document.getElementById('card_overlay').innerHTML = "";
+            }
             document.getElementById(specifier).classList.add("d_none");
         }, 200);
-    }
 }
 
 
@@ -427,14 +431,18 @@ function showAddTaskOverlay(category) {
     if(category){
         localStorage.setItem("category", category); 
         console.log("Rufe folgende Category auf ",category);
+<<<<<<< HEAD
         taskAddOverlayInit(); 
         
+=======
+>>>>>>> 57d6069f8fcd9e13a3c03744e38cd96045b74639
     }
     if (window.innerWidth >= 1180) {
         document.getElementById("addTask_overlay").classList.remove("brighter_background");
-        document.getElementById("addTask_overlay").classList.remove("d_none");
         document.getElementById("addTask_card").classList.remove("slide-out");
-        document.getElementById("addTask_card").classList.add("slide-in");  
+        document.getElementById("addTask_card").classList.add("slide-in"); 
+        document.getElementById("addTask_overlay").classList.remove("d_none"); 
+       
     } else{
         window.open('../HTML/task.html', '_self');
     }    

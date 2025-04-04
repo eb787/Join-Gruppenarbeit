@@ -8,6 +8,7 @@ let contactColorArray = [
   "#FF4646",
   "#00BEE8",
   "#FF7A00",
+  "#2ad91a",
   "#040404"
 ];
 
