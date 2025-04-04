@@ -238,6 +238,9 @@ async function checkInputData(template) {
       return;
     } else {
       pushTaskToServer();
+      setTimeout(() =>{
+        loadTaskData();
+      },200);
       timePopUp(2000);
       addTaskClear();
       if (template == "overlay") {
