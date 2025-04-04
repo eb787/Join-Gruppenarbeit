@@ -6,7 +6,7 @@
     }
 
     .contact_Detail_Header {
-        padding: 10px;
+        padding: 20px;
         gap: 10px;
     }
 
@@ -16,7 +16,7 @@
     }
 
     .contact_Detail_Name {
-        padding: 10px;
+        padding: 20px;
         font-size: 40px;
     }
 
@@ -41,24 +41,24 @@
     }
 
     .contact_Detail_Info_Header {
-        margin-left: 10px;
+        margin-left: 20px;
     }
 
     .contact_Detail_Info_Mail {
-        margin-left: 10px;
+        margin-left: 20px;
     }
 
     .contact_Detail_Info_Phone {
-        margin-left: 10px;
+        margin-left: 20px;
     }
 
 
     .contact_Detail_abbreviation {
-        margin-left: 10px;
+        margin-left: 20px;
     }
 
     .contact_Detail_Name {
-        padding: 10px;
+        padding: 20px;
         font-size: 35px;
     }
 
@@ -79,4 +79,23 @@
     .line_Vertikal {
         height: 20px;
     }
+}
+
+
+@media (max-width: 450px) {
+    .card_contact{
+        width: 300px; ;
+    }
+        .contact_Card_Input{
+            width: 224px;
+        }
+
+        .pic-edit {
+            left: 100px;
+        }
+
+        .contact_Card_button {
+            margin-right:160px
+
+        }
 }

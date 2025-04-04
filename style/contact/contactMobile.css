@@ -16,13 +16,26 @@
 
 }
 
+.img_mobile_add_button:hover {
+    cursor: pointer;
+}
+
 .mobile_options_div {
     display: flex;
     flex-direction: column;
 
 }
 
-.edit_mobile,
+.edit_mobile{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 8px;
+    padding: 8px;
+        p{
+            font-size: 16px ;
+            font-weight: 400;
+        }  
+}
 .delete_mobile {
     display: flex;
     justify-content: space-evenly;
@@ -35,10 +48,15 @@
    
 }
 
-.edit_mobile,
+.edit_mobile:hover {
+    cursor: pointer;
+    filter: invert(52%) sepia(97%) saturate(300%) hue-rotate(166deg);
+  }
+
+
 .delete_mobile:hover {
     cursor: pointer;
-    color: #29ABE2;
+  filter: invert(52%) sepia(97%) saturate(300%) hue-rotate(166deg);
 }
 
 
@@ -121,6 +139,7 @@ width: 200px;
 
     .contact_scroll {
         width: 100%;
+        height: 80vh;
         box-sizing: border-box;
         max-width: calc(100% - 40px);
         
@@ -135,6 +154,10 @@ width: 200px;
         justify-content: center;
         align-items: center;
         padding-right: 20px;
+    }
+
+    .mobile-options:hover {
+        cursor: pointer;
     }
 
     .mobile_options_div {
@@ -157,6 +180,7 @@ width: 200px;
         position: fixed;
         bottom: 100px;
         right: 20px;
+        z-index: 1000;
     }
 
 
@@ -164,6 +188,13 @@ width: 200px;
         display: block;
         padding-left: 20px
     }
+
+    .background_close{
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0);
+    z-index: 998;
+}
 
     .card_contact {
         display: none; 
@@ -206,7 +237,29 @@ width: 200px;
 
     }
 
+    .contact_Detail_Header {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
 
+    .line_Vertikal {
+        height: 3px !important;
+        width: 100px; 
+        position: relative;
+        order: 1;
+    }
+
+   
+
+.alert-div{
+    position: fixed;
+    bottom: 100px;
+    left: 280px;
+    margin-right: 20px;
+    z-index: 1000;
+
+}
 
     .contact_Detail_abbreviation {
         font-size: 27px ;
@@ -224,10 +277,14 @@ width: 200px;
     }
 
     .arrow_back_mobile {
+        position: fixed;
+        right: 20px;
+        top: 20px; /* Optional */
         display: block;
-        margin: 20px;
+    }
 
-
+    .arrow_back_mobile:hover {
+        cursor: pointer;
     }
 
 

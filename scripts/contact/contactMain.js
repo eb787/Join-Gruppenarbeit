@@ -3,34 +3,26 @@ let oldPictureHTML = "";
 let activeContact = null;
 let allEmpty = true;
 
-console.log(contactsData);
-
-
 
 async function openContactBigMiddle(contactsId, letter) {
   let contactMiddle = getContactElement();
   if (!contactMiddle) return;
-
   let { firstLetter, contactIndex } = parseContactId(contactsId);
   let user = await fetchUser(firstLetter, contactIndex);
-
   if (user) {
     let contactsIdColor = `${firstLetter}-${user.name.toLowerCase()}`;
     let color = getUserColor(contactsIdColor, letter);
     renderContact(contactMiddle, user, contactIndex, firstLetter, color);
     highlightActiveContact(contactsId);
-
     if (window.innerWidth < 1000) {
       contactMiddle.classList.add("show");
       document.querySelector(".contact_Detail").classList.add("show");
-      hideContactList(); // Verstecke die Liste
+      hideContactList();
     }
   } else {
     console.error("Kein Benutzer gefunden mit ID:", contactsId);
   }
 }
-
-
 
 
 function highlightActiveContact(contactsId) {
@@ -48,13 +40,12 @@ function highlightActiveContact(contactsId) {
 }
 
 
-
-
 function getContactElement() {
   let contactMiddle = document.getElementById("contact-big-middle");
   if (!contactMiddle) console.error("Element mit ID 'contact-big-middle' nicht gefunden.");
   return contactMiddle;
 }
+
 
 function parseContactId(contactsId) {
   let [firstLetter, contactIndex] = contactsId.split("-");
@@ -72,6 +63,7 @@ async function fetchUser(firstLetter, contactIndex) {
   }
 }
 
+
 function getUserColor(contactsId, letter) {
   let key = `contactColor_${letter}_${contactsId}`;
   let storedColor = localStorage.getItem(key);
@@ -85,12 +77,10 @@ function getUserColor(contactsId, letter) {
   }
 }
 
+
 function hashCode(str) {
   return str.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
 }
-
-
-
 
 
 function renderContact(contactMiddle, user, contactIndex, firstLetter, color) {
@@ -107,7 +97,9 @@ function closeContactBigMiddle() {
 
 
 async function editContact(contactsId, firstLetter, color) {
-  openContactBig()
+  openContactBig();
+  closeWindowMobile();
+  editContactMobile()
   contactcardHeadlineEdit()
   let contact = await getData(`/contacts/${firstLetter}/${contactsId}`);
   if (contact) {
@@ -115,12 +107,10 @@ async function editContact(contactsId, firstLetter, color) {
     document.getElementById('email_input').value = contact.email;
     document.getElementById('tel_input').value = contact.number;
     let saveButton = document.getElementById('save-button');
-    updatePicture(contact, color)
+    updatePicture(contact, color);
     disabledButton();
-    editContactMobile();
-    closeWindowMobile();
     saveButton.onclick = async function () {
-      await saveEditedContact(contactsId, firstLetter, color);
+      await saveEditedContact(contactsId, firstLetter, color,);
     };
   }
 }
@@ -134,15 +124,35 @@ async function saveEditedContact(contactsId, firstLetter) {
   await postData(`/contacts/${firstLetter}/${contactsId}`, updatedContact);
   let color = updatedContact.color;
   localStorage.setItem(`contactColor_${firstLetter}_${contactsId}`, color);
-  
+  updateContactUI(contactsId, updatedContact, firstLetter);
   closeContactBig();
   resetPicture();
   validateName();
-  validateEmail(updatedContact.email);
-  location.reload(contactsId, firstLetter);
+  validateEmail(updatedContact.email, contactsId);
+  validateTelInput()
+  closeEditMobile();
 }
 
 
+function updateContactUI(contactsId, updatedContact, letter) {
+  let nameInputIdOne = document.getElementById(`contact_name_one_${contactsId}`);
+  let emailInputId = document.getElementById(`contact_email_${contactsId}`);
+  let telInputId = document.getElementById(`contact_tel_${contactsId}`);
+  if (nameInputIdOne) nameInputIdOne.textContent = updatedContact.name;
+  if (emailInputId) emailInputId.textContent = updatedContact.email;
+  if (telInputId) telInputId.textContent = updatedContact.number;
+  getUsersList()
+}
+
+
+function getInitials(name) {
+  let nameParts = name.trim().split(" ");
+  let initials = nameParts[0].charAt(0).toUpperCase();
+  if (nameParts.length > 1) {
+    initials += nameParts[1].charAt(0).toUpperCase();
+  }
+  return initials;
+}
 
 
 function disabledButton() {
@@ -150,9 +160,9 @@ function disabledButton() {
   let nameInput = document.getElementById('name_input');
   let emailInput = document.getElementById('email_input');
   if (nameInput.value.trim() === "" || emailInput.value.trim() === "") {
-    saveButton.disabled = true;  // Button deaktivieren
+    saveButton.disabled = true;
   } else {
-    saveButton.disabled = false; // Button aktivieren
+    saveButton.disabled = false;
   }
   nameInput.addEventListener('input', disabledButton);
   emailInput.addEventListener('input', disabledButton);
@@ -214,7 +224,6 @@ function closeContactBig() {
 }
 
 
-
 function updateCancelButton() {
   let inputs = document.querySelectorAll('#name_input, #email_input, #tel_input');
   let cancelButton = document.getElementById('cancel-button');
@@ -246,45 +255,36 @@ function validateName() {
   }
 }
 
-
 // Funktion zur E-Mail-Validierung
 async function validateEmail(email) {
   let emailInput = document.getElementById('email_input');
   let firstLetter = email.trim().charAt(0).toUpperCase();
-
-  if (!emailInput) {
-    console.error("Element mit ID 'email_input' nicht gefunden.");
-    return false;
-  }
-
   if (email.trim() === "") {
     showError(emailInput, "Bitte eine E-Mail eingeben!");
     return false;
   }
-
   if (!/^[A-Z]$/.test(firstLetter)) {
     firstLetter = "#";
   }
-
   let contactsGroup = contactsData[firstLetter] || {};
   let emailExists = Object.values(contactsGroup).some(
     contact => contact.email.toLowerCase() === email.toLowerCase()
   );
-
   if (emailExists) {
     showError(emailInput, "Diese E-Mail existiert bereits!");
     return false;
   }
-
   clearError(emailInput);
   return true;
 }
+
 
 function showError(inputElement, message) {
   let errorElement = document.getElementById('email_error');
   errorElement.textContent = message;
   inputElement.classList.add("input-error");
 }
+
 
 function clearError(inputElement) {
   let errorElement = document.getElementById('email_error');
@@ -293,43 +293,46 @@ function clearError(inputElement) {
 }
 
 
+function validateTelInput() {
+  const input = document.getElementById("tel_input");
+  const error = document.getElementById("tel_error");
+  const value = input.value.trim();
+  if (!/^\d*$/.test(value)) {
+    error.style.display = "block";
+    return false;
+  } else {
+    error.style.display = "none";
+    return true;
+  }
+}
+
+
 function cancelStatus() {
   document.getElementById('content-card-big').style.display = 'none';;
 
 }
 
+
 function deleteData() {
   let cancelButton = document.getElementById('cancel-button');
-
   document.getElementById('email_input').value = "";
   document.getElementById('name_input').value = "";
   document.getElementById('tel_input').value = "";
-
   cancelButton.innerText = "Cancel";
   cancelButton.setAttribute("onclick", "cancelStatus()");
-
 }
 
 
 async function showAlertSuccess(currentLetter, index) {
   let mainDiv = document.getElementById('contact_Card');
-  mainDiv.innerHTML += alertSuccess();  // Fügt das Alert hinzu
-
-  let alert = document.getElementById('alert'); // Holt das Alert-Element
-
+  mainDiv.innerHTML += alertSuccess();
+  let alert = document.getElementById('alert');
   setTimeout(() => {
     if (alert) {
-      alert.remove();  // Entfernt nur das Alert-Element, der Rest der Seite bleibt interaktiv
+      alert.remove();
     }
-  }, 2000);
-
-  // Benutzerliste aktualisieren
+  }, 4000);
   await getUsersList();
-
-
-
   let contactsId = `${currentLetter}-${index}`;
   openContactBigMiddle(contactsId);
-
-
 }
