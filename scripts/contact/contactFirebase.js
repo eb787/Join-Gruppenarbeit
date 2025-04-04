@@ -57,6 +57,7 @@ async function getUsersList() {
     userContainer.innerHTML = "";
     contactsData = await getData("/contacts");
     generateFullContactList(contactsData, userContainer);
+    showHelpIconMobile();
 
 }
 
