@@ -163,6 +163,7 @@ hr{
 
    .task_dropdown_input{
     font-size: 16px;
+    height: 40px;
    }
 
   .section_right{
@@ -205,6 +206,10 @@ hr{
     margin-bottom: 10px;  
 }
 
+
+.input_subtasks {
+    height: 40px;
+}
 
 .required_text{
     display: none;
