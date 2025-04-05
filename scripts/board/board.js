@@ -1,11 +1,15 @@
 const Base_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/";
 
-let currentTasks = {};
-let currentTask = {};
-let elementToBeDropped = "";
-let newFinishedTasks = 0;
+let currentTasks = {}; /** This is the object, where all tasks are saved*/
+let currentTask = {}; /** This is the object, which is used to post new data on the database*/
+let elementToBeDropped = ""; /** This is the variable where the id number is saved when starting to drag an element*/
+let newFinishedTasks = 0; /** This is the variable which saves the change of the number of tasks done*/
 
-
+/** 
+ * This function is used to load Data from the database
+ * It also created content on the board page based on the received data
+ * 
+*/
 async function loadTaskData() {
     await fetchTaskData();
     updateTaskBoard();
@@ -467,7 +471,6 @@ function showAddTaskOverlay(category) {
         document.getElementById("addTask_card").classList.remove("slide-out");
         document.getElementById("addTask_card").classList.add("slide-in"); 
         document.getElementById("addTask_overlay").classList.remove("d_none"); 
-       
     } else{
         window.open('../HTML/task.html', '_self');
     }    
