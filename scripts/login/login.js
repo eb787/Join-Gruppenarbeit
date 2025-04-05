@@ -20,7 +20,7 @@ async function userLogin() {
     await createUserFolder(userData);
     localStorage.setItem('userLoggedIn', 'true');
     localStorage.setItem('greetingShown', 'false');
-    window.location.href = "../HTML/summary.html";
+    window.location.href = "./HTML/summary.html";
 }
 
 
