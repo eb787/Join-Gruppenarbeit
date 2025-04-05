@@ -1,11 +1,17 @@
 const Base_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/";
 
-let currentTasks = {};
-let currentTask = {};
-let elementToBeDropped = "";
-let newFinishedTasks = 0;
+let currentTasks = {}; /** This is the object, where all tasks are saved*/
+let currentTask = {}; /** This is the object, which is used to post new data on the database*/
+let elementToBeDropped = ""; /** This is the variable where the id number is saved when starting to drag an element*/
+let newFinishedTasks = 0; /** This is the variable which saves the change of the number of tasks done*/
+let DragCounter = 0; /** This variable counts the amount of times the element has been pulled over a drop zone
 
 
+/** 
+ * This function is used to load Data from the database
+ * It also created content on the board page based on the received data
+ * 
+*/
 async function loadTaskData() {
     await fetchTaskData();
     updateTaskBoard();
@@ -16,6 +22,9 @@ async function loadTaskData() {
 }
 
 
+/** 
+ * This function is used to save Data from the database into an array
+*/
 async function fetchTaskData(){
     currentTasks = [];
     let TaskResponse = await fetch(Base_URL + "/tasks/" + ".json");
@@ -29,16 +38,6 @@ async function fetchTaskData(){
 }
 
 
-function updateTaskBoard() {
-    emptyBoard();
-    for (let index = 0; index < currentTasks.length; index++) {
-        if (currentTasks[index]) {
-        showCardOnBoard(index);
-        }    
-    }
-}
-
-
 /**
  * This function logs out the user by removing the 'userLoggedIn' flag from localStorage
  * and resetting the greetingShown flag.
@@ -49,12 +48,11 @@ function logout() {
   }
 
 
-  /**
+/**
  * This function shows the help icon on mobile screens (below 1000px width).
  */
 function showHelpIconMobile() {
     let helpLink = document.getElementById("mobile_help_link");
-  
     if (window.innerWidth <= 1000) {
       helpLink.style.display = "flex"; 
     } else {
@@ -62,118 +60,25 @@ function showHelpIconMobile() {
     }
   }
   
-  window.onresize = showHelpIconMobile;
+
+window.onresize = showHelpIconMobile;
 
 
-function emptyBoard() {
-    document.getElementById("toDo").innerHTML = getNoTasksToDoCard();
-    document.getElementById("toDo").innerHTML += getPlaceholder();
-    document.getElementById("inProgress").innerHTML = getNoTasksInProgressCard();
-    document.getElementById("inProgress").innerHTML += getPlaceholder();
-    document.getElementById("awaitFeedback").innerHTML = getNoTasksAwaitFeedbackCard();
-    document.getElementById("awaitFeedback").innerHTML += getPlaceholder();
-    document.getElementById("done").innerHTML = getNoTasksDoneCard();
-    document.getElementById("done").innerHTML += getPlaceholder();
-}
 
-
-function showCardOnBoard(index) {
-    let subtasks = currentTasks[index].subtasks.total;
-    let progress =  currentTasks[index].subtasks.number_of_finished_subtasks / subtasks * 100;
-    let layer = "";
-  
-    checkProgressStep(index, layer);
-    checkCategory(index, layer);
-    checkSubtasks(subtasks, index, progress, layer);
-    checkDescription(index, layer);
-    checkBoardContacts(index, layer);
-}
-
-
-function checkProgressStep(index, layer){
-    document.getElementById("no_task_" + currentTasks[index].status).classList.add("d_none");
-    document.getElementById(currentTasks[index].status).innerHTML += getExampleCard(index, layer);
-}
-
-
-function checkCategory(index, layer){
-    if (currentTasks[index].category == "User Story") {
-        document.getElementById("category_" + index + layer).classList.add("user_story" + layer);
-        document.getElementById("category_" + index + layer).classList.remove("technical_task" + layer);
-    }
-}
-
-
-function checkPriority(index) {
-    let prio = "Medium";
-    if (currentTasks[index].prio == "high_prio") {
-        prio = "High";
-    } else if (currentTasks[index].prio == "low_prio") {
-        prio = "Low";
-    }   
-    document.getElementById('prio_text_' + index).innerHTML = prio;
-}
-
-
-function checkSubtasks(subtasks, index, progress, layer) {
-    if (subtasks != 0) {
-        document.getElementById("subtasks_box" + index + "_" + layer).innerHTML = getSubtasks(index, subtasks, progress, layer);
-    } 
-}
-
-
-function checkDescription(index, layer) {
-    if (currentTasks[index].description == "empty") {
-        document.getElementById("description_" + index + "_" + layer).classList.add("d_none");
-    }
-}
-
-
-function checkBoardContacts(index, layer) {
-    if (currentTasks[index].contacts) {
-        showContacts(index, layer);
-    } else {
-       document.getElementById("Profile_badges_" + index + "_" + layer).innerHTML = "";
-    }
-}
-
-
-function showContacts(index, layer) {
-    if (currentTasks[index].contacts.length > 5 && layer == "") {
-        for (let i = 0; i < 5; i++) {
-            getCorrectContact(index, i, layer);
-        }
-        document.getElementById("Profile_badges_" + index + "_" + layer).innerHTML += getContactDots();
-    } else {
-        for (let i = 0; i < currentTasks[index].contacts.length; i++) {
-                    getCorrectContact(index, i, layer);
-        }
-    } 
-}
-
-
-function getCorrectContact(index, i, layer) {
-        document.getElementById("Profile_badges_" + index + "_" + layer).innerHTML += getContactIcon(index, i, layer);
-        getContactInitials(index, i, layer);
-}
-
-
-function getContactInitials(index, i, layer) {
-    let names = currentTasks[index].contacts[i].name.split(' ');
-    let initialsBoard = "";
-    for (let a = 0; a < names.length; a++) {
-        initialsBoard += names[a].substr(0,1);
-    }
-    document.getElementById("profile_" + index + "_" + i + "_" + layer).innerHTML += initialsBoard.toUpperCase();
-}
-
-
+/** 
+ * This function adapts the height of the board based on the column which is most filled with cards.
+ * This is necessary to be able to drop cards at the bottom in case one column is much longer than anther
+*/
 function adaptBoardHeight() {
     window.addEventListener("load", adjustHeight());
     window.addEventListener("resize", adjustHeight());
 }
 
 
+/** 
+ * This function finds out the height of each column and saves the longest column in the parameter @param {number} maxHeight
+ * In the desktop version it then assigns this height to all columns
+*/
 function adjustHeight() {
     let maxHeight = 0;
     document.querySelectorAll(".board_content_colums_cards").forEach(el => {
@@ -188,13 +93,20 @@ function adjustHeight() {
             });
     }
 }
-let DragCounter = 0;
 
+
+/** 
+ * This function is used to prevent the default functions of html/JavaScript so that dropping elements becomes possible
+*/
 function allowDrop(event) {
     event.preventDefault();
 }
 
 
+/** 
+ * This function is used to place a box in the column where an element is about to be dropped, indicating that dropping the element is possible at this location
+ * @param {number} DragCounter - This parameter counts the amount of times the element has been pulled over a drop zone
+*/
 function showDottedBox(event) {
     event.preventDefault();
     let dropzone = event.currentTarget;
@@ -202,39 +114,41 @@ function showDottedBox(event) {
     if (placeholder) {
         placeholder.style.display = "block";
     }
-
-
     DragCounter++;
-    // event.currentTarget.classList.add('input_board_searching');
 }
 
 
+/** 
+ * This function is used to remove the box from the column when an element has left the dropzone, indicating that the dropping is not posssible at the current mouse position
+ * @param {number} DragCounter - This parameter counts the amount of times the element has been pulled over a drop zone
+*/
 function removeDottedBox(event) {
     let dropzone = event.currentTarget;
     let placeholder = dropzone.querySelector('.placeholder');
-    // if (placeholder) {
-    //     placeholder.style.display = "none";
-    // }
-
-
     DragCounter--;
     if (DragCounter == 0) {
         if (placeholder) {
             placeholder.style.display = "none";
         }
     }
-    // if (DragCounter == 0) {
-    //      event.currentTarget.classList.remove('input_board_searching');
-    // }
 }
 
 
+/** 
+ * This function is used to rotate the card element which the user is dragging in order to visualize which element they are moving
+ * @param {number} index - This parameter is the index number of the element which is being moved
+*/
 function startDragging(index) {
     document.getElementById('card_number_' + index).classList.add('rotate_card');
     elementToBeDropped = index;
 }
 
 
+/** 
+ * When dropping an element, this function is used to place the card in the new column an to delete the card at the old position y updating the whole board
+ * It also updates the data on the database
+ * @param {string} category - This parameter indicated the category, meaning the column, where the card belongs to
+*/
 async function moveTo(category, event) {
     event.preventDefault();
     let dropzone = event.currentTarget;
@@ -242,11 +156,7 @@ async function moveTo(category, event) {
     if (placeholder) {
         placeholder.style.display = "none";
     }
-
-
-
     DragCounter = 0;
-    // event.currentTarget.classList.remove('input_board_searching');
     currentTasks[elementToBeDropped].status = category;
     currentTask = currentTasks[elementToBeDropped];
     await changeCategory(`/tasks/${elementToBeDropped}`, currentTask);
@@ -254,6 +164,9 @@ async function moveTo(category, event) {
 }
 
 
+/** 
+ * This function is used to change the category of the task on the database
+*/
 async function changeCategory(path = "", newObj) {
     await fetch(Base_URL + path + ".json",{
         method: "PUT",
@@ -265,136 +178,11 @@ async function changeCategory(path = "", newObj) {
 }
 
 
-function showCardOverlay(index) {
-    document.getElementById("bg_overlay").classList.remove("d_none");
-    document.getElementById("bg_overlay").innerHTML = getCardOverlayContent(index);
-    let layer = "_overlay";
-    checkCategory(index, layer)
-    checkPriority(index);
-    showSubtasksOnOverlay(index);
-    showContactsOnOverlay(index);
-
-}
-
-
-function showSubtasksOnOverlay(index) {
-    if (currentTasks[index].subtasks.total != 0) {
-        document.getElementById("subtasks_box_overlay" + index).innerHTML = getSubtasksOverlay(index);
-        for (let i = 0; i < currentTasks[index].subtasks.total; i++) {
-            document.getElementById("tasks_box" + index).innerHTML += getTaskOverlay(index, i);
-            updateCheckboxSubtasks(index, i);
-        }
-    } 
-}
-
-
-function updateCheckboxSubtasks(index, i) {
-    if (Object.values(currentTasks[index].subtasks.subtasks_todo)[i] == "done") {
-        document.getElementById("check_box_" + index + "_btn" + i).classList.add("checked_box");
-        document.getElementById("check_box_" + index + "_info" + i).classList.add("task_info_done");
-    }
-}
-
-
-function showContactsOnOverlay(index) {
-    if (currentTasks[index].contacts) {
-        document.getElementById("task_description_overlay_" + index).innerHTML = getContactBoxOverlay(index);
-        for (let i = 0; i < currentTasks[index].contacts.length; i++) {
-            document.getElementById("profile_badges_overlay" + index).innerHTML += getContactIconOverlay(index, i);
-            let layer = "overlay"
-            getContactInitials(index, i, layer)
-        }
-    }
-}
-
-
-function closeOverlay(specifier) {
-    if (specifier == "bg_overlay") {
-        document.getElementById("card_overlay").classList.remove("slide-in");
-        document.getElementById("card_overlay").classList.add("slide-out");
-    } else if (specifier == "addTask_overlay") {
-        document.getElementById("addTask_card").classList.remove("slide-in");
-        document.getElementById("addTask_card").classList.add("slide-out");
-        document.getElementById(specifier).classList.add("brighter_background");
-    }
-    setTimeout(() => {
-            if (specifier == "bg_overlay") {
-            document.getElementById('card_overlay').innerHTML = "";
-            }
-            document.getElementById(specifier).classList.add("d_none");
-        }, 200);
-}
-
-
-function stopPropagation(event){
-    event.stopPropagation();
-}
-
-
-async function changeSubtaskCategory(index, i){
-    document.getElementById('subtasks_box_overlay' + index).classList.add('disable');
-    let div =  document.getElementById("check_box_" + index + "_btn" + i);
-    let box = document.getElementById("check_box_" + index + "_info" + i);
-    let task = Object.keys(currentTasks[index].subtasks.subtasks_todo)[i];
-    newFinishedTasks = currentTasks[index].subtasks.number_of_finished_subtasks;
-    div.classList.toggle("checked_box");
-    box.classList.toggle("task_info_done");
-    await checkCurrentCategory(div, index, task, newFinishedTasks);
-    await fetchTaskData();
-    updateTaskBoard();
-    document.getElementById('subtasks_box_overlay' + index).classList.remove('disable');
-}
-
-
-async function checkCurrentCategory(div, index, task, newFinishedTasks) {
-    if (div.classList.contains("checked_box")) {
-        await changeTaskStatus(index, task, "done");
-        newFinishedTasks = newFinishedTasks + 1;
-        await changeNumberOfFinishedTasks(index, newFinishedTasks);
-    } else if (div.classList.contains("checked_box") == false) {
-        await changeTaskStatus(index, task, "todo");
-        newFinishedTasks = newFinishedTasks - 1;
-        await changeNumberOfFinishedTasks(index, newFinishedTasks);
-    }
-}
-
-
-async function changeTaskStatus(index, task, status) {
-            await fetch(Base_URL + `/tasks/${index}/subtasks/subtasks_todo/${task}` + ".json",{
-                method: "PUT",
-                header: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(status)
-            });
-}
-
-
-async function changeNumberOfFinishedTasks(index, newFinishedTasks) {
-            await fetch(Base_URL + `/tasks/${index}/subtasks/number_of_finished_subtasks` + ".json",{
-                method: "PUT",
-                header: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(newFinishedTasks)
-            });
-}
-
-
-async function deleteTask(index) {
-    currentTasks[index] = {};
-    await deleteTaskData(`/tasks/${index}`);
-    location.reload();
-}    
-
-
-async function deleteTaskData(path = "") {
-    await fetch(Base_URL + path + ".json",{
-        method: "DELETE",
-    });
-}
-
-
+/** 
+ * This function is used to check if the input field is empty or not
+ * It marks the input field blue if the inputfield is not empty lets only titles including the searched words appear at the board
+ * And removes the blue mark when and updates the board cards when it is empty (e.g. when letter have been deleted)
+*/
 function startTyping() {
     document.getElementById('input_board').classList.add('input_board_searching');
     if (document.getElementById('inputfield_board').value == "") {
@@ -406,6 +194,10 @@ function startTyping() {
 }
 
 
+/** 
+ * This function is used to add an alert if the title has not been found
+ * In case the title has been found, it shows found titles on the board
+*/
 function findTask() {
     let titleToFind = document.getElementById('inputfield_board').value;
     let counter = 0;
@@ -419,6 +211,12 @@ function findTask() {
 }
 
 
+/** 
+ * This function compares the search result with the currrent tasks
+ * It also let those cards appear on the board, where the titles match the search result
+ * @param {number} counter - This parameter counts how many tasks match the search result, since only the first time, the board should be emptied
+ * @param {string} titleToFind - This is the search result
+*/
 function compareTitleWithCurrentTasks(counter, titleToFind) {
     for (let index = 0; index < currentTasks.length; index++) {
         if (currentTasks[index]) {
@@ -436,6 +234,10 @@ function compareTitleWithCurrentTasks(counter, titleToFind) {
 }
 
 
+/** 
+ * This function lets an alert box appear, indicating that no tasks have been found
+ * @param {number} counter - This parameter saves the amount of tasks matching the search result
+*/
 function showNoTaskFoundAlert(counter) {
     if (counter == 0) {
         document.getElementById('no_element_found_alert').classList.remove('d_none');
@@ -445,31 +247,16 @@ function showNoTaskFoundAlert(counter) {
         }, 5000);
         updateTaskBoard();
     }
-    
 }
 
+
+/** 
+ * This function removes the alert box which indicates that no tasks have been found
+*/
 function closeAlert() {
     document.getElementById('no_element_found_alert').classList.add('d_none');
     document.getElementById('input_board').classList.remove('alert_input');
 }
 
 
-function showAddTaskOverlay(category) {
-    if(category){
-        localStorage.setItem("category", category); 
-        console.log("Rufe folgende Category auf ",category);
-        taskAddOverlayInit(); 
-        
-        
-    }
-    if (window.innerWidth >= 1180) {
-        document.getElementById("addTask_overlay").classList.remove("brighter_background");
-        document.getElementById("addTask_card").classList.remove("slide-out");
-        document.getElementById("addTask_card").classList.add("slide-in"); 
-        document.getElementById("addTask_overlay").classList.remove("d_none"); 
-       
-    } else{
-        window.open('../HTML/task.html', '_self');
-    }    
-}
 

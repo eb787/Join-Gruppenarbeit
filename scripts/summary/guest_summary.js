@@ -134,10 +134,11 @@ function getDeadlineDate() {
 
 
 /**
- * This function returns the total number of tasks in the board.
+ * This function returns the total number of tasks in the system that are not null.
+ * @returns {number} - The total number of valid tasks.
  */
 function getNumberTaskInBoard() {
-  return currentTasks.length;
+  return currentTasks.filter(task => task !== null).length;
 }
 
 

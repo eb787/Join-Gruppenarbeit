@@ -354,6 +354,10 @@ function showHelpIconMobile() {
 window.onresize = showHelpIconMobile;
 
 
+/**
+ * This function logs out the user by removing the 'userLoggedIn' flag from localStorage
+ * and resetting the greetingShown flag.
+ */
 function logout() {
   localStorage.removeItem('userLoggedIn');
   localStorage.setItem('greetingShown', 'false');

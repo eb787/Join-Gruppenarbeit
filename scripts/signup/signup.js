@@ -39,7 +39,7 @@ async function addUserSignUp() {
     resetFormFields();
 
     setTimeout(() => {
-        window.location.href = "../HTML/login.html";  
+        window.location.href = "../index.html";  
     }, 2000); 
 }
 

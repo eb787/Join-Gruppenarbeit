@@ -21,7 +21,7 @@ async function guestLogin() {
  */
 function openGuestLoginPage() {
     try {
-        const url = "../HTML/summary_guest.html";
+        const url = "./HTML/summary_guest.html";
         if (url) {
             window.location.href = url; 
         } else {
