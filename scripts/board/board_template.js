@@ -78,6 +78,7 @@ function getBgOverlay() {
     </div>`
 }
 
+
 function getCardOverlay() {
     return `    `
 }
@@ -298,7 +299,6 @@ function editTaskTemplate(index) {
 }
 
 
-
 function dateConversation(dateStr) {
     let parts = dateStr.split("/"); // Teilt das Datum in ["13", "03", "25"]
     let day = parts[0];
@@ -306,7 +306,6 @@ function dateConversation(dateStr) {
     let year = "20" + parts[2]; // "25" -> "2025"
     return `${year}-${month}-${day}`;
 }
-
 
 
 function getAddTaskOverlay() {
