@@ -262,17 +262,11 @@ function editTaskTemplate(index) {
 
 
             <div class="section_Subtask">
-
                         <span>Subtasks</span>
                         <div class="input_wrapper">
-                            <input type="text" placeholder="Add new subtask"   id="inputSubtask" class="input_subtasks" oninput="subTaskInputCheck()"
-                           
-                                                      
-                            <span class="error_Field">&nbsp;</span>                                      
-
-                                 <img id="subTaskAddIcon" class="add_subtasks ele_hide" onclick="subTaskInputCheck(true)"
-                                src="../assets/icons/add.png">
+                            <input type="text" placeholder="Add new subtask"   id="inputSubtask" class="input_subtasks" oninput="subTaskInputCheck()">                                                
                        
+                            <img src="../assets/icons/add.png" id="subTaskAddIcon" class="add_subtasks_new ele_hide" onclick="subTaskInputCheck(true)">
                             
                             
                             <div id="subTaskEditIocn" class="add_subtasks sub_Task_Edit_Iocn ele_hide">
@@ -285,12 +279,12 @@ function editTaskTemplate(index) {
                             
                                 <div id="subTaskList" class="subtask_list"></div>
                               
-                                </div>   
+                </div>   
                     
                         
                         <div class="btn_div">
                             <button class="button_Ok" onclick="TaskEditSave()" >OK<img src="../assets/icons/check.svg"></button>
-                                        </div>
+                         </div>
 
     
   
@@ -437,7 +431,7 @@ function getAddTaskOverlay() {
                                     </div>
                                            <div id="subTaskList" class="subtask_list_ol">
                                     </div>
-                              </div>
+                                </div>
                     
 
                                             <div class="button_bottom_task_ol">
