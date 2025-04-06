@@ -172,3 +172,6 @@ function getContactInitials(index, i, layer) {
     document.getElementById("profile_" + index + "_" + i + "_" + layer).innerHTML += initialsBoard.toUpperCase();
 }
 
+
+
+

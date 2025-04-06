@@ -232,9 +232,10 @@
     width: 42px;
     height: 42px;
     border-radius: 45px;
-    border-color: black;
+    border-color: white;
     border-style: solid;
     border-width: 0.5px;
+    color: white;
 }
 
 
