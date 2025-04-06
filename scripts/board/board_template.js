@@ -211,15 +211,6 @@ function editTaskTemplate(index) {
 }
 
 
-function dateConversation(dateStr) {
-    let parts = dateStr.split("/"); // Teilt das Datum in ["13", "03", "25"]
-    let day = parts[0];
-    let month = parts[1];
-    let year = "20" + parts[2]; // "25" -> "2025"
-    return `${year}-${month}-${day}`;
-}
-
-
 function getAddTaskOverlay() {
     return  `<div onclick="closeOverlay('addTask_overlay')" id="addTask_overlay" class="bg_overlay d_none">
                 <div onclick="stopPropagation(event)" id="addTask_card" class="addTask_overlay">
