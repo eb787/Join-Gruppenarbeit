@@ -108,7 +108,7 @@
     background-image: url(../assets/icons/subtask_done_hover.svg) !important;
 }
 
-.button-clear-task {
+.button_clear_task {
     display: flex;
     gap: 4px;
     align-items: center;
@@ -125,21 +125,21 @@
 
 }
 
-.button-clear-task:hover {
+.button_clear_task:hover {
     color: #29ABE2;
     border-color: #29ABE2;
     height: 58px; /* Vergrößert den Button nach unten */
 
 }
 
-.button-clear-task:hover img {
+.button_clear_task:hover img {
     color: #29ABE2;
     border-color: #29ABE2;
     filter: invert(50%) sepia(100%) saturate(200%) hue-rotate(165deg) brightness(100%) contrast(100%);
 
 }
 
-.button-create-task {
+.button_create_task {
     display: flex;
     gap: 4px;
     align-items: center;
@@ -160,30 +160,20 @@
     }
 }
 
-.button-create-task:hover {
+.button_create_task:hover {
     background-color: #29ABE2;
-
     img {
         background-color: #29ABE2;
-
     }
 }
+
 
 button:hover {
     cursor: pointer;
 }
 
-.button_bottom_task {
- /*   position: absolute;
-    display: flex;
-    top: 793px;
-    left: 995.25px;
-    height: 56px;
-    width: 309px;
-    gap: 16px;  */
-}
 
-.prio-buttons {
+.prio_buttons {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -202,6 +192,7 @@ button:hover {
         border-color: #D1D1D1;
     }
 }
+
 
 .go_back_btn {
     width: 32px;

@@ -233,7 +233,41 @@ height: 16px;
 }
 
 
+.btn_div {
+    display: flex;
+    justify-content: flex-end;
 
+}
+
+
+.button_Ok {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    width: 89px;
+    height: 57px;
+    gap: 15px;
+    background-color: #2A3647;
+    color: white;
+    font-size: 20px;
+    line-height: 24px;
+    border-radius: 10px;
+    border: 1px solid;
+    box-shadow: rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    img {
+        background-color: #2A3647;
+    }
+}
+
+
+.button_Ok:hover {
+    background-color: #29ABE2;
+    img {
+        background-color: #29ABE2;
+    }
+}
 
 
 

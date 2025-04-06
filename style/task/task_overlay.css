@@ -318,6 +318,11 @@
 }
 
 
+.input_field_catergory_ol  {
+    /*cursor: pointer;*/
+}
+
+
 .section_category_ol {
     display: flex;
     flex-direction: column;
@@ -375,7 +380,6 @@
     width: 14px;
     height: 14px;
     cursor: pointer;
-
 }
 
 
@@ -447,18 +451,18 @@ hr{
 }
 
 .initiale_Icon_List_ol {
-    display: none;
+    display:flex;
     align-items: center;
     justify-content: flex-start;
     margin-left: 20px;
     width: 175px;
-   margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 
 .required_text_ol {
     display: flex;
-    margin-top: 70px;
+    margin-top: 75px;
     height: 27px;
     font-size: 16px;
     line-height: 19.2px;
@@ -471,7 +475,7 @@ hr{
 
 
 input:hover {
-    cursor: pointer;
+    /*cursor: pointer; */
 }
 
 

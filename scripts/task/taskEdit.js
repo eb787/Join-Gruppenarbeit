@@ -1,4 +1,3 @@
-//Variablen Global
 let currentTaskEdit = {};
 let indexEdit = 0;
 let DataTaskEdit = {};
@@ -34,19 +33,26 @@ function TaskEditOverlayRender() {
         subTaskListLoadEdit()
 }
 
-
+/*
+function dateConversation(dateStr) {
+        let parts = dateStr.split("/"); // Teilt das Datum in ["13", "03", "25"]
+        let day = parts[0];
+        let month = parts[1];
+        let year = "20" + parts[2]; // "25" -> "2025"
+        return `${year}-${month}-${day}`;
+    }
+    
+ */   
 
 function checkPrioEditTask(prio) {
         switch (prio) {
                 case "high_prio":
                         DataTaskPrio = "high_prio"
                         btnPrioSelect('urgent')
-
                         break;
                 case "medium_prio":
                         DataTaskPrio = "medium_prio";
                         btnPrioSelect('medium')
-
                         break;
                 case "low_prio":
                         DataTaskPrio = "low_prio";
@@ -60,7 +66,6 @@ function taskContactListDrobdownEdit() {
         document.getElementById('taskContactDrowdownMenue').classList.toggle('ele_show');
         document.getElementById('initialeIconList').classList.toggle('icon_List_hide')
 }
-
 
 
 function taskContactsLoadTaskDB() {
@@ -83,7 +88,6 @@ function editTaskWriteContacts(DataContacts) {
 }
 
 
-
 function contactColorAssignEdit(color) {
         return contactColorArray[color];
 }
@@ -97,6 +101,7 @@ function subTaskListLoadEdit() {
                 subTaskListRenderEdit(DataSubTaskListEdit);
         }
 }
+
 
 function subTaskListRenderEdit(taskSubList) {
         element = document.getElementById('subTaskList');
@@ -171,17 +176,17 @@ function subtaskinObjekt(subTaskArray) {
 function collectDataEdit() {
         currentTaskEdit = {
                 title: document.getElementById('taskTitle').value,
-                description: document.getElementById('descriptionTask').value.trim(),  // oder "empty" reinschreiben wenn es leer bleibt
-                contacts: checkContacts(),//
+                description: document.getElementById('descriptionTask').value.trim(),  
+                contacts: checkContacts(),
                 deadline: dateConversion(document.getElementById('taskDate').value),
-                prio: DataTaskPrio, // "medium_prio" , oder "low_prio", oder "hgh_prioi"
+                prio: DataTaskPrio, 
                 category: DataTaskEdit[indexEdit].category,
                 subtasks: {
-                        total: DataSubTaskListEdit.length, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
-                        number_of_finished_subtasks: 0, // das ist wichtig zum runterladen, daher bitte auf die Datenbank speichern
+                        total: DataSubTaskListEdit.length, 
+                        number_of_finished_subtasks: 0, 
                         subtasks_todo: subtaskinObjekt(DataSubTaskListEdit),
                 },
-                status: DataTaskEdit[indexEdit].status,  //  "toDo",  "inProgress", "awaitFeedback", oder "done" 
+                status: DataTaskEdit[indexEdit].status,  
         }
 }
 
@@ -228,7 +233,6 @@ async function loadDataFirebaseEdit() {
                 const DataTask = await responseTask.json();
                 const DataContact = await responseContact.json();
                 return { DataTask, DataContact };
-
         } catch (error) {
                 console.log("Fehler beim lesen ", error);
         }

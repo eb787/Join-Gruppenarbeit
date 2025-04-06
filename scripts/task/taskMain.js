@@ -39,7 +39,6 @@ function logout() {
  */
 function showHelpIconMobile() {
   let helpLink = document.getElementById("mobile_help_link");
-
   if (window.innerWidth <= 1000) {
     helpLink.style.display = "flex"; 
   } else {
@@ -47,8 +46,8 @@ function showHelpIconMobile() {
   }
 }
 
-window.onresize = showHelpIconMobile;
 
+window.onresize = showHelpIconMobile;
 
 
 //Felder prüfen ob Eingabe erfolgte mit QuerySelector

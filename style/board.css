@@ -277,9 +277,11 @@
     padding-top: 48px;
 }
 
-.bg_overlay:hover {
+
+ .close_btn_AddOverlay{
     cursor: pointer;
-}
+  }                    
+                     
 
 .card_overlay {
     width: 445px;

@@ -214,7 +214,7 @@ function editTaskTemplate(index) {
                 <span>Priority</span>
 
 
-                <div class="prio-buttons">
+                <div class="prio_buttons">
                        <button onclick="btnPrioSelect('urgent');checkPrioEditTask('high_prio')" class="btn_prio button-urgent" tabindex="5">Urgent
                        <img class="prio_img" src="../assets/icons/high_prio.svg" alt="urgent">
                     </button>
@@ -377,7 +377,7 @@ function getAddTaskOverlay() {
 
                                   <div class="section_prio_ol">
                                             <h2>Priority</h2>
-                                        <div class="prio-buttons">
+                                        <div class="prio_buttons">
                                         
                                             <button onclick="btnPrioSelect('urgent')" class="btn_prio button-urgent"
                                                 tabindex="5">Urgent
@@ -435,9 +435,9 @@ function getAddTaskOverlay() {
                     
 
                                             <div class="button_bottom_task_ol">
-                                                <button id="btnClearTask" class="button-clear-task" onclick="addTaskClear()">Clear <img
+                                                <button id="btnClearTask" class="button_clear_task" onclick="addTaskClear()">Clear <img
                                                         class="cancel_ol" src="../assets/icons/iconoir_cancel.png" alt=""></button>
-                                                <button id="btnCreateTask" class="button-create-task" onclick="checkInputData('overlay')">Create Task
+                                                <button id="btnCreateTask" class="button_create_task" onclick="checkInputData('overlay')">Create Task
                                                     <img src="../assets/icons/check.png" alt=""></button>
                                             </div>
                              </div>
@@ -461,9 +461,9 @@ function getAddTaskOverlay() {
       
         
                          <div class="button_bottom_task_mobile_ol">
-                              <button id="btnClearTask" class="button-clear-task" onclick="addTaskClear()">Clear <img
+                              <button id="btnClearTask" class="button_clear_task" onclick="addTaskClear()">Clear <img
                               class="cancel_ol" src="../assets/icons/iconoir_cancel.png" alt=""></button>
-                              <button id="btnCreateTask" class="button-create-task" onclick="checkInputData('overlay')">Create Task
+                              <button id="btnCreateTask" class="button_create_task" onclick="checkInputData('overlay')">Create Task
                               <img src="../assets/icons/check.png" alt=""></button>
                          </div>
                       

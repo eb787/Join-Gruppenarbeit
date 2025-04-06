@@ -14,7 +14,7 @@
 
 
 .addTask_Title {
-    padding-top: 10px;
+    padding-top: 40px;
     margin-left: 10%;
     font-size: 61px;
     font-weight: 700; 
@@ -88,7 +88,7 @@ span {
         font-weight: 400;
         font-size: 20px;
     }
-    margin-top: 60px;
+    margin-top: 50px;
 
 }
 
@@ -295,6 +295,13 @@ span {
     margin-bottom: 20px;   
 }
 
+.prio_buttons {
+       button {
+        font-size: 20px;      
+    }
+}
+
+
 .prio_img_group {
     display: flex;
     flex-direction: column;
@@ -315,6 +322,11 @@ span {
 }
 
 
+.input_field_catergory  {
+    cursor: pointer;
+}
+
+
 .section_category {
     display: flex;
     flex-direction: column;
@@ -327,9 +339,9 @@ span {
         font-size: 20px;
         border-color: #D1D1D1;
         border-radius: 10px;
-    
-    }
+        }
 }
+
 
 
 .section_subtasks {
@@ -371,11 +383,10 @@ span {
     margin-left: -30px;
     margin-right: -45px;
     padding-right: 60px;
-    padding-top: 15px;
+    padding-top: 20px;
     width: 14px;
     height: 14px;
     cursor: pointer;
-
 }
 
 
@@ -383,7 +394,7 @@ span {
     margin-left: -75px;
     margin-right: -80px;
     padding-right: 30px;
-    padding-top: 15px;
+    padding-top: 20px;
     width: 14px;
     height: 14px;
     cursor: pointer;
@@ -453,7 +464,7 @@ hr {
 
 .required_text {
     display: flex;
-    margin-top: 100px;
+    margin-top: 75px;
     height: 27px;
     font-size: 16px;
     line-height: 19.2px;
