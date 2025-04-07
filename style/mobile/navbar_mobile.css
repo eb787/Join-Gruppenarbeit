@@ -18,6 +18,10 @@
         left: 56px;
     }
 
+    .mobile_navbar_icon:hover {
+        cursor: pointer;
+    }
+
     .mobile_display_none {
         display: none;
     }
