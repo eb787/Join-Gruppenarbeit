@@ -184,7 +184,6 @@
 }
 
 
-
 .contact_Detail_Frame {
   display: flex;
   align-items: center;
@@ -219,7 +218,6 @@
 .contact_Detail_Name {
   font-size: 47px;
   font-weight: 500;
-
 }
 
 
@@ -276,6 +274,7 @@
   color: rgb(41, 171, 226);
 }
 
+
 .font_weight_400 {
   font-weight: 400;
 }
@@ -298,7 +297,7 @@
 }
 
 
-.alert-div {
+.alert_div {
   width: 326px;
   height: 74px;
   position: absolute;
@@ -313,8 +312,7 @@
 }
 
 
-.alert-text {
- 
+.alert_text {
 height: 24px;
 color: white;
 font-weight: 400;

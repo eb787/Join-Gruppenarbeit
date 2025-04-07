@@ -2,8 +2,7 @@
   display: none;
   width: 1212px;
   height: 594px;
-  width: calc(100% - 40px);
-  z-index: 1;
+  width: calc(90% - 0px); 
   position: fixed;
   top: 45%;
   left: 50%;
@@ -118,7 +117,7 @@
   margin: 0;
 }
 
-.line-contact {
+.line_contact {
   width: 70px; 
     border: 3px solid; 
   border-color: #29ABE2;
@@ -205,18 +204,18 @@
 }
 
 
-.error-message {
+.error_message {
   color: red;
   font-size: 12px;
   display: block;
   margin-top: 5px;
 }
 
-.input-error {
+.input_error {
   border: 1px solid red;
 }
 
-.pic-edit {
+.pic_edit {
   width: 120px;
   height: 120px;
 

@@ -47,7 +47,7 @@ function contactCardMiddle(user, contactIndex, firstLetter, color) {
         </div>
         </div>
             <div class = "mobile_button_options_div">
-                <img src="../assets/icons/Menu Contact options.png" alt="mobile-options" class="mobile-options" onclick = "openWindowMobile('${contactIndex}','${firstLetter}','${color}')">
+                <img src="../assets/icons/Menu Contact options.png" alt="mobile-options" class="mobile_options" onclick = "openWindowMobile('${contactIndex}','${firstLetter}','${color}')">
                 <div id ="mobile_window"></div>
                 </div>
     `;
@@ -70,7 +70,7 @@ function cardNewContact(mode) {
             <img src="../assets/icons/logocontact.svg" class = "logo_mobile">
             <p>${title}</p>
             <span>${text}</span>
-            <hr class= "line-contact">
+            <hr class= "line_contact">
     `;
 }
 
@@ -95,8 +95,8 @@ function cardNewContactEdit() {
 function alertSuccess() {
     return `
     <div id ="alert">
-        <div class="alert-div">
-            <p class="alert-text">Contact succesfully created</p>  
+        <div class="alert_div">
+            <p class="alert_text">Contact succesfully created</p>  
         </div>
     </div>`
 }
