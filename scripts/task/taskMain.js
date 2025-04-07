@@ -9,6 +9,7 @@ let taskPrioSelect = "medium_prio";
 let currentTaskAdd = {};
 taskContacteArray
 
+window.onresize = showHelpIconMobile;
 
 function init() {
   startAddTask();
@@ -47,7 +48,7 @@ function showHelpIconMobile() {
 }
 
 
-window.onresize = showHelpIconMobile;
+
 
 
 //Felder prüfen ob Eingabe erfolgte mit QuerySelector
@@ -57,8 +58,8 @@ function requiredInputAddTask() {
       let errorMsg = this.nextElementSibling;
       if (this.value.trim() === "") {
         this.classList.add('error_Msg_Input')
-        errorMsg.textContent = "This field is required";
-        console.log("Keine Eingabe");
+      // errorMsg.textContent = "This field is required";
+      //  console.log("Keine Eingabe");
       } else {
         if (this.type === "date" && !correctDateInput(this.value)) {
           console.log("Datum falsch");
