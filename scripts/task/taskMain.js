@@ -358,6 +358,6 @@ function addTaskClear() {
   taskSubTaskList = [];
   subTaskClose();
   subTaskListRender();
-  document.getElementById('taskTitle').focus();
+
 }
 

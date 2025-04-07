@@ -21,11 +21,8 @@ height: 16px;
 .textarea_description {
        textarea {
         width: 100%;
-        height: 80px;
-   
-        
-     }
- 
+        height: 80px;         
+     } 
 }
 
 
@@ -145,6 +142,11 @@ height: 16px;
 }
 
 
+.input_field_catergory_ol  {
+    cursor: pointer;
+}
+
+
 .section_category {
     display: flex;
     gap: 8px;
@@ -153,6 +155,7 @@ height: 16px;
         width: 98px;
         height: 24px;
   }
+}
 
 .input_field_catergory{
     height: 48px;

@@ -181,8 +181,7 @@ function editTaskTemplate(index) {
             <div id="category_overlay${index}" class="task_category task_category_overlay  "></div>
             <img onclick="closeOverlay('bg_overlay')" class="close_btn_overlay" src="..//assets/icons/close.svg" alt="close button">
         </div>
- 
-            
+             
                 <div class="section_title">
                     <h2 class="title">Title</h2>
                     <input id="taskTitle" class="input_title input-field" type="text" tabindex="1">
@@ -285,26 +284,15 @@ function editTaskTemplate(index) {
                         <div class="btn_div">
                             <button class="button_Ok" onclick="TaskEditSave()" >OK<img src="../assets/icons/check.svg"></button>
                          </div>
-
-    
-  
+      
    `
 
 }
 
 
-function dateConversation(dateStr) {
-    let parts = dateStr.split("/"); // Teilt das Datum in ["13", "03", "25"]
-    let day = parts[0];
-    let month = parts[1];
-    let year = "20" + parts[2]; // "25" -> "2025"
-    return `${year}-${month}-${day}`;
-}
-
 
 function getAddTaskOverlay() {
-    
-   
+       
     return ` 
      
      <div onclick="closeOverlay('addTask_overlay')" id="addTask_overlay" class="bg_overlay d_none">

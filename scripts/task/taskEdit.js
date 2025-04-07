@@ -13,27 +13,36 @@ subTaskArray = "";
 
 dataFromFirebase();
 
-
+/**
+ * This function retrieves the data from the record with the given index that was previously loaded via dataFromFirebase
+ * @param {string} index -  the index of the passed task
+ */
 function editTask(index) {
         indexEdit = index;
         DataTaskContactsTask = DataTaskEdit[indexEdit].contacts;
         TaskEditOverlayRender();
 }
 
-
+/**
+ * Here the data is written into the overlay for Edit AddTask
+ */
 function TaskEditOverlayRender() {
         document.getElementById('card_overlay').innerHTML = "";
         document.getElementById('card_overlay').innerHTML = editTaskTemplate(indexEdit);
-        document.getElementById('taskTitle').value = DataTaskEdit[indexEdit].title;  //title
+        document.getElementById('taskTitle').value = DataTaskEdit[indexEdit].title;  
         document.getElementById('descriptionTask').value = DataTaskEdit[indexEdit].description;
         document.getElementById('taskDate').value = dateConversation(DataTaskEdit[indexEdit].deadline);
-        checkPrioEditTask(DataTaskEdit[indexEdit].prio); //prio setzen 
+        checkPrioEditTask(DataTaskEdit[indexEdit].prio); 
         taskReadinArrayContact(DataContactsAll);
         editTaskWriteContacts(DataTaskContactsTask);
         subTaskListLoadEdit()
 }
 
-/*
+/**
+ * function which converts the date from the passed data set into the format dd.mm.yyyy
+ * @param {string} dateStr -Date passed with the format dd/mm/yyyy
+ * @returns 
+ */
 function dateConversation(dateStr) {
         let parts = dateStr.split("/"); // Teilt das Datum in ["13", "03", "25"]
         let day = parts[0];
@@ -41,9 +50,12 @@ function dateConversation(dateStr) {
         let year = "20" + parts[2]; // "25" -> "2025"
         return `${year}-${month}-${day}`;
     }
-    
- */   
 
+    
+/**
+ * function to determine the priority
+ * @param {*} prio -Priority where clicked
+ */
 function checkPrioEditTask(prio) {
         switch (prio) {
                 case "high_prio":
@@ -62,17 +74,27 @@ function checkPrioEditTask(prio) {
 }
 
 
+/**
+ * function to open and close the contact list
+ */
 function taskContactListDrobdownEdit() {
         document.getElementById('taskContactDrowdownMenue').classList.toggle('ele_show');
         document.getElementById('initialeIconList').classList.toggle('icon_List_hide')
 }
 
 
+/**
+ * function that passes the contacts from the array DataTaskEdit to conta
+ */
 function taskContactsLoadTaskDB() {
         let conta = DataTaskEdit[indexEdit].contacts;
 }
 
 
+/**
+ * 
+ * @param {*} DataContacts 
+ */
 function editTaskWriteContacts(DataContacts) {
         if (DataContacts.length > 0) {
                 let element = document.getElementById('initialeIconList');
@@ -87,12 +109,19 @@ function editTaskWriteContacts(DataContacts) {
         }
 }
 
-
+/**
+ * the function gets the color from the array for the contact initials
+ * @param {string} color - color that comes from the DB
+ * @returns 
+ */
 function contactColorAssignEdit(color) {
         return contactColorArray[color];
 }
 
 
+/**
+ * Function to load the subtask into a list
+ */
 function subTaskListLoadEdit() {
         document.getElementById('subTaskAddIcon').classList.remove('ele_hide')
         document.getElementById('subTaskEditIocn').classList.add('ele_hide')
@@ -103,6 +132,10 @@ function subTaskListLoadEdit() {
 }
 
 
+/**
+ * Function to render the data of the subtask list into an HTML element
+ * @param {Array} taskSubList - Array where the subtasks are located
+ */
 function subTaskListRenderEdit(taskSubList) {
         element = document.getElementById('subTaskList');
         element.innerHTML = "";
@@ -111,6 +144,12 @@ function subTaskListRenderEdit(taskSubList) {
 }
 
 
+/**
+ * output the subtask list as an HTML template
+ * @param {String} subTaskEntry  entry from the array
+ * @param {Number} index  entry from the array
+ * @returns 
+ */
 function SubtaskListTemplateEdit(subTaskEntry, index) {
         return `
         <div class="sub_task_item">
@@ -127,6 +166,9 @@ function SubtaskListTemplateEdit(subTaskEntry, index) {
 }
 
 
+/**
+ * Function that writes a new subtask to the array DataSubTaskListEdit
+ */
 function taskCreateTaskEdit() {
         let element = document.getElementById('inputSubtask');
         contents = element.value;
@@ -142,7 +184,10 @@ function taskCreateTaskEdit() {
         subTaskListRenderEdit(DataSubTaskListEdit);
 }
 
-
+/**
+ * Function that brings the subtask into the input field for processing
+ * @param {Number} index index is the number of the subtask from list of to be processed
+ */
 function editSubTaskEdit(index) {
         let element = document.getElementById('inputSubtask');
         element.value = DataSubTaskListEdit[index];
@@ -153,12 +198,18 @@ function editSubTaskEdit(index) {
 }
 
 
-function deleteSubTaskEdit(posi) {
-        DataSubTaskListEdit.splice(posi, 1);
+/**
+ * Function to delete a subtask
+ * @param {*} index specifies the position of the subtask in the array
+ */
+function deleteSubTaskEdit(index) {
+        DataSubTaskListEdit.splice(index, 1);
         subTaskListRenderEdit(DataSubTaskListEdit);
 }
 
-
+/**
+ * function to save the subtask when editing
+ */
 async function TaskEditSave() {
         collectDataEdit();
         await postTaskDataEdit(`/tasks/${parseInt(indexEdit)}`, currentTaskEdit);
@@ -168,11 +219,9 @@ async function TaskEditSave() {
 }
 
 
-function subtaskinObjekt(subTaskArray) {
-        return subTask = Object.fromEntries(subTaskArray.map(item => [item, "todo"]));
-}
-
-
+/**
+ * function creates object to save in FirbaseDB
+ */
 function collectDataEdit() {
         currentTaskEdit = {
                 title: document.getElementById('taskTitle').value,
@@ -191,7 +240,10 @@ function collectDataEdit() {
 }
 
 
-
+/**
+ * function checks if contacts exist for this task and writes sisin object for transfer
+ * @returns 
+ */
 function checkContacts() {
         if (selectedTaskContacts.length > 0) {
                 return selectedTaskContacts
@@ -224,6 +276,10 @@ async function dataFromFirebase() {
 }
 
 
+/**
+ * Loading data from FirebaseDB for the AddTask Edit template
+ * @returns 
+ */
 async function loadDataFirebaseEdit() {
         try {
                 const [responseTask, responseContact] = await Promise.all([
@@ -238,3 +294,12 @@ async function loadDataFirebaseEdit() {
         }
 }
 
+
+/**
+ * Function writes the subTask from the object into an array
+ * @param {*} subTaskArray  object with the data where the subtasks are located
+ * @returns 
+ */
+function subtaskinObjekt(subTaskArray) {
+        return subTask = Object.fromEntries(subTaskArray.map(item => [item, "todo"]));
+}

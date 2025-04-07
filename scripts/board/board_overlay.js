@@ -194,15 +194,16 @@ async function deleteTaskData(path = "") {
 function showAddTaskOverlay(category) {
     if(category){
         localStorage.setItem("category", category); 
-        console.log("Rufe folgende Category auf ",category);
-        taskAddOverlayInit();
-    }
+         }
     if (window.innerWidth >= 1180) {
         document.getElementById("addTask_overlay").classList.remove("brighter_background");
         document.getElementById("addTask_card").classList.remove("slide-out");
         document.getElementById("addTask_card").classList.add("slide-in"); 
         document.getElementById("addTask_overlay").classList.remove("d_none"); 
-    } else{
+        taskAddOverlayInit();
+    } else{            
         window.open('../HTML/task.html', '_self');
+    
+        
     }    
 }
