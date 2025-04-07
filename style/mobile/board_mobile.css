@@ -48,7 +48,7 @@
     .board_content_box{
         min-height: auto !important;
         overflow-y: auto;
-        scrollbar-width: none;
+        scrollbar-color: rgb(167, 168, 188) transparent;
     }
     .add_task_btn{
         width: 166px;

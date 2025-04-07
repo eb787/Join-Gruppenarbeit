@@ -16,12 +16,39 @@ function init() {
   requiredInputAddTask();
   focusOnRequiredFields();
   subTaskListRender();
+  showHelpIconMobile()
 }
 
 
 function startAddTask() {
   document.getElementById('subTaskAddIcon').classList.remove('ele_hide')
 }
+
+/**
+ * This function logs out the user by removing the 'userLoggedIn' flag from localStorage
+ * and resetting the greetingShown flag.
+ */
+function logout() {
+  localStorage.removeItem('userLoggedIn');
+  localStorage.setItem('greetingShown', 'false');
+}
+
+
+/**
+ * This function shows the help icon on mobile screens (below 1000px width).
+ */
+function showHelpIconMobile() {
+  let helpLink = document.getElementById("mobile_help_link");
+
+  if (window.innerWidth <= 1000) {
+    helpLink.style.display = "flex"; 
+  } else {
+    helpLink.style.display = "none"; 
+  }
+}
+
+window.onresize = showHelpIconMobile;
+
 
 
 //Felder prüfen ob Eingabe erfolgte mit QuerySelector
@@ -238,6 +265,9 @@ async function checkInputData(template) {
       return;
     } else {
       pushTaskToServer();
+      setTimeout(() =>{
+        loadTaskData();
+      },200);
       timePopUp(2000);
       addTaskClear();
       if (template == "overlay") {

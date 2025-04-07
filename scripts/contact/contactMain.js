@@ -329,3 +329,29 @@ async function showAlertSuccess(currentLetter, index) {
   let contactsId = `${currentLetter}-${index}`;
   openContactBigMiddle(contactsId);
 }
+
+
+/**
+ * This function shows the help icon on mobile screens (below 1000px width).
+ */
+function showHelpIconMobile() {
+  let helpLink = document.getElementById("mobile_help_link");
+
+  if (window.innerWidth <= 1000) {
+    helpLink.style.display = "flex"; 
+  } else {
+    helpLink.style.display = "none"; 
+  }
+}
+
+window.onresize = showHelpIconMobile;
+
+
+/**
+ * This function logs out the user by removing the 'userLoggedIn' flag from localStorage
+ * and resetting the greetingShown flag.
+ */
+function logout() {
+  localStorage.removeItem('userLoggedIn');
+  localStorage.setItem('greetingShown', 'false');
+}

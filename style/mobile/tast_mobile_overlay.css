@@ -39,8 +39,15 @@
     .section_left_ol {
         margin-left: 10px;
         margin-right: 10px;
+    }
+
+
+    .input_title_ol{
+        height: 40px;
 
     }
+
+    
 
 
     .section_right_ol {
