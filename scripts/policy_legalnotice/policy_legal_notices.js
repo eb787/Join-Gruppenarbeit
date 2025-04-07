@@ -1,5 +1,5 @@
 function openPageLogin(){
-  window.location.href = "../HTML/login.html"; 
+  window.location.href = "../index.html"; 
 }
 
 
