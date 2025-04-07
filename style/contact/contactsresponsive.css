@@ -1,5 +1,4 @@
 @media (max-width: 1300px) {
-    
     .contact_Detail {
         margin-left: 20px;
         margin-top: 80px;
@@ -52,7 +51,6 @@
         margin-left: 20px;
     }
 
-
     .contact_Detail_abbreviation {
         margin-left: 20px;
     }
@@ -66,7 +64,6 @@
         display: flex;
         gap: 10px;
     }
-
 
     .contact_header_1 {
         font-size: 40px;
@@ -82,20 +79,52 @@
 }
 
 
-@media (max-width: 450px) {
-    .card_contact{
-        width: 300px; ;
+@media (max-width: 700px) {
+    .contact_Entry {
+        width: calc(100% - 30px);
+        padding: 15px;
     }
-        .contact_Card_Input{
-            width: 224px;
-        }
+}
 
-        .pic-edit {
-            left: 100px;
-        }
 
-        .contact_Card_button {
-            margin-right:160px
+@media (max-width: 500px) {
+    .contact_Entry {
+        width: calc(100% - 20px);
+        padding: 10px;
+    }
+}
 
+
+@media (max-width: 450px) {
+    .card_contact {
+        width: 300px;
+        ;
+    }
+
+    .contact_Card_Input_Frame_two {
+        input {
+            width: 200px;
+            justify-content: center;
         }
+    }
+
+    .contact_Card_Input {
+        width: 224px;
+    }
+
+    .pic-edit {
+        left: 100px;
+    }
+
+    .contact_Card_button {
+        margin-right: 160px
+    }
+
+    .contact_abbreviation_big {
+        left: 100px;
+    }
+
+    .contact_Card_abbreviation_Frame {
+        gap: 50px;
+    }
 }

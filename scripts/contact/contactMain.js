@@ -117,6 +117,8 @@ async function editContact(contactsId, firstLetter, color) {
 
 
 async function saveEditedContact(contactsId, firstLetter) {
+  const email = document.getElementById('email_input').value;
+  if (!validateInputs(email)) return;
   let contactIndex = parseInt(localStorage.getItem(`${contactsId}_index`)) || 0;
   saveGlobalIndex();
   let existingUser = await fetchUser(firstLetter, contactIndex);
@@ -125,11 +127,10 @@ async function saveEditedContact(contactsId, firstLetter) {
   let color = updatedContact.color;
   localStorage.setItem(`contactColor_${firstLetter}_${contactsId}`, color);
   updateContactUI(contactsId, updatedContact, firstLetter);
+  let contactsIdMiddle = `${firstLetter}-${contactsId}`;
+  openContactBigMiddle(contactsIdMiddle, firstLetter);
   closeContactBig();
-  resetPicture();
-  validateName();
-  validateEmail(updatedContact.email, contactsId);
-  validateTelInput()
+  clearInputsAndClose();
   closeEditMobile();
 }
 
@@ -241,36 +242,29 @@ function updateCancelButton() {
   }
 }
 
+function validateInputs(email) {
+  return validateName() && validateTelInput() && validateEmailSync(email);
+}
 
 function validateName() {
   let nameInput = document.getElementById('name_input');
-  if (nameInput.value.trim() === "") {
-    document.getElementById('name_error').textContent = "Bitte einen Namen eingeben!";
-    nameInput.classList.add("input-error");
-    return false;
-  } else {
-    document.getElementById('name_error').textContent = "";
-    nameInput.classList.remove("input-error");
-    return true;
-  }
+  const isValid = nameInput.value.trim() !== "";
+  document.getElementById('name_error').textContent = isValid ? "" : "Bitte einen Namen eingeben!";
+  nameInput.classList.toggle("input-error", !isValid);
+  return isValid;
 }
 
-// Funktion zur E-Mail-Validierung
-async function validateEmail(email) {
+function validateEmailSync(email) {
   let emailInput = document.getElementById('email_input');
-  let firstLetter = email.trim().charAt(0).toUpperCase();
   if (email.trim() === "") {
     showError(emailInput, "Bitte eine E-Mail eingeben!");
     return false;
   }
-  if (!/^[A-Z]$/.test(firstLetter)) {
-    firstLetter = "#";
-  }
-  let contactsGroup = contactsData[firstLetter] || {};
-  let emailExists = Object.values(contactsGroup).some(
-    contact => contact.email.toLowerCase() === email.toLowerCase()
-  );
-  if (emailExists) {
+  let firstLetter = email.charAt(0).toUpperCase();
+  if (!/^[A-Z]$/.test(firstLetter)) firstLetter = "#";
+  let group = contactsData[firstLetter] || {};
+  let exists = Object.values(group).some(c => c.email.toLowerCase() === email.toLowerCase());
+  if (exists) {
     showError(emailInput, "Diese E-Mail existiert bereits!");
     return false;
   }
@@ -278,6 +272,15 @@ async function validateEmail(email) {
   return true;
 }
 
+function validateTelInput() {
+  const input = document.getElementById("tel_input");
+  const error = document.getElementById("tel_error");
+  const value = input.value.trim();
+  const isValid = value !== "" && /^[0-9]+$/.test(value);
+  error.textContent = isValid ? "" : (value === "" ? "Bitte eine Telefonnummer eingeben!" : "Nur Zahlen sind erlaubt!");
+  input.classList.toggle("input-error", !isValid);
+  return isValid;
+}
 
 function showError(inputElement, message) {
   let errorElement = document.getElementById('email_error');
@@ -292,18 +295,8 @@ function clearError(inputElement) {
   inputElement.classList.remove("input-error");
 }
 
-
-function validateTelInput() {
-  const input = document.getElementById("tel_input");
-  const error = document.getElementById("tel_error");
-  const value = input.value.trim();
-  if (!/^\d*$/.test(value)) {
-    error.style.display = "block";
-    return false;
-  } else {
-    error.style.display = "none";
-    return true;
-  }
+function clearAllErrors() {
+  ['name_input', 'email_input', 'tel_input'].forEach(id => clearError(document.getElementById(id)));
 }
 
 
