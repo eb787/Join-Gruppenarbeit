@@ -154,6 +154,9 @@
     border: 1px solid;
     box-shadow: rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.3s ease, transform 0.2s ease;
+    pointer-events: none;
+    opacity: 0.5;
+
 
     img {
         background-color: #2A3647;
@@ -166,6 +169,7 @@
         background-color: #29ABE2;
     }
 }
+
 
 
 button:hover {

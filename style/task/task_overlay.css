@@ -1,5 +1,14 @@
 
 
+.close_btn_AddOverlay{
+    position: relative;
+    left: 95%;
+    top: 20px;
+    width: 16px;
+    height: 16px;
+    }
+
+    
 .addTask_overlay{
     background-color: #F5F5F5;    
     }
@@ -556,12 +565,8 @@ textarea:hover {
 }
 
 
-.error_Field_ol {
-    display: none;;
-    font-size: 10px;
-    color: red;
-    margin-top: 3px;
-    margin-bottom: 3px;    
+.error_Input {
+    border-color: red !important;
 }
 
 

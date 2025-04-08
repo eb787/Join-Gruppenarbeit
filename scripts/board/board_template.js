@@ -149,21 +149,30 @@ function editTaskTemplate(index) {
              
                 <div class="section_title">
                     <h2 class="title">Title</h2>
-                    <input id="taskTitle" class="input_title input-field" type="text" tabindex="1">
-                    <span class="error_Field">&nbsp;</span>
+                    <input id="taskTitle" class="input_title" type="text" onblur="requiredInputTitle()" tabindex="1">
+                  
                 </div>
-            </div>
+                                        <div class="section_description">
+                                            <h2>Description</h2>
+                                            <div class="textarea_description">
+                                                <textarea id="descriptionTask" class="text_area" placeholder="Enter a Description"
+                                                tabindex="2"></textarea>
+                                            </div>
+                                        </div>
+
+            
             <div class="section_date_div">
                 <h2>Due date </h2>
                 <div class="task_Date_Input_Div">
-                   <input type="date"  id="taskDate" class="date_input input-field" tabindex="4" >
+                   <input type="date"  id="taskDate" class="date_input" onblur="requiredInputDate()" tabindex="4" >
                    <img src="../assets/icons/event.png" class="date_icon_Edit"  onclick="openDatePicker()" >
                 </div>
-                <span class="error_Field">&nbsp;</span>
+               
             </div>
             <div class="section_prio">
-                <span>Priority</span>
-
+            <div>    
+            <h2>Priority</h2>
+            </div>
 
                 <div class="prio_buttons">
                        <button onclick="btnPrioSelect('urgent');checkPrioEditTask('high_prio')" class="btn_prio button-urgent" tabindex="5">Urgent
@@ -194,7 +203,7 @@ function editTaskTemplate(index) {
             </div>
             <div id="initialeIconList" class="initiale_Icon_ListEdit icon_List_hide"></div>
             <div class="section_Subtask">
-                        <span>Subtasks</span>
+                        <h2>Subtasks</h2>
                         <div class="input_wrapper">
                             <input type="text" placeholder="Add new subtask"   id="inputSubtask" class="input_subtasks" oninput="subTaskInputCheck()">                                                
                        
@@ -238,10 +247,9 @@ function getAddTaskOverlay() {
                                    <div class="section_left_ol">
                                         <div class="section_title_ol">
                                             <h2 class="title">Title<span class="star_red_ol">*</span></h2>
-                                            <input id="taskTitle" class="input_title_ol input-field" type="text"
+                                            <input id="taskTitle" class="input_title_ol" onblur="requiredInputTitle()" type="text"
                                             placeholder="Enter a title" tabindex="1">
-                                            <span class="error_Field_ol">&nbsp;</span>
-                                        </div>  
+                                             </div>  
 
                                         <div class="section_description_ol">
                                             <h2>Description</h2>
@@ -290,10 +298,10 @@ function getAddTaskOverlay() {
                                      <div class="section_date_div_ol">
                                             <h2>Due date<span class="star_red_ol">*</span></h2>
                                             <div class="date_input_ol">
-                                            <input type="date" id="taskDate" class="date_input_field_ol input-field" tabindex="4">
+                                            <input type="date" id="taskDate" class="date_input_field_ol"  onblur="requiredInputDate()"  tabindex="4">
                                             <img src="../assets/icons/event.png" class="date_icon_ol" onclick="openDatePicker()">
                                             </div>
-                                            <span class="error_Field_ol">&nbsp;</span>                    
+                                                       
                                     </div>
 
                                   <div class="section_prio_ol">
@@ -322,12 +330,12 @@ function getAddTaskOverlay() {
                                 <div class="section_category_ol">
                                     <h2>Category<span class="star_red_ol">*</span></h2>
                                     <div class="category-wrapper_ol">
-                                        <select id="taskCatergory" class="input_field_catergory_ol input-field">
+                                        <select id="taskCatergory" class="input_field_catergory_ol" onblur="requiredInputCategory()" >
                                             <option value="" selected disabled>Select task category</option>
                                             <option value="1">Technical Task</option>
                                             <option value="2">User Story</option>
                                         </select>
-                                        <span class="error_Field_ol">&nbsp;</span>
+                                     
                                     </div>
                                 </div>
 
@@ -348,7 +356,7 @@ function getAddTaskOverlay() {
                                                     src="../assets/icons/checkSW.svg" alt="add-icon">
                                             </div>
                                         </div>
-                                        <span class="error_Field_ol">&nbsp;</span>
+                           
                                     </div>
                                            <div id="subTaskList" class="subtask_list_ol">
                                     </div>

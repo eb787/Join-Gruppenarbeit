@@ -219,7 +219,7 @@ span {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 400;
     width: 42px;
     height: 42px;
@@ -566,15 +566,8 @@ textarea:hover {
 }
 
 
-.error_Field {
-    font-size: 10px;
-    color: red;
-    margin-top: 3px;
-    margin-bottom: 3px;
-}
 
-
-.error_Msg_Input {
+.error_Input {
     border-color: red !important;
 }
 

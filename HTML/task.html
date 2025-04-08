@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="../style/taskstyle.css">
     <link rel="stylesheet" href="../style/mobile/task_mobile.css">
 
-
+    <script src="../scripts/board/board.js"></script>
     <script src="../scripts/task/taskMain.js"></script>
     <script src="../scripts/task/taskFirebase.js"></script>
     <script src="../scripts/task/tastTemplate.js"></script>
@@ -81,7 +81,7 @@
                     <div class="section_left">
                         <div class="section_title">
                             <h2 class="title">Title<span class="star_red">*</span></h2>
-                            <input id="taskTitle" class="input_title input-field" type="text"
+                            <input id="taskTitle" class="input_title" onblur="requiredInputTitle()" type="text"
                                 placeholder="Enter a title" tabindex="1">
                         </div>
                         <div class="section_description">
@@ -119,7 +119,7 @@
                         <div class="section_date_div">
                             <h2>Due date<span class="star_red">*</span></h2>
                             <div class="date_input">
-                                <input type="date" id="taskDate" class="date_input_field input-field" tabindex="4">
+                                <input type="date" id="taskDate" class="date_input_field"  onblur="requiredInputDate()"  tabindex="4">
                                 <img src="../assets/icons/event.png" class="date_icon" onclick="openDatePicker()">
                             </div>
                            <div class="section_prio">
@@ -144,7 +144,7 @@
                             <div class="section_category">
                                 <h2>Category<span class="star_red">*</span></h2>
                                 <div class="category-wrapper">
-                                    <select id="taskCatergory" class="input_field_catergory input-field">
+                                    <select id="taskCatergory" class="input_field_catergory" onblur="requiredInputCategory()">
                                         <option value="" selected disabled>Select task category</option>
                                         <option value="1">Technical Task</option>
                                         <option value="2">User Story</option>

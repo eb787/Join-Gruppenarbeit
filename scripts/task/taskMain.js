@@ -7,6 +7,7 @@ let editTaskNr = 0;
 let selectedTaskContacts = [];
 let taskPrioSelect = "medium_prio";
 let currentTaskAdd = {};
+let inputsOK=[false,false,false];
 taskContacteArray
 
 window.onresize = showHelpIconMobile;
@@ -14,8 +15,7 @@ window.onresize = showHelpIconMobile;
 function init() {
   startAddTask();
   loadDataFirebase();
-  requiredInputAddTask();
-  focusOnRequiredFields();
+  checkAllRequiredData();
   subTaskListRender();
   showHelpIconMobile()
 }
@@ -49,55 +49,61 @@ function showHelpIconMobile() {
 
 
 
+function requiredInputTitle(){
+let entry = document.getElementById('taskTitle').value;
+
+if (entry.trim() ===""){
+  document.getElementById('taskTitle').classList.add('error_Input');
+  inputsOK[0]=false;
+ } else{
+  document.getElementById('taskTitle').classList.remove('error_Input');
+  inputsOK[0]=true;
+}
+  checkAllRequiredData();
+} 
 
 
-//Felder prüfen ob Eingabe erfolgte mit QuerySelector
-function requiredInputAddTask() {
-  document.querySelectorAll(".input-field").forEach(input => {
-    input.addEventListener("blur", function () {
-      let errorMsg = this.nextElementSibling;
-      if (this.value.trim() === "") {
-        this.classList.add('error_Msg_Input')
-      // errorMsg.textContent = "This field is required";
-      //  console.log("Keine Eingabe");
-      } else {
-        if (this.type === "date" && !correctDateInput(this.value)) {
-          console.log("Datum falsch");
-          errorMsg.textContent = "no valid date";
-          this.classList.add('error_Msg_Input')
-        } else {
-          console.log("OK Eingabe");
-          // this.classList.remove('error_Msg_Input')
-          // errorMsg.textContent = "\u00A0";
-        }
-      }
-    })
-  })
+function requiredInputDate(){
+ let entry = document.getElementById('taskDate').value;
+ let date = new Date(entry);
+ let today = new Date(entry);
+ if (date instanceof Date && !isNaN(date)) {
+  let today = new Date();
+  if (date > today) {
+      document.getElementById('taskDate').classList.remove('error_Input');
+      inputsOK[1]=true;
+  } else {
+      document.getElementById('taskDate').classList.add('error_Input');
+      inputsOK[1]=false;
+  }
+} else {
+   document.getElementById('taskDate').classList.add('error_Input');
+  inputsOK[1]=false;
+}
+checkAllRequiredData();
 }
 
 
-function focusOnRequiredFields() {
-  document.querySelectorAll(".input-field").forEach(event => {
-    event.addEventListener("focus", function () {
-      document.querySelectorAll(".error_Field").forEach(event => {
-        event.textContent = "\u00A0";
-      });
-    })
-  });
-}
+ function requiredInputCategory(){
+  let entry = document.getElementById('taskCatergory').value;
+    if(entry ===""){
+    inputsOK[2]=false;  
+  }else{
+   inputsOK[2]=true
+   }
+   checkAllRequiredData();
+   }
 
 
-function correctDateInput(dateString) {
-  let date = new Date(dateString);
-  let year = date.getFullYear();
-  if (year.toString().length > 4) {
-  }
-  else if (year < 2025) {
-    return false;
-  }
-  else {
-    return true;
-  }
+
+function checkAllRequiredData(){
+  if (inputsOK.every(value => value)) {
+      document.getElementById('btnCreateTask').style.pointerEvents = 'auto'; 
+      document.getElementById('btnCreateTask').style.opacity = '1';      
+} else {
+      document.getElementById('btnCreateTask').style.pointerEvents = 'none'; 
+      document.getElementById('btnCreateTask').style.opacity = '0.5'
+    }
 }
 
 
@@ -241,7 +247,6 @@ function taskContactFilterList() {
 
 
 function contactCheckOKinArray() {
-  console.log("Mache Hacken");
   selectedTaskContacts = [];
   document.querySelectorAll(".contact_Label_Item").forEach((entry, contactID) => {
     let checkbox = entry.querySelector("input[type='checkbox']")
@@ -258,25 +263,18 @@ function contactCheckOKinArray() {
 
 
 async function checkInputData(template) {
-  let mandatoryFields = document.querySelectorAll('.input-field');
-  mandatoryFields.forEach(field => {
-    if (field.value.trim() == "") {
-      field.classList.add('error_Msg_Input');
-      return;
-    } else {
-      pushTaskToServer();
-      setTimeout(() =>{
-        loadTaskData();
-      },200);
-      timePopUp(2000);
-      addTaskClear();
-      if (template == "overlay") {
+       pushTaskToServer();
+        timePopUp(2000);
+       addTaskClear();
+       inputsOK=[false,false,false];
+        if (template == "overlay") {
+        setTimeout(() =>{
+          loadTaskData();
+          },200);
         closeOverlay('addTask_overlay')
       }
     }
-  });
-}
-
+ 
 
 function timePopUp(duration) {
   let notification = document.getElementById('notificationFinish');
@@ -359,6 +357,7 @@ function addTaskClear() {
   taskSubTaskList = [];
   subTaskClose();
   subTaskListRender();
+  checkAllRequiredData();
 
 }
 

@@ -4,7 +4,6 @@
     }
 
 
-
 h2 {
     font-size: 18px;
 }
@@ -34,23 +33,28 @@ h2 {
     }
 }
 
+
 .prio_img {
     width: 16px;
     height: 10px;
 }
+
 
 hr {
     margin-left: 30px;
     margin-right: 30px;
 }
 
+
 .addTask_Title {
     margin-left: 5%;
 }
 
+
 .section_left {
     margin-left: 5%;
 }
+
 
 .subtask_list {
     max-height: 60px;
@@ -63,6 +67,8 @@ hr {
 
 
 }
+
+
 
 
 @media (max-width: 837px) {
@@ -233,6 +239,7 @@ hr {
         display: none
     }
 
+    
     .button_bottom_task_mobile {
         display: flex;
         margin-top: 10px;
@@ -254,6 +261,7 @@ hr {
 
         }
     }
+
 
     .input_field_catergory {
         margin-bottom: 10px;

@@ -1,25 +1,19 @@
 * {
     margin: 0;
-  }
-
-
-.close_btn_overlay{
-    width: 14px;
-    height: 14px;
 }
 
 
-.section_AddTask{
+.section_AddTask {
     display: flex;
     flex-direction: row;
-}   
+}
+
 
 .addTask_Title {
     height: 73px;
     width: 278px;
     font-size: 61px;
     font-weight: 700;
-
 }
 
 
@@ -38,38 +32,32 @@ span {
     height: 24px;
     font-size: 20px;
     font-weight: 400;
-   
-} 
+}
 
 
 .input_title {
     display: flex;
-    height: 48px;
     border-radius: 10px;
     border: 1px solid;
     padding: 12px 16px 12px 16px;
     gap: 10px;
     font-size: 20px;
     font-weight: 400;
-   
 }
 
 
 .div_input_title {
-    height: 64px;
     width: auto;
     display: flex;
     gap: 4px;
 }
 
 
-/*------- linke Sectiom--------*/
 .section_left {
-display: flex;
-flex-direction: column;
-margin-left: 40px;
-margin-top: 80px;
-
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+    margin-top: 80px;
 }
 
 
@@ -82,22 +70,40 @@ margin-top: 80px;
 }
 
 
+.textarea_description {
+    textarea {
+        width: 100%;
+        height: 180px;
+    }
+}
+
+
+.textarea-icon {
+    height: 18.9px;
+    width: 18.0px;
+    right: 5px;
+    top: 262px;
+}
+
+
 .section_description {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin-top: 20px;
+
     span {
         font-weight: 400;
         font-size: 20px;
     }
 }
 
+
 .textarea_description {
     display: flex;
     gap: 4px;
     width: 440px;
     height: 136px;
+
     textarea {
         display: flex;
         resize: none;
@@ -115,7 +121,6 @@ margin-top: 80px;
 }
 
 
-
 .section_assigned {
     display: flex;
     flex-direction: column;
@@ -123,60 +128,55 @@ margin-top: 80px;
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
-    margin-top: 40px;
 }
-
 
 
 .assigned_title {
     height: 24px;
     width: 112px;
-   
 }
 
 
-.task_input_section{
+.task_input_section {
     display: flex;
-    align-items: flex-end; 
+    align-items: flex-end;
     border: 1px solid #ccc;
     border-radius: 10px;
     padding: 8px;
-    gap: 8px; 
+    gap: 8px;
     max-width: 100%;
     height: 54px;
     box-sizing: border-box;
-   
 }
 
 
-.task_input_section img{
-    margin-left: -50px; 
+.task_input_section img {
+    margin-left: -50px;
     margin-left: 20px;
 }
 
 
-.task_Contact_dropdown{
+.task_Contact_dropdown {
     position: relative;
     display: inline-block;
     width: 100%;
 }
 
 
-.task_input_section{
+.task_input_section {
     display: flex;
     align-items: center;
     width: 100%;
 }
 
 
-.task_dropdown_input{
+.task_dropdown_input {
     flex: 1;
-    border:none ;
+    border: none;
     outline: none;
-    font-size:20px ;
+    font-size: 20px;
     background: transparent;
- }
-
+}
 
 
 .task_dropdown_content {
@@ -191,18 +191,18 @@ margin-top: 80px;
 }
 
 
-.task_dropdown_list{
+.task_dropdown_list {
     width: 100%;
 }
 
 
-.contact_Label_Item{
+.contact_Label_Item {
     display: flex;
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
     font-size: 18px;
- }
+}
 
 
 .task_dropdown_list label {
@@ -211,8 +211,8 @@ margin-top: 80px;
     gap: 20px;
     align-items: center;
     width: 100%;
-     padding: 8px 12px;
-     cursor: pointer;
+    padding: 8px 12px;
+    cursor: pointer;
 }
 
 
@@ -221,7 +221,7 @@ margin-top: 80px;
 }
 
 
-.contact_Label_Item input{
+.contact_Label_Item input {
     width: 16px;
     height: 16px;
     display: flex;
@@ -229,24 +229,20 @@ margin-top: 80px;
 }
 
 
-.initial_Letters_Contact{
-display: flex;
-align-items: center;
-justify-content: center;
-font-size:12px ;
-font-weight: 400;
-width: 42px;
-height:42px;
-border-radius: 45px;
-border-color:white;
-border-style: solid;
-border-width: 0.5px;
-color: white;
+.initial_Letters_Contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 400;
+    width: 42px;
+    height: 42px;
+    border-radius: 45px;
+    border-color: white;
+    border-style: solid;
+    border-width: 0.5px;
+    color: white;
 }
-
-
-
-/*---rechte Section----*/
 
 
 .section_right {
@@ -259,20 +255,38 @@ color: white;
     font-size: 20px;
 }
 
+
 .section_date_div {
     display: flex;
     gap: 4px;
     flex-direction: column;
+    margin-top: 20px;
 }
 
+
+.task_Date_Input_Div {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+
 .date_input {
-    background-size: 20px;
-    border: 1px solid;
-    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    width: 100%;
     font-size: 20px;
     line-height: 24px;
-    margin-right: -15px;
-  }
+    height: 48px;
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: black;
+    border-radius: 8px;
+    padding-left: 10px;
+    padding-right: 40px;
+    margin-right: -50px;
+}
+
 
 .date_input::-webkit-calendar-picker-indicator {
     display: none;
@@ -285,16 +299,19 @@ color: white;
 }
 
 
+.date_icon_Edit {
+    width: 24px;
+    height: 24px;
+    margin-right: 30px;
+}
+
+
 .section_prio {
     display: flex;
     flex-direction: column;
     gap: 8px;
     height: 88px;
-    width: 100%;
-    span {
-        color: black;
-    }
-    margin-top: 23px;
+    margin-top: 20px;
 }
 
 
@@ -324,10 +341,12 @@ color: white;
     display: flex;
     gap: 8px;
     flex-direction: column;
+
     span {
         width: 98px;
         height: 24px;
     }
+
     select {
         height: 48px;
         width: 440px;
@@ -336,16 +355,14 @@ color: white;
         line-height: 24px;
         border-color: #D1D1D1;
         border-radius: 10px;
-   } 
+    }
 }
 
 
 .section_Subtask {
     display: flex;
     flex-direction: column;
-
     gap: 8px;
-   
 }
 
 
@@ -355,16 +372,17 @@ color: white;
     height: 50px;
 }
 
-  .input_subtasks {
+
+.input_subtasks {
     height: 40px;
     font-size: 20px;
     border: 1px solid #ccc;
-    border-radius: 10px;   
+    border-radius: 10px;
     width: 100%;
+}
 
- }
 
- .add_subtasks_new{
+.add_subtasks_new {
     display: flex;
     margin-left: -30px;
     margin-right: -45px;
@@ -373,15 +391,15 @@ color: white;
     width: 14px;
     height: 14px;
     cursor: pointer;
-
 }
 
 
 .add_subtasks {
+    display: flex;
     margin-left: -75px;
     margin-right: -80px;
     padding-right: 30px;
-    padding-top:15px;
+    padding-top: 15px;
     width: 14px;
     height: 14px;
     cursor: pointer;
@@ -395,8 +413,8 @@ color: white;
 
 .sub_Task_Edit_Iocn {
     display: flex;
-    gap:10px;
-    margin-right: 30px; 
+    gap: 10px;
+    margin-right: 30px;
 }
 
 
@@ -430,13 +448,13 @@ color: white;
 }
 
 
-.initiale_Icon_ListEdit{
+.initiale_Icon_ListEdit {
     display: none;
     align-items: center;
     justify-content: flex-start;
-    margin-top: -25px;
+    margin-top: -10px;
     margin-left: 15px;
-  }
+}
 
 
 .required_text {
@@ -460,41 +478,39 @@ textarea:hover {
 
 
 .subtask_list {
-  display: flex;
-  flex-direction: column;
- max-width: 96%;
- 
-  max-height: 130px;
-  overflow-y:scroll;
-  overflow-x:hidden;
- }
-
-
-.button_bottom_task{
-    position: relative;
-    top: 270px;
-    left:133px;   
+    display: flex;
+    flex-direction: column;
+    max-width: 96%;
+    max-height: 130px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
+
+.button_bottom_task {
+    position: relative;
+    top: 270px;
+    left: 133px;
+}
 
 
 .sub_task_item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px;  
-    width: 90%;  
+    padding: 10px;
 }
 
 
 .sublist_text {
     display: flex;
     align-items: center;
-    gap: 10px; /* Abstand zwischen Punkt und Name */
+    gap: 10px;
+    /* Abstand zwischen Punkt und Name */
 }
 
 
-.sublist_text span{
+.sublist_text span {
     font-size: 16px;
 }
 
@@ -521,6 +537,7 @@ textarea:hover {
     opacity: 0.7;
 }
 
+
 .btn_div {
     display: flex;
     justify-content: flex-end;
@@ -543,6 +560,7 @@ textarea:hover {
     border: 1px solid;
     box-shadow: rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.3s ease, transform 0.2s ease;
+
     img {
         background-color: #2A3647;
     }
@@ -551,18 +569,19 @@ textarea:hover {
 
 .button_Ok:hover {
     background-color: #29ABE2;
+
     img {
         background-color: #29ABE2;
     }
 }
 
 
-.ele_hide{
+.ele_hide {
     display: none;
 }
 
 
-.ele_show{
+.ele_show {
     display: flex;
 }
 
@@ -576,7 +595,7 @@ textarea:hover {
 .error_Field {
     font-size: 10px;
     color: red;
-    margin-top: -3px;   
+    margin-top: -3px;
 }
 
 
@@ -590,44 +609,39 @@ textarea:hover {
 }
 
 
-.message_Finish{
-display: none;
-align-items: center;
-justify-content: center;
-position: fixed;
-top: 50%;
-left: 50%;
-transform: translate(-50%,-50%);
-width: 300px;
-height: 60px;
-background-color: #2A3647;
-color: white;
-border-radius: 16px;
-margin: 0;
-font-size: 20px;
-font-weight: 400;
+.message_Finish {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 60px;
+    background-color: #2A3647;
+    color: white;
+    border-radius: 16px;
+    margin: 0;
+    font-size: 20px;
+    font-weight: 400;
 }
 
 
-.message_Finish_contents{
+.message_Finish_contents {
     display: flex;
     align-items: center;
     gap: 30px;
-    
+
 }
 
 
-.message_Finish_contents img{
+.message_Finish_contents img {
     height: 30px;
     width: 30px;
 }
 
 
-.icon_List_hide{
+.icon_List_hide {
     display: flex;
 }
-
-
-
-
-
