@@ -108,11 +108,15 @@
         }
     }
 
+    .contact_Card_Input_Frame_one {
+        width: 300px;
+    }
+
     .contact_Card_Input {
         width: 224px;
     }
 
-    .pic-edit {
+    .pic_edit {
         left: 100px;
     }
 
@@ -125,6 +129,6 @@
     }
 
     .contact_Card_abbreviation_Frame {
-        gap: 50px;
+        gap: 20px;
     }
 }

@@ -93,6 +93,7 @@ function closeContactBigMiddle() {
   if (contactMiddle) {
     contactMiddle.style.display = "none";
   }
+ 
 }
 
 
@@ -212,6 +213,8 @@ function resetPicture() {
 
 
 function openContactBig() {
+  let backgroundDiv = document.getElementById('background_card');
+ backgroundDiv.classList.add('card_contact_background');
   document.getElementById('content-card-big').style.display = 'flex';
   if (window.innerWidth <= 1000) {
     document.querySelector('.card_contact').classList.add('show');
@@ -222,6 +225,8 @@ function openContactBig() {
 
 function closeContactBig() {
   document.getElementById('content-card-big').style.display = 'none';
+  let backgroundDiv = document.getElementById('background_card');
+  backgroundDiv.classList.remove('card_contact_background');
 }
 
 
@@ -249,7 +254,7 @@ function validateInputs(email) {
 function validateName() {
   let nameInput = document.getElementById('name_input');
   const isValid = nameInput.value.trim() !== "";
-  document.getElementById('name_error').textContent = isValid ? "" : "Bitte einen Namen eingeben!";
+  document.getElementById('name_error').textContent = isValid ? "" : "Please enter a name!";
   nameInput.classList.toggle("input-error", !isValid);
   return isValid;
 }
@@ -257,7 +262,7 @@ function validateName() {
 function validateEmailSync(email) {
   let emailInput = document.getElementById('email_input');
   if (email.trim() === "") {
-    showError(emailInput, "Bitte eine E-Mail eingeben!");
+    showError(emailInput, "Plese enter a email!");
     return false;
   }
   let firstLetter = email.charAt(0).toUpperCase();
@@ -265,7 +270,7 @@ function validateEmailSync(email) {
   let group = contactsData[firstLetter] || {};
   let exists = Object.values(group).some(c => c.email.toLowerCase() === email.toLowerCase());
   if (exists) {
-    showError(emailInput, "Diese E-Mail existiert bereits!");
+    showError(emailInput, "This email already exists!");
     return false;
   }
   clearError(emailInput);
@@ -277,7 +282,7 @@ function validateTelInput() {
   const error = document.getElementById("tel_error");
   const value = input.value.trim();
   const isValid = value !== "" && /^[0-9]+$/.test(value);
-  error.textContent = isValid ? "" : (value === "" ? "Bitte eine Telefonnummer eingeben!" : "Nur Zahlen sind erlaubt!");
+  error.textContent = isValid ? "" : (value === "" ? "Please enter a phone number!" : "Only numbers are allowed!");
   input.classList.toggle("input-error", !isValid);
   return isValid;
 }

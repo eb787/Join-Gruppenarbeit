@@ -36,9 +36,8 @@ function collectContactData() {
 
 async function addContact() {
     let newContact = collectContactData();
-    let nameInput = document.getElementById('name_input');
-    if (!validateName(nameInput) || !(await validateEmail(newContact.email))) return;
-    let firstLetter = getFirstLetter(newContact.name);
+    const email = document.getElementById('email_input').value;
+    if (!validateInputs(email)) return;    let firstLetter = getFirstLetter(newContact.name);
     let contactsGroup = contactsData[firstLetter] || {};
     let newId = Object.keys(contactsGroup).length;
     contactsGroup[newId] = newContact;
@@ -78,6 +77,7 @@ function generateFullContactList(contacts, userContainer) {
 
 
 function clearInputsAndClose() {
+    
     ["name_input", "email_input", "tel_input"].forEach(id => document.getElementById(id).value = "");
     closeContactBig();
     resetPicture()
@@ -115,16 +115,13 @@ async function deleteContact(contactsId, firstLetter) {
     try {
       if (!contactsData?.[firstLetter]?.[contactsId]) return console.error("Kontakt nicht gefunden.");
       delete contactsData[firstLetter][contactsId];
-  
       let updated = {}, i = 0;
       for (let id in contactsData[firstLetter]) updated[i++] = contactsData[firstLetter][id];
       await postData(`/contacts/${firstLetter}`, updated);
       globalIndex = i; saveGlobalIndex();
-  
       document.getElementById(`contact-card-A-0`)?.remove();
       let section = document.getElementById(`contact-section-${firstLetter}`);
       if (section && !document.querySelectorAll(`[data-letter="${firstLetter}"] .contact-card`).length) section.remove();
-  
       setTimeout(() => location.reload(), 100);
       closeContactBigMiddle();
     } catch (e) { console.error("Fehler beim Löschen des Kontakts:", e); }

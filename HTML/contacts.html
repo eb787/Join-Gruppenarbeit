@@ -27,7 +27,7 @@
 </head>
 
 <body onload=" renderInitials(); getUsersList()">
-    <div class="full_content">
+    <div class="full_content" >
         <nav class="nav mobile_display_none">
             <div class="nav-icon-capa2">
                 <img src="../assets/icons/capa_2.svg">
@@ -137,6 +137,7 @@
 
 
                     <!--  CSS Datei contactCarrd.css    sichtbar mit flex-->
+                    <div id="background_card" >
 
                     <div class="card_contact" id="content-card-big">
                         <div class="contact_Card_Frame" id="headline">
@@ -170,7 +171,7 @@
                                         <input type="tel" placeholder="Phone" id="tel_input" required
                                             oninput="updateCancelButton()"  >
                                         <img src="../assets/icons/call.svg">
-                                        <span id="tel_error" class="error_message" style="display: none;">Bitte nur Zahlen eingeben!</span>
+                                        <span id="tel_error" class="error_message"></span>
                                     </div>
                                     <div class="contact_Card_button">
                                         <button class="button_create_contact_mobile" onclick="addContact()"
@@ -215,6 +216,7 @@
                         <img src="../assets/icons/mobile_current_contact.svg">
                     </div>
         </section>
+    </div>
     </div>
    
 
