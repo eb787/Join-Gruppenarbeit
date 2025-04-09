@@ -1,4 +1,4 @@
-//const Base_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/";
+const Base_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/";
 
 /**
  * This function is used to authenticate the user during login
@@ -13,41 +13,14 @@ async function userLogin() {
     resetErrorMessage(errorMessage);
 
     if (!email || !password) return showErrorMessage(errorMessage, "Please fill in all fields.");
+
     const userData = await checkIfContactExists(email);
     if (!userData) return showErrorMessage(errorMessage, "User not found.");
     if (userData.password !== password) return showErrorMessage(errorMessage, "Incorrect password.");
     await createUserFolder(userData);
-    await addContactLogin(userData);
     localStorage.setItem('userLoggedIn', 'true');
     localStorage.setItem('greetingShown', 'false');
     window.location.href = "./HTML/summary.html";
-
-}
-
-async function addContactLogin(userData = null) {
-    let newContact = userData ? {
-        name: userData.name || "No Name",
-        email: userData.email,
-        number: userData.phone || "",
-        color: globalIndex % contactColorArray.length
-    } : collectContactData();
-
-    globalIndex++;
-    saveGlobalIndex();
-    let contactsData = await getData("/contacts");
-
-    let firstLetter = getFirstLetter(newContact.name);
-    let contactsGroup = contactsData[firstLetter] || {};
-    let newId = Object.keys(contactsGroup).length;
-
-    contactsGroup[newId] = newContact;
-    await postData(`/contacts/${firstLetter}`, contactsGroup);
-
-    if (!userData) {
-        clearInputsAndClose(); 
-        index = newId;
-        getUsersList();
-    }
 }
 
 
