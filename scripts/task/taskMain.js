@@ -12,6 +12,10 @@ taskContacteArray
 
 window.onresize = showHelpIconMobile;
 
+
+/**
+ * start function of addtask
+ */
 function init() {
   startAddTask();
   loadDataFirebase();
@@ -21,9 +25,13 @@ function init() {
 }
 
 
+/**
+ * function that displays the plus in subtask
+ */
 function startAddTask() {
   document.getElementById('subTaskAddIcon').classList.remove('ele_hide')
 }
+
 
 /**
  * This function logs out the user by removing the 'userLoggedIn' flag from localStorage
@@ -48,10 +56,11 @@ function showHelpIconMobile() {
 }
 
 
-
+/**
+ * function checks the correct input in the field title
+ */
 function requiredInputTitle(){
 let entry = document.getElementById('taskTitle').value;
-
 if (entry.trim() ===""){
   document.getElementById('taskTitle').classList.add('error_Input');
   inputsOK[0]=false;
@@ -62,7 +71,9 @@ if (entry.trim() ===""){
   checkAllRequiredData();
 } 
 
-
+/**
+ * function checks the correct input in the field date
+ */
 function requiredInputDate(){
  let entry = document.getElementById('taskDate').value;
  let date = new Date(entry);
@@ -84,6 +95,9 @@ checkAllRequiredData();
 }
 
 
+/**
+ * function checks the correct input in the field Catergory
+ */
  function requiredInputCategory(){
   let entry = document.getElementById('taskCatergory').value;
     if(entry ===""){
@@ -95,7 +109,9 @@ checkAllRequiredData();
    }
 
 
-
+/**
+ * function checks whether the entry in all three mandatory fields is correct
+ */
 function checkAllRequiredData(){
   if (inputsOK.every(value => value)) {
       document.getElementById('btnCreateTask').style.pointerEvents = 'auto'; 
@@ -107,6 +123,9 @@ function checkAllRequiredData(){
 }
 
 
+/**
+ * function opens datepicker
+ */
 function openDatePicker() {
   let dateInput = document.getElementById('taskDate');
   if (dateInput.showPicker) {
@@ -117,7 +136,10 @@ function openDatePicker() {
   }
 }
 
-
+/**
+ * function controls the priority option
+ * @param {String} btnPrio function controls the priority option
+ */
 function btnPrioSelect(btnPrio) {
   taskPrioSelect = "";
   document.querySelectorAll(".prio_img").forEach(el => {
@@ -141,7 +163,12 @@ function btnPrioSelect(btnPrio) {
   }
 }
 
-
+/**
+ * function controls PrioButton color
+ * @param {String} auswahl selected button
+ * @param {String} btnColor color of the button background
+ * @param {Number} id 
+ */
 function btnPrioBtnSelect(auswahl, btnColor, id) {
   Object.assign(document.getElementsByClassName(auswahl)[0].style, {
     backgroundColor: btnColor,
@@ -151,6 +178,10 @@ function btnPrioBtnSelect(auswahl, btnColor, id) {
 }
 
 
+/**
+ * function opens the list of SubTask
+ * @param {Boolean} flag status of the list
+ */
 function subTaskInputCheck(flag) {
   let subTaskInput = document.getElementById('inputSubtask')
   if (flag) {
@@ -167,6 +198,9 @@ function subTaskInputCheck(flag) {
 }
 
 
+/**
+ * function closes the subtask list
+ */
 function subTaskClose() {
   document.getElementById('subTaskAddIcon').classList.remove('ele_hide')
   document.getElementById('subTaskEditIocn').classList.add('ele_hide')
@@ -174,6 +208,9 @@ function subTaskClose() {
 }
 
 
+/**
+ * function to create a new subtask
+ */
 function taskCreateTask() {
   let element = document.getElementById('inputSubtask');
   contents = element.value;
@@ -189,7 +226,10 @@ function taskCreateTask() {
   subTaskListRender();
 }
 
-
+/**
+ * function for processing a subtask
+ * @param {Nummber} index position in the array
+ */
 function editSubTask(index) {
   let element = document.getElementById('inputSubtask');
   element.value = taskSubTaskList[index];
@@ -200,17 +240,29 @@ function editSubTask(index) {
 }
 
 
+/**
+ * function to delete a subtask
+ * @param {Nummber} index position in the array
+ */
 function deleteSubTask(index) {
   taskSubTaskList.splice(index, 1);
   subTaskListRender();
 }
 
-
+/**
+ * function to write the subtask into the array
+ * @param {String} taskData Contents of the subtask
+ */
 function taskReadinArrayTask(taskData) {
   taskId = Object.values(taskData).length;
 }
 
 
+/**
+ * function writes the contacts into the array for the list
+ * 
+ * @param {*} DataContact data from FirebaseDB
+ */
 function taskReadinArrayContact(DataContact) {
   let = index = 0;
   document.getElementById('taskDropDownList').innerHTML = "";
@@ -226,12 +278,18 @@ function taskReadinArrayContact(DataContact) {
 }
 
 
+/**
+ * function to open the contact list
+ */
 function taskContactListDrobdown() {
   document.getElementById('taskContactDrowdownMenue').classList.toggle('ele_show');
   document.getElementById('initialeIconList').classList.toggle('icon_List_hide')
 }
 
 
+/**
+ * function to write the contacts into the list
+ */
 function taskContactFilterList() {
   let input = document.getElementById("taskDropDownInput").value.toLowerCase();
   let entries = document.querySelectorAll(".contact_Label_Item");
@@ -246,6 +304,9 @@ function taskContactFilterList() {
 }
 
 
+/**
+ *function that checks whether a contact has been selected 
+ */
 function contactCheckOKinArray() {
   selectedTaskContacts = [];
   document.querySelectorAll(".contact_Label_Item").forEach((entry, contactID) => {
@@ -262,6 +323,10 @@ function contactCheckOKinArray() {
 }
 
 
+/**
+ * function to save the data
+ * @param {String} template from which input does the data come
+ */
 async function checkInputData(template) {
        pushTaskToServer();
         timePopUp(2000);
@@ -276,6 +341,10 @@ async function checkInputData(template) {
     }
  
 
+ /**
+  * function to display the popup data is saved
+  * @param {Number} duration time how long the popup is visible
+  */   
 function timePopUp(duration) {
   let notification = document.getElementById('notificationFinish');
   notification.style.display = "flex";
@@ -285,6 +354,9 @@ function timePopUp(duration) {
 }
 
 
+/**
+ * function to collect the data which is then stored in the db
+ */
 function collectData() {
   currentTaskAdd = {
     title: document.getElementById('taskTitle').value,
@@ -302,7 +374,11 @@ function collectData() {
   }
 }
 
-
+/**
+ * function to convert the date
+ * @param {String} dateOld date being converted
+ * @returns 
+ */
 function dateConversion(dateOld) {
   let date = new Date(dateOld);
   let day = String(date.getDate()).padStart(2, '0'); 
@@ -311,7 +387,11 @@ function dateConversion(dateOld) {
   return `${day}/${month}/${year}`;
 }
 
-
+/**
+ * function to check which category was selected
+ * @param {Number} number 
+ * @returns 
+ */
 function taskCatergoryRetrieve(number) {
   if (number === "1") {
     return "Technical Task";
@@ -321,6 +401,10 @@ function taskCatergoryRetrieve(number) {
 }
 
 
+/**
+ * function to check in which card the data coming from OverlayTemplate is saved
+ * @returns 
+ */
 function statusSave() {
   let catergory = localStorage.getItem("category")
   if (catergory) {
@@ -332,6 +416,10 @@ function statusSave() {
 }
 
 
+/**
+ * function to read status todo
+ * @returns 
+ */
 function subTasksObjects() {
   let todoSatus = "todo";
   let subTasksTodo = {};
@@ -342,6 +430,9 @@ function subTasksObjects() {
 }
 
 
+/**
+ * function to delete the fields in the input mask
+ */
 function addTaskClear() {
   document.getElementById('taskTitle').value = "";
   document.getElementById('descriptionTask').value = "";
