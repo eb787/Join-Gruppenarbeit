@@ -27,13 +27,7 @@ function checkFormValidity() {
   const confirmPassword = document.getElementById("confirm_password").value;
   const checkbox = document.getElementById("privacy_checkbox").checked;
 
-  if (
-    name &&
-    email &&
-    password &&
-    confirmPassword &&
-    password === confirmPassword &&
-    checkbox
+  if (name && email && password && confirmPassword && password === confirmPassword && checkbox
   ) {
     document.getElementById("signup_btn").disabled = false;
   } else {
@@ -55,8 +49,7 @@ async function addUserSignUp() {
   if (!checkInput(name, email, password, confirmPassword, checkbox)) return;
   if (await checkIfContactExists(email)) {
     showErrorMessage("A contact with this email address already exists.");
-    return;
-  }
+    return;}
   await saveContact(email, name, password);
   document.getElementById("successful_signin_btn").style.display = "flex";
   resetFormFields();
@@ -173,24 +166,25 @@ function showErrorMessage(message) {
  * @param {string} iconId - The ID of the eye icon (for toggling visibility).
  * @param {string} lockIconId - The ID of the lock icon (shown when password is hidden).
  */
-document.addEventListener('DOMContentLoaded', function () {
-    function togglePasswordVisibility(fieldId, iconId, lockIconId) {
-        const passwordField = document.getElementById(fieldId);
-        const icon = document.getElementById(iconId);
-        const lockIcon = document.getElementById(lockIconId);
+document.addEventListener("DOMContentLoaded", function () {
+  function togglePasswordVisibility(fieldId, iconId, lockIconId) {
+    const passwordField = document.getElementById(fieldId);
+    const icon = document.getElementById(iconId);
+    const lockIcon = document.getElementById(lockIconId);
 
-        passwordField.addEventListener('input', function () {
-            const hasValue = passwordField.value.length > 0;
-            icon.style.display = hasValue ? "block" : "none";  
-            lockIcon.style.display = hasValue ? "none" : "block"; 
-        });
-        icon.addEventListener('click', function () {
-            const isVisible = passwordField.type === "text";
-            passwordField.type = isVisible ? "password" : "text";  
-            icon.src = isVisible ? "../assets/icons/visibility_off.svg" : "../assets/icons/visibility.svg";
-        });
-    }
-    togglePasswordVisibility('password', 'togglePasswordVisibility', 'togglePassword');
-    togglePasswordVisibility('confirm_password', 'toggleConfirmVisibility', 'toggleConfimrPassword');
+    passwordField.addEventListener("input", function () {
+      const hasValue = passwordField.value.length > 0;
+      icon.style.display = hasValue ? "block" : "none";
+      lockIcon.style.display = hasValue ? "none" : "block";
+    });
+    icon.addEventListener("click", function () {
+      const isVisible = passwordField.type === "text";
+      passwordField.type = isVisible ? "password" : "text";
+      icon.src = isVisible
+        ? "../assets/icons/visibility_off.svg"
+        : "../assets/icons/visibility.svg";
+    });
+  }
+  togglePasswordVisibility("password", "togglePasswordVisibility", "togglePassword");
+  togglePasswordVisibility("confirm_password", "toggleConfirmVisibility", "toggleConfimrPassword");
 });
-
