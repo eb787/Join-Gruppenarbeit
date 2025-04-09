@@ -207,16 +207,3 @@ function showAddTaskOverlay(category) {
         
     }    
 }
-
-
-/** 
- * This function shows the date in the correct way at the overlay on the board
- * @param {string} dateStr - This parameter indicates in which column the new task should appear
-*/
-function dateConversation(dateStr) {
-    let parts = dateStr.split("/");
-    let day = parts[0];
-    let month = parts[1];
-    let year = "20" + parts[2];
-    return `${year}-${month}-${day}`;
-}
