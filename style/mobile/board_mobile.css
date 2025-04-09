@@ -172,7 +172,15 @@
     }
     .div_category_menu {
         transition: all 250ms ease-in-out;
-        margin-left: 180px;
+    }
+    .bg_category {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 98;
+    }
+    .bg_category:hover {
+        cursor: pointer;
     }
     .category_menu{
         justify-content: space-evenly;
@@ -185,6 +193,9 @@
         background-color: rgba(42, 54, 71);
         border-radius: 0 20px 20px 20px;
         box-shadow: 0 0 5px 3px rgb(0, 0, 0, 0.04);
+    }
+    .category_menu:hover {
+        cursor: default;
     }
     .div_category_options{
         display: flex;

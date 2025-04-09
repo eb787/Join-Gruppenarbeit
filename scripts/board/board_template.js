@@ -3,7 +3,7 @@ function getExampleCard(index, layer) {
                 <div class="card_header">
                     <div id="category_${index}${layer}" class="task_category technical_task">${currentTasks[index].category}</div>
                     <div onclick="stopPropagation(event)" id="change_category_btn_${index}">
-                        <img onclick="openCategoryOverlay(${index})" id="change_category_icon_${index}" class="change_category_btn" src="..//assets/icons/change_category_icon.png" alt="change category">
+                        <img onclick="openCategoryOverlay(event, ${index})" id="change_category_icon_${index}" class="change_category_btn" src="..//assets/icons/change_category_icon.png" alt="change category">
                     </div>
                 </div>
                 <div>
@@ -139,28 +139,31 @@ function getContactIconOverlay(index, i) {
             </div>`
 }
 
-function getDragOptionsMobile() {
-    return  `<div class="div_category_menu">
+
+function getBgCategory() {
+    return  `<div onclick="closeCategoryOverlay()" class="bg_category d_none" id="bg_category"></div>`
+}
+
+function getDragOptionsMobile(index, x, y) {
+    return  `<div class="div_category_menu" style="position:absolute;top:${y}px;left:${x}px;">
                 <div class="category_menu">
                     <p class="category_menu_heading">Move to</p>
-                    <div class="div_category_options" id="div_category_options_todo">
-                        <img id="arrow_down_todo" src="..//assets/icons/arrow_downward.svg" alt="arrow downward">
-                        <img id="arrow_up_todo" class="d_none" src="..//assets/icons/arrow_upward.svg" alt="arrow upward">
+                    <div onclick="moveCard(${index},'toDo')" class="div_category_options" id="div_category_options_toDo">
+                        <img id="arrow_up_toDo_${index}" class="d_none" src="..//assets/icons/arrow_upward.svg" alt="arrow upward">
                         <p class="category_menu_text">To do</p>
                     </div>
-                    <div class="div_category_options" id="div_category_options_inProgress">
-                        <img id="arrow_down_inProgress" src="..//assets/icons/arrow_downward.svg" alt="arrow upward">
-                        <img id="arrow_up_inProgress" class="d_none" src="..//assets/icons/arrow_upward.svg" alt="arrow upward">
+                    <div onclick="moveCard(${index}, 'inProgress')" class="div_category_options" id="div_category_options_inProgress">
+                        <img id="arrow_down_inProgress_${index}" class="d_none" src="..//assets/icons/arrow_downward.svg" alt="arrow upward">
+                        <img id="arrow_up_inProgress_${index}" class="d_none" src="..//assets/icons/arrow_upward.svg" alt="arrow upward">
                         <p class="category_menu_text">In progress</p>
                     </div>
-                    <div class="div_category_options" id="div_category_options_awaitFeedback">
-                        <img id="arrow_down_awaitFeedback" src="..//assets/icons/arrow_downward.svg" alt="arrow upward">
-                        <img id="arrow_up_awaitFeedback" class="d_none" src="..//assets/icons/arrow_upward.svg" alt="arrow upward">
+                    <div onclick="moveCard(${index}, 'awaitFeedback')" class="div_category_options" id="div_category_options_awaitFeedback">
+                        <img id="arrow_down_awaitFeedback_${index}" class="d_none" src="..//assets/icons/arrow_downward.svg" alt="arrow upward">
+                        <img id="arrow_up_awaitFeedback_${index}" class="d_none" src="..//assets/icons/arrow_upward.svg" alt="arrow upward">
                         <p class="category_menu_text">Review</p>
                     </div>
-                    <div class="div_category_options" id="div_category_options_done">
-                        <img id="arrow_down_done" src="..//assets/icons/arrow_downward.svg" alt="arrow upward">
-                        <img id="arrow_up_done" class="d_none" src="..//assets/icons/arrow_upward.svg" alt="arrow upward">
+                    <div onclick="moveCard(${index}, 'done')" class="div_category_options" id="div_category_options_done">
+                        <img id="arrow_down_done_${index}" class="d_none" src="..//assets/icons/arrow_downward.svg" alt="arrow upward">
                         <p class="category_menu_text">Done</p>
                     </div>
                 </div>
@@ -168,7 +171,10 @@ function getDragOptionsMobile() {
 }
 
 
-// Ab hier Edit Task Template
+function getMobileDragger(index) {
+    return  	`<img onclick="openCategoryOverlay(${index})" id="change_category_icon_${index}" class="change_category_btn" src="..//assets/icons/change_category_icon.png" alt="change category">`
+}
+
 
 function editTaskTemplate(index) {
 
