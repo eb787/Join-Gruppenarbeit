@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join</title>
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.svg">
+    <link rel="stylesheet" href="../style/navbar.css">
+    <link rel="stylesheet" href="../style/buttons.css">
+    <link rel="stylesheet" href="../style/color.css">
+    <link rel="stylesheet" href="../style/fonts.css">
+    <link rel="stylesheet" href="../style/board.css">
+    <link rel="stylesheet" href="../style/contact/contact.css">
+    <link rel="stylesheet" href="../style/contact/contactCard.css">
+
+</head>
+
+<body>
+    <div class="full_content">
+        <nav class="nav">
+            <div class="nav-icon-capa2">
+                <img src="../assets/icons/capa 2.svg">
+            </div>
+
+            <div class="div_nav_icons">
+                <div class="navbar_icon">
+                    <img src="../assets/icons/summary.svg">
+                </div>
+                <div class="navbar_icon">
+                    <img src="../assets/icons/add_task.svg">
+                </div>
+                <div class="navbar_icon">
+                    <img src="../assets/icons/board.svg">
+                </div>
+                <div class="navbar_icon">
+                    <img src="../assets/icons/contacts.svg">
+                </div>
+            </div>
+            <div class="div_impressum">
+                <div class="nav_impressum">
+                    <img src="../assets/icons/privacy_policy.svg">
+                </div>
+                <div class="nav_impressum">
+                    <img src="../assets/icons/legal_notice.svg">
+                </div>
+            </div>
+        </nav>
+
+        <section class="content_right">
+
+            <div class="headline">
+                <span class="headline_title font20">Kanban Project Management Tool</span>
+                <div class="headline_logo_help">
+                    <img src="../assets/icons/help.svg" alt="">
+                </div>
+                <div class="headline_logo_user_sign_in">
+                </div>
+                <seperator class="navbar_seperator"></seperator>
+            </div>
+
+            <div class="main_contant">
+                <!--  CSS Datei contact.css-->
+                <div class="contact_Card">
+                    <div class="contact_List_Frame">
+                        <div class="contact_scroll">
+                            <div class="contac_List_Sec_Header">
+                                <button class="contact_Add_btn btn_hover_blue" onclick="">
+                                    <p>Add new Contact</p>
+                                    <img src="../assets/icons/person_add.svg">
+                                </button>
+                            </div>
+                            <div class="contact_Entry">
+                                <h2 class="contact_Register">A</h2>
+
+                                <!--Contact Card START-->
+                                <div class="contact_Line">
+                                    <hr>
+                                </div>
+                                <div class="contact_Detail_List">
+                                    <h4 class="contact_abbreviation">AM</h4>
+                                    <div>
+                                        <h2 class="contact_name">Anton Mayer</h2>
+                                        <h3 class="contact_mail  color_font">anton@gmail.com</h3>
+                                    </div>
+                                </div>
+
+                                <!--Contact Card ENDE-->
+
+                                <div class="contact_Line">
+                                    <hr>
+                                </div>
+                                <div class="contact_Detail_List">
+                                    <h4 class="contact_abbreviation">AM</h4>
+                                    <div>
+                                        <h2 class="contact_name">Anton Mayer</h2>
+                                        <h3 class="contact_mail  color_font">anton@gmail.com</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact_Detail">
+                        <div class="contact_Detail_Header">
+                            <p class="contact_header_1">Contacts</p>
+                            <div class="line_Vertikal"></div>
+                            <p class="contact_header_2">Better with a team</p>
+                        </div>
+                        <div class="contact_Detail_Frame">
+                            <h4 class="contact_Detail_abbreviation">AM</h4>
+                            <div class="contact_Detail_Name_Frame">
+                                <p3 class="contact_Detail_Name">Anton Mayer</p3>
+                                <div class="contact_Detail_Menu">
+                                    <span><img src="../assets/icons/edit.svg">Edit</span>
+                                    <span><img src="../assets/icons/delete.svg">Delete</span>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 class="contact_Detail_Info_Header">Contact Information</h2>
+                        <div class="contact_Detail_Info_Mail">
+                            <h3>Email</h3>
+                            <h3 class="color_font font_weight_400">anton@gmail.com</h3>
+                        </div>
+                        <div class="contact_Detail_Info_Phone">
+                            <h3>Phone</h3>
+                            <h3 class=" font_weight_400">+49 1111 111 11 1</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!--  CSS Datei contactCarrd.css    sichtbar mit flex-->
+
+                <div class="card_contact">
+                    <div class="contact_Card_Frame">
+                        <img src="../assets/icons/logocontact.svg">
+                        <p>Edit contact</p>
+                    </div>
+                    <div class="contact_Card_Input_Frame">
+                        <div class="contact_Card_Close_btn">
+                            <img class="contact_Card_Close_img" src="../assets/icons/close.svg">
+                        </div>
+                        <div class="contact_Card_abbreviation_Frame">
+                            <div class="contact_Card_abbreviation">
+                                <p>AM</p>
+                            </div>
+                            <div class="contact_Card_Input_Frame">
+                                <div class="contact_Card_Input">
+                                    <input type="text" placeholder="Name">
+                                    <img src="../assets/icons/person.svg">
+                                </div>
+                                <div class="contact_Card_Input">
+                                    <input type="email" placeholder="Email">
+                                    <img src="../assets/icons/mail.svg">
+                                </div>
+                                <div class="contact_Card_Input">
+                                    <input type="text" placeholder="Phone">
+                                    <img src="../assets/icons/call.svg">
+                                </div>
+                                <div class="contact_Card_button">
+                                    <button class="contact_Card_button1 btn_hover_white" onclick="">
+                                        <p>Delete</p>
+                                    </button>
+                                    <button class="contact_Card_button2 btn_hover_blue" onclick="">
+                                        <p>Save</p>
+                                        <img src="../assets/icons/check.svg">
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
