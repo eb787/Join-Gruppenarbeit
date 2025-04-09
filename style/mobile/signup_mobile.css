@@ -35,13 +35,13 @@
         background-position: 315px 11px;
     }
 
-    .input_pw[type=password]{
-        background-position: 315px 11px;
+    .eye-icon{
+        right: 17px;
     }
-
-    .input_pw[type=password]{
-        background-position: 315px 11px;
-    }
+  
+  .lock-icon{
+    right: 20px;
+  }
 }
 
 @media (max-width: 650px) {

@@ -111,10 +111,27 @@ body {
 }
 
 .input_pw[type=password] {
-    background-image: url(../assets/icons/lock.svg);
-    background-position: 359px 1px;
-    background-size: 17px;
-    background-position: 378px 12px;
+    background: none; 
+}
+
+.lock-icon {
+    position: absolute;
+    right: 27px;
+    top: 12px;
+    cursor: pointer;
+    display: block; 
+}
+
+.eye-icon {
+    position: absolute;
+    right: 27px;
+    top: 12px;
+    cursor: pointer;
+    display: none; 
+}
+
+.password-container {
+    position: relative;
 }
 
 .login_btns {

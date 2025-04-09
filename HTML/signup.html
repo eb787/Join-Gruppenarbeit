@@ -11,11 +11,10 @@
     <link rel="stylesheet" href="../style/navbar.css">
     <link rel="stylesheet" href="../style/buttons.css">
     <link rel="stylesheet" href="../style/color.css">
-    <link rel="stylesheet" href="../style/template.css">
     <link rel="stylesheet" href="../style/fonts.css">
     <link rel="stylesheet" href="../style/board.css">
     <link rel="stylesheet" href="../style/mobile/signup_mobile.css">
-    <script src="../scripts/signup/signup.js"></script>
+    
 </head>
 
 <body onload="enableSubmitButton()">
@@ -36,20 +35,29 @@
                     </div>
                 </div>
                 <div class="login_inputs no_padding">
-                    <input class="input_login input_name" id="name" type="text" placeholder="Name" required
-                        alt="mail icon">
-                    <input class="input_login input_mail" id="email" type="email" placeholder="Email" required
-                        alt="mail icon">
-                    <input class="input_login input_pw" id="password" type="password" placeholder="Password" required
-                        alt="mail icon">
-                    <input class="input_login input_pw" id="confirm_password" type="password"
-                        placeholder="Confirm Password" alt="mail icon">
+                    <input class="input_login input_name" id="name" type="text" placeholder="Name" required alt="mail icon">
+                    <input class="input_login input_mail" id="email" type="email" placeholder="Email" required alt="mail icon">
+                    
+                    <div class="password-container">
+                        <input class="input_login input_pw" id="password" type="password" placeholder="Password" required alt="lock icon">
+                        <img id="togglePassword" src="../assets/icons/lock.svg" alt="lock icon" class="lock-icon">
+                        <img id="togglePasswordVisibility" src="../assets/icons/visibility_off.svg" alt="eye icon" class="eye-icon">
+                    </div>
+                    
+                    <div class="password-container">
+                        <input class="input_login input_pw" id="confirm_password" type="password" placeholder="Confirm Password" required alt="lock icon">
+                        <img id="toggleConfimrPassword" src="../assets/icons/lock.svg" alt="lock icon" class="lock-icon">
+                        <img id="toggleConfirmVisibility" src="../assets/icons/visibility_off.svg" alt="eye icon" class="eye-icon">
+                    </div>
+                
                     <div class="privacy_check">
                         <input type="checkbox" id="privacy_checkbox" class="privacy_checkbox">
-                        <label for="privacy_checkbox" class="privacy_check_text">I accept the <a class="link_privacy"
-                                href="../HTML/guest_policy.html" target="_blank">Privacy Policy</a></label>
+                        <label for="privacy_checkbox" class="privacy_check_text">I accept the <a class="link_privacy" href="../HTML/guest_policy.html" target="_blank">Privacy Policy</a></label>
                     </div>
                 </div>
+                
+                
+
                 <div class="login_btns">
                     <button type="button"  onclick="addUserSignUp()" class="signup_btn" id="signup_btn">Sign up</button>
                 </div>
@@ -66,7 +74,7 @@
             Successfully</div>
 
     </div>
-
+    <script src="../scripts/signup/signup.js"></script>
 </body>
 
 </html>
