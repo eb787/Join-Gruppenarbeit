@@ -102,8 +102,10 @@ checkAllRequiredData();
   let entry = document.getElementById('taskCatergory').value;
     if(entry ===""){
     inputsOK[2]=false;  
+    document.getElementById('taskCatergory').classList.add('error_Input');
   }else{
    inputsOK[2]=true
+   document.getElementById('taskCatergory').classList.remove('error_Input');
    }
    checkAllRequiredData();
    }
