@@ -3,7 +3,7 @@ let oldPictureHTML = "";
 let activeContact = null;
 let allEmpty = true;
 
-
+  // Opens the detailed view of a contact when clicked.
 async function openContactBigMiddle(contactsId, letter) {
   let contactMiddle = getContactElement();
   if (!contactMiddle) return;
@@ -24,7 +24,7 @@ async function openContactBigMiddle(contactsId, letter) {
   }
 }
 
-
+  // Highlights the currently active contact when it's clicked.
 function highlightActiveContact(contactsId) {
   if (activeContact) {
     activeContact.style.backgroundColor = "";
@@ -39,20 +39,20 @@ function highlightActiveContact(contactsId) {
   checkScreenSize();
 }
 
-
+  // Retrieves the element for the contact details section.
 function getContactElement() {
   let contactMiddle = document.getElementById("contact-big-middle");
   if (!contactMiddle) console.error("Element mit ID 'contact-big-middle' nicht gefunden.");
   return contactMiddle;
 }
 
-
+  // Parses the contacts ID to get the first letter and contact index.
 function parseContactId(contactsId) {
   let [firstLetter, contactIndex] = contactsId.split("-");
   return { firstLetter, contactIndex };
 }
 
-
+  // Fetches the user data based on the first letter and contact index.
 async function fetchUser(firstLetter, contactIndex) {
   try {
     let contactsGroup = await getData(`/contacts/${firstLetter}`);
@@ -63,7 +63,7 @@ async function fetchUser(firstLetter, contactIndex) {
   }
 }
 
-
+  // Retrieves the color for a user based on their contact ID, and stores it in localStorage.
 function getUserColor(contactsId, letter) {
   let key = `contactColor_${letter}_${contactsId}`;
   let storedColor = localStorage.getItem(key);
@@ -77,17 +77,17 @@ function getUserColor(contactsId, letter) {
   }
 }
 
-
+  // Generates a hash code for a string.
 function hashCode(str) {
   return str.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
 }
 
-
+  // Renders the contact details into the contact detail section.
 function renderContact(contactMiddle, user, contactIndex, firstLetter, color) {
   contactMiddle.innerHTML = contactCardMiddle(user, contactIndex, firstLetter, color);
 }
 
-
+  // Closes the contact details section.
 function closeContactBigMiddle() {
   let contactMiddle = document.getElementById("contact-big-middle");
   if (contactMiddle) {
@@ -96,7 +96,7 @@ function closeContactBigMiddle() {
  
 }
 
-
+  // Opens the contact editing form with the current contact's data.
 async function editContact(contactsId, firstLetter, color) {
   openContactBig();
   closeWindowMobile();
@@ -116,7 +116,7 @@ async function editContact(contactsId, firstLetter, color) {
   }
 }
 
-
+  // Saves the edited contact data and updates the UI.
 async function saveEditedContact(contactsId, firstLetter) {
   const email = document.getElementById('email_input').value;
   if (!validateInputs(email)) return;
@@ -135,7 +135,7 @@ async function saveEditedContact(contactsId, firstLetter) {
   closeEditMobile();
 }
 
-
+  // Updates the contact's information in the UI after saving the edit.
 function updateContactUI(contactsId, updatedContact, letter) {
   let nameInputIdOne = document.getElementById(`contact_name_one_${contactsId}`);
   let emailInputId = document.getElementById(`contact_email_${contactsId}`);
@@ -146,7 +146,7 @@ function updateContactUI(contactsId, updatedContact, letter) {
   getUsersList()
 }
 
-
+  // Returns the initials of the contact's name.
 function getInitials(name) {
   let nameParts = name.trim().split(" ");
   let initials = nameParts[0].charAt(0).toUpperCase();
@@ -156,7 +156,7 @@ function getInitials(name) {
   return initials;
 }
 
-
+  // Disables the save button if required fields are not filled.
 function disabledButton() {
   let saveButton = document.getElementById('save-button');
   let nameInput = document.getElementById('name_input');
@@ -170,7 +170,7 @@ function disabledButton() {
   emailInput.addEventListener('input', disabledButton);
 }
 
-
+  // Returns the updated contact data.
 function getUpdatedContact(existingUser) {
   let color = existingUser?.color ?? (globalIndex % contactColorArray.length);
   return {
@@ -181,7 +181,7 @@ function getUpdatedContact(existingUser) {
   };
 }
 
-
+  // Updates the contact picture based on the contact's initials and color.
 function updatePicture(contact, color) {
   let contactPicture = document.getElementById('picture-edit');
   let oldPictures = document.getElementsByClassName('pic-edit');
@@ -199,7 +199,7 @@ function updatePicture(contact, color) {
   `;
 }
 
-
+  // Resets the contact picture to its original state.
 function resetPicture() {
   let contactPicture = document.getElementById('picture-edit');
   if (oldPictureHTML) {
@@ -211,25 +211,30 @@ function resetPicture() {
   }
 }
 
-
+  // Opens the contact detail modal.
 function openContactBig() {
   let backgroundDiv = document.getElementById('background_card');
- backgroundDiv.classList.add('card_contact_background');
-  document.getElementById('content-card-big').style.display = 'flex';
+  backgroundDiv.style.display = 'flex'; 
+  backgroundDiv.classList.add('card_contact_background');
+  document.getElementById('content-card-big').style.display = 'flex'; 
   if (window.innerWidth <= 1000) {
     document.querySelector('.card_contact').classList.add('show');
   }
   contactcardHeadline();
 }
 
-
-function closeContactBig() {
-  document.getElementById('content-card-big').style.display = 'none';
+  // Closes the contact detail modal.
+function closeContactBig(event = null) {
   let backgroundDiv = document.getElementById('background_card');
+  if (event) {
+    if (event.target.id !== 'background_card') return;
+  }
+  backgroundDiv.style.display = 'none';
   backgroundDiv.classList.remove('card_contact_background');
+  document.getElementById('content-card-big').style.display = 'none';
 }
 
-
+  // Updates the cancel button text and action based on whether the fields are filled or not.
 function updateCancelButton() {
   let inputs = document.querySelectorAll('#name_input, #email_input, #tel_input');
   let cancelButton = document.getElementById('cancel-button');
@@ -247,10 +252,12 @@ function updateCancelButton() {
   }
 }
 
+  // Validates the name, phone, and email inputs.
 function validateInputs(email) {
   return validateName() && validateTelInput() && validateEmailSync(email);
 }
 
+  // Validates the email input, ensuring it's not empty and unique.
 function validateName() {
   let nameInput = document.getElementById('name_input');
   const isValid = nameInput.value.trim() !== "";
@@ -259,6 +266,7 @@ function validateName() {
   return isValid;
 }
 
+  // Validates the email input, ensuring it's not empty and unique.
 function validateEmailSync(email) {
   let emailInput = document.getElementById('email_input');
   if (email.trim() === "") {
@@ -277,6 +285,7 @@ function validateEmailSync(email) {
   return true;
 }
 
+  // Validates the phone number input.
 function validateTelInput() {
   const input = document.getElementById("tel_input");
   const error = document.getElementById("tel_error");
@@ -287,30 +296,32 @@ function validateTelInput() {
   return isValid;
 }
 
+  // Displays an error message and highlights the input element with an error class.
 function showError(inputElement, message) {
   let errorElement = document.getElementById('email_error');
   errorElement.textContent = message;
   inputElement.classList.add("input-error");
 }
 
-
-function clearError(inputElement) {
+  // Clears the error message and removes the error highlight from the input element.
+  function clearError(inputElement) {
   let errorElement = document.getElementById('email_error');
   errorElement.textContent = "";
   inputElement.classList.remove("input-error");
 }
 
-function clearAllErrors() {
+  // Clears all input errors for name, email, and phone number fields.
+ function clearAllErrors() {
   ['name_input', 'email_input', 'tel_input'].forEach(id => clearError(document.getElementById(id)));
 }
 
-
+  // Closes the contact detail modal without saving any changes.
 function cancelStatus() {
   document.getElementById('content-card-big').style.display = 'none';;
 
 }
 
-
+  // Resets the input fields to be empty and restores the cancel button's original functionality.
 function deleteData() {
   let cancelButton = document.getElementById('cancel-button');
   document.getElementById('email_input').value = "";
@@ -320,7 +331,7 @@ function deleteData() {
   cancelButton.setAttribute("onclick", "cancelStatus()");
 }
 
-
+  // Displays a success alert and reloads the user list after an action (like saving).
 async function showAlertSuccess(currentLetter, index) {
   let mainDiv = document.getElementById('contact_Card');
   mainDiv.innerHTML += alertSuccess();
