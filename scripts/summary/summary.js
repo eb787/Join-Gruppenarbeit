@@ -9,8 +9,6 @@ async function fetchData() {
   let TaskResponse = await fetch(`${Base_URL}/tasks.json`);
   TaskResponse = await TaskResponse.json();
   currentTasks = Object.values(TaskResponse);
-
-  console.log(currentTasks);
   update();
 }
 
