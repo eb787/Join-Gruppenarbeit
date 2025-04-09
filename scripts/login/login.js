@@ -24,33 +24,6 @@ async function userLogin() {
 
 }
 
-async function addContactLogin(userData = null) {
-    let newContact = userData ? {
-        name: userData.name || "No Name",
-        email: userData.email,
-        number: userData.phone || "",
-        color: globalIndex % contactColorArray.length
-    } : collectContactData();
-
-    globalIndex++;
-    saveGlobalIndex();
-    let contactsData = await getData("/contacts");
-
-    let firstLetter = getFirstLetter(newContact.name);
-    let contactsGroup = contactsData[firstLetter] || {};
-    let newId = Object.keys(contactsGroup).length;
-
-    contactsGroup[newId] = newContact;
-    await postData(`/contacts/${firstLetter}`, contactsGroup);
-
-    if (!userData) {
-        clearInputsAndClose(); 
-        index = newId;
-        getUsersList();
-    }
-}
-
-
 /**
  * This function sets the greeting flag for the user
  * 

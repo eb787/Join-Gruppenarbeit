@@ -1,13 +1,35 @@
-const Base_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/"
+/** 
+ * Base URL for Firebase Realtime Database.
+ * @constant {string}
+ */
+const Base_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/";
+
+/**
+ * Key for storing global index in localStorage.
+ * @constant {string}
+ */
 const colorIndexKey = "globalIndex";
+
+/**
+ * Global index for assigning colors to contacts.
+ * @type {number}
+ */
 let globalIndex = parseInt(localStorage.getItem(colorIndexKey)) || 0;
 
-
+/**
+ * Saves the global index to localStorage.
+ */
 function saveGlobalIndex() {
     localStorage.setItem(colorIndexKey, globalIndex);
 }
 
-// Function to send data to the server using the PUT method.
+/**
+ * Sends data to the server using the PUT method.
+ * @async
+ * @param {string} path - The path in the database.
+ * @param {Object} data - The data to be sent.
+ * @returns {Promise<Object>} - The response from the server.
+ */
 async function postData(path = "", data = {}) {
     let response = await fetch(Base_URL + path + ".json", {
         method: "PUT",
@@ -19,7 +41,12 @@ async function postData(path = "", data = {}) {
     return await response.json();
 }
 
-// Function to get data from the server using the GET method.
+/**
+ * Retrieves data from the server using the GET method.
+ * @async
+ * @param {string} path - The path in the database.
+ * @returns {Promise<Object>} - The data retrieved from the server.
+ */
 async function getData(path = "") {
     let response = await fetch(`${Base_URL}${path}.json`, {
         method: "GET",
@@ -28,7 +55,10 @@ async function getData(path = "") {
     return await response.json();
 }
 
-// Function to collect the new contact data from input fields.
+/**
+ * Collects the new contact data from the input fields.
+ * @returns {Object} - The new contact object with name, email, number, and color.
+ */
 function collectContactData() {
     let color = globalIndex % contactColorArray.length;
     let newContact = {
@@ -42,53 +72,107 @@ function collectContactData() {
     return newContact;
 }
 
-// Function to add a new contact to the data and send it to the server.
+/**
+ * Adds a new contact to the database and updates the UI.
+ * @async
+ */
 async function addContact() {
     let newContact = collectContactData();
     const email = document.getElementById('email_input').value;
-    if (!validateInputs(email)) return;    let firstLetter = getFirstLetter(newContact.name);
+    if (!validateInputs(email)) return;
+    
+    let firstLetter = getFirstLetter(newContact.name);
     let contactsGroup = contactsData[firstLetter] || {};
     let newId = Object.keys(contactsGroup).length;
     contactsGroup[newId] = newContact;
+    
     await postData(`/contacts/${firstLetter}`, contactsGroup);
+    
     clearInputsAndClose();
     index = newId;
     let contactsId = `${firstLetter}-${newId}`;
-     getUsersList();
-     openContactBigMiddle(contactsId);
-     showAlertSuccess(firstLetter, index); 
+    getUsersList();
+    openContactBigMiddle(contactsId);
+    showAlertSuccess(firstLetter, index);
 }
 
-// Function to get the list of contacts from the server and update the UI.
+/**
+ * Adds a new contact for login data and sends it to the server.
+ * @async
+ * @param {Object|null} userData - The user data to add. If null, data will be collected from the input fields.
+ */
+async function addContactLogin(userData = null) {
+    let newContact = userData ? {
+        name: userData.name || "No Name",
+        email: userData.email,
+        number: userData.phone || "",
+        color: globalIndex % contactColorArray.length
+    } : collectContactData();
+
+    globalIndex++;
+    saveGlobalIndex();
+    let contactsData = await getData("/contacts");
+    let firstLetter = getFirstLetter(newContact.name);
+    let contactsGroup = contactsData[firstLetter] || {};
+    let newId = Object.keys(contactsGroup).length;
+
+    contactsGroup[newId] = newContact;
+    await postData(`/contacts/${firstLetter}`, contactsGroup);
+
+    if (!userData) {
+        clearInputsAndClose();
+        index = newId;
+        getUsersList();
+    }
+}
+
+/**
+ * Retrieves the list of contacts from the server and updates the UI.
+ * @async
+ */
 async function getUsersList() {
     let userContainer = document.getElementById("user-list");
     userContainer.innerHTML = "";
     contactsData = await getData("/contacts");
     generateFullContactList(contactsData, userContainer);
     showHelpIconMobile();
-
 }
 
-// Function to generate the full list of contacts by sorting and displaying them.
+/**
+ * Generates the full list of contacts, sorted by their first letter.
+ * @param {Object} contacts - The contacts data to generate the list from.
+ * @param {HTMLElement} userContainer - The container element where the list will be displayed.
+ */
 function generateFullContactList(contacts, userContainer) {
     let sortedLetters = Object.keys(contacts).sort();
     sortedLetters.forEach(letter => generateContactList(contacts[letter], userContainer, letter));
 }
 
-// Function to clear all input fields and close the contact form.
+/**
+ * Clears the input fields and closes the contact form.
+ */
 function clearInputsAndClose() {
     ["name_input", "email_input", "tel_input"].forEach(id => document.getElementById(id).value = "");
     closeContactBig();
-    resetPicture()
+    resetPicture();
 }
 
-// Function to get the first letter of a name and return it in uppercase.
+/**
+ * Gets the first letter of a name and returns it in uppercase.
+ * @param {string} name - The name to extract the first letter from.
+ * @returns {string} - The first letter of the name, or "#" if it's not a letter.
+ */
 function getFirstLetter(name) {
     let letter = name.trim().charAt(0).toUpperCase();
     return /^[A-Z]$/.test(letter) ? letter : "#";
 }
 
-// Function to generate and display a list of contacts grouped by their first letter.
+/**
+ * Generates and displays a list of contacts, grouped by their first letter.
+ * @param {Object} contacts - The contacts data to generate the list from.
+ * @param {HTMLElement} userContainer - The container element where the list will be displayed.
+ * @param {string} letter - The first letter for the current group of contacts.
+ */
 function generateContactList(contacts, userContainer, letter) {
     let currentLetter = "";
     Object.values(contacts).forEach((user, index) => {
@@ -109,18 +193,21 @@ function generateContactList(contacts, userContainer, letter) {
     });
 }
 
-// Delete data for List
+/**
+ * Deletes a contact from the database and updates the UI.
+ * @async
+ * @param {string} contactsId - The ID of the contact to delete.
+ * @param {string} firstLetter - The first letter of the contact's name, used to find the correct group.
+ */
 async function deleteContact(contactsId, firstLetter) {
     try {
-      if (!contactsData?.[firstLetter]?.[contactsId]) return console.error("Kontakt nicht gefunden.");
-      delete contactsData[firstLetter][contactsId];
-      let updated = {}, i = 0;
-      for (let id in contactsData[firstLetter]) updated[i++] = contactsData[firstLetter][id];
-      await postData(`/contacts/${firstLetter}`, updated);
-      globalIndex = i; saveGlobalIndex();
-      setTimeout(() => location.reload(), 100);
-      closeContactBigMiddle();
+        if (!contactsData?.[firstLetter]?.[contactsId]) return console.error("Kontakt nicht gefunden.");
+        delete contactsData[firstLetter][contactsId];
+        let updated = {}, i = 0;
+        for (let id in contactsData[firstLetter]) updated[i++] = contactsData[firstLetter][id];
+        await postData(`/contacts/${firstLetter}`, updated);
+        globalIndex = i; saveGlobalIndex();
+        setTimeout(() => location.reload(), 100);
+        closeContactBigMiddle();
     } catch (e) { console.error("Fehler beim Löschen des Kontakts:", e); }
-  }
-
- 
+}
