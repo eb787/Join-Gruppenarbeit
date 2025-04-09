@@ -172,7 +172,7 @@ function getDragOptionsMobile(index, x, y) {
 
 
 function getMobileDragger(index) {
-    return  	`<img onclick="openCategoryOverlay(${index})" id="change_category_icon_${index}" class="change_category_btn" src="..//assets/icons/change_category_icon.png" alt="change category">`
+    return  	`<img onclick="openCategoryOverlay(event, ${index})" id="change_category_icon_${index}" class="change_category_btn" src="..//assets/icons/change_category_icon.png" alt="change category">`
 }
 
 

@@ -217,11 +217,8 @@ function openCategoryOverlay(event, index) {
     y = event.clientY;
     elementToBeDropped = index;
     document.getElementById('bg_category').classList.remove('d_none');
-    document.getElementById('change_category_icon_' + index).classList.add('d_none');
     document.getElementById('change_category_btn_' + index).classList.add('z99');
-
     document.getElementById('change_category_btn_' + index).innerHTML = getDragOptionsMobile(index, x, y);
-
     adaptCategoryOverlay(index);
 }
 
@@ -304,9 +301,6 @@ function closeCategoryOverlay() {
     document.getElementById('change_category_btn_' + elementToBeDropped).innerHTML = "";
     document.getElementById('change_category_btn_' + elementToBeDropped).classList.remove('z99');
     document.getElementById('change_category_btn_' + elementToBeDropped).innerHTML = getMobileDragger(elementToBeDropped); 
-    document.getElementById('change_category_icon_' + elementToBeDropped).classList.remove('d_none');
-
-    elementToBeDropped = "";
 }
 
 
