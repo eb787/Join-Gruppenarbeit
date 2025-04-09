@@ -203,16 +203,177 @@ function showAddTaskOverlay(category) {
         taskAddOverlayInit();
     } else{            
         window.open('../HTML/task.html', '_self');
-    
-        
     }    
 }
 
 
-function openCategoryOverlay(index) {
+/** 
+ * This function lets an overlay appear which makes it possible to change the Status of a task with touch devices
+ * This overlay will appear at the mouse position of the last click
+ * @param {number} index - This parameter indicates the element that should be moved
+*/
+function openCategoryOverlay(event, index) {
+    x = event.clientX;
+    y = event.clientY;
+    elementToBeDropped = index;
+    document.getElementById('bg_category').classList.remove('d_none');
     document.getElementById('change_category_icon_' + index).classList.add('d_none');
-    document.getElementById('change_category_btn_' +index).classList.add('pos_ab');
-    document.getElementById('change_category_btn_' + index).innerHTML += getDragOptionsMobile();
-    
+    document.getElementById('change_category_btn_' + index).classList.add('z99');
+
+    document.getElementById('change_category_btn_' + index).innerHTML = getDragOptionsMobile(index, x, y);
+
+    adaptCategoryOverlay(index);
 }
+
+
+/** 
+ * This function adapts the overlay which shows the category options based on the category of the current element
+ * @param {number} index - This parameter indicates the element that should be moved
+*/
+function adaptCategoryOverlay(index) {
+    if (currentTasks[index].status == 'toDo') {
+        changeCategoryOverlayToDo(index);
+    }
+    if (currentTasks[index].status == 'inProgress') {
+        changeCategoryOverlayInProgress(index);
+    }
+    if (currentTasks[index].status == 'awaitFeedback') {
+        changeCategoryOverlayAwaitFeedback(index);
+    }
+    if (currentTasks[index].status == 'done') {
+        changeCategoryOverlayDone(index);
+    }
+}
+
+
+/** 
+ * This function adapts the overlay which shows the category options if the current element is assigned in the category "toDo"
+ * @param {number} index - This parameter indicates the element that should be moved
+*/
+function changeCategoryOverlayToDo(index) {
+    document.getElementById('div_category_options_toDo').classList.add('d_none');
+    document.getElementById('arrow_down_inProgress_' + index).classList.remove('d_none');
+    document.getElementById('arrow_down_awaitFeedback_' + index).classList.remove('d_none');
+    document.getElementById('arrow_down_done_' + index).classList.remove('d_none');
+}
+
+
+/** 
+ * This function adapts the overlay which shows the category options if the current element is assigned in the category "inProgress"
+ * @param {number} index - This parameter indicates the element that should be moved
+*/
+function changeCategoryOverlayInProgress(index) {
+    document.getElementById('div_category_options_inProgress').classList.add('d_none');
+    document.getElementById('arrow_up_toDo_' + index).classList.remove('d_none');
+    document.getElementById('arrow_down_awaitFeedback_' + index).classList.remove('d_none');
+    document.getElementById('arrow_down_done_' + index).classList.remove('d_none');
+}
+
+
+/** 
+ * This function adapts the overlay which shows the category options if the current element is assigned in the category "awaitFeedback"
+ * @param {number} index - This parameter indicates the element that should be moved
+*/
+function changeCategoryOverlayAwaitFeedback(index) {
+    document.getElementById('div_category_options_awaitFeedback').classList.add('d_none');
+    document.getElementById('arrow_up_toDo_' + index).classList.remove('d_none');
+    document.getElementById('arrow_up_inProgress_' + index).classList.remove('d_none');
+    document.getElementById('arrow_down_done_' + index).classList.remove('d_none');
+}
+
+
+/** 
+ * This function adapts the overlay which shows the category options if the current element is assigned in the category "done"
+ * @param {number} index - This parameter indicates the element that should be moved
+*/
+function changeCategoryOverlayDone(index) {
+    document.getElementById('div_category_options_done').classList.add('d_none');
+    document.getElementById('arrow_up_toDo_' + index).classList.remove('d_none');
+    document.getElementById('arrow_up_inProgress_' + index).classList.remove('d_none');
+    document.getElementById('arrow_up_awaitFeedback_' + index).classList.remove('d_none');
+}
+
+
+/** 
+ * This function closes the overlay of category options
+*/
+function closeCategoryOverlay() {
+    resetAdaptedClassesCategoryOverlay();
+    
+    document.getElementById('bg_category').classList.add('d_none');
+    document.getElementById('change_category_btn_' + elementToBeDropped).innerHTML = "";
+    document.getElementById('change_category_btn_' + elementToBeDropped).classList.remove('z99');
+    document.getElementById('change_category_btn_' + elementToBeDropped).innerHTML = getMobileDragger(elementToBeDropped); 
+    document.getElementById('change_category_icon_' + elementToBeDropped).classList.remove('d_none');
+
+    elementToBeDropped = "";
+}
+
+
+/** 
+ * This function resets the classes that have been adapted of the overlay of category options based on their status
+*/
+function resetAdaptedClassesCategoryOverlay() {
+    if (currentTasks[elementToBeDropped].status == 'toDo' ) {
+        resetToDoClassCategoryOverlay();
+    }
+    if (currentTasks[elementToBeDropped].status == 'inProgress' ) {
+        resetInProgressClassCategoryOverlay();
+    }
+    if (currentTasks[elementToBeDropped].status == 'awaitFeedback' ) {
+        resetAwaitFeedbackClassCategoryOverlay();
+    }
+    if (currentTasks[elementToBeDropped].status == 'done' ) {
+        resetDoneClassCategoryOverlay(); 
+    }
+}
+
+
+/** 
+ * This function resets the classes that have been adapted of the overlay of category options if the element was a "toDo"-element
+*/
+function resetToDoClassCategoryOverlay() {
+    document.getElementById('div_category_options_toDo').classList.remove('d_none');
+
+    document.getElementById('arrow_down_inProgress_' + elementToBeDropped).classList.add('d_none');
+    document.getElementById('arrow_down_awaitFeedback_' + elementToBeDropped).classList.add('d_none');
+    document.getElementById('arrow_down_done_' + elementToBeDropped).classList.add('d_none');
+}
+
+
+/** 
+ * This function resets the classes that have been adapted of the overlay of category options if the element was a "inProgress"-element
+*/
+function resetInProgressClassCategoryOverlay() {
+    document.getElementById('div_category_options_inProgress').classList.remove('d_none');
+
+    document.getElementById('arrow_up_toDo_' + elementToBeDropped).classList.add('d_none');
+    document.getElementById('arrow_down_awaitFeedback_' + elementToBeDropped).classList.add('d_none');
+    document.getElementById('arrow_down_done_' + elementToBeDropped).classList.add('d_none');
+}
+
+
+/** 
+ * This function resets the classes that have been adapted of the overlay of category options if the element was an "awaitFeedback"-element
+*/
+function resetAwaitFeedbackClassCategoryOverlay() {
+    document.getElementById('div_category_options_awaitFeedback').classList.remove('d_none');
+
+    document.getElementById('arrow_up_toDo_' + elementToBeDropped).classList.add('d_none');
+    document.getElementById('arrow_up_inProgress_' + elementToBeDropped).classList.add('d_none');
+    document.getElementById('arrow_down_done_' + elementToBeDropped).classList.add('d_none');
+}
+
+
+/** 
+ * This function resets the classes that have been adapted of the overlay of category options if the element was a "done"-element
+*/
+function resetDoneClassCategoryOverlay() {
+    document.getElementById('div_category_options_done').classList.remove('d_none');
+
+    document.getElementById('arrow_up_toDo_' + elementToBeDropped).classList.add('d_none');
+    document.getElementById('arrow_up_inProgress_' + elementToBeDropped).classList.add('d_none');
+    document.getElementById('arrow_up_awaitFeedback_' + elementToBeDropped).classList.add('d_none');
+}
+
 

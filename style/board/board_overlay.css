@@ -1,0 +1,215 @@
+.bg_overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.4);
+    top: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 99;
+    padding-top: 48px;
+}
+
+.bg_overlay:hover {
+    cursor: pointer;
+}
+
+
+ .close_btn_AddOverlay{
+    cursor: pointer;
+  }                    
+                     
+
+.card_overlay_board {
+    width: 445px;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    padding: 48px 40px;
+    gap: 24px;
+    border-radius: 30px;
+    box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.08);
+    overflow: auto;
+    max-height: calc(100vh - 196px);
+    scrollbar-width: none;
+    height: fit-content;
+}
+
+.card_overlay_board:hover {
+    cursor: default;
+}
+
+.slide-in-overlay {
+    animation: slide-in-overlay 0.2s ease-out forwards;
+}
+
+@keyframes slide-in-overlay {
+    from {
+        right: -100vw;
+    }
+    to {
+        right: calc((100vw - 525px) / 2);
+    }
+}
+
+.technical_task_overlay {
+    min-width: 160px !important;
+    background-color: #1FD7C1;
+}
+
+.user_story_overlay {
+    width: 116px !important;
+    background-color: #0038FF;
+}
+
+.task_category_overlay {
+    height: 28px !important;
+    padding: 4px 24px !important;
+    font-size: 23px !important;
+}
+
+.task_description_overlay {
+    font-weight: 400;
+    font-size: 20px;
+    color: black;
+    display: flex;
+    gap: 25px;
+}
+
+.color_blue {
+    color: #2A3647;
+}
+
+.priority_div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 18px;
+}
+
+.fd_column {
+    flex-direction: column;
+}
+
+.al_center {
+    display: flex;
+    align-items: center;
+}
+
+.contact_info {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    padding: 7px 16px;
+}
+
+.profile_badge_overlay {
+    width: 38px !important;
+    height: 38px !important;
+    border: 2px solid white !important;
+}
+
+.gap_8 {
+    gap: 8px !important;;
+}
+
+
+
+.task_info {
+    display: flex;
+    gap: 16px;
+    padding: 5px 16px;
+    align-items: center;
+    width: fit-content;
+}
+
+.task_info:hover {
+ cursor: pointer;
+ background-color: #0000000e;
+ border-radius: 10px;
+ .check_box_btn {
+    background-image: url(../assets/icons/subtask_todo_hover.svg);
+ }
+}
+
+.task_info_done:hover {
+    .checked_box {
+        background-image: url(../assets/icons/subtask_done_hover.svg)!important;
+     }
+}
+
+.card_overlay_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit_icon {
+    padding: 2.5px;
+}
+
+.overlay_options {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.overlay_option {
+    display: flex;
+    font-size: 16px;
+    align-items: center;
+    gap: 8px;
+}
+
+.seperator_overlay_options {
+    height: 24px;
+    background-color: #D1D1D1;
+    width: 0.5px;
+}
+
+.addTask_overlay {
+    width: 1116px;
+    height: 870px;
+    max-height: calc(100vh - 148px);
+    border-radius: 30px;
+    box-shadow: 0 0 4px 0 #0000001A;
+    background-color: #FFFFFF;
+    position: absolute;
+    margin-top: 28px;
+}
+
+.slide-in {
+    animation: slide-in 0.2s ease-out forwards;
+}
+
+@keyframes slide-in {
+    from {
+        right: -100vw;
+    }
+    to {
+        right: calc((100vw - 1116px) / 2);
+    }
+}
+
+.slide-out {
+    animation: slide-out 0.2s ease-out forwards;
+}
+
+@keyframes slide-out {
+    from {
+        right: calc((100vw - 1116px) / 2);
+    }
+    to {
+        right: -100vw;
+    }
+}
+
+.brighter_background {
+    animation: brightenBackground 0.2s linear forwards;
+}
+
+@keyframes brightenBackground {
+    0% { background-color: rgba(0, 0, 0, 0.4); }
+    100% { background-color: transparent; }
+}
