@@ -277,13 +277,17 @@
     padding-top: 48px;
 }
 
+.bg_overlay:hover {
+    cursor: pointer;
+}
+
 
  .close_btn_AddOverlay{
     cursor: pointer;
   }                    
                      
 
-.card_overlay {
+.card_overlay_board {
     width: 445px;
     background-color: #FFFFFF;
     display: flex;
@@ -296,10 +300,9 @@
     max-height: calc(100vh - 196px);
     scrollbar-width: none;
     height: fit-content;
-    position: absolute;
 }
 
-.card_overlay:hover {
+.card_overlay_board:hover {
     cursor: default;
 }
 
@@ -516,7 +519,7 @@
 }
 
 .add_icon_board {
-    width: 20px;
+    display: none;
 }
 
 .placeholder {

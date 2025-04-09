@@ -135,6 +135,10 @@
     .add_task_btn{
         display: none;
     }
+    .add_icon_board {
+        width: 20px;
+        display: block;
+    }
     .input_board{
         width: 362px;
     }
@@ -162,7 +166,7 @@
     }
 }
 @media (max-width: 600px) {
-    .card_overlay{
+    .card_overlay_board{
         padding: 32px 24px;
         width: 348px;
     }
@@ -231,7 +235,7 @@
     .inputfield_board {
         width: 140px;
     }
-    .card_overlay{
+    .card_overlay_board{
         padding: 16px 14px;
         width: 280px;
     }
