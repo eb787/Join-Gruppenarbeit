@@ -164,6 +164,52 @@
     .board_heading {
         font-size: 47px;
     }
+    .change_category_btn {
+        display: block;
+    }
+    .change_category_btn:hover {
+        cursor: pointer;
+    }
+    .div_category_menu {
+        transition: all 250ms ease-in-out;
+        margin-left: 180px;
+    }
+    .category_menu{
+        justify-content: space-evenly;
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 106px;
+        padding: 16px 8px;
+        background-color: rgba(42, 54, 71);
+        border-radius: 0 20px 20px 20px;
+        box-shadow: 0 0 5px 3px rgb(0, 0, 0, 0.04);
+    }
+    .div_category_options{
+        display: flex;
+        gap: 8px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        padding-left: 2px;
+        padding-right: 5px;
+        border-radius: 8px;
+        width: 100%;
+    }
+    .div_category_options:hover{
+        cursor: pointer;
+        background-color: #091931;
+    }
+    .category_menu_text {
+        font-size: 14px;
+        font-weight: 500;
+        color: white;
+    }
+    .category_menu_heading {
+        font-size: 16px;
+        font-weight: 700;
+        color: white;
+    }
 }
 @media (max-width: 600px) {
     .card_overlay_board{

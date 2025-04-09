@@ -1,6 +1,11 @@
 function getExampleCard(index, layer) {
     return  `<div id="card_number_${index}" class="card" onclick="showCardOverlay(${index})" draggable="true" ondragstart="startDragging(${index})">
-                <div id="category_${index}${layer}" class="task_category technical_task">${currentTasks[index].category}</div>
+                <div class="card_header">
+                    <div id="category_${index}${layer}" class="task_category technical_task">${currentTasks[index].category}</div>
+                    <div onclick="stopPropagation(event)" id="change_category_btn_${index}">
+                        <img onclick="openCategoryOverlay(${index})" id="change_category_icon_${index}" class="change_category_btn" src="..//assets/icons/change_category_icon.png" alt="change category">
+                    </div>
+                </div>
                 <div>
                     <div class="task_name">${currentTasks[index].title}</div>
                     <div id="description_${index}_${layer}" class="task_description">${currentTasks[index].description.slice(0, 50)}...</div>
@@ -131,6 +136,34 @@ function getContactIconOverlay(index, i) {
     return  `<div class="contact_info">
                 <div id="profile_${index}_${i}_overlay"  class="profile_badge profile_badge_overlay" style="background-color: ${contactColorArray[currentTasks[index].contacts[i].color]};"></div>
                 <p class="font_19">${currentTasks[index].contacts[i].name}</p>
+            </div>`
+}
+
+function getDragOptionsMobile() {
+    return  `<div class="div_category_menu">
+                <div class="category_menu">
+                    <p class="category_menu_heading">Move to</p>
+                    <div class="div_category_options" id="div_category_options_todo">
+                        <img id="arrow_down_todo" src="..//assets/icons/arrow_downward.svg" alt="arrow downward">
+                        <img id="arrow_up_todo" class="d_none" src="..//assets/icons/arrow_upward.svg" alt="arrow upward">
+                        <p class="category_menu_text">To do</p>
+                    </div>
+                    <div class="div_category_options" id="div_category_options_inProgress">
+                        <img id="arrow_down_inProgress" src="..//assets/icons/arrow_downward.svg" alt="arrow upward">
+                        <img id="arrow_up_inProgress" class="d_none" src="..//assets/icons/arrow_upward.svg" alt="arrow upward">
+                        <p class="category_menu_text">In progress</p>
+                    </div>
+                    <div class="div_category_options" id="div_category_options_awaitFeedback">
+                        <img id="arrow_down_awaitFeedback" src="..//assets/icons/arrow_downward.svg" alt="arrow upward">
+                        <img id="arrow_up_awaitFeedback" class="d_none" src="..//assets/icons/arrow_upward.svg" alt="arrow upward">
+                        <p class="category_menu_text">Review</p>
+                    </div>
+                    <div class="div_category_options" id="div_category_options_done">
+                        <img id="arrow_down_done" src="..//assets/icons/arrow_downward.svg" alt="arrow upward">
+                        <img id="arrow_up_done" class="d_none" src="..//assets/icons/arrow_upward.svg" alt="arrow upward">
+                        <p class="category_menu_text">Done</p>
+                    </div>
+                </div>
             </div>`
 }
 

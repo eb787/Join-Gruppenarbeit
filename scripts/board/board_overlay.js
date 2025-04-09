@@ -207,3 +207,12 @@ function showAddTaskOverlay(category) {
         
     }    
 }
+
+
+function openCategoryOverlay(index) {
+    document.getElementById('change_category_icon_' + index).classList.add('d_none');
+    document.getElementById('change_category_btn_' +index).classList.add('pos_ab');
+    document.getElementById('change_category_btn_' + index).innerHTML += getDragOptionsMobile();
+    
+}
+

@@ -173,6 +173,11 @@
     cursor: pointer;
 }
 
+.card_header {
+    display: flex;
+    justify-content: space-between;
+}
+
 .task_category {
     height: 19px;
     color: white;
@@ -191,6 +196,10 @@
 .technical_task {
     background-color: #1FD7C1;
     width: 114px;
+}
+
+.change_category_btn {
+    display: none;
 }
 
 .task_name {
