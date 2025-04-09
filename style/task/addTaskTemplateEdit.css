@@ -130,6 +130,10 @@ span {
     line-height: 24px;
 }
 
+.section_title{
+    margin-bottom: 20px;
+}
+
 
 .assigned_title {
     height: 24px;
@@ -260,6 +264,7 @@ span {
     display: flex;
     gap: 4px;
     flex-direction: column;
+    
     margin-top: 20px;
 }
 
