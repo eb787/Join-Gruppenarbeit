@@ -4,7 +4,9 @@ let currentTasks = {}; /** This is the object, where all tasks are saved*/
 let currentTask = {}; /** This is the object, which is used to post new data on the database*/
 let elementToBeDropped = ""; /** This is the variable where the id number is saved when starting to drag an element*/
 let newFinishedTasks = 0; /** This is the variable which saves the change of the number of tasks done*/
-let DragCounter = 0; /** This variable counts the amount of times the element has been pulled over a drop zone
+let DragCounter = 0; /** This variable counts the amount of times the element has been pulled over a drop zone */
+let x = 0; /** This variable indicates the horizontal mouseposition */
+let y = 0; /** This variable indicates the vertical mouseposition */
 
 
 /** 
@@ -17,6 +19,7 @@ async function loadTaskData() {
     updateTaskBoard();
     document.getElementById("full_content").innerHTML += getBgOverlay(); 
     document.getElementById("full_content").innerHTML += getAddTaskOverlay();
+    document.getElementById('full_content').innerHTML += getBgCategory();
     adaptBoardHeight();
     showHelpIconMobile();
 }
@@ -157,10 +160,16 @@ async function moveTo(category, event) {
         placeholder.style.display = "none";
     }
     DragCounter = 0;
+    moveCard(elementToBeDropped, category)
+}
+
+
+async function moveCard(elementToBeDropped, category){
     currentTasks[elementToBeDropped].status = category;
     currentTask = currentTasks[elementToBeDropped];
     await changeCategory(`/tasks/${elementToBeDropped}`, currentTask);
     loadTaskData();
+    // updateTaskBoard();
 }
 
 
