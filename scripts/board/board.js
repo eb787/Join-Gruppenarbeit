@@ -150,7 +150,8 @@ function startDragging(index) {
 /** 
  * When dropping an element, this function is used to place the card in the new column an to delete the card at the old position y updating the whole board
  * It also updates the data on the database
- * @param {string} category - This parameter indicated the category, meaning the column, where the card belongs to
+ * @param {number} elementToBeDropped - This parameter is the index number of the element which is being moved
+ * @param {string} category - This parameter indicates the category, meaning the column, where the card belongs to
 */
 async function moveTo(category, event) {
     event.preventDefault();
@@ -164,12 +165,15 @@ async function moveTo(category, event) {
 }
 
 
+/** 
+ * This function is used to change the category of the task and to show the new order at the board page
+ * @param {string} category - This parameter indicates the category, meaning the column, where the card belongs to
+*/
 async function moveCard(elementToBeDropped, category){
     currentTasks[elementToBeDropped].status = category;
     currentTask = currentTasks[elementToBeDropped];
     await changeCategory(`/tasks/${elementToBeDropped}`, currentTask);
     loadTaskData();
-    // updateTaskBoard();
 }
 
 
