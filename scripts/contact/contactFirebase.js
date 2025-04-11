@@ -80,14 +80,14 @@ async function addContact() {
     let newContact = collectContactData();
     const email = document.getElementById('email_input').value;
     if (!validateInputs(email)) return;
-    
+
     let firstLetter = getFirstLetter(newContact.name);
     let contactsGroup = contactsData[firstLetter] || {};
     let newId = Object.keys(contactsGroup).length;
     contactsGroup[newId] = newContact;
-    
+
     await postData(`/contacts/${firstLetter}`, contactsGroup);
-    
+
     clearInputsAndClose();
     index = newId;
     let contactsId = `${firstLetter}-${newId}`;
@@ -194,7 +194,7 @@ function generateContactList(contacts, userContainer, letter) {
 }
 
 /**
- * Deletes a contact from the database and updates the UI.
+ * Deletes a contact from the database and updates with getUsersList
  * @async
  * @param {string} contactsId - The ID of the contact to delete.
  * @param {string} firstLetter - The first letter of the contact's name, used to find the correct group.
@@ -207,7 +207,7 @@ async function deleteContact(contactsId, firstLetter) {
         for (let id in contactsData[firstLetter]) updated[i++] = contactsData[firstLetter][id];
         await postData(`/contacts/${firstLetter}`, updated);
         globalIndex = i; saveGlobalIndex();
-        setTimeout(() => location.reload(), 100);
+        getUsersList();
         closeContactBigMiddle();
     } catch (e) { console.error("Fehler beim Löschen des Kontakts:", e); }
 }

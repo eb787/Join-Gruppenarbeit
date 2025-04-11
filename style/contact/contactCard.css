@@ -140,7 +140,7 @@
 .contact_Card_Input_Frame_two {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 12px;
 }
 
 
@@ -219,7 +219,6 @@
   color: red;
   font-size: 12px;
   display: block;
-  margin-top: 5px;
 }
 
 .input_error {
