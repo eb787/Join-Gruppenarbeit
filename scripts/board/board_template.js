@@ -148,21 +148,21 @@ function getDragOptionsMobile(index, x, y) {
     return  `<div class="div_category_menu" style="position:absolute;top:${y}px;left:${x}px;">
                 <div class="category_menu">
                     <p class="category_menu_heading">Move to</p>
-                    <div onclick="moveCard(${index},'toDo')" class="div_category_options" id="div_category_options_toDo">
+                    <div onclick="moveCardMobileVersion(${index},'toDo')" class="div_category_options" id="div_category_options_toDo">
                         <img id="arrow_up_toDo_${index}" class="d_none" src="..//assets/icons/arrow_upward.svg" alt="arrow upward">
                         <p class="category_menu_text">To do</p>
                     </div>
-                    <div onclick="moveCard(${index}, 'inProgress')" class="div_category_options" id="div_category_options_inProgress">
+                    <div onclick="moveCardMobileVersion(${index}, 'inProgress')" class="div_category_options" id="div_category_options_inProgress">
                         <img id="arrow_down_inProgress_${index}" class="d_none" src="..//assets/icons/arrow_downward.svg" alt="arrow upward">
                         <img id="arrow_up_inProgress_${index}" class="d_none" src="..//assets/icons/arrow_upward.svg" alt="arrow upward">
                         <p class="category_menu_text">In progress</p>
                     </div>
-                    <div onclick="moveCard(${index}, 'awaitFeedback')" class="div_category_options" id="div_category_options_awaitFeedback">
+                    <div onclick="moveCardMobileVersion(${index}, 'awaitFeedback')" class="div_category_options" id="div_category_options_awaitFeedback">
                         <img id="arrow_down_awaitFeedback_${index}" class="d_none" src="..//assets/icons/arrow_downward.svg" alt="arrow upward">
                         <img id="arrow_up_awaitFeedback_${index}" class="d_none" src="..//assets/icons/arrow_upward.svg" alt="arrow upward">
                         <p class="category_menu_text">Review</p>
                     </div>
-                    <div onclick="moveCard(${index}, 'done')" class="div_category_options" id="div_category_options_done">
+                    <div onclick="moveCardMobileVersion(${index}, 'done')" class="div_category_options" id="div_category_options_done">
                         <img id="arrow_down_done_${index}" class="d_none" src="..//assets/icons/arrow_downward.svg" alt="arrow upward">
                         <p class="category_menu_text">Done</p>
                     </div>

@@ -371,3 +371,12 @@ function resetDoneClassCategoryOverlay() {
 }
 
 
+/** 
+ * This function moves the card to the new category, closes the mobile-overlay of the categorys and shows the new order at the board page
+*/
+function moveCardMobileVersion(index, category) {
+    closeCategoryOverlay();
+    moveCard(index, category);
+}
+
+
