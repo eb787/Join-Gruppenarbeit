@@ -455,7 +455,6 @@ function subTasksObjects() {
 
 
 function errorFieldsFocus(tag){
-  console.log(tag);
   document.getElementById(tag).innerHTML='&nbsp;';
 }
 
