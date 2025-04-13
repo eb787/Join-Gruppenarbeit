@@ -1,5 +1,5 @@
 function getExampleCard(index, layer) {
-    return  `<div id="card_number_${index}" class="card" onclick="showCardOverlay(${index})" draggable="true" ondragstart="startDragging(${index})">
+    return `<div id="card_number_${index}" class="card" onclick="showCardOverlay(${index})" draggable="true" ondragstart="startDragging(${index})">
                 <div class="card_header">
                     <div id="category_${index}${layer}" class="task_category technical_task">${currentTasks[index].category}</div>
                     <div onclick="stopPropagation(event)" id="change_category_btn_${index}">
@@ -20,7 +20,7 @@ function getExampleCard(index, layer) {
 
 
 function getSubtasks(index, subtasks, progress, layer) {
-    return  `<div id="subtasks_${index}_${layer}" class="progress_box">
+    return `<div id="subtasks_${index}_${layer}" class="progress_box">
                 <div class="progress_bar">
                     <div id="progress_${index}_${layer}" class="progress" style="width: ${progress}%;"></div>
                 </div>
@@ -35,47 +35,47 @@ function getSubtasks(index, subtasks, progress, layer) {
 
 
 function getContactIcon(index, i, layer) {
-    return  `<div id="profile_${index}_${i}_${layer}" class="profile_badge" style="z-index: ${i + 1}; position: relative; left: calc(${i} * -8px); background-color: ${contactColorArray[currentTasks[index].contacts[i].color]};"></div>`
+    return `<div id="profile_${index}_${i}_${layer}" class="profile_badge" style="z-index: ${i + 1}; position: relative; left: calc(${i} * -8px); background-color: ${contactColorArray[currentTasks[index].contacts[i].color]};"></div>`
 }
 
 
 function getContactDots() {
-    return  `<div class="dots_more_content">...</div>`
+    return `<div class="dots_more_content">...</div>`
 }
 
 
 function getNoTasksToDoCard() {
-    return  `<div id="no_task_toDo" class="no_tasks">No tasks To do</div>`
+    return `<div id="no_task_toDo" class="no_tasks">No tasks To do</div>`
 }
 
 
 function getNoTasksInProgressCard() {
-    return  `<div id="no_task_inProgress" class="no_tasks">No tasks In progress</div>`
+    return `<div id="no_task_inProgress" class="no_tasks">No tasks In progress</div>`
 }
 
 
 function getNoTasksAwaitFeedbackCard() {
-    return  `<div id="no_task_awaitFeedback" class="no_tasks">No tasks Await feedback</div>`
+    return `<div id="no_task_awaitFeedback" class="no_tasks">No tasks Await feedback</div>`
 }
 
 
 function getNoTasksDoneCard() {
-    return  `<div id="no_task_done" class="no_tasks">No tasks Done</div>`
+    return `<div id="no_task_done" class="no_tasks">No tasks Done</div>`
 }
 
 
 function getPlaceholder() {
-    return  `<div class="placeholder"></div>`
+    return `<div class="placeholder"></div>`
 }
 
 
 function getBgOverlay() {
-    return  `<div onclick="closeOverlay('bg_overlay')" id="bg_overlay" class="bg_overlay d_none"></div>`
+    return `<div onclick="closeOverlay('bg_overlay')" id="bg_overlay" class="bg_overlay d_none"></div>`
 }
 
 
 function getCardOverlayContent(index) {
-    return  `<div onclick="stopPropagation(event)" id="card_overlay" class="card_overlay_board slide-in-overlay">
+    return `<div onclick="stopPropagation(event)" id="card_overlay" class="card_overlay_board slide-in-overlay">
                 <div class="card_overlay_header">
                     <div id="category_${index}_overlay" class="task_category task_category_overlay technical_task_overlay ">${currentTasks[index].category}</div>
                     <img onclick="closeOverlay('bg_overlay')" class="close_btn_overlay" src="..//assets/icons/close.svg" alt="close button">
@@ -111,7 +111,7 @@ function getCardOverlayContent(index) {
 
 
 function getSubtasksOverlay(index) {
-    return  `<div class="task_description_overlay fd_column gap_8">
+    return `<div class="task_description_overlay fd_column gap_8">
                 <p class="color_blue font_weight_700">Subtasks</p>
                 <div id="tasks_box${index}"> </div>
             </div>`
@@ -119,7 +119,7 @@ function getSubtasksOverlay(index) {
 
 
 function getTaskOverlay(index, i) {
-    return  `<div id="check_box_${index}_info${i}" onclick="changeSubtaskCategory(${index}, ${i})" class="task_info">
+    return `<div id="check_box_${index}_info${i}" onclick="changeSubtaskCategory(${index}, ${i})" class="task_info">
                 <div id="check_box_${index}_btn${i}" class="check_box_btn"></div>
                 <p class="font_16">${Object.keys(currentTasks[index].subtasks.subtasks_todo)[i]}</p>
             </div>`
@@ -127,13 +127,13 @@ function getTaskOverlay(index, i) {
 
 
 function getContactBoxOverlay(index) {
-    return  `<p class="color_blue font_weight_700">Assigned To:</p>
+    return `<p class="color_blue font_weight_700">Assigned To:</p>
             <div id="profile_badges_overlay${index}"></div>`
 }
 
 
 function getContactIconOverlay(index, i) {
-    return  `<div class="contact_info">
+    return `<div class="contact_info">
                 <div id="profile_${index}_${i}_overlay"  class="profile_badge profile_badge_overlay" style="background-color: ${contactColorArray[currentTasks[index].contacts[i].color]};"></div>
                 <p class="font_19">${currentTasks[index].contacts[i].name}</p>
             </div>`
@@ -141,11 +141,11 @@ function getContactIconOverlay(index, i) {
 
 
 function getBgCategory() {
-    return  `<div onclick="closeCategoryOverlay()" class="bg_category d_none" id="bg_category"></div>`
+    return `<div onclick="closeCategoryOverlay()" class="bg_category d_none" id="bg_category"></div>`
 }
 
 function getDragOptionsMobile(index, x, y) {
-    return  `<div class="div_category_menu" style="position:absolute;top:${y}px;left:${x}px;">
+    return `<div class="div_category_menu" style="position:absolute;top:${y}px;left:${x}px;">
                 <div class="category_menu">
                     <p class="category_menu_heading">Move to</p>
                     <div onclick="moveCardMobileVersion(${index},'toDo')" class="div_category_options" id="div_category_options_toDo">
@@ -172,41 +172,45 @@ function getDragOptionsMobile(index, x, y) {
 
 
 function getMobileDragger(index) {
-    return  	`<img onclick="openCategoryOverlay(event, ${index})" id="change_category_icon_${index}" class="change_category_btn" src="..//assets/icons/change_category_icon.png" alt="change category">`
+    return `<img onclick="openCategoryOverlay(event, ${index})" id="change_category_icon_${index}" class="change_category_btn" src="..//assets/icons/change_category_icon.png" alt="change category">`
 }
 
 
 function editTaskTemplate(index) {
 
     return `
-
     
         <div class="card_overlay_header">
             <div id="category_overlay${index}" class="task_category task_category_overlay  "></div>
-            <img onclick="closeOverlay('bg_overlay')" class="close_btn_overlay" src="..//assets/icons/close.svg" alt="close button">
+           
+           <div class="close_btn_overlay">
+              <img onclick="closeOverlay('bg_overlay')"  src="..//assets/icons/close.svg" alt="close button">
+            </div>
+        
         </div>
              
                 <div class="section_title">
                     <h2 class="title">Title</h2>
-                    <input id="taskTitle" class="input_title" type="text" onblur="requiredInputTitle()" tabindex="1">
-                  
-                </div>
-                                        <div class="section_description">
-                                            <h2>Description</h2>
-                                            <div class="textarea_description">
-                                                <textarea id="descriptionTask" class="text_area" placeholder="Enter a Description"
-                                                tabindex="2"></textarea>
-                                            </div>
-                                        </div>
+                    <input id="taskTitle" class="input_title" type="text" onblur="requiredInputTitle('edit')" onfocus="errorFieldsFocus('error_Field_Title')" tabindex="1">
+                     <span id="error_Field_Title" class="error_Field">&nbsp;</span>
+                 </div>
+
+                 <div class="section_description">
+                     <h2>Description</h2>
+                     <div class="textarea_description">
+                     <textarea id="descriptionTask" class="text_area" placeholder="Enter a Description"
+                     tabindex="2"></textarea>
+                     </div>
+                 </div>
 
             
             <div class="section_date_div">
                 <h2>Due date </h2>
                 <div class="task_Date_Input_Div">
-                   <input type="date"  id="taskDate" class="date_input" onblur="requiredInputDate()" tabindex="4" >
-                   <img src="../assets/icons/event.png" class="date_icon_Edit"  onclick="openDatePicker()" >
+                   <input type="date"  id="taskDate" class="date_input" onblur="requiredInputDate('edit')"  onfocus="errorFieldsFocus('error_Field_Date')"tabindex="4" >
+                   <img src="../assets/icons/event.png" class="date_icon_Edit" onclick="openDatePicker()" >
                 </div>
-               
+                <span id="error_Field_Date" class="error_Field">&nbsp;</span>
             </div>
             <div class="section_prio">
             <div>    
@@ -263,7 +267,7 @@ function editTaskTemplate(index) {
                     
                         
                         <div class="btn_div">
-                            <button class="button_Ok" onclick="TaskEditSave()" >OK<img src="../assets/icons/check.svg"></button>
+                            <button id="button_Ok_Edit"  class="button_Ok" onclick="TaskEditSave()" >OK<img src="../assets/icons/check.svg"></button>
                          </div>
       
    `
@@ -273,21 +277,23 @@ function editTaskTemplate(index) {
 
 
 function getAddTaskOverlay() {
-       
+
     return ` 
      
      <div onclick="closeOverlay('addTask_overlay')" id="addTask_overlay" class="bg_overlay d_none">
               
          <div onclick="stopPropagation(event)" id="addTask_card" class="addTask_overlay">
-            <img  src="..//assets/icons/close.svg" onclick="closeOverlay('addTask_overlay')" class="close_btn_AddOverlay" >
-                        
+            <div class="close_btn_AddOverlay">
+            <img  src="..//assets/icons/close.svg" onclick="closeOverlay('addTask_overlay')">
+            </div>            
                      <p class="addTask_Title_ol">Add Task</p>
                          <div class="container_AddTask_ol"> 
                                    <div class="section_left_ol">
                                         <div class="section_title_ol">
                                             <h2 class="title">Title<span class="star_red_ol">*</span></h2>
-                                            <input id="taskTitle" class="input_title_ol" onblur="requiredInputTitle()" type="text"
+                                            <input id="taskTitle" class="input_title_ol" onblur="requiredInputTitle()" onfocus="errorFieldsFocus('error_Field_Title')" type="text"
                                             placeholder="Enter a title" tabindex="1">
+                                             <span id="error_Field_Title" class="error_Field">&nbsp;</span>
                                              </div>  
 
                                         <div class="section_description_ol">
@@ -337,11 +343,12 @@ function getAddTaskOverlay() {
                                      <div class="section_date_div_ol">
                                             <h2>Due date<span class="star_red_ol">*</span></h2>
                                             <div class="date_input_ol">
-                                            <input type="date" id="taskDate" class="date_input_field_ol"  onblur="requiredInputDate()"  tabindex="4">
+                                            <input type="date" id="taskDate" class="date_input_field_ol"  onblur="requiredInputDate()" onfocus="errorFieldsFocus('error_Field_Date')"  tabindex="4">
                                             <img src="../assets/icons/event.png" class="date_icon_ol" onclick="openDatePicker()">
                                             </div>
-                                                       
-                                    </div>
+                                              <span id="error_Field_Date" class="error_Field">&nbsp;</span>         
+                                      </div>
+                                    
 
                                   <div class="section_prio_ol">
                                             <h2>Priority</h2>
@@ -369,12 +376,12 @@ function getAddTaskOverlay() {
                                 <div class="section_category_ol">
                                     <h2>Category<span class="star_red_ol">*</span></h2>
                                     <div class="category-wrapper_ol">
-                                        <select id="taskCatergory" class="input_field_catergory_ol" onblur="requiredInputCategory()" >
+                                        <select id="taskCatergory" class="input_field_catergory_ol" onblur="requiredInputCategory()" onfocus="errorFieldsFocus('error_Field_Catergory')" >
                                             <option value="" selected disabled>Select task category</option>
                                             <option value="1">Technical Task</option>
                                             <option value="2">User Story</option>
                                         </select>
-                                     
+                                       <span id="error_Field_Catergory" class="error_Field">&nbsp;</span>  
                                     </div>
                                 </div>
 

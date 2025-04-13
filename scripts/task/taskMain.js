@@ -56,25 +56,34 @@ function showHelpIconMobile() {
 }
 
 
+
 /**
  * function checks the correct input in the field title
+ * @param {String} template for which template is the test
  */
-function requiredInputTitle(){
+function requiredInputTitle(template){
 let entry = document.getElementById('taskTitle').value;
 if (entry.trim() ===""){
   document.getElementById('taskTitle').classList.add('error_Input');
+  document.getElementById('error_Field_Title').innerHTML="This field is required";
   inputsOK[0]=false;
  } else{
   document.getElementById('taskTitle').classList.remove('error_Input');
-  inputsOK[0]=true;
+  document.getElementById('error_Field_Title').innerHTML='&nbsp;';
+    inputsOK[0]=true;
 }
+if(template==="edit"){
+  checkAllRequiredDataEdit()
+ }else{
   checkAllRequiredData();
+ }
 } 
 
 /**
  * function checks the correct input in the field date
+ * @param {String} template for which template is the test
  */
-function requiredInputDate(){
+function requiredInputDate(template){
  let entry = document.getElementById('taskDate').value;
  let date = new Date(entry);
  let today = new Date(entry);
@@ -82,16 +91,25 @@ function requiredInputDate(){
   let today = new Date();
   if (date > today) {
       document.getElementById('taskDate').classList.remove('error_Input');
+      document.getElementById('error_Field_Date').innerHTML='&nbsp;';
       inputsOK[1]=true;
+      if(template==="edit"){inputsOK[1]=true;};
   } else {
       document.getElementById('taskDate').classList.add('error_Input');
+      document.getElementById('error_Field_Date').innerHTML="This field is required";
       inputsOK[1]=false;
   }
 } else {
    document.getElementById('taskDate').classList.add('error_Input');
+   document.getElementById('error_Field_Date').innerHTML="This field is required";
   inputsOK[1]=false;
 }
-checkAllRequiredData();
+if(template==="edit"){
+  checkAllRequiredDataEdit()
+ }else{
+  checkAllRequiredData();
+ }
+
 }
 
 
@@ -103,13 +121,14 @@ checkAllRequiredData();
     if(entry ===""){
     inputsOK[2]=false;  
     document.getElementById('taskCatergory').classList.add('error_Input');
-  }else{
+    document.getElementById('error_Field_Catergory').innerHTML="This field is required";
+   }else{
    inputsOK[2]=true
    document.getElementById('taskCatergory').classList.remove('error_Input');
+   document.getElementById('error_Field_Catergory').innerHTML='&nbsp;';
    }
    checkAllRequiredData();
-   }
-
+  }
 
 /**
  * function checks whether the entry in all three mandatory fields is correct
@@ -330,16 +349,17 @@ function contactCheckOKinArray() {
  * @param {String} template from which input does the data come
  */
 async function checkInputData(template) {
-       pushTaskToServer();
+        pushTaskToServer();
         timePopUp(2000);
-       addTaskClear();
-       inputsOK=[false,false,false];
+
+        inputsOK=[false,false,false];
         if (template == "overlay") {
-        setTimeout(() =>{
+          setTimeout(() =>{
           loadTaskData();
           },200);
-        closeOverlay('addTask_overlay')
+          closeOverlay('addTask_overlay')              
       }
+          addTaskClear();   
     }
  
 
@@ -353,6 +373,7 @@ function timePopUp(duration) {
   setTimeout(() => {
     notification.style.display = "none";
   }, duration);
+ 
 }
 
 
@@ -432,6 +453,26 @@ function subTasksObjects() {
 }
 
 
+
+function errorFieldsFocus(tag){
+  console.log(tag);
+  document.getElementById(tag).innerHTML='&nbsp;';
+}
+
+
+/**
+ * delete all error fields
+ */
+function errorFieldsClear(){
+  document.getElementById('taskTitle').classList.remove('error_Input');
+  document.getElementById('error_Field_Title').innerHTML='&nbsp;';
+  document.getElementById('taskDate').classList.remove('error_Input');
+  document.getElementById('error_Field_Date').innerHTML='&nbsp;';
+  document.getElementById('taskCatergory').classList.remove('error_Input');
+  document.getElementById('error_Field_Catergory').innerHTML='&nbsp;';
+ }
+
+
 /**
  * function to delete the fields in the input mask
  */
@@ -451,6 +492,8 @@ function addTaskClear() {
   subTaskClose();
   subTaskListRender();
   checkAllRequiredData();
+  errorFieldsClear();
 
+ 
 }
 

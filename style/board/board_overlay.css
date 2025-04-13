@@ -10,8 +10,9 @@
     padding-top: 48px;
 }
 
+
 .bg_overlay:hover {
-    cursor: pointer;
+   /* cursor: pointer;*/
 }
 
 
@@ -36,7 +37,8 @@
 }
 
 .card_overlay_board:hover {
-    cursor: default;
+   /* cursor: default;*/
+
 }
 
 .slide-in-overlay {

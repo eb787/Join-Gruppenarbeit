@@ -9,8 +9,7 @@ let editIndexEdit = false;
 let editTaskNrEdit = 0;
 selectedTaskContacts = "";
 subTaskArray = "";
-
-
+inputsOK=[true,true,true];
 dataFromFirebase();
 
 /**
@@ -303,3 +302,20 @@ async function loadDataFirebaseEdit() {
 function subtaskinObjekt(subTaskArray) {
         return subTask = Object.fromEntries(subTaskArray.map(item => [item, "todo"]));
 }
+
+
+/**
+ * function checks whether the entry in all three mandatory fields is correct from EditTask
+ */
+function checkAllRequiredDataEdit(){
+            if(inputsOK[0] && inputsOK[1]){      
+                document.getElementById('button_Ok_Edit').style.pointerEvents = 'auto'; 
+                document.getElementById('button_Ok_Edit').style.opacity = '1';      
+          } else {         
+                document.getElementById('button_Ok_Edit').style.pointerEvents = 'none'; 
+                document.getElementById('button_Ok_Edit').style.opacity = '0.5'
+              }                            
+         
+            }
+        
+        
