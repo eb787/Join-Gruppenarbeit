@@ -55,7 +55,7 @@
 
     .first-container {
         top: 150px;
-        left: 140px;
+        left: 165px;
 
         span {
             font-size: 20px;
@@ -67,7 +67,7 @@
     }
 
     .content-to-do {
-        width: 440px;
+      
         height: 140px;
     }
 
@@ -88,7 +88,7 @@
     .content-success {
         width: 205px;
         height: 140px;
-        left: 240px;
+        left: 265px;
     }
 
     .img-up {
@@ -97,9 +97,10 @@
     }
 
     .content-date {
-        width: 440px;
+        padding-left: 36px;
+        padding-right: 36px;
         height: 140px;
-        top: 170px;
+        top: 195px;
         gap: 70px
     }
 
@@ -119,9 +120,8 @@
     }
 
     .container-task {
-        width: 440px;
         height: 140px;
-        top: 340px;
+        top: 360px;
     }
 
     .container-task-one {
@@ -150,7 +150,7 @@
 
     .first-container {
         top: 150px;
-        left: 80px;
+        left: 100px;
     }
 }
 
@@ -162,11 +162,11 @@
 
     .first-container {
         top: 150px;
-        left: 60px;
+        left: 80px;
     }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 600px) {
     .content {
         top: 305px;
         left: 35px;
@@ -183,7 +183,7 @@
     }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 550px) {
     .content {
         top: 305px;
         left: 80px;
@@ -221,7 +221,6 @@
     }
 
     .content-to-do {
-        width: 440px;
         height: 140px;
     }
 
@@ -246,7 +245,7 @@
     .content-success {
         width: 140px;
         height: 130px;
-        left: 160px;
+        left: 190px;;
     }
 
     .img-up {
@@ -255,9 +254,11 @@
     }
 
     .content-date {
+        padding-left: 0;
+        padding-right: 0;
         width: 300px;
         height: 130px;
-        top: 150px;
+        top: 180px;
         gap: 70px
     }
 
@@ -302,9 +303,8 @@
     }
 
     .container-task {
-        width: 440px;
         height: 140px;
-        top: 300px;
+        top: 330px;
     }
 
     .container-task-one {
@@ -332,7 +332,7 @@
 @media (max-width: 450px) {
     .content {
         top: 305px;
-        left: 50px;
+        left: 20px;
     }
 
     .first-container {
@@ -346,15 +346,15 @@
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 390px) {
     .content {
-        top: 305px;
-        left: 25px;
+        top: 280px;
+        left: 10px;
     }
 
     .first-container {
         top: 150px;
-        left: 25px;
+        left: 40px;
 
         span {
             font-size: 20px;
@@ -363,14 +363,35 @@
     }
 }
 
-@media (max-width: 365px) {
+@media (max-width: 375px) {
     .content {
         top: 305px;
-        left: 8px;
+        left: 5px;
     }
 
     .first-container {
-        top: 150px;
-        left: 8px;
+        top: 160px;
+        left: 40px;
+    }
+}
+
+@media (max-width: 360px) {
+    .content {
+        top: 305px;
+        left: 0px;
+    }
+}
+
+
+
+@media (max-width: 355px) {
+    .content {
+        top: 305px;
+        left: -22px;
+    }
+
+    .first-container {
+        top: 160px;
+        left: 10px;
     }
 }

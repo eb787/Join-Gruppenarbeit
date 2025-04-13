@@ -23,7 +23,6 @@ body {
 
 .content_right {
     align-items: center;
-    background-color: white;
     flex-grow: 1;
    width: calc(100% - 232px);
 
@@ -31,7 +30,7 @@ body {
 
 .main_content {
   background-color: rgb(246, 247, 249);
-  height: 928px;
+  height: -webkit-fill-available;;
 }
 
 .headline {
