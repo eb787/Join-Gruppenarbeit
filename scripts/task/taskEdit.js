@@ -22,6 +22,7 @@ function editTask(index) {
         TaskEditOverlayRender();
 }
 
+
 /**
  * Here the data is written into the overlay for Edit AddTask
  */
@@ -36,6 +37,7 @@ function TaskEditOverlayRender() {
         editTaskWriteContacts(DataTaskContactsTask);
         subTaskListLoadEdit()
 }
+
 
 /**
  * function which converts the date from the passed data set into the format dd.mm.yyyy
@@ -107,6 +109,7 @@ function editTaskWriteContacts(DataContacts) {
                 }
         }
 }
+
 
 /**
  * the function gets the color from the array for the contact initials
@@ -206,6 +209,7 @@ function deleteSubTaskEdit(index) {
         subTaskListRenderEdit(DataSubTaskListEdit);
 }
 
+
 /**
  * function to save the subtask when editing
  */
@@ -268,6 +272,9 @@ async function postTaskDataEdit(path = "", task) {
 }
 
 
+/**
+ * loading the tasks and contacts from the DB
+ */
 async function dataFromFirebase() {
         const { DataTask, DataContact } = await loadDataFirebaseEdit();
         DataTaskEdit = DataTask;

@@ -9,9 +9,7 @@ let taskPrioSelect = "medium_prio";
 let currentTaskAdd = {};
 let inputsOK=[false,false,false];
 taskContacteArray
-
 window.onresize = showHelpIconMobile;
-
 
 /**
  * start function of addtask
@@ -56,7 +54,6 @@ function showHelpIconMobile() {
 }
 
 
-
 /**
  * function checks the correct input in the field title
  * @param {String} template for which template is the test
@@ -78,6 +75,7 @@ if(template==="edit"){
   checkAllRequiredData();
  }
 } 
+
 
 /**
  * function checks the correct input in the field date
@@ -130,6 +128,7 @@ if(template==="edit"){
    checkAllRequiredData();
   }
 
+
 /**
  * function checks whether the entry in all three mandatory fields is correct
  */
@@ -156,6 +155,7 @@ function openDatePicker() {
     dateInput.focus();
   }
 }
+
 
 /**
  * function controls the priority option
@@ -247,6 +247,7 @@ function taskCreateTask() {
   subTaskListRender();
 }
 
+
 /**
  * function for processing a subtask
  * @param {Nummber} index position in the array
@@ -269,6 +270,7 @@ function deleteSubTask(index) {
   taskSubTaskList.splice(index, 1);
   subTaskListRender();
 }
+
 
 /**
  * function to write the subtask into the array
@@ -397,6 +399,7 @@ function collectData() {
   }
 }
 
+
 /**
  * function to convert the date
  * @param {String} dateOld date being converted
@@ -409,6 +412,7 @@ function dateConversion(dateOld) {
   let year = String(date.getFullYear()).slice(-2); 
   return `${day}/${month}/${year}`;
 }
+
 
 /**
  * function to check which category was selected
@@ -453,7 +457,10 @@ function subTasksObjects() {
 }
 
 
-
+/**
+ * error message when deleting any field
+ * @param {string} tag id for the field
+ */
 function errorFieldsFocus(tag){
   document.getElementById(tag).innerHTML='&nbsp;';
 }
@@ -491,8 +498,6 @@ function addTaskClear() {
   subTaskClose();
   subTaskListRender();
   checkAllRequiredData();
-  errorFieldsClear();
-
- 
+  errorFieldsClear(); 
 }
 
