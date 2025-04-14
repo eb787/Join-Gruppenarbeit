@@ -40,12 +40,13 @@
                 </div>
                 <div class="login_inputs">
                     <input class="input_login input_mail" id="email" type="email" placeholder="Email" alt="mail icon">
-                    <div style="display: flex; gap: 8px; flex-direction: column; height: 74px;">
-                        <input class="input_login input_pw" id="password" type="password" placeholder="Password"
-                            alt="mail icon">
+                    <div style="position: relative; display: flex; gap: 8px; flex-direction: column; height: 74px;">
+                        <input class="input_login input_pw" id="password" type="password" placeholder="Password" alt="password">
+                        <img id="togglePasswordVisibility" src="./assets/icons/visibility_off.svg" alt="eye icon" class="eye-icon" style="display: none;">
                         <div class="wrong_data_alert">Check your email and password. Please try again.</div>
                     </div>
                 </div>
+                
                 <div class="login_btns">
                     <button type="button" onclick="userLogin()" class="login_btn">Log in</button>
                     <a class="guest_login_btn" onclick="guestLogin()">Guest Log in</a>
