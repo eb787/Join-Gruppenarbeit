@@ -362,6 +362,13 @@ function validateName() {
   return true;
 }
 
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById('name_input').addEventListener('input', () => {
+    validateName();
+  });
+});
+
 /**
  * Checks if a string is empty.
  * @param {string} value - The string to check.
@@ -429,6 +436,12 @@ function validateEmailSync(email) {
   return true;
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById('email_input').addEventListener('input', (e) => {
+    validateEmailSync(e.target.value); // Übergib die E-Mail beim Tippen
+  });
+});
+
 /**
  * Checks whether a string is empty or only contains whitespace.
  * @param {string} value - The string to check.
@@ -479,11 +492,25 @@ function validateTelInput() {
   const input = document.getElementById("tel_input");
   const error = document.getElementById("tel_error");
   const value = input.value.trim();
-  const isValid = value !== "" && /^[0-9]+$/.test(value);
-  error.textContent = isValid ? "" : (value === "" ? "Please enter a phone number!" : "Only numbers are allowed!");
+  const isValid = /^[0-9]{4,}$/.test(value); // mind. 4 Ziffern
+  if (value === "") {
+    error.textContent = "Please enter a phone number!";
+  } else if (!/^[0-9]+$/.test(value)) {
+    error.textContent = "Only numbers are allowed!";
+  } else if (value.length < 4) {
+    error.textContent = "Phone number must be at least 4 digits!";
+  } else {
+    error.textContent = "";
+  }
   input.classList.toggle("input-error", !isValid);
   return isValid;
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("tel_input").addEventListener("input", () => {
+    validateTelInput();
+  });
+});
 
 /**
  * Displays an error message and highlights the input element with an error class.
