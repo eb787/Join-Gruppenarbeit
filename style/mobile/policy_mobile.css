@@ -17,3 +17,15 @@
     padding: 50px 30px;
 }
 }
+
+@media (max-width: 400px) {
+    .privacy_policy_text{
+        height: 430px;
+    }
+    .legal_notice_text{
+        height: 420px;
+    }
+    .help_content{
+        height: 420px;
+    }
+}
