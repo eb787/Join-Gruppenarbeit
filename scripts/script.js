@@ -1,15 +1,15 @@
 let contactColorArray = [ 
-  "#1FD7C1",
-  "#462F8A",
-  "#FC71FF",
-  "#6E52FF",
-  "#9327FF",
-  "#FFBB2B",
-  "#FF4646",
-  "#00BEE8",
-  "#FF7A00",
-  "#2ad91a",
-  "#040404"
+  "#FC71FF", //pink
+  "#6E52FF", //bluish-purple
+  "#9327FF", //ligh purple
+  "#FFBB2B", //yellow
+  "#FF4646", //red       
+  "#00BEE8", //light blue / mint
+  "#0038FF", //dark blue
+  "#FF7A00",  //orange
+  "#1FD7C1", //turquoise
+  "#462F8A", //dark purple
+  "#f0eded", //grey
 ];
 
 //const Base_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/";
