@@ -12,7 +12,7 @@
 
 
 .bg_overlay:hover {
-   /* cursor: pointer;*/
+   cursor: pointer;
 }
 
 
@@ -37,7 +37,7 @@
 }
 
 .card_overlay_board:hover {
-   /* cursor: default;*/
+   cursor: default;
 
 }
 
@@ -114,8 +114,6 @@
 .gap_8 {
     gap: 8px !important;;
 }
-
-
 
 .task_info {
     display: flex;

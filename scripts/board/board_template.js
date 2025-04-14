@@ -78,7 +78,9 @@ function getCardOverlayContent(index) {
     return `<div onclick="stopPropagation(event)" id="card_overlay" class="card_overlay_board slide-in-overlay">
                 <div class="card_overlay_header">
                     <div id="category_${index}_overlay" class="task_category task_category_overlay technical_task_overlay ">${currentTasks[index].category}</div>
-                    <img onclick="closeOverlay('bg_overlay')" class="close_btn_overlay" src="..//assets/icons/close.svg" alt="close button">
+                    <div class="close_btn_overlay">
+                        <img onclick="closeOverlay('bg_overlay')"  src="..//assets/icons/close.svg" alt="close button">
+                    </div>
                 </div>
                 <h1 class="board_heading">${currentTasks[index].title}</h1>
                 <div class="task_description_overlay">${currentTasks[index].description}</div>

@@ -236,11 +236,6 @@
         font-size: 16px !important;
         padding: 4px 16px !important;
     }
-    .close_btn_overlay {
-        width: 13.5px !important;
-        height: 13.5px !important;
-        padding: 9.25px 9.25px !important;
-    }
     .task_description_overlay{
         font-size: 16px;
     }
