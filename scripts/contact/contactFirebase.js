@@ -96,35 +96,7 @@ async function addContact() {
     showAlertSuccess(firstLetter, index);
 }
 
-/**
- * Adds a new contact for login data and sends it to the server.
- * @async
- * @param {Object|null} userData - The user data to add. If null, data will be collected from the input fields.
- */
-async function addContactLogin(userData = null) {
-    let newContact = userData ? {
-        name: userData.name || "No Name",
-        email: userData.email,
-        number: userData.phone || "",
-        color: globalIndex % contactColorArray.length
-    } : collectContactData();
 
-    globalIndex++;
-    saveGlobalIndex();
-    let contactsData = await getData("/contacts");
-    let firstLetter = getFirstLetter(newContact.name);
-    let contactsGroup = contactsData[firstLetter] || {};
-    let newId = Object.keys(contactsGroup).length;
-
-    contactsGroup[newId] = newContact;
-    await postData(`/contacts/${firstLetter}`, contactsGroup);
-
-    if (!userData) {
-        clearInputsAndClose();
-        index = newId;
-        getUsersList();
-    }
-}
 
 /**
  * Retrieves the list of contacts from the server and updates the UI.
@@ -155,6 +127,7 @@ function clearInputsAndClose() {
     ["name_input", "email_input", "tel_input"].forEach(id => document.getElementById(id).value = "");
     closeContactBig();
     resetPicture();
+    clearAllErrors()
 }
 
 /**

@@ -103,7 +103,6 @@
     }
 
     .contact_Card_Input_Frame_two {
-        margin-left: 50px;
         input {
             width: 200px;
             justify-content: center;
@@ -138,5 +137,16 @@
 
     .contact_Card_abbreviation_Frame {
         gap: 20px;
+    }
+
+    .contact_List_Frame {
+        display: flex;
+        align-items: start;
+    }
+}
+
+@media (max-width: 400px) {
+    .contact_List_Frame {
+        width: 400px;
     }
 }

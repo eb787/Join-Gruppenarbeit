@@ -336,9 +336,15 @@ function updateCancelButton() {
  * @param {string} email - The email to validate.
  * @returns {boolean} - Whether the inputs are valid or not.
  */
-function validateInputs(email) {
-  return validateName() && validateTelInput() && validateEmailSync(email);
+// Validierungs-Wrapper
+function validateInputs() {
+  const nameValid = validateName();
+  const emailValid = validateEmailSync(document.getElementById("email_input").value);
+  const telValid = validateTelInput();
+
+  return nameValid && emailValid && telValid;
 }
+
 
 /**
  * Validates the name input, ensuring it's not empty.
@@ -442,14 +448,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-/**
- * Checks whether a string is empty or only contains whitespace.
- * @param {string} value - The string to check.
- * @returns {boolean} - Returns true if the string is empty or whitespace only.
- */
-function isEmpty(value) {
-  return value.trim() === "";
-}
 
 /**
  * Validates if a given string follows a standard email format.
@@ -492,18 +490,25 @@ function validateTelInput() {
   const input = document.getElementById("tel_input");
   const error = document.getElementById("tel_error");
   const value = input.value.trim();
-  const isValid = /^[0-9]{4,}$/.test(value); // mind. 4 Ziffern
+  const digitCount = (value.match(/[0-9]/g) || []).length;
   if (value === "") {
     error.textContent = "Please enter a phone number!";
-  } else if (!/^[0-9]+$/.test(value)) {
-    error.textContent = "Only numbers are allowed!";
-  } else if (value.length < 4) {
-    error.textContent = "Phone number must be at least 4 digits!";
-  } else {
-    error.textContent = "";
+    input.classList.add("input-error");
+    return false;
   }
-  input.classList.toggle("input-error", !isValid);
-  return isValid;
+  if (!/^[0-9 +]+$/.test(value)) {
+    error.textContent = "Only numbers, spaces and + are allowed!";
+    input.classList.add("input-error");
+    return false;
+  }
+  if (digitCount < 4) {
+    error.textContent = "Phone number must be at least 4 digits!";
+    input.classList.add("input-error");
+    return false;
+  }
+  error.textContent = "";
+  input.classList.remove("input-error");
+  return true;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -537,7 +542,10 @@ function clearError(inputElement) {
  * Clears all input errors for name, email, and phone number fields.
  */
 function clearAllErrors() {
-  ['name_input', 'email_input', 'tel_input'].forEach(id => clearError(document.getElementById(id)));
+  clearNameError(document.getElementById('name_input'), document.getElementById('name_error'));
+  clearError(document.getElementById('email_input'));
+  document.getElementById('tel_error').textContent = "";
+  document.getElementById('tel_input').classList.remove("input-error");
 }
 
 /**
@@ -545,6 +553,7 @@ function clearAllErrors() {
  */
 function cancelStatus() {
   document.getElementById('content-card-big').style.display = 'none';
+  closeContactBig();
 }
 
 /**
