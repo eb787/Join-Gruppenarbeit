@@ -18,6 +18,8 @@ function init() {
   startAddTask();
   loadDataFirebase();
   checkAllRequiredData();
+
+  
   subTaskListRender();
   showHelpIconMobile()
 }
@@ -421,7 +423,7 @@ function dateConversion(dateOld) {
  */
 function taskCatergoryRetrieve(number) {
   if (number === "1") {
-    return "Technical Task";
+    return "Technical Task";    
   } else {
     return "User Story"
   }

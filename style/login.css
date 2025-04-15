@@ -90,6 +90,13 @@ body {
     gap: 13px;
 }
 
+.visibility_icon_pos{
+    right: 95px;
+    top: 395px;
+    position: fixed;
+    height: 30px;
+}
+
 .wrong_data_alert {
     color: #FF8190;
     font-size: 13px;

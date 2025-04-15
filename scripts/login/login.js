@@ -156,3 +156,24 @@ async function createUserFolder(userData) {
         console.error("Error creating user folder:", error);
     }
 }
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const passwordInput = document.getElementById('password');
+    const toggleIcon = document.getElementById('togglePasswordVisibility');
+
+    // Zeigt das Icon, sobald Text im Passwortfeld steht
+    passwordInput.addEventListener('input', function () {
+        toggleIcon.style.display = passwordInput.value.length > 0 ? 'block' : 'none';
+    });
+
+    // Passwort ein-/ausblenden beim Klicken auf das Icon
+    toggleIcon.addEventListener('click', function () {
+        const isPassword = passwordInput.type === 'password';
+        passwordInput.type = isPassword ? 'text' : 'password';
+        toggleIcon.src = isPassword 
+        ? "./assets/icons/visibility.svg"
+        : "./assets/icons/visibility_off.svg";
+    });
+});
+

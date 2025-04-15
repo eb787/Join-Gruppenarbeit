@@ -82,7 +82,9 @@ function getCardOverlayContent(index) {
                         <img onclick="closeOverlay('bg_overlay')"  src="..//assets/icons/close.svg" alt="close button">
                     </div>
                 </div>
-                <h1 class="board_heading">${currentTasks[index].title}</h1>
+                <div style="overflow-wrap: break-word;">
+                    <h1 class="board_heading">${currentTasks[index].title}</h1>
+                </div>
                 <div class="task_description_overlay">${currentTasks[index].description}</div>
                 <div class="task_description_overlay">
                     <p class="color_blue font_weight_700">Due Date:</p>
