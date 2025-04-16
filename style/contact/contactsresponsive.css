@@ -143,10 +143,12 @@
         display: flex;
         align-items: start;
     }
-}
 
-@media (max-width: 400px) {
-    .contact_List_Frame {
-        width: 400px;
+    .contact_Detail_List {
+        gap: 10px;
+    }
+
+    h3 {
+        font-size: 13px ;
     }
 }
