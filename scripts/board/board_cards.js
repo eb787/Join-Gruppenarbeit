@@ -136,7 +136,7 @@ function showContacts(index, layer) {
         for (let i = 0; i < 5; i++) {
             getCorrectContact(index, i, layer);
         }
-        document.getElementById("Profile_badges_" + index + "_" + layer).innerHTML += getContactDots();
+        document.getElementById("Profile_badges_" + index + "_" + layer).innerHTML += getContactDots((currentTasks[index].contacts.length - 5));
     } else {
         for (let i = 0; i < currentTasks[index].contacts.length; i++) {
                     getCorrectContact(index, i, layer);

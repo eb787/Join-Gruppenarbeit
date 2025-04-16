@@ -35,12 +35,12 @@ function getSubtasks(index, subtasks, progress, layer) {
 
 
 function getContactIcon(index, i, layer) {
-    return `<div id="profile_${index}_${i}_${layer}" class="profile_badge" style="z-index: ${i + 1}; position: relative; left: calc(${i} * -8px); background-color: ${contactColorArray[(currentTasks[index].contacts[i].color)+1]};"></div>`
+    return `<div id="profile_${index}_${i}_${layer}" class="profile_badge" style="z-index: ${i + 1}; position: relative; left: calc(${i} * -8px); background-color: ${contactColorArray[(currentTasks[index].contacts[i].color)]};"></div>`
 }
 
 
-function getContactDots() {
-    return `<div class="dots_more_content">...</div>`
+function getContactDots(moreContacts) {
+    return `<div class="dots_more_content">+${moreContacts}</div>`
 }
 
 
@@ -138,7 +138,7 @@ function getContactBoxOverlay(index) {
 
 function getContactIconOverlay(index, i) {
     return `<div class="contact_info">
-                <div id="profile_${index}_${i}_overlay"  class="profile_badge profile_badge_overlay" style="background-color: ${contactColorArray[(currentTasks[index].contacts[i].color)+1]};"></div>
+                <div id="profile_${index}_${i}_overlay"  class="profile_badge profile_badge_overlay" style="background-color: ${contactColorArray[(currentTasks[index].contacts[i].color)]};"></div>
                 <p class="font_19">${currentTasks[index].contacts[i].name}</p>
             </div>`
 }

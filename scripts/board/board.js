@@ -199,8 +199,7 @@ async function changeCategory(path = "", newObj) {
 function startTyping() {
     document.getElementById('input_board').classList.add('input_board_searching');
     if (document.getElementById('inputfield_board').value == "") {
-        document.getElementById('input_board').classList.remove('input_board_searching');
-        updateTaskBoard();
+        refreshFoundResults();
     } else{
         compareTitleWithCurrentTasks(0, document.getElementById('inputfield_board').value);
     }
@@ -233,17 +232,28 @@ function findTask() {
 function compareTitleWithCurrentTasks(counter, titleToFind) {
     for (let index = 0; index < currentTasks.length; index++) {
         if (currentTasks[index]) {
-            if (currentTasks[index].title.toLowerCase().includes(titleToFind.toLowerCase())) {
+            if (currentTasks[index].title.toLowerCase().includes(titleToFind.toLowerCase()) || currentTasks[index].description.toLowerCase().includes(titleToFind.toLowerCase())) {
                 counter = counter + 1;
                 if (counter == 1) {
                     emptyBoard();
                 }
-                showCardOnBoard(index);
-                closeAlert();
+                updateBoardBasedOnFindings(index);
             }
         }
     } 
     showNoTaskFoundAlert(counter);
+}
+
+
+/** 
+ * This function lets the card appear on the board, which is indicated by the index number
+ * @param {number} index - This parameter indicates which task card should appear on the board
+*/
+function updateBoardBasedOnFindings(index) {
+    showCardOnBoard(index);
+    closeAlert();
+    document.getElementById('back_icon').classList.remove('d_none');
+    document.getElementById('search_icon').classList.add('d_none');
 }
 
 
@@ -255,10 +265,14 @@ function showNoTaskFoundAlert(counter) {
     if (counter == 0) {
         document.getElementById('no_element_found_alert').classList.remove('d_none');
         document.getElementById('input_board').classList.add('alert_input');
+        document.getElementById('back_icon').classList.add('d_none');
+        document.getElementById('search_icon').classList.remove('d_none');
         setTimeout(() => {
             closeAlert();
         }, 5000);
         updateTaskBoard();
+        document.getElementById('back_icon').classList.add('d_none');
+        document.getElementById('search_icon').classList.remove('d_none');
     }
 }
 
@@ -269,6 +283,19 @@ function showNoTaskFoundAlert(counter) {
 function closeAlert() {
     document.getElementById('no_element_found_alert').classList.add('d_none');
     document.getElementById('input_board').classList.remove('alert_input');
+}
+
+
+/** 
+ * This function makes the back-arrow dissapear and the seach-icon appear on the input field
+ * It also updates the board
+*/
+function refreshFoundResults() {
+    document.getElementById('back_icon').classList.add('d_none');
+    document.getElementById('search_icon').classList.remove('d_none');
+    document.getElementById('inputfield_board').value = "";
+    updateTaskBoard();
+    document.getElementById('input_board').classList.remove('input_board_searching'); 
 }
 
 

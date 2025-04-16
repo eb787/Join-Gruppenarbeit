@@ -42,6 +42,7 @@ body {
     flex-grow: 1;
     gap: 30px;
     justify-content: right;
+    max-width: 1682px;
 }
 
 .headline_title {

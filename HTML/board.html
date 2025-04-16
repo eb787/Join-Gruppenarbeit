@@ -102,10 +102,15 @@
                             <div id="input_board" class="input_board">
                                 <input onkeyup="startTyping()" id="inputfield_board" class="inputfield_board" type="text" placeholder="Find Task"
                                     alt="input find task">
-                                <div onclick="findTask()" class="input_icons">
+                                <div id="search_icon" onclick="findTask()" class="input_icons">
                                     <img class="seperator_icon" src="../assets/icons/seperator.png"
                                         alt="seperator icon">
                                     <img class="search_icon" src="../assets/icons/search.png" alt="search icon">
+                                </div>
+                                <div id="back_icon" onclick="refreshFoundResults()" class="input_icons d_none">
+                                    <img class="seperator_icon" src="../assets/icons/seperator.png"
+                                        alt="seperator icon">
+                                    <img class="back_icon" src="../assets/icons/arrow-left-line.svg" alt="back icon">
                                 </div>
                             </div>
                             <div id="no_element_found_alert" class="alert_box d_none">No Task has been found</div>

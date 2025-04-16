@@ -268,13 +268,10 @@
         width: 100%;
     }
     .inputfield_board {
-        width: 180px;
+        width: 280px;
     }
 }
 @media(max-width: 477px){
-    .inputfield_board {
-        width: 180px;
-    }
     .board_content{
         padding: 0 16px;
     }
@@ -285,7 +282,7 @@
 }
 @media(max-width: 375px){
     .inputfield_board {
-        width: 140px;
+        width: 180px;
     }
     .card_overlay_board{
         padding: 16px 14px;
@@ -295,9 +292,5 @@
         width: 280px;
     }
 }
-@media(max-width: 345px){
-    .inputfield_board {
-        width: 120px;
-    } 
-}
+
 

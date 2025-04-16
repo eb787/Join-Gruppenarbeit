@@ -288,3 +288,12 @@ button:hover {
     height: 13.5px !important;
     padding: 9.25px 9.25px !important;
 }
+
+.back_icon {
+    width: 26px;
+    filter: grayscale(1);
+}
+
+.back_icon:hover {
+    cursor: pointer;
+}

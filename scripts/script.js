@@ -9,7 +9,7 @@ let contactColorArray = [
   "#FF7A00",  //orange
   "#1FD7C1", //turquoise
   "#462F8A", //dark purple
-  "#f0eded", //grey
+  "#6e6b6dcc", //grey
 ];
 
 //const Base_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/";
