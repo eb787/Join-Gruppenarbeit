@@ -87,6 +87,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     z-index: 1;
 }
 
@@ -95,7 +96,8 @@ body {
 }
 
 .div_nav_icons {
-    padding-top: 100px;
+    position: absolute;
+    top: 290px;
 }
 
 .navbar_icon {
@@ -131,7 +133,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: 285px;
+    padding-bottom: 30px;
 }
 
 .nav_impressum {
