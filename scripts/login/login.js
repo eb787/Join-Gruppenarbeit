@@ -11,6 +11,8 @@ let contactColorArray = [
     "#462F8A", //dark purple
     "#f0eded", //grey
   ];
+
+
 /**
  * This function is used to authenticate the user during login
  * Checks if both email and password are provided
@@ -66,11 +68,6 @@ async function addContactLogin(userData = null) {
         getUsersList();
     }
 }
-/**
- * Adds a new contact for login data and sends it to the server.
- * @async
- * @param {Object|null} userData - The user data to add. If null, data will be collected from the input fields.
- */
 
 
 /**
