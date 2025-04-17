@@ -161,19 +161,23 @@ async function createUserFolder(userData) {
 document.addEventListener('DOMContentLoaded', () => {
     const passwordInput = document.getElementById('password');
     const toggleIcon = document.getElementById('togglePasswordVisibility');
+    const lockIcon = document.getElementById('lockIcon');
 
-    // Zeigt das Icon, sobald Text im Passwortfeld steht
     passwordInput.addEventListener('input', function () {
-        toggleIcon.style.display = passwordInput.value.length > 0 ? 'block' : 'none';
+        const hasContent = passwordInput.value.length > 0;
+
+       
+        lockIcon.style.display = hasContent ? 'none' : 'inline';
+        toggleIcon.style.display = hasContent ? 'inline' : 'none';
     });
 
-    // Passwort ein-/ausblenden beim Klicken auf das Icon
     toggleIcon.addEventListener('click', function () {
         const isPassword = passwordInput.type === 'password';
         passwordInput.type = isPassword ? 'text' : 'password';
         toggleIcon.src = isPassword 
-        ? "./assets/icons/visibility.svg"
-        : "./assets/icons/visibility_off.svg";
+            ? "./assets/icons/visibility.svg"
+            : "./assets/icons/visibility_off.svg";
     });
 });
+
 
