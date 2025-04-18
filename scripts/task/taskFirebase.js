@@ -4,7 +4,7 @@ const Base_URLTask = "https://joinstorage-805e6-default-rtdb.europe-west1.fireba
  *Function retrieves the data Task and Contacts on the FirebaseDB
  */
 async function loadDataFirebase() {
-    try {
+     try {
         const [responseTask, responseContact] = await Promise.all([
             fetch(Base_URLTask + "/tasks/" + ".json"),
             fetch(Base_URLTask + "/contacts/" + ".json")

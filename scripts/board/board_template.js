@@ -105,7 +105,7 @@ function getCardOverlayContent(index) {
                         <p>Delete</p>
                     </div>
                     <div class="seperator_overlay_options"></div>
-                    <div onclick="editTask(${index})" class="overlay_option edit_btn_overlay_board">
+                    <div onclick="editTask(${index})"  class="overlay_option edit_btn_overlay_board">
                         <img class="edit_icon" src="..//assets/icons/edit.svg" alt="edit button">
                         <p >Edit</p>
                     </div>
@@ -380,7 +380,7 @@ function getAddTaskOverlay() {
                                 <div class="section_category_ol">
                                     <h2>Category<span class="star_red_ol">*</span></h2>
                                     <div class="category-wrapper_ol">
-                                        <select id="taskCatergory" class="input_field_catergory_ol" onblur="requiredInputCategory()" onfocus="errorFieldsFocus('error_Field_Catergory')" >
+                                        <select id="taskCatergory" class="input_field_catergory_ol" onblur="requiredInputCategory()" onfocus="errorFieldsFocus('error_Field_Catergory')"onclick="requiredInputCategory()" >
                                             <option value="" selected disabled>Select task category</option>
                                             <option value="1">Technical Task</option>
                                             <option value="2">User Story</option>

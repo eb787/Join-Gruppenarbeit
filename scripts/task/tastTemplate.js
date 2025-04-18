@@ -29,13 +29,13 @@ function SubtaskListTemplate(subTaskdesignation, index) {
  * @param {String} email the contact's email address
  * @returns 
  */
-function taskContacListTemplate(index, name, color, initials, email) {
+function taskContacListTemplate(index, name, color, initials, email,check) {
         return `
       <div class="contact_Label_Item">
      <label>
               <p class="initial_Letters_Contact" style="background-color: ${color};">${initials}</p>
               <span>${name}</span> 
-              <input class="input_check" type="checkbox" onclick="contactCheckOKinArray(${index})">
+              <input id="contactcheckbox(${index})" class="input_check" ${check} type="checkbox" onclick="contactCheckOKinArray(${index})">
      </label>
             </div>  
      `
@@ -47,10 +47,14 @@ function taskContacListTemplate(index, name, color, initials, email) {
  * @param {String} initials 
  * @returns 
  */
-function taskContacInitialTemplate(color, initials) {
+function taskContacInitialTemplate(color, initials,numbers) {
     return `
+        
            <span class="initial_Letters_Contact" style="background-color:  ${color}; margin-left: -15px;"> 
-           ${initials}
+           ${initials} 
            </span>
-         `
+         
+           `
 }
+
+

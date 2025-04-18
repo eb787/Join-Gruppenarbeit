@@ -382,6 +382,7 @@ span {
 .input_group {
     display: flex;
     flex-direction: row;
+    
 }
 
 
@@ -464,7 +465,7 @@ hr {
     gap:20px;
     justify-content: flex-start;
     margin-left: 20px;
-    width: 175px;
+    /*width: 175px;*/
     }
 
 
@@ -614,6 +615,7 @@ textarea:hover {
     display: flex;
     align-items: center;
     gap: 30px;
+    z-index: 1000;
 }
 
 

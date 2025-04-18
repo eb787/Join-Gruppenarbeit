@@ -18,8 +18,6 @@ function init() {
   startAddTask();
   loadDataFirebase();
   checkAllRequiredData();
-
-  
   subTaskListRender();
   showHelpIconMobile()
 }
@@ -96,7 +94,7 @@ function requiredInputDate(template){
       if(template==="edit"){inputsOK[1]=true;};
   } else {
       document.getElementById('taskDate').classList.add('error_Input');
-      document.getElementById('error_Field_Date').innerHTML="This field is required";
+      document.getElementById('error_Field_Date').innerHTML="The date must be in the future";
       inputsOK[1]=false;
   }
 } else {
@@ -243,7 +241,12 @@ function taskCreateTask() {
     editIndex = false;
     editTaskNr = 0;
   } else {
+    if(contents.trim()==""){      
+    return;
+    }
+    else{
     taskSubTaskList.push(contents);
+    }
   }
   subTaskClose();
   subTaskListRender();
@@ -303,6 +306,7 @@ function taskReadinArrayContact(DataContact) {
 }
 
 
+
 /**
  * function to open the contact list
  */
@@ -345,7 +349,7 @@ function contactCheckOKinArray() {
       taskContacInitialRender(selectedTaskContacts);
     }
   })
-}
+  }
 
 
 /**
@@ -355,15 +359,23 @@ function contactCheckOKinArray() {
 async function checkInputData(template) {
         pushTaskToServer();
         timePopUp(2000);
-
+       
         inputsOK=[false,false,false];
         if (template == "overlay") {
-          setTimeout(() =>{
-          loadTaskData();
-          },200);
-          closeOverlay('addTask_overlay')              
+            setTimeout(()=>{
+            loadTaskData();
+            dataFromFirebaseEdit();
+            closeOverlay('addTask_overlay')      
+          },1000);
+                
+      } else{
+        setTimeout(()=>{
+        window.location.href = "board.html"; 
+        },1000);
       }
-          addTaskClear();   
+         addTaskClear();  
+      
+         
     }
  
 

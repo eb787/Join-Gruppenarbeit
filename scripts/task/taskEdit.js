@@ -1,3 +1,4 @@
+
 let currentTaskEdit = {};
 let indexEdit = 0;
 let DataTaskEdit = {};
@@ -10,16 +11,23 @@ let editTaskNrEdit = 0;
 selectedTaskContacts = "";
 subTaskArray = "";
 inputsOK=[true,true,true];
-dataFromFirebase();
+
+dataFromFirebaseEdit();
+
 
 /**
  * This function retrieves the data from the record with the given index that was previously loaded via dataFromFirebase
  * @param {string} index -  the index of the passed task
  */
+
+
 function editTask(index) {
+        console.log("Starte Edit mit index ",index);
+        //console.log("Namen", DataTaskEdit[index].contacts);
         indexEdit = index;
         DataTaskContactsTask = DataTaskEdit[indexEdit].contacts;
-        TaskEditOverlayRender();
+        console.log("Contxcte ",DataTaskContactsTask);
+        TaskEditOverlayRender();              
 }
 
 
@@ -27,18 +35,19 @@ function editTask(index) {
  * Here the data is written into the overlay for Edit AddTask
  */
 function TaskEditOverlayRender() {
+
         document.getElementById('card_overlay').innerHTML = "";
         document.getElementById('card_overlay').innerHTML = editTaskTemplate(indexEdit);
         document.getElementById('taskTitle').value = DataTaskEdit[indexEdit].title;  
         document.getElementById('descriptionTask').value = DataTaskEdit[indexEdit].description;
         document.getElementById('taskDate').value = dateConversation(DataTaskEdit[indexEdit].deadline);
         checkPrioEditTask(DataTaskEdit[indexEdit].prio); 
-        taskReadinArrayContact(DataContactsAll);
         editTaskWriteContacts(DataTaskContactsTask);
-        subTaskListLoadEdit()
-}
+        subTaskListLoadEdit();
+        taskReadinArrayContactEdit(DataContactsAll,DataTaskContactsTask);
+        }
 
-
+      
 /**
  * function which converts the date from the passed data set into the format dd.mm.yyyy
  * @param {string} dateStr -Date passed with the format dd/mm/yyyy
@@ -87,27 +96,72 @@ function taskContactListDrobdownEdit() {
 /**
  * function that passes the contacts from the array DataTaskEdit to conta
  */
-function taskContactsLoadTaskDB() {
-        let conta = DataTaskEdit[indexEdit].contacts;
-}
+//function taskContactsLoadTaskDB() {
+     //   let conta = DataTaskEdit[indexEdit].contacts;
+//}
+
 
 
 /**
- * 
+ * function to write the contacts into the list
  * @param {*} DataContacts 
  */
 function editTaskWriteContacts(DataContacts) {
-        if (DataContacts.length > 0) {
+               if (DataContacts.length > 0) {
                 let element = document.getElementById('initialeIconList');
+                      
+              
+                let entriesLenght= DataContacts.length;
+           if (entriesLenght <=4){
+
                 DataContacts.map(emtry => {
                         let name = emtry.name;
                         let color = emtry.color;
+                        element.innerHTML += taskContacInitialTemplate(contactColorAssignEdit(color), taskInitialLettersCreate(name),"");
+                     });
+             } else{
+                for(l=0;l<5;l++){
+                        let name = DataContacts[l].name;
+                        let color = DataContacts[l].color;
                         element.innerHTML += taskContacInitialTemplate(contactColorAssignEdit(color), taskInitialLettersCreate(name));
-                });
-                function contactColorAssignEdit(color) {
-                        return contactColorArray[color];
-                }
-        }
+                };
+
+                element.innerHTML+= "+ "+ (entriesLenght-5);
+
+             }
+             }           
+}
+
+function contactColorAssignEdit(color) {
+        return contactColorArray[color];
+}
+
+
+//--------------------------------------------------
+
+function taskReadinArrayContactEdit(DataContact,DataContacts) {
+        let = index = 0;
+        document.getElementById('taskDropDownList').innerHTML = "";
+        taskContacteArray = Object.values(DataContact)
+          .flatMap(array => array.map(entry => ({
+            name: entry.name,
+            email: entry.email,
+            color: entry.color || "10"
+          })));       
+        taskContacteArray.map((contact, index) => {
+         taskRenderContactList(index, contact.name, contact.color || "10", contact.email,taskListMarkContact(DataContacts,contact));
+                 });
+       }
+
+
+function taskListMarkContact(DataContacts,contact){
+        const result = DataContacts.find(cont => cont.email === contact.email);
+        if(result){
+              check="checked";
+            }else{
+              check="";
+            }
+      return check;
 }
 
 
@@ -117,7 +171,7 @@ function editTaskWriteContacts(DataContacts) {
  * @returns 
  */
 function contactColorAssignEdit(color) {
-        return contactColorArray[color];
+        return contactColorArray[color-1];
 }
 
 
@@ -180,7 +234,11 @@ function taskCreateTaskEdit() {
                 editIndexEdit = false;
                 editTaskNrEdit = 0;
         } else {
+                if(contents.trim()==""){
+                        return;
+                }else{
                 DataSubTaskListEdit.push(contents);
+                }
         }
         subTaskClose();
         subTaskListRenderEdit(DataSubTaskListEdit);
@@ -260,7 +318,11 @@ function checkContacts() {
 }
 
 
-
+/**
+ * function to save the changed data in TaskEdit
+ * @param {*} path path to save
+ * @param {*} task task number
+ */
 async function postTaskDataEdit(path = "", task) {
         let CurrentTaskResponse = await fetch(Base_URL + path + ".json", {
                 method: "PUT",
@@ -269,16 +331,20 @@ async function postTaskDataEdit(path = "", task) {
                 },
                 body: JSON.stringify(task)
         });
+        dataFromFirebaseEdit();
 }
 
 
 /**
  * loading the tasks and contacts from the DB
  */
-async function dataFromFirebase() {
+async function dataFromFirebaseEdit() {
+        console.log("Lade Daten von Firebase");
         const { DataTask, DataContact } = await loadDataFirebaseEdit();
         DataTaskEdit = DataTask;
         DataContactsAll = DataContact
+
+        
 }
 
 
@@ -287,10 +353,12 @@ async function dataFromFirebase() {
  * @returns 
  */
 async function loadDataFirebaseEdit() {
+     
         try {
                 const [responseTask, responseContact] = await Promise.all([
-                        fetch(Base_URL + "/tasks/" + ".json"),
-                        fetch(Base_URL + "/contacts/" + ".json")
+                        fetch(Base_URL + "/tasks/" + ".json",{cache: "no-store"}),
+                        fetch(Base_URL + "/contacts/" + ".json",{cache: "no-store"})
+                
                 ])
                 const DataTask = await responseTask.json();
                 const DataContact = await responseContact.json();
@@ -299,6 +367,9 @@ async function loadDataFirebaseEdit() {
                 console.log("Fehler beim lesen ", error);
         }
 }
+
+
+
 
 
 /**

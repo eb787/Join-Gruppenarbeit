@@ -184,10 +184,22 @@ hr {
             height: 40px;
             padding: 10px
         }
-
-
         margin-bottom: 10px;
     }
+
+
+    .input_group{
+        margin-right: 1px;
+    }
+
+    .add_subtasks_new {
+        padding-top: 15px;
+    }
+
+    .add_subtasks {
+        padding-top: 15px;
+        }
+
 
 
     .input_subtasks {

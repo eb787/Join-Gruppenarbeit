@@ -17,9 +17,9 @@ element.innerHTML += taskSubTaskList.map((designation, index)=>
  * @param {number} color Color of the contact
  * @param {String} email email of the contact
  */
-function taskRenderContactList(index,name,color,email){
+function taskRenderContactList(index,name,color,email,check){
   let element= document.getElementById('taskDropDownList');
-  element.innerHTML += taskContacListTemplate(index,name,contactColorAssign(color),taskInitialLettersCreate(name),email);
+  element.innerHTML += taskContacListTemplate(index,name,contactColorAssign(color),taskInitialLettersCreate(name),email,check);
 }
 
 
@@ -29,11 +29,21 @@ function taskRenderContactList(index,name,color,email){
  */
 function taskContacInitialRender(selectContact){
   let element= document.getElementById('initialeIconList');
-  selectContact.map(empty=>{
-    let name=empty.name;
-    let color = empty.color;
-    element.innerHTML += taskContacInitialTemplate(contactColorAssign(color),taskInitialLettersCreate(name));
-  });
+  let entriesLenght = selectContact.length;
+  if(entriesLenght <=5){
+      selectContact.map(empty=>{
+      let name=empty.name;
+      let color = empty.color;
+      element.innerHTML += taskContacInitialTemplate(contactColorAssign(color),taskInitialLettersCreate(name),"");
+    });
+  }else{
+    for(l=0;l<5;l++){
+      let name=selectContact[l].name;
+      let color = selectContact[l].color;
+      element.innerHTML += taskContacInitialTemplate(contactColorAssign(color),taskInitialLettersCreate(name));   
+     };
+      element.innerHTML+= "+ " + (entriesLenght-4);
+  }
 }
 
 
@@ -43,7 +53,7 @@ function taskContacInitialRender(selectContact){
  * @returns 
  */
 function contactColorAssign(color){
-   return contactColorArray[color+1];
+   return contactColorArray[color-1];
 }
 
 

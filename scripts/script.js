@@ -6,7 +6,7 @@ let contactColorArray = [
   "#FF4646", //red       
   "#00BEE8", //light blue / mint
   "#0038FF", //dark blue
-  "#FF7A00",  //orange
+  "#FF7A00", //orange
   "#1FD7C1", //turquoise
   "#462F8A", //dark purple
   "#6e6b6dcc", //grey
