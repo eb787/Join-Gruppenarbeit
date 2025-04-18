@@ -35,16 +35,16 @@ function editTask(index) {
  * Here the data is written into the overlay for Edit AddTask
  */
 function TaskEditOverlayRender() {
-
         document.getElementById('card_overlay').innerHTML = "";
         document.getElementById('card_overlay').innerHTML = editTaskTemplate(indexEdit);
         document.getElementById('taskTitle').value = DataTaskEdit[indexEdit].title;  
         document.getElementById('descriptionTask').value = DataTaskEdit[indexEdit].description;
         document.getElementById('taskDate').value = dateConversation(DataTaskEdit[indexEdit].deadline);
         checkPrioEditTask(DataTaskEdit[indexEdit].prio); 
-        editTaskWriteContacts(DataTaskContactsTask);
         subTaskListLoadEdit();
         taskReadinArrayContactEdit(DataContactsAll,DataTaskContactsTask);
+        editTaskWriteContacts(DataTaskContactsTask);
+       
         }
 
       
@@ -107,34 +107,35 @@ function taskContactListDrobdownEdit() {
  * @param {*} DataContacts 
  */
 function editTaskWriteContacts(DataContacts) {
+        if(Array.isArray(DataContacts)){
                if (DataContacts.length > 0) {
                 let element = document.getElementById('initialeIconList');
-                      
-              
                 let entriesLenght= DataContacts.length;
-           if (entriesLenght <=4){
-
-                DataContacts.map(emtry => {
-                        let name = emtry.name;
-                        let color = emtry.color;
-                        element.innerHTML += taskContacInitialTemplate(contactColorAssignEdit(color), taskInitialLettersCreate(name),"");
-                     });
-             } else{
-                for(l=0;l<5;l++){
-                        let name = DataContacts[l].name;
-                        let color = DataContacts[l].color;
-                        element.innerHTML += taskContacInitialTemplate(contactColorAssignEdit(color), taskInitialLettersCreate(name));
-                };
+                        if (entriesLenght <=4){
+                                DataContacts.map(emtry => {
+                                let name = emtry.name;
+                                let color = emtry.color;
+                                element.innerHTML += taskContacInitialTemplate(contactColorAssignEdit(color), taskInitialLettersCreate(name),"");
+                        });
+                } else{
+                        for(l=0;l<5;l++){
+                                let name = DataContacts[l].name;
+                                let color = DataContacts[l].color;
+                                element.innerHTML += taskContacInitialTemplate(contactColorAssignEdit(color), taskInitialLettersCreate(name));
+                        };
 
                 element.innerHTML+= "+ "+ (entriesLenght-5);
-
              }
-             }           
+             }    
+        }       
 }
 
 function contactColorAssignEdit(color) {
         return contactColorArray[color];
 }
+
+
+
 
 
 //--------------------------------------------------
@@ -154,7 +155,10 @@ function taskReadinArrayContactEdit(DataContact,DataContacts) {
        }
 
 
-function taskListMarkContact(DataContacts,contact){
+function taskListMarkContact(DataContacts,contact){   
+        console.log("keine kontake");
+        
+        if (Array.isArray(DataContacts)){
         const result = DataContacts.find(cont => cont.email === contact.email);
         if(result){
               check="checked";
@@ -162,6 +166,8 @@ function taskListMarkContact(DataContacts,contact){
               check="";
             }
       return check;
+        }
+   
 }
 
 
@@ -306,16 +312,22 @@ function collectDataEdit() {
  * @returns 
  */
 function checkContacts() {
+        console.log("Kontake ",selectedTaskContacts);
+        console.log("data Kontake ",DataTaskContactsTask);        
         if (selectedTaskContacts.length > 0) {
                 return selectedTaskContacts
         }
         else {
+
                 if (DataTaskContactsTask.length > 0) {
                         return DataTaskContactsTask;
                 }
                 return "";
         }
 }
+
+
+
 
 
 /**
@@ -343,8 +355,6 @@ async function dataFromFirebaseEdit() {
         const { DataTask, DataContact } = await loadDataFirebaseEdit();
         DataTaskEdit = DataTask;
         DataContactsAll = DataContact
-
-        
 }
 
 
@@ -352,14 +362,12 @@ async function dataFromFirebaseEdit() {
  * Loading data from FirebaseDB for the AddTask Edit template
  * @returns 
  */
-async function loadDataFirebaseEdit() {
-     
+async function loadDataFirebaseEdit() {     
         try {
                 const [responseTask, responseContact] = await Promise.all([
                         fetch(Base_URL + "/tasks/" + ".json",{cache: "no-store"}),
                         fetch(Base_URL + "/contacts/" + ".json",{cache: "no-store"})
-                
-                ])
+                 ])
                 const DataTask = await responseTask.json();
                 const DataContact = await responseContact.json();
                 return { DataTask, DataContact };
