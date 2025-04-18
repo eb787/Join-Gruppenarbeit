@@ -22,11 +22,8 @@ dataFromFirebaseEdit();
 
 
 function editTask(index) {
-        console.log("Starte Edit mit index ",index);
-        //console.log("Namen", DataTaskEdit[index].contacts);
         indexEdit = index;
         DataTaskContactsTask = DataTaskEdit[indexEdit].contacts;
-        console.log("Contxcte ",DataTaskContactsTask);
         TaskEditOverlayRender();              
 }
 
@@ -163,8 +160,6 @@ function taskReadinArrayContactEdit(DataContact,DataContacts) {
   * @returns 
   */      
 function taskListMarkContact(DataContacts,contact){   
-        console.log("keine kontake");
-        
         if (Array.isArray(DataContacts)){
         const result = DataContacts.find(cont => cont.email === contact.email);
         if(result){
@@ -318,8 +313,6 @@ function collectDataEdit() {
  * @returns 
  */
 function checkContacts() {
-        console.log("Kontake ",selectedTaskContacts);
-        console.log("data Kontake ",DataTaskContactsTask);        
         if (selectedTaskContacts.length > 0) {
                 return selectedTaskContacts
         }
@@ -354,7 +347,6 @@ async function postTaskDataEdit(path = "", task) {
  * loading the tasks and contacts from the DB
  */
 async function dataFromFirebaseEdit() {
-        console.log("Lade Daten von Firebase");
         const { DataTask, DataContact } = await loadDataFirebaseEdit();
         DataTaskEdit = DataTask;
         DataContactsAll = DataContact
