@@ -97,14 +97,6 @@ function taskContactListDrobdownEditClose(){
          document.getElementById('initialeIconList').classList.add('icon_List_hide')
 }
 
-/**
- * function that passes the contacts from the array DataTaskEdit to conta
- */
-//function taskContactsLoadTaskDB() {
-     //   let conta = DataTaskEdit[indexEdit].contacts;
-//}
-
-
 
 /**
  * function to write the contacts into the list
@@ -134,16 +126,21 @@ function editTaskWriteContacts(DataContacts) {
         }       
 }
 
+/**
+ * get color from array
+ * @param {*} color 
+ * @returns 
+ */
 function contactColorAssignEdit(color) {
         return contactColorArray[color];
 }
 
 
-
-
-
-//--------------------------------------------------
-
+/**
+ * write contacts to array
+ * @param {*} DataContact 
+ * @param {*} DataContacts 
+ */
 function taskReadinArrayContactEdit(DataContact,DataContacts) {
         let = index = 0;
         document.getElementById('taskDropDownList').innerHTML = "";
@@ -159,6 +156,12 @@ function taskReadinArrayContactEdit(DataContact,DataContacts) {
        }
 
 
+ /**
+  * check which contacts match the saved ones
+  * @param {*} DataContacts 
+  * @param {*} contact 
+  * @returns 
+  */      
 function taskListMarkContact(DataContacts,contact){   
         console.log("keine kontake");
         
@@ -170,8 +173,7 @@ function taskListMarkContact(DataContacts,contact){
               check="";
             }
       return check;
-        }
-   
+        }  
 }
 
 
@@ -331,9 +333,6 @@ function checkContacts() {
 }
 
 
-
-
-
 /**
  * function to save the changed data in TaskEdit
  * @param {*} path path to save
@@ -379,9 +378,6 @@ async function loadDataFirebaseEdit() {
                 console.log("Fehler beim lesen ", error);
         }
 }
-
-
-
 
 
 /**

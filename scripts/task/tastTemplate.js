@@ -41,6 +41,7 @@ function taskContacListTemplate(index, name, color, initials, email,check) {
      `
 }
 
+
 /**
  * function to write the initials with HTML
  * @param {Number} color 

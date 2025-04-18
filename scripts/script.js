@@ -12,8 +12,6 @@ let contactColorArray = [
   "#6e6b6dcc", //grey
 ];
 
-//const Base_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/";
-
 
 function toggleMenu() {
     document.getElementById('submenu_toogle').classList.toggle('submenu_open');

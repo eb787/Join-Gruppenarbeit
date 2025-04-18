@@ -111,6 +111,7 @@ span {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    margin-top: 20px;
 
     span {
         font-weight: 400;
@@ -334,7 +335,7 @@ span {
     flex-direction: column;
     gap: 8px;
     height: 88px;
-    margin-top: 20px;
+   
 }
 
 
