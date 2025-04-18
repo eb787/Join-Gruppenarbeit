@@ -92,6 +92,10 @@ function taskContactListDrobdownEdit() {
         document.getElementById('initialeIconList').classList.toggle('icon_List_hide')
 }
 
+function taskContactListDrobdownEditClose(){
+         document.getElementById('taskContactDrowdownMenue').classList.remove('ele_show');  
+         document.getElementById('initialeIconList').classList.add('icon_List_hide')
+}
 
 /**
  * function that passes the contacts from the array DataTaskEdit to conta

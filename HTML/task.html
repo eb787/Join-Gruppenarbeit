@@ -90,13 +90,12 @@
                                     tabindex="2"></textarea>
                             </div>
                         </div>
-                        <div class="section_assigned">
+                        <div class="section_assigned" >
                             <h2 class="assigned_title">Assigned to</h2>
-                            <div class="task_Contact_dropdown">
-                                <div class="task_input_section">
-                                    <input type="text" id="taskDropDownInput" class="task_dropdown_input" tabindex="3"
-                                        placeholder="Select contacts to assign" onclick="taskContactListDrobdown()"
-                                        onkeyup="taskContactFilterList()">
+                            <div class="task_Contact_dropdown" onmouseleave="taskContactListDrobdown()">
+                                <div class="task_input_section" >
+                                    <input type="text" id="taskDropDownInput" class="task_dropdown_input"  tabindex="3"
+                                        placeholder="Select contacts to assign" onclick="taskContactListDrobdown()">
                                     <img src="../assets/icons/arrow_down.svg">
                                 </div>
                                 <div id="taskContactDrowdownMenue" class="task_dropdown_content">

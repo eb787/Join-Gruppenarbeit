@@ -2,6 +2,7 @@
 
     .section_right {
          width: 100%;    
+         margin-right: 0px;
     }
     
     .section_left {
@@ -104,7 +105,7 @@ hr {
         width: auto;
         overflow-x: auto;
         margin-left: 5px;
-        margin-right: 5px;
+        margin-right: 15px;
         margin-top: 30px;
 
     }
@@ -120,7 +121,15 @@ hr {
     }
     .section_left {
        margin-left: 0;
+       width: 100%;
     }
+
+
+    .section_right {
+        width: 100%;
+        margin-right: 0px;
+   }
+   
 
     .section_title {
         margin-bottom: 20px;
@@ -149,17 +158,10 @@ hr {
         height: 40px;
     }
 
-    .section_right {
-        margin: 0;
-        margin-top: 30px;
-
-
-    }
-
+    
     .task_dropdown_content {
         height: auto;
     }
-
 
 
     .date_input_field {
@@ -236,8 +238,9 @@ hr {
     
     .button_bottom_task_mobile {
         display: flex;
+        gap:17px;
         margin-top: 10px;
-        margin-right: 10px;
+        margin-right: 15px;
 
     }
 
