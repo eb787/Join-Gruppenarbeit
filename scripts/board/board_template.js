@@ -283,7 +283,7 @@ function editTaskTemplate(index) {
 function getAddTaskOverlay() {
 
     return ` 
-     
+        
      <div onclick="closeOverlay('addTask_overlay')" id="addTask_overlay" class="bg_overlay d_none">
               
          <div onclick="stopPropagation(event)" id="addTask_card" class="addTask_overlay">

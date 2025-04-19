@@ -20,6 +20,7 @@ function init() {
   checkAllRequiredData();
   subTaskListRender();
   showHelpIconMobile()
+  document.getElementById("taskTitle").focus();
 }
 
 
@@ -133,8 +134,7 @@ if(template==="edit"){
  * function checks whether the entry in all three mandatory fields is correct
  */
 function checkAllRequiredData(){
-  console.log("teste eintrag");
-  const buttonsCreate =[
+    const buttonsCreate =[
     document.getElementById('btnCreateTask'),
     document.getElementById('btnCreateTaskMobile')
   ];

@@ -2,8 +2,6 @@
  *This function loads the data for the AddNewTask template and empties it at the same time 
  */
 function taskAddOverlayInit() {
-    console.log("öffner Overlay");
-    
     document.getElementById('subTaskAddIcon').classList.remove('ele_hide');
     timePopUp(0);
     taskReadinArrayContact(DataContactsAll);
@@ -11,5 +9,15 @@ function taskAddOverlayInit() {
     checkAllRequiredData();
     loadDataFirebase();
     addTaskClear(); 
-}
+    setFocusontitle();
+   }
 
+/**
+ *focus on the title after 100ms bas addTaskOverlay
+ */
+function setFocusontitle(){
+  console.log("setze focus");
+  setTimeout(()=>{
+    document.getElementById("taskTitle").focus();
+  },100);
+}

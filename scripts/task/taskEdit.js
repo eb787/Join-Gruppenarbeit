@@ -11,7 +11,6 @@ let editTaskNrEdit = 0;
 selectedTaskContacts = "";
 subTaskArray = "";
 inputsOK=[true,true,true];
-
 dataFromFirebaseEdit();
 
 
@@ -24,8 +23,9 @@ dataFromFirebaseEdit();
 function editTask(index) {
         indexEdit = index;
         DataTaskContactsTask = DataTaskEdit[indexEdit].contacts;
-        TaskEditOverlayRender();              
-}
+        TaskEditOverlayRender();    
+        document.getElementById("taskTitle").focus();
+}          
 
 
 /**
