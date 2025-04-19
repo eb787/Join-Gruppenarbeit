@@ -2,6 +2,8 @@ let contactsData = [];
 let oldPictureHTML = "";
 let activeContact = null;
 let allEmpty = true;
+let originalEmail = "";
+
 
 /**
  * Opens the detailed view of a contact when clicked.
@@ -142,18 +144,21 @@ function closeContactBigMiddle() {
 async function editContact(contactsId, firstLetter, color) {
   openContactBig();
   closeWindowMobile();
-  editContactMobile()
-  contactcardHeadlineEdit()
+  editContactMobile();
+  contactcardHeadlineEdit();
   let contact = await getData(`/contacts/${firstLetter}/${contactsId}`);
   if (contact) {
+    originalEmail = contact.email;
     document.getElementById('name_input').value = contact.name;
     document.getElementById('email_input').value = contact.email;
     document.getElementById('tel_input').value = contact.number;
+
     let saveButton = document.getElementById('save-button');
     updatePicture(contact, color);
     disabledButton();
+
     saveButton.onclick = async function () {
-      await saveEditedContact(contactsId, firstLetter, color,);
+      await saveEditedContact(contactsId, firstLetter, color);
     };
   }
 }
@@ -339,7 +344,8 @@ function updateCancelButton() {
 // Validierungs-Wrapper
 function validateInputs() {
   const nameValid = validateName();
-  const emailValid = validateEmailSync(document.getElementById("email_input").value);
+  const email = document.getElementById("email_input").value;
+  const emailValid = validateEmailSync(email, originalEmail); 
   const telValid = validateTelInput();
 
   return nameValid && emailValid && telValid;
@@ -431,12 +437,12 @@ function clearNameError(input, errorEl) {
  * @param {string} email - The email address to validate.
  * @returns {boolean} - Returns true if the email is valid; otherwise, false.
  */
-function validateEmailSync(email) {
+function validateEmailSync(email, original = "") {
   let emailInput = document.getElementById('email_input');
 
   if (isEmpty(email)) return show(emailInput, "Please enter an email!");
   if (!isValidEmail(email)) return show(emailInput, "Please enter a valid email address!");
-  if (emailExists(email)) return show(emailInput, "This email already exists!");
+  if (emailExists(email, original)) return show(emailInput, "This email already exists!");
 
   clearError(emailInput);
   return true;
@@ -464,10 +470,13 @@ function isValidEmail(email) {
  * @param {string} email - The email to check for duplicates.
  * @returns {boolean} - Returns true if the email already exists.
  */
-function emailExists(email) {
+function emailExists(email, original = "") {
   let firstLetter = /^[A-Z]/i.test(email[0]) ? email[0].toUpperCase() : "#";
   let group = contactsData[firstLetter] || {};
-  return Object.values(group).some(c => c.email.toLowerCase() === email.toLowerCase());
+  return Object.values(group).some(c => {
+    if (c.email.toLowerCase() === original.toLowerCase()) return false;
+    return c.email.toLowerCase() === email.toLowerCase();
+  });
 }
 
 /**
