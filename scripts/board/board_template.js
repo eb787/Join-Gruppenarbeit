@@ -195,7 +195,7 @@ function editTaskTemplate(index) {
              
                 <div class="section_title">
                     <h2 class="title">Title</h2>
-                    <input id="taskTitle" class="input_title" type="text" onblur="requiredInputTitle('edit')" onfocus="errorFieldsFocus('error_Field_Title')" tabindex="1">
+                    <input id="taskTitle" class="input_title" type="text" onblur="requiredInputTitle('edit')" onmouseleave="requiredInputTitle('edit')" onfocus="errorFieldsFocus('error_Field_Title')" tabindex="1">
                      <span id="error_Field_Title" class="error_Field">&nbsp;</span>
                  </div>
 
@@ -211,7 +211,7 @@ function editTaskTemplate(index) {
             <div class="section_date_div">
                 <h2>Due date </h2>
                 <div class="task_Date_Input_Div">
-                   <input type="date"  id="taskDate" class="date_input" onblur="requiredInputDate('edit')"  onfocus="errorFieldsFocus('error_Field_Date')"tabindex="4" >
+                   <input type="date"  id="taskDate" class="date_input" onblur="requiredInputDate('edit')" onchange="requiredInputDate('edit')" onfocus="errorFieldsFocus('error_Field_Date')"tabindex="4" >
                    <img src="../assets/icons/event.png" class="date_icon_Edit" onclick="openDatePicker()" >
                 </div>
                 <span id="error_Field_Date" class="error_Field">&nbsp;</span>
@@ -295,7 +295,7 @@ function getAddTaskOverlay() {
                                    <div class="section_left_ol">
                                         <div class="section_title_ol">
                                             <h2 class="title">Title<span class="star_red_ol">*</span></h2>
-                                            <input id="taskTitle" class="input_title_ol" onblur="requiredInputTitle()" onfocus="errorFieldsFocus('error_Field_Title')" type="text"
+                                            <input id="taskTitle" class="input_title_ol" onblur="requiredInputTitle()" onmouseleave="requiredInputTitle()" onfocus="errorFieldsFocus('error_Field_Title')" type="text"
                                             placeholder="Enter a title" tabindex="1">
                                              <span id="error_Field_Title" class="error_Field">&nbsp;</span>
                                              </div>  
@@ -347,7 +347,7 @@ function getAddTaskOverlay() {
                                      <div class="section_date_div_ol">
                                             <h2>Due date<span class="star_red_ol">*</span></h2>
                                             <div class="date_input_ol">
-                                            <input type="date" id="taskDate" class="date_input_field_ol"  onblur="requiredInputDate()" onfocus="errorFieldsFocus('error_Field_Date')"  tabindex="4">
+                                            <input type="date" id="taskDate" class="date_input_field_ol"  onblur="requiredInputDate()" onchange="requiredInputDate()" onfocus="errorFieldsFocus('error_Field_Date')"  tabindex="4">
                                             <img src="../assets/icons/event.png" class="date_icon_ol" onclick="openDatePicker()">
                                             </div>
                                               <span id="error_Field_Date" class="error_Field">&nbsp;</span>         
@@ -442,7 +442,7 @@ function getAddTaskOverlay() {
                          <div class="button_bottom_task_mobile_ol">
                               <button id="btnClearTask" class="button_clear_task" onclick="addTaskClear()">Clear <img
                               class="cancel_ol" src="../assets/icons/iconoir_cancel.png" alt=""></button>
-                              <button id="btnCreateTask" class="button_create_task" onclick="checkInputData('overlay')">Create Task
+                              <button id="btnCreateTaskMobile" class="button_create_task" onclick="checkInputData('overlay')">Create Task
                               <img src="../assets/icons/check.png" alt=""></button>
                          </div>
                       

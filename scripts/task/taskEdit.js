@@ -386,6 +386,8 @@ function subtaskinObjekt(subTaskArray) {
  * function checks whether the entry in all three mandatory fields is correct from EditTask
  */
 function checkAllRequiredDataEdit(){
+        console.log("Prüfe Eingabe bei Edit ",inputsOK);
+        
             if(inputsOK[0] && inputsOK[1]){      
                 document.getElementById('button_Ok_Edit').style.pointerEvents = 'auto'; 
                 document.getElementById('button_Ok_Edit').style.opacity = '1';      

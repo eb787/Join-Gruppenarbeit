@@ -103,7 +103,7 @@ hr {
     .container_AddTask {
         display: grid;
         width: auto;
-        overflow-x: auto;
+        overflow-x: hidden;
         margin-left: 5px;
         margin-right: 15px;
         margin-top: 30px;
@@ -136,8 +136,7 @@ hr {
     }
 
     .input_title {
-   
-        font-size: 16px;
+           font-size: 16px;
     }
 
     .section_description textarea {        
@@ -164,17 +163,15 @@ hr {
     }
 
 
+    .section_date_div{
+        margin-top: 20px;
+    }
+
     .date_input_field {
         font-size: 20px;
         height: 40px;
     }
 
-
-
-    .section_prio {
-        margin-bottom: 10px;
-
-    }
 
     .section_category {
         margin-bottom: 10px;

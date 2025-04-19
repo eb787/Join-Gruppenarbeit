@@ -133,13 +133,18 @@ if(template==="edit"){
  * function checks whether the entry in all three mandatory fields is correct
  */
 function checkAllRequiredData(){
-  if (inputsOK.every(value => value)) {
-      document.getElementById('btnCreateTask').style.pointerEvents = 'auto'; 
-      document.getElementById('btnCreateTask').style.opacity = '1';      
-} else {
-      document.getElementById('btnCreateTask').style.pointerEvents = 'none'; 
-      document.getElementById('btnCreateTask').style.opacity = '0.5'
+  console.log("teste eintrag");
+  const buttonsCreate =[
+    document.getElementById('btnCreateTask'),
+    document.getElementById('btnCreateTaskMobile')
+  ];
+  const enable = inputsOK.every(value=>value);
+  buttonsCreate.forEach(btn =>{
+    if(btn) {
+      btn.style.pointerEvents=enable? 'auto' : 'none';
+      btn.style.opacity = enable ? '1' : '0.5';
     }
+  })
 }
 
 
@@ -154,6 +159,7 @@ function openDatePicker() {
   } else {
     dateInput.focus();
   }
+  dateInput.focus();
 }
 
 

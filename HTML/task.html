@@ -79,7 +79,7 @@
                     <div class="section_left">
                         <div class="section_title">
                             <h2 class="title">Title<span class="star_red">*</span></h2>
-                            <input id="taskTitle" class="input_title" onblur="requiredInputTitle()" onfocus="errorFieldsFocus('error_Field_Title')" type="text"
+                            <input id="taskTitle" class="input_title" onblur="requiredInputTitle()"; onmouseleave="requiredInputTitle()" onfocus="errorFieldsFocus('error_Field_Title')" type="text"
                                 placeholder="Enter a title" tabindex="1">
                                 <span id="error_Field_Title" class="error_Field">&nbsp;</span>
                         </div>
@@ -117,8 +117,8 @@
                         <div class="section_date_div">
                             <h2>Due date<span class="star_red">*</span></h2>
                             <div class="date_input">
-                                <input type="date" id="taskDate" class="date_input_field"  onblur="requiredInputDate()" onfocus="errorFieldsFocus('error_Field_Date')"  tabindex="4">
-                                <img src="../assets/icons/event.png" class="date_icon" onclick="openDatePicker()">
+                                <input type="date" id="taskDate" class="date_input_field"  onblur="requiredInputDate()" onchange="requiredInputDate()"  onfocus="errorFieldsFocus('error_Field_Date')"  tabindex="4">
+                                <img src="../assets/icons/event.png" class="date_icon" onclick="openDatePicker()"  >
                              </div>
                              <span id="error_Field_Date" class="error_Field">&nbsp;</span>
                         </div>
@@ -195,7 +195,7 @@
                 <div class="button_bottom_task_mobile">
                     <button id="btnClearTask" class="button_clear_task" onclick="addTaskClear()">Clear <img
                             class="cancel" src="../assets/icons/iconoir_cancel.png" alt=""></button>
-                    <button id="btnCreateTask" class="button_create_task" onclick="checkInputData()">Create Task
+                    <button id="btnCreateTaskMobile" class="button_create_task" onclick="checkInputData()">Create Task
                         <img src="../assets/icons/check.png" alt=""></button>
                 </div>
                 <nav class="nav_mobile">

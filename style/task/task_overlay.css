@@ -519,7 +519,7 @@ textarea:hover {
 
 .button_bottom_task_mobile_ol {
     display: none;
-    gap:25px;
+    gap:10px;
     justify-content: end;
     margin-top: 90px;
 }
