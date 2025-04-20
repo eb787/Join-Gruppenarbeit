@@ -343,7 +343,7 @@ span {
     border-color: #D1D1D1;
     border-radius: 10px;
     appearance: none;
-    background-image: url('/assets/icons/arrow_down.svg');
+    background-image: url('../assets/icons/arrow_down.svg');
     background-repeat: no-repeat;
     background-position: right 10px center;
     background-size: 10px;
