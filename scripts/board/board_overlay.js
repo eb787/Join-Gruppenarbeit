@@ -163,7 +163,7 @@ async function changeNumberOfFinishedTasks(index, newFinishedTasks) {
                 },
                 body: JSON.stringify(newFinishedTasks)
             });
-}
+          }
 
 
 /** 

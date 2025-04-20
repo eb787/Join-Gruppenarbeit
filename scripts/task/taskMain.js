@@ -322,6 +322,12 @@ function taskContactListDrobdown() {
 }
 
 
+function taskContactListDrobdownClose(){
+  document.getElementById('taskContactDrowdownMenue').classList.remove('ele_show');
+  document.getElementById('initialeIconList').classList.add('icon_List_hide')
+}
+
+
 /**
  * function to write the contacts into the list
  */

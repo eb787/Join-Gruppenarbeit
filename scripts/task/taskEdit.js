@@ -21,11 +21,18 @@ dataFromFirebaseEdit();
 
 
 function editTask(index) {
+        inputsOK=[true,true,true];
         indexEdit = index;
         DataTaskContactsTask = DataTaskEdit[indexEdit].contacts;
         TaskEditOverlayRender();    
         document.getElementById("taskTitle").focus();
 }          
+
+
+function subtask(index){
+        
+}
+
 
 
 /**
@@ -41,8 +48,7 @@ function TaskEditOverlayRender() {
         subTaskListLoadEdit();
         taskReadinArrayContactEdit(DataContactsAll,DataTaskContactsTask);
         editTaskWriteContacts(DataTaskContactsTask);
-       
-        }
+   }
 
       
 /**
@@ -303,8 +309,11 @@ function collectDataEdit() {
                         number_of_finished_subtasks: 0, 
                         subtasks_todo: subtaskinObjekt(DataSubTaskListEdit),
                 },
-                status: DataTaskEdit[indexEdit].status,  
+                status: DataTaskEdit[indexEdit].status,            
+                
         }
+        console.log("EditList ",DataTaskEdit.status);
+       
 }
 
 
@@ -386,9 +395,7 @@ function subtaskinObjekt(subTaskArray) {
  * function checks whether the entry in all three mandatory fields is correct from EditTask
  */
 function checkAllRequiredDataEdit(){
-        console.log("Prüfe Eingabe bei Edit ",inputsOK);
-        
-            if(inputsOK[0] && inputsOK[1]){      
+          if(inputsOK[0] && inputsOK[1]){      
                 document.getElementById('button_Ok_Edit').style.pointerEvents = 'auto'; 
                 document.getElementById('button_Ok_Edit').style.opacity = '1';      
           } else {         

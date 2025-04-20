@@ -311,7 +311,7 @@ function getAddTaskOverlay() {
   
                                      <div class="section_assigned_ol">
                                          <h2 class="assigned_title_ol">Assigned to</h2>
-                                                <div class="task_Contact_dropdown_ol" onmouseleave="taskContactListDrobdown()">
+                                                <div class="task_Contact_dropdown_ol" onmouseleave="taskContactListDrobdownClose()">
                                                     <div class="task_input_section_ol">
                                                         <input type="text" id="taskDropDownInput" class="task_dropdown_input_ol" tabindex="3"
                                                             placeholder="Select contacts to assign" onclick="taskContactListDrobdown()"
