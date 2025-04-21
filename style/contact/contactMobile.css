@@ -275,10 +275,13 @@
     .alert_div {
         position: fixed;
         bottom: 100px;
-        left: 280px;
-        margin-right: 20px;
+        left: 50%;
+        transform: translateX(-50%);
         z-index: 1000;
-    }
+        /* Optional: max-width oder padding für kleine Bildschirme */
+        max-width: 90%;
+        padding: 5px;
+      }
 
 
     .contact_Detail_abbreviation {

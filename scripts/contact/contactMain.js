@@ -171,19 +171,42 @@ async function editContact(contactsId, firstLetter, color) {
 async function saveEditedContact(contactsId, firstLetter) {
   const email = document.getElementById('email_input').value;
   if (!validateInputs(email)) return;
-  let contactIndex = parseInt(localStorage.getItem(`${contactsId}_index`)) || 0;
+
+  let index = parseInt(localStorage.getItem(`${contactsId}_index`)) || 0;
   saveGlobalIndex();
-  let existingUser = await fetchUser(firstLetter, contactIndex);
+  let existingUser = await fetchUser(firstLetter, index);
   let updatedContact = getUpdatedContact(existingUser);
-  await postData(`/contacts/${firstLetter}/${contactsId}`, updatedContact);
-  let color = updatedContact.color;
-  localStorage.setItem(`contactColor_${firstLetter}_${contactsId}`, color);
-  updateContactUI(contactsId, updatedContact, firstLetter);
-  let contactsIdMiddle = `${firstLetter}-${contactsId}`;
-  openContactBigMiddle(contactsIdMiddle, firstLetter);
-  closeContactBig();
+  let newLetter = updatedContact.name.charAt(0).toUpperCase();
+
+  if (newLetter !== firstLetter) {
+    await handleContactMove(firstLetter, newLetter, contactsId, updatedContact);
+  } else {
+    await handleContactUpdate(firstLetter, contactsId, updatedContact);
+  }
+
   clearInputsAndClose();
   closeEditMobile();
+}
+
+
+async function handleContactUpdate(letter, id, contact) {
+  await postData(`/contacts/${letter}/${id}`, contact);
+  localStorage.setItem(`contactColor_${letter}_${id}`, contact.color);
+  updateContactUI(id, contact, letter);
+  openContactBigMiddle(`${letter}-${id}`, letter);
+  closeContactBig();
+}
+
+async function handleContactMove(oldLetter, newLetter, oldId, contact) {
+  await recalculateContactIds(oldLetter, newLetter, oldId, contact);
+
+  let newSection = contactsData[newLetter];
+  let newId = Object.keys(newSection).find(id => newSection[id].email === contact.email);
+  if (!newId) return;
+
+  localStorage.setItem(`${newId}_index`, newId);
+  updateContactUI(newId, contact, newLetter);
+  openContactBigMiddle(`${newLetter}-${newId}`, newLetter);
 }
 
 /**
@@ -202,6 +225,33 @@ function updateContactUI(contactsId, updatedContact, letter) {
   getUsersList()
 }
 
+
+async function recalculateContactIds(oldLetter, newLetter, contactsId, updatedContact) {
+  try {
+    let oldContacts = contactsData[oldLetter] || {};
+    let newContacts = contactsData[newLetter] || {};
+    if (oldContacts[contactsId]) delete oldContacts[contactsId];
+    let newIndex = Object.keys(newContacts).length;
+    newContacts[newIndex] = updatedContact;
+    let reorderedOld = {}, i = 0;
+    for (let id in oldContacts) {
+      reorderedOld[i++] = oldContacts[id];
+    }
+    let reorderedNew = {}, j = 0;
+    for (let id in newContacts) {
+      reorderedNew[j++] = newContacts[id];
+    }
+    await postData(`/contacts/${oldLetter}`, reorderedOld);
+    await postData(`/contacts/${newLetter}`, reorderedNew);
+    contactsData[oldLetter] = reorderedOld;
+    contactsData[newLetter] = reorderedNew;
+    globalIndex = Math.max(i, j);
+    saveGlobalIndex();
+    getUsersList();
+  } catch (err) {
+    console.error("Fehler beim Neuberechnen der IDs:", err);
+  }
+}
 /**
  * Returns the initials of the contact's name.
  * @param {string} name - The full name of the contact.
@@ -591,7 +641,7 @@ async function showAlertSuccess(currentLetter, index) {
     if (alert) {
       alert.remove();
     }
-  }, 4000);
+  }, 444000);
   await getUsersList();
   let contactsId = `${currentLetter}-${index}`;
   openContactBigMiddle(contactsId);
