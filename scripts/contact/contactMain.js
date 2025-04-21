@@ -641,7 +641,7 @@ async function showAlertSuccess(currentLetter, index) {
     if (alert) {
       alert.remove();
     }
-  }, 444000);
+  }, 4000);
   await getUsersList();
   let contactsId = `${currentLetter}-${index}`;
   openContactBigMiddle(contactsId);
