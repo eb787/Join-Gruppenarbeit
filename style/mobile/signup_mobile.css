@@ -77,6 +77,9 @@
 }
 
 @media (max-width: 450px) {
+    .signup_field {
+        height: 500px;
+    }
     .signup_field_header {
         width: 280px;
         gap: 0;
@@ -112,7 +115,65 @@
     }
 
     .wrong_data_alert{
-        font-size: 13px;
-        top: 550px;
+        font-size: 12px;
+        top: 455px;
+    }
+}
+
+@media (max-width: 400px) {
+    .signup_field {
+        height: 451px;
+    }
+
+    .heading_login{
+        font-size: 46px;
+    }
+
+    .login_inputs{
+        gap: 12px
+    }
+
+
+    .wrong_data_alert{
+        font-size: 12px;
+        top: 420px;
+    }
+}
+
+@media (max-width: 380px) {
+    .header_login{
+        padding-top: 0px;
+        padding-left: 20px;
+    }
+
+    .signup_field {
+        height: 420px;
+        top: 150px;
+        padding-top: 20px;
+    }
+
+
+    .heading_login{
+        font-size: 40px;
+    }
+
+    .seperator_log_in{
+        width: 130px;
+    }
+
+    .login_inputs{
+        gap: 15px
+    }
+
+    .login_field{
+        gap: 12px;
+    }
+
+    .wrong_data_alert{
+        top: 330px;
+    }
+
+    .signup_footer{
+        padding-top: 70px;
     }
 }
