@@ -1,12 +1,14 @@
 .main_contant {
     display: flex;
     flex-direction: column;
+    
 }
 
 
 .container_AddTask {
     display: flex;
     margin-top: 60px;
+    margin-right: 10px;
     width: auto;
     height: 100vh;
 }

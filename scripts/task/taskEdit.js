@@ -8,11 +8,10 @@ let DataTaskContactsTask = [];
 let DataSubTaskListEdit = [];
 let editIndexEdit = false;
 let editTaskNrEdit = 0;
-let DataSubTaskListBefore="";
+let DataSubTaskListBefore = "";
 selectedTaskContacts = "";
 subTaskArray = "";
-subtaskChanged=false;
-inputsOK=[true,true,true];
+inputsOK = [true, true, true];
 dataFromFirebaseEdit();
 
 
@@ -21,24 +20,11 @@ dataFromFirebaseEdit();
  * @param {string} index -  the index of the passed task
  */
 function editTask(index) {
-        inputsOK=[true,true,true];
+        inputsOK = [true, true, true];
         indexEdit = index;
         DataTaskContactsTask = DataTaskEdit[indexEdit].contacts;
-        TaskEditOverlayRender();    
+        TaskEditOverlayRender();
         document.getElementById("taskTitle").focus();
-       }          
-
-
-/**
- * cache the saved subtasks and their selection
- * @param {*} index 
- */
-function subtask(index){  
-        const subtasksTodo = DataTaskEdit[index]?.subtasks?.subtasks_todo;
-        if (subtasksTodo && Object.keys(subtasksTodo).length > 0) {
-        DataSubTaskListBefore = Object.fromEntries(Object.entries(DataTaskEdit[index].subtasks.subtasks_todo));
-        console.log("Kopie davor",DataSubTaskListBefore);
-}
 }
 
 
@@ -48,16 +34,16 @@ function subtask(index){
 function TaskEditOverlayRender() {
         document.getElementById('card_overlay').innerHTML = "";
         document.getElementById('card_overlay').innerHTML = editTaskTemplate(indexEdit);
-        document.getElementById('taskTitle').value = DataTaskEdit[indexEdit].title;  
+        document.getElementById('taskTitle').value = DataTaskEdit[indexEdit].title;
         document.getElementById('descriptionTask').value = DataTaskEdit[indexEdit].description;
         document.getElementById('taskDate').value = dateConversation(DataTaskEdit[indexEdit].deadline);
-        checkPrioEditTask(DataTaskEdit[indexEdit].prio); 
+        checkPrioEditTask(DataTaskEdit[indexEdit].prio);
         subTaskListLoadEdit();
-        taskReadinArrayContactEdit(DataContactsAll,DataTaskContactsTask);
+        taskReadinArrayContactEdit(DataContactsAll, DataTaskContactsTask);
         editTaskWriteContacts(DataTaskContactsTask);
-   }
+}
 
-      
+
 /**
  * function which converts the date from the passed data set into the format dd.mm.yyyy
  * @param {string} dateStr -Date passed with the format dd/mm/yyyy
@@ -69,9 +55,9 @@ function dateConversation(dateStr) {
         let month = parts[1];
         let year = "20" + parts[2]; // "25" -> "2025"
         return `${year}-${month}-${day}`;
-    }
+}
 
-    
+
 /**
  * function to determine the priority
  * @param {*} prio -Priority where clicked
@@ -102,9 +88,9 @@ function taskContactListDrobdownEdit() {
         document.getElementById('initialeIconList').classList.toggle('icon_List_hide')
 }
 
-function taskContactListDrobdownEditClose(){
-         document.getElementById('taskContactDrowdownMenue').classList.remove('ele_show');  
-         document.getElementById('initialeIconList').classList.add('icon_List_hide')
+function taskContactListDrobdownEditClose() {
+        document.getElementById('taskContactDrowdownMenue').classList.remove('ele_show');
+        document.getElementById('initialeIconList').classList.add('icon_List_hide')
 }
 
 
@@ -113,27 +99,27 @@ function taskContactListDrobdownEditClose(){
  * @param {*} DataContacts 
  */
 function editTaskWriteContacts(DataContacts) {
-        if(Array.isArray(DataContacts)){
-               if (DataContacts.length > 0) {
-                let element = document.getElementById('initialeIconList');
-                let entriesLenght= DataContacts.length;
-                        if (entriesLenght <=4){
+        if (Array.isArray(DataContacts)) {
+                if (DataContacts.length > 0) {
+                        let element = document.getElementById('initialeIconList');
+                        let entriesLenght = DataContacts.length;
+                        if (entriesLenght <= 4) {
                                 DataContacts.map(emtry => {
-                                let name = emtry.name;
-                                let color = emtry.color;
-                                element.innerHTML += taskContacInitialTemplate(contactColorAssignEdit(color), taskInitialLettersCreate(name),"");
-                        });
-                } else{
-                        for(l=0;l<5;l++){
-                                let name = DataContacts[l].name;
-                                let color = DataContacts[l].color;
-                                element.innerHTML += taskContacInitialTemplate(contactColorAssignEdit(color), taskInitialLettersCreate(name));
-                        };
+                                        let name = emtry.name;
+                                        let color = emtry.color;
+                                        element.innerHTML += taskContacInitialTemplate(contactColorAssignEdit(color), taskInitialLettersCreate(name), "");
+                                });
+                        } else {
+                                for (l = 0; l < 5; l++) {
+                                        let name = DataContacts[l].name;
+                                        let color = DataContacts[l].color;
+                                        element.innerHTML += taskContacInitialTemplate(contactColorAssignEdit(color), taskInitialLettersCreate(name));
+                                };
 
-                element.innerHTML+= "+ "+ (entriesLenght-5);
-             }
-             }    
-        }       
+                                element.innerHTML += "+ " + (entriesLenght - 5);
+                        }
+                }
+        }
 }
 
 /**
@@ -151,37 +137,37 @@ function contactColorAssignEdit(color) {
  * @param {*} DataContact 
  * @param {*} DataContacts 
  */
-function taskReadinArrayContactEdit(DataContact,DataContacts) {
+function taskReadinArrayContactEdit(DataContact, DataContacts) {
         let = index = 0;
         document.getElementById('taskDropDownList').innerHTML = "";
         taskContacteArray = Object.values(DataContact)
-          .flatMap(array => array.map(entry => ({
-            name: entry.name,
-            email: entry.email,
-            color: entry.color || "10"
-          })));       
+                .flatMap(array => array.map(entry => ({
+                        name: entry.name,
+                        email: entry.email,
+                        color: entry.color || "10"
+                })));
         taskContacteArray.map((contact, index) => {
-         taskRenderContactList(index, contact.name, contact.color || "10", contact.email,taskListMarkContact(DataContacts,contact));
-                 });
-       }
+                taskRenderContactList(index, contact.name, contact.color || "10", contact.email, taskListMarkContact(DataContacts, contact));
+        });
+}
 
 
- /**
-  * check which contacts match the saved ones
-  * @param {*} DataContacts 
-  * @param {*} contact 
-  * @returns 
-  */      
-function taskListMarkContact(DataContacts,contact){   
-        if (Array.isArray(DataContacts)){
-        const result = DataContacts.find(cont => cont.email === contact.email);
-        if(result){
-              check="checked";
-            }else{
-              check="";
-            }
-      return check;
-        }  
+/**
+ * check which contacts match the saved ones
+ * @param {*} DataContacts 
+ * @param {*} contact 
+ * @returns 
+ */
+function taskListMarkContact(DataContacts, contact) {
+        if (Array.isArray(DataContacts)) {
+                const result = DataContacts.find(cont => cont.email === contact.email);
+                if (result) {
+                        check = "checked";
+                } else {
+                        check = "";
+                }
+                return check;
+        }
 }
 
 
@@ -191,7 +177,7 @@ function taskListMarkContact(DataContacts,contact){
  * @returns 
  */
 function contactColorAssignEdit(color) {
-        return contactColorArray[color-1];
+        return contactColorArray[color - 1];
 }
 
 
@@ -201,23 +187,30 @@ function contactColorAssignEdit(color) {
 function subTaskListLoadEdit() {
         document.getElementById('subTaskAddIcon').classList.remove('ele_hide')
         document.getElementById('subTaskEditIocn').classList.add('ele_hide')
-        if (DataTaskEdit[indexEdit].subtasks.total > 0) {
-               DataSubTaskListEdit = Object.keys(DataTaskEdit[indexEdit].subtasks.subtasks_todo);
-               subTaskListRenderEdit(DataSubTaskListEdit);
+        if (currentTasks[indexEdit].subtasks.total > 0) {
+                const DataSubTaskListBoard = currentTasks[indexEdit].subtasks.subtasks_todo;
+                DataSubTaskListEdit= Object.entries(DataSubTaskListBoard).map(
+                        ([name,status])=>({name,status})
+                     );              
+                subTaskListRenderEdit(DataSubTaskListEdit);
         }
 }
+
+
+
+
 
 
 /**
  * Function to render the data of the subtask list into an HTML element
  * @param {Array} taskSubList - Array where the subtasks are located
  */
-function subTaskListRenderEdit(taskSubList) {
+function subTaskListRenderEdit(DataSubTaskListEdit) {
         element = document.getElementById('subTaskList');
         element.innerHTML = "";
-        element.innerHTML += taskSubList.map((designation, index) =>
-                SubtaskListTemplateEdit(designation, index)).join("");
-}
+        element.innerHTML += DataSubTaskListEdit.map((designation,index) =>
+        SubtaskListTemplateEdit(designation.name, index)).join("");
+  }
 
 
 /**
@@ -246,26 +239,25 @@ function SubtaskListTemplateEdit(subTaskEntry, index) {
  * Function that writes a new subtask to the array DataSubTaskListEdit
  */
 function taskCreateTaskEdit() {
-        let element = document.getElementById('inputSubtask');
+       let element = document.getElementById('inputSubtask');
         contents = element.value;
         element.focus();
         if (editIndexEdit) {
-                DataSubTaskListEdit[editTaskNrEdit] = contents
+               DataSubTaskListEdit[editTaskNrEdit].name=contents;
                 editIndexEdit = false;
                 editTaskNrEdit = 0;
         } else {
-                if(contents.trim()==""){
+                if (contents.trim() == "") {
                         return;
-                }else{
-                DataSubTaskListEdit.push(contents);
-                subtaskChanged=true;
-                console.log("Subtask wurde geändert");            
-                }
+                } else {
+                        DataSubTaskListEdit.push({name: contents, status: "todo" });
+                        }
         }
-       
         subTaskClose();
         subTaskListRenderEdit(DataSubTaskListEdit);
+       
 }
+
 
 /**
  * Function that brings the subtask into the input field for processing
@@ -273,7 +265,7 @@ function taskCreateTaskEdit() {
  */
 function editSubTaskEdit(index) {
         let element = document.getElementById('inputSubtask');
-        element.value = DataSubTaskListEdit[index];
+        element.value = DataSubTaskListEdit[index].name;
         document.getElementById('subTaskAddIcon').classList.add('ele_hide')
         document.getElementById('subTaskEditIocn').classList.remove('ele_hide')
         editTaskNrEdit = index;
@@ -288,8 +280,7 @@ function editSubTaskEdit(index) {
 function deleteSubTaskEdit(index) {
         DataSubTaskListEdit.splice(index, 1);
         subTaskListRenderEdit(DataSubTaskListEdit);
-        subtaskChanged=true;
-        console.log("Subtask wurde geändert Clear");     
+        
 }
 
 
@@ -297,6 +288,7 @@ function deleteSubTaskEdit(index) {
  * function to save the subtask when editing
  */
 async function TaskEditSave() {
+        dataEditTaskChange(indexEdit);
         collectDataEdit();
         await postTaskDataEdit(`/tasks/${parseInt(indexEdit)}`, currentTaskEdit);
         await fetchTaskData();
@@ -311,19 +303,43 @@ async function TaskEditSave() {
 function collectDataEdit() {
         currentTaskEdit = {
                 title: document.getElementById('taskTitle').value,
-                description: document.getElementById('descriptionTask').value.trim(),  
+                description: document.getElementById('descriptionTask').value.trim(),
                 contacts: checkContacts(),
                 deadline: dateConversion(document.getElementById('taskDate').value),
-                prio: DataTaskPrio, 
+                prio: DataTaskPrio,
                 category: DataTaskEdit[indexEdit].category,
                 subtasks: {
                         total: currentTasks[indexEdit].subtasks.total,
-                        number_of_finished_subtasks: currentTasks[indexEdit].subtasks.number_of_finished_subtasks, 
-                        subtasks_todo: currentTasks[indexEdit].subtasks.subtasks_todo,
+                        number_of_finished_subtasks: currentTasks[indexEdit].subtasks.number_of_finished_subtasks,
+                        subtasks_todo:currentTasks[indexEdit].subtasks.subtasks_todo,
                 },
-                status: DataTaskEdit[indexEdit].status,      
-               }  
-         }
+                status: DataTaskEdit[indexEdit].status,
+        }
+}
+
+
+/**
+ * Convert data from array to object for subtask
+ * @param {number} index 
+ */
+function dataEditTaskChange(index){
+        let newDataSubTaskEdit = Object.fromEntries(
+        DataSubTaskListEdit.map(subtask=>[subtask.name,subtask.status])
+        );
+        currentTasks[index].subtasks.total= DataSubTaskListEdit.length;
+        currentTasks[index].number_of_finished_subtasks= subTaskReadytoFinish();
+        currentTasks[index].subtasks.subtasks_todo=newDataSubTaskEdit;
+}
+
+/**
+ * check which subtasks are completed
+ * @returns 
+ */
+function subTaskReadytoFinish(){
+        let countTodo=0;
+        countTodo = DataSubTaskListEdit.filter(todos=> todos.status ==="done" ).length
+       return countTodo
+}
 
 
 /**
@@ -335,8 +351,8 @@ function checkContacts() {
                 return selectedTaskContacts
         }
         else {
-           if (DataTaskContactsTask.length > 0) {
-               return DataTaskContactsTask;
+                if (DataTaskContactsTask.length > 0) {
+                        return DataTaskContactsTask;
                 }
                 return "";
         }
@@ -374,12 +390,12 @@ async function dataFromFirebaseEdit() {
  * Loading data from FirebaseDB for the AddTask Edit template
  * @returns 
  */
-async function loadDataFirebaseEdit() {     
+async function loadDataFirebaseEdit() {
         try {
                 const [responseTask, responseContact] = await Promise.all([
-                        fetch(Base_URL + "/tasks/" + ".json",{cache: "no-store"}),
-                        fetch(Base_URL + "/contacts/" + ".json",{cache: "no-store"})
-                 ])
+                        fetch(Base_URL + "/tasks/" + ".json", { cache: "no-store" }),
+                        fetch(Base_URL + "/contacts/" + ".json", { cache: "no-store" })
+                ])
                 const DataTask = await responseTask.json();
                 const DataContact = await responseContact.json();
                 return { DataTask, DataContact };
@@ -390,36 +406,15 @@ async function loadDataFirebaseEdit() {
 
 
 /**
- * Function writes the subTask from the object into an array
- * @param {*} subTaskArray  object with the data where the subtasks are located
- * @returns 
- */
-function subtaskinObjekt(subTaskArray) {
-        if(subtaskChanged){
-               console.log("subtaskchange geändert",subtaskChanged);
-        return Object.fromEntries(subTaskArray.map(item => [item, "todo"]));
-  }else{
-     
-         console.log("subtaskchange nicht geändert ",subtaskChanged);
-         console.log("Date werden gschridben ",DataSubTaskListBefore);
-                 
-          return DataSubTaskListBefore;
-        }
-
-}
-
-
-/**
  * function checks whether the entry in all three mandatory fields is correct from EditTask
  */
-function checkAllRequiredDataEdit(){
-          if(inputsOK[0] && inputsOK[1]){      
-                document.getElementById('button_Ok_Edit').style.pointerEvents = 'auto'; 
-                document.getElementById('button_Ok_Edit').style.opacity = '1';      
-          } else {         
-                document.getElementById('button_Ok_Edit').style.pointerEvents = 'none'; 
+function checkAllRequiredDataEdit() {
+        if (inputsOK[0] && inputsOK[1]) {
+                document.getElementById('button_Ok_Edit').style.pointerEvents = 'auto';
+                document.getElementById('button_Ok_Edit').style.opacity = '1';
+        } else {
+                document.getElementById('button_Ok_Edit').style.pointerEvents = 'none';
                 document.getElementById('button_Ok_Edit').style.opacity = '0.5'
-              }                            
-            }
-        
-        
+        }
+}
+
