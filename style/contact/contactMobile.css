@@ -398,3 +398,10 @@
     }
 }
 
+
+@media (max-width: 400px) {
+    .contact_Detail_Info_Header {
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+    }
