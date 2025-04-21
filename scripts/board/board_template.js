@@ -240,7 +240,7 @@ function editTaskTemplate(index) {
                 <span class="assigned_title">Assigned to</span>
                 <div class="task_Contact_dropdown" onmouseleave="taskContactListDrobdownEditClose()">
                     <div class="task_input_section">
-                        <input type="text" id="taskDropDownInput" class="task_dropdown_input" tabindex="3" placeholder="Select contacts to assign" onclick="taskContactListDrobdownEdit()" onkeyup="taskContactFilterList1()">
+                        <input type="text" id="taskDropDownInput" class="task_dropdown_input" tabindex="3" placeholder="Select contacts to assign" onclick="taskContactListDrobdownEdit()" onkeyup="taskContactFilterList()">
                         <img src="../assets/icons/arrow_down.svg" >
                     </div>
                     <div id="taskContactDrowdownMenue" class="task_dropdown_content">
