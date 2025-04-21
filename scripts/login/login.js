@@ -1,18 +1,3 @@
-let contactColorArray = [ 
-    "#FC71FF", //pink
-    "#6E52FF", //bluish-purple
-    "#9327FF", //ligh purple
-    "#FFBB2B", //yellow
-    "#FF4646", //red       
-    "#00BEE8", //light blue / mint
-    "#0038FF", //dark blue
-    "#FF7A00",  //orange
-    "#1FD7C1", //turquoise
-    "#462F8A", //dark purple
-    "#f0eded", //grey
-  ];
-
-
 /**
  * This function is used to authenticate the user during login
  * Checks if both email and password are provided
@@ -30,43 +15,11 @@ async function userLogin() {
     const userData = await checkIfContactExists(email);
     if (!userData) return showErrorMessage(errorMessage, "User not found.");
     if (userData.password !== password) return showErrorMessage(errorMessage, "Incorrect password.");
-    await addContactLogin(userData);
 
     await createUserFolder(userData);
     localStorage.setItem('userLoggedIn', 'true');
     localStorage.setItem('greetingShown', 'false');
     window.location.href = "./HTML/summary.html";
-}
-
-
-/**
- * Adds a new contact for login data and sends it to the server.
- * @async
- * @param {Object|null} userData - The user data to add. If null, data will be collected from the input fields.
- */
-async function addContactLogin(userData = null) {
-    let newContact = userData ? {
-        name: userData.name || "No Name",
-        email: userData.email,
-        number: userData.phone || "",
-        color: globalIndex % contactColorArray.length
-    } : collectContactData();
-
-    globalIndex++;
-    saveGlobalIndex();
-    let contactsData = await getData("/contacts");
-    let firstLetter = getFirstLetter(newContact.name);
-    let contactsGroup = contactsData[firstLetter] || {};
-    let newId = Object.keys(contactsGroup).length;
-
-    contactsGroup[newId] = newContact;
-    await postData(`/contacts/${firstLetter}`, contactsGroup);
-
-    if (!userData) {
-        clearInputsAndClose();
-        index = newId;
-        getUsersList();
-    }
 }
 
 

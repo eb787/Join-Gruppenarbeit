@@ -1,5 +1,16 @@
-const Base_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/";
-
+let contactColorArray = [ 
+  "#FC71FF", //pink
+  "#6E52FF", //bluish-purple
+  "#9327FF", //ligh purple
+  "#FFBB2B", //yellow
+  "#FF4646", //red       
+  "#00BEE8", //light blue / mint
+  "#0038FF", //dark blue
+  "#FF7A00",  //orange
+  "#1FD7C1", //turquoise
+  "#462F8A", //dark purple
+  "#f0eded", //grey
+];
 
 /**
  * Enables the submit button once all form fields are valid.
@@ -46,16 +57,48 @@ async function addUserSignUp() {
   let password = document.getElementById("password").value;
   let confirmPassword = document.getElementById("confirm_password").value;
   let checkbox = document.getElementById("privacy_checkbox").checked;
+  let userData = { email, name, password };
   if (!checkInput(name, email, password, confirmPassword, checkbox)) return;
   if (await checkIfContactExists(email)) {
     showErrorMessage("A contact with this email address already exists.");
     return;}
   await saveContact(email, name, password);
+  await addContactLogin(userData);
   document.getElementById("successful_signin_btn").style.display = "flex";
   resetFormFields();
   setTimeout(() => {
     window.location.href = "../index.html";
   }, 2000);
+}
+
+/**
+ * Adds a new contact for login data and sends it to the server.
+ * @async
+ * @param {Object|null} userData - The user data to add. If null, data will be collected from the input fields.
+ */
+async function addContactLogin(userData = null) {
+  let newContact = userData ? {
+      name: userData.name || "No Name",
+      email: userData.email,
+      number: userData.phone || "",
+      color: globalIndex % contactColorArray.length
+  } : collectContactData();
+
+  globalIndex++;
+  saveGlobalIndex();
+  let contactsData = await getData("/contacts");
+  let firstLetter = getFirstLetter(newContact.name);
+  let contactsGroup = contactsData[firstLetter] || {};
+  let newId = Object.keys(contactsGroup).length;
+
+  contactsGroup[newId] = newContact;
+  await postData(`/contacts/${firstLetter}`, contactsGroup);
+
+  if (!userData) {
+      clearInputsAndClose();
+      index = newId;
+      getUsersList();
+  }
 }
 
 
@@ -111,6 +154,7 @@ function resetFormFields() {
  * @returns {boolean} - Returns true if the contact exists, otherwise false.
  */
 async function checkIfContactExists(email) {
+  const Base_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/";
   let url = `${Base_URL}/logindata.json`;
   try {
     const response = await fetch(url);
@@ -132,6 +176,7 @@ async function checkIfContactExists(email) {
  * @param {string} password - The user's password.
  */
 async function saveContact(email, name, password) {
+  const Base_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/";
   let personData = { email, name, password };
   let url = `${Base_URL}/logindata.json`;
   try {
