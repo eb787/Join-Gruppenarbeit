@@ -8,8 +8,10 @@ let DataTaskContactsTask = [];
 let DataSubTaskListEdit = [];
 let editIndexEdit = false;
 let editTaskNrEdit = 0;
+let DataSubTaskListBefore="";
 selectedTaskContacts = "";
 subTaskArray = "";
+subtaskChanged=false;
 inputsOK=[true,true,true];
 dataFromFirebaseEdit();
 
@@ -18,21 +20,28 @@ dataFromFirebaseEdit();
  * This function retrieves the data from the record with the given index that was previously loaded via dataFromFirebase
  * @param {string} index -  the index of the passed task
  */
-
-
 function editTask(index) {
+        dataFromFirebaseEdit();
         inputsOK=[true,true,true];
         indexEdit = index;
         DataTaskContactsTask = DataTaskEdit[indexEdit].contacts;
         TaskEditOverlayRender();    
         document.getElementById("taskTitle").focus();
+        subtask(index);
 }          
 
 
-function subtask(index){
-        
+/**
+ * cache the saved subtasks and their selection
+ * @param {*} index 
+ */
+function subtask(index){  
+        const subtasksTodo = DataTaskEdit[index]?.subtasks?.subtasks_todo;
+        if (subtasksTodo && Object.keys(subtasksTodo).length > 0) {
+        DataSubTaskListBefore = Object.fromEntries(Object.entries(DataTaskEdit[index].subtasks.subtasks_todo));
+        console.log("Kopie davor",DataSubTaskListBefore);
 }
-
+}
 
 
 /**
@@ -195,8 +204,8 @@ function subTaskListLoadEdit() {
         document.getElementById('subTaskAddIcon').classList.remove('ele_hide')
         document.getElementById('subTaskEditIocn').classList.add('ele_hide')
         if (DataTaskEdit[indexEdit].subtasks.total > 0) {
-                DataSubTaskListEdit = Object.keys(DataTaskEdit[indexEdit].subtasks.subtasks_todo);
-                subTaskListRenderEdit(DataSubTaskListEdit);
+               DataSubTaskListEdit = Object.keys(DataTaskEdit[indexEdit].subtasks.subtasks_todo);
+               subTaskListRenderEdit(DataSubTaskListEdit);
         }
 }
 
@@ -243,7 +252,7 @@ function taskCreateTaskEdit() {
         contents = element.value;
         element.focus();
         if (editIndexEdit) {
-                DataSubTaskListEdit[editTaskNr] = contents
+                DataSubTaskListEdit[editTaskNrEdit] = contents
                 editIndexEdit = false;
                 editTaskNrEdit = 0;
         } else {
@@ -251,8 +260,11 @@ function taskCreateTaskEdit() {
                         return;
                 }else{
                 DataSubTaskListEdit.push(contents);
+                subtaskChanged=true;
+                console.log("Subtask wurde geändert");            
                 }
         }
+       
         subTaskClose();
         subTaskListRenderEdit(DataSubTaskListEdit);
 }
@@ -278,6 +290,8 @@ function editSubTaskEdit(index) {
 function deleteSubTaskEdit(index) {
         DataSubTaskListEdit.splice(index, 1);
         subTaskListRenderEdit(DataSubTaskListEdit);
+        subtaskChanged=true;
+        console.log("Subtask wurde geändert Clear");     
 }
 
 
@@ -309,12 +323,9 @@ function collectDataEdit() {
                         number_of_finished_subtasks: 0, 
                         subtasks_todo: subtaskinObjekt(DataSubTaskListEdit),
                 },
-                status: DataTaskEdit[indexEdit].status,            
-                
-        }
-        console.log("EditList ",DataTaskEdit.status);
-       
-}
+                status: DataTaskEdit[indexEdit].status,      
+               }  
+         }
 
 
 /**
@@ -326,9 +337,8 @@ function checkContacts() {
                 return selectedTaskContacts
         }
         else {
-
-                if (DataTaskContactsTask.length > 0) {
-                        return DataTaskContactsTask;
+           if (DataTaskContactsTask.length > 0) {
+               return DataTaskContactsTask;
                 }
                 return "";
         }
@@ -387,7 +397,17 @@ async function loadDataFirebaseEdit() {
  * @returns 
  */
 function subtaskinObjekt(subTaskArray) {
-        return subTask = Object.fromEntries(subTaskArray.map(item => [item, "todo"]));
+        if(subtaskChanged){
+               console.log("subtaskchange geändert",subtaskChanged);
+        return Object.fromEntries(subTaskArray.map(item => [item, "todo"]));
+  }else{
+     
+         console.log("subtaskchange nicht geändert ",subtaskChanged);
+         console.log("Date werden gschridben ",DataSubTaskListBefore);
+                 
+          return DataSubTaskListBefore;
+        }
+
 }
 
 
@@ -402,7 +422,6 @@ function checkAllRequiredDataEdit(){
                 document.getElementById('button_Ok_Edit').style.pointerEvents = 'none'; 
                 document.getElementById('button_Ok_Edit').style.opacity = '0.5'
               }                            
-         
             }
         
         

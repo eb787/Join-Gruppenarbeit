@@ -16,8 +16,7 @@ function taskAddOverlayInit() {
  *focus on the title after 100ms bas addTaskOverlay
  */
 function setFocusontitle(){
-  console.log("setze focus");
-  setTimeout(()=>{
+   setTimeout(()=>{
     document.getElementById("taskTitle").focus();
   },100);
 }
