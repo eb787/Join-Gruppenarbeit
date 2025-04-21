@@ -21,14 +21,12 @@ dataFromFirebaseEdit();
  * @param {string} index -  the index of the passed task
  */
 function editTask(index) {
-        dataFromFirebaseEdit();
         inputsOK=[true,true,true];
         indexEdit = index;
         DataTaskContactsTask = DataTaskEdit[indexEdit].contacts;
         TaskEditOverlayRender();    
         document.getElementById("taskTitle").focus();
-        subtask(index);
-}          
+       }          
 
 
 /**
@@ -319,9 +317,9 @@ function collectDataEdit() {
                 prio: DataTaskPrio, 
                 category: DataTaskEdit[indexEdit].category,
                 subtasks: {
-                        total: DataSubTaskListEdit.length, 
-                        number_of_finished_subtasks: 0, 
-                        subtasks_todo: subtaskinObjekt(DataSubTaskListEdit),
+                        total: currentTasks[indexEdit].subtasks.total,
+                        number_of_finished_subtasks: currentTasks[indexEdit].subtasks.number_of_finished_subtasks, 
+                        subtasks_todo: currentTasks[indexEdit].subtasks.subtasks_todo,
                 },
                 status: DataTaskEdit[indexEdit].status,      
                }  
