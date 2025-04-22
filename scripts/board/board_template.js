@@ -295,7 +295,7 @@ function getAddTaskOverlay() {
                                    <div class="section_left_ol">
                                         <div class="section_title_ol">
                                             <h2 class="title">Title<span class="star_red_ol">*</span></h2>
-                                            <input id="taskTitle" class="input_title_ol" onblur="requiredInputTitle()" onmouseleave="requiredInputTitle()" onfocus="errorFieldsFocus('error_Field_Title')" type="text"
+                                            <input id="taskTitle" class="input_title_ol" onblur="requiredInputTitle()"  onfocus="errorFieldsFocus('error_Field_Title')" type="text"
                                             placeholder="Enter a title" tabindex="1">
                                              <span id="error_Field_Title" class="error_Field">&nbsp;</span>
                                              </div>  
