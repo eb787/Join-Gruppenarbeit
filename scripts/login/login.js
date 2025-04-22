@@ -110,13 +110,14 @@ async function createUserFolder(userData) {
 
 document.addEventListener('DOMContentLoaded', () => {
     const passwordInput = document.getElementById('password');
+    const emailInput = document.getElementById('email');
+    const errorMessage = document.querySelector('.wrong_data_alert');
     const toggleIcon = document.getElementById('togglePasswordVisibility');
     const lockIcon = document.getElementById('lockIcon');
 
+    // 🔐 Passwort Sichtbarkeit
     passwordInput.addEventListener('input', function () {
         const hasContent = passwordInput.value.length > 0;
-
-       
         lockIcon.style.display = hasContent ? 'none' : 'inline';
         toggleIcon.style.display = hasContent ? 'inline' : 'none';
     });
@@ -128,6 +129,27 @@ document.addEventListener('DOMContentLoaded', () => {
             ? "./assets/icons/visibility.svg"
             : "./assets/icons/visibility_off.svg";
     });
+
+    // ✅ Email-Feld validieren beim Verlassen
+    emailInput.addEventListener('blur', () => {
+        const email = emailInput.value.trim();
+        if (!email.includes("@")) {
+            showErrorMessage(errorMessage, "Please enter a valid email address.");
+        } else {
+            resetErrorMessage(errorMessage);
+        }
+    });
+
+    // ✅ Passwort-Feld validieren beim Verlassen
+    passwordInput.addEventListener('blur', () => {
+        const password = passwordInput.value.trim();
+        if (password.length < 4) {
+            showErrorMessage(errorMessage, "Password must be at least 4 characters long.");
+        } else {
+            resetErrorMessage(errorMessage);
+        }
+    });
 });
+
 
 

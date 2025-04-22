@@ -2,7 +2,6 @@ body {
     width: 100vw;
     height: 100vh;
     background-color: rgb(246, 247, 248);
-    max-width: 1980px;
 }
 
 .bg_login {
@@ -339,15 +338,18 @@ body {
 }
 
 .wrong_data_alert {
-    display: none;
+    visibility: hidden; 
     color: red;
     font-size: 14px;
     margin-top: 5px;
-}
-
-.wrong_data_alert.show {
-    display: block;
-}
+    opacity: 0; 
+    transition: opacity 0.3s ease; 
+  }
+  
+  .wrong_data_alert.show {
+    visibility: visible; 
+    opacity: 1; 
+  }
 
 .position_signup {
     display: flex;

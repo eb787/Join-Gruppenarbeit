@@ -12,6 +12,7 @@ let contactColorArray = [
   "#f0eded", //grey
 ];
 
+
 /**
  * Enables the submit button once all form fields are valid.
  * Disables the button initially and listens for input changes to check the form validity.
@@ -70,6 +71,7 @@ async function addUserSignUp() {
     window.location.href = "../index.html";
   }, 2000);
 }
+
 
 /**
  * Adds a new contact for login data and sends it to the server.
@@ -195,23 +197,49 @@ async function saveContact(email, name, password) {
 
 
 /**
- * Displays an error message to the user.
- * @param {string} message - The error message to display.
- */
-function showErrorMessage(message) {
-  const errorMessageElement = document.querySelector(".wrong_data_alert");
-  errorMessageElement.textContent = message;
-  errorMessageElement.classList.add("show");
-}
-
-
-/**
  * Toggles password visibility and manages the display of lock/eye icons.
  * @param {string} fieldId - The ID of the password input field.
  * @param {string} iconId - The ID of the eye icon (for toggling visibility).
  * @param {string} lockIconId - The ID of the lock icon (shown when password is hidden).
  */
 document.addEventListener("DOMContentLoaded", function () {
+  // Helper function to remove error message
+  function removeErrorMessage() {
+    const errorMessageElement = document.querySelector(".wrong_data_alert");
+    errorMessageElement.classList.remove("show");  // Klasse entfernen
+    errorMessageElement.style.opacity = 0;  // Opazität setzen, um die Animation sicherzustellen
+  }
+
+  // Helper function to show error message
+  function showErrorMessage(message) {
+    const errorMessageElement = document.querySelector(".wrong_data_alert");
+    errorMessageElement.textContent = message;
+    errorMessageElement.classList.add("show");  // Klasse hinzufügen
+    errorMessageElement.style.opacity = 1;  // Opazität erhöhen, um die Fehlermeldung anzuzeigen
+  }
+
+  const nameInput = document.getElementById("name");
+nameInput.addEventListener("blur", () => {
+  const name = nameInput.value.trim();
+
+  // Case 1: Name is empty
+  if (name === "") {
+    showErrorMessage("Please enter your name.");
+    return;
+  }
+
+  // Case 2: Optional – Name contains invalid characters
+  const nameRegex = /^[a-zA-Z\s'-]+$/; // erlaubt Buchstaben, Leerzeichen, Apostroph und Bindestrich
+  if (!nameRegex.test(name)) {
+    showErrorMessage("Please enter a valid name (letters only).");
+    return;
+  }
+
+  removeErrorMessage();
+});
+
+
+  // Password visibility toggle
   function togglePasswordVisibility(fieldId, iconId, lockIconId) {
     const passwordField = document.getElementById(fieldId);
     const icon = document.getElementById(iconId);
@@ -222,6 +250,7 @@ document.addEventListener("DOMContentLoaded", function () {
       icon.style.display = hasValue ? "block" : "none";
       lockIcon.style.display = hasValue ? "none" : "block";
     });
+
     icon.addEventListener("click", function () {
       const isVisible = passwordField.type === "text";
       passwordField.type = isVisible ? "password" : "text";
@@ -230,6 +259,72 @@ document.addEventListener("DOMContentLoaded", function () {
         : "../assets/icons/visibility.svg";
     });
   }
+
   togglePasswordVisibility("password", "togglePasswordVisibility", "togglePassword");
   togglePasswordVisibility("confirm_password", "toggleConfirmVisibility", "toggleConfimrPassword");
+
+
+
+  // ✅ Email validation on blur
+  const emailInput = document.getElementById("email");
+  emailInput.addEventListener("blur", () => {
+    const email = emailInput.value.trim();
+    if (email && !email.includes("@")) {
+      showErrorMessage("Please enter a valid email address.");
+    } else {
+      removeErrorMessage();
+    }
+  });
+
+  emailInput.addEventListener("blur", async () => {
+    const email = emailInput.value.trim();
+  
+    if (email && !email.includes("@")) {
+      showErrorMessage("Please enter a valid email address.");
+      return;
+    }
+  
+    if (email && await checkIfContactExists(email)) {
+      showErrorMessage("A contact with this email address already exists.");
+      return;
+    }
+  
+    removeErrorMessage();
+  });
+  
+
+  // ✅ Password validation on blur
+  const passwordInput = document.getElementById("password");
+  passwordInput.addEventListener("blur", () => {
+    const password = passwordInput.value.trim();
+    if (password && password.length < 4) {
+      showErrorMessage("Password must be at least 4 characters long.");
+    } else {
+      removeErrorMessage();
+    }
+  });
+
+  // ✅ Confirm password validation on blur
+  const confirmPasswordInput = document.getElementById("confirm_password");
+  confirmPasswordInput.addEventListener("blur", () => {
+    const password = document.getElementById("password").value.trim();
+    const confirmPassword = confirmPasswordInput.value.trim();
+
+    if (confirmPassword && password !== confirmPassword) {
+      showErrorMessage("Passwords do not match.");
+    } else {
+      removeErrorMessage();
+    }
+  });
+
+  // Revalidate on input events to remove error messages in real time
+  document.getElementById("email").addEventListener("input", function () {
+    removeErrorMessage();
+  });
+  document.getElementById("password").addEventListener("input", function () {
+    removeErrorMessage();
+  });
+  document.getElementById("confirm_password").addEventListener("input", function () {
+    removeErrorMessage();
+  });
 });
