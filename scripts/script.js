@@ -62,4 +62,9 @@ function addUserLogoTemplate(){
         </div>
     `
 }
+
+
+function goBack() {
+  history.back();
+}
     
