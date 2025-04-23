@@ -128,13 +128,13 @@
  background-color: #0000000e;
  border-radius: 10px;
  .check_box_btn {
-    background-image: url(/assets/icons/subtask_todo_hover.svg) !important;
+    background-image: "url(subtask_todo_hover.svg)" !important;
  }
 }
 
 .task_info_done:hover {
     .checked_box {
-        background-image: url(/assets/icons/subtask_done_hover.svg)!important;
+        background-image: "url(subtask_done_hover.svg)"!important;
      }
 }
 
