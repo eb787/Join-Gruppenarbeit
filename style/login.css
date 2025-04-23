@@ -9,6 +9,15 @@ body {
     height: 100%;
 }
 
+.header_login_signup {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: 67px;
+    padding-left: 77px;
+    padding-right: 77px;
+}
+
 .header_login {
     display: flex;
     align-items: flex-start;
