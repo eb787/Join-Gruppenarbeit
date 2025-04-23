@@ -63,11 +63,11 @@
     }
 
     h1 {
-        font-size: 30px;
+        font-size: 40px;
     }
 
     .content-to-do {
-      
+
         height: 140px;
     }
 
@@ -168,13 +168,12 @@
 
 @media (max-width: 600px) {
     .content {
-        top: 305px;
         left: 35px;
     }
 
     .first-container {
         top: 150px;
-        left: 35px;
+        left: 50px;
 
         span {
             font-size: 20px;
@@ -185,13 +184,12 @@
 
 @media (max-width: 550px) {
     .content {
-        top: 305px;
         left: 80px;
     }
 
     .first-container {
         top: 150px;
-        left: 80px;
+        left: 115px;
         flex-direction: column;
 
         span {
@@ -245,7 +243,8 @@
     .content-success {
         width: 140px;
         height: 130px;
-        left: 190px;;
+        left: 190px;
+        ;
     }
 
     .img-up {
@@ -348,50 +347,84 @@
 
 @media (max-width: 390px) {
     .content {
-        top: 280px;
+        top: 200px;
         left: 10px;
+        overflow: hidden;
     }
 
+    h1 {
+        font-size: 40px;
+        line-height: 10px;
+    }
+
+    .content-pen {
+        width: 125px;
+        height: 110px;
+        gap:7px;
+    }
+
+    .content-success {
+        width: 125px;
+        height: 110px;
+        left: 170px;
+        gap:7px;
+    }
+
+    .content-date {
+        width: 265px;
+        height: 110px;
+        top: 155px;
+        gap: 70px
+    }
+
+    .content-date-div {
+        width: 40px;
+        gap: 12px;
+    }
+
+    .container-task {
+        height: 140px;
+        top: 275px;
+    }
+
+    .container-task-one{
+        width: 83px;
+    }
+
+    .container-task-two{
+        width: 83px;
+        left: 93px;
+    }
+
+    .container-task-three {
+        width: 83px;
+        left: 185px;
+    }
+    
+
     .first-container {
-        top: 150px;
+        top: 130px;
         left: 40px;
+        align-items: flex-start;
 
         span {
             font-size: 20px;
             line-height: 20px;
         }
     }
+
+    .hr_first_container{
+        top: 80px;
+    }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 340px) {
     .content {
-        top: 305px;
-        left: 5px;
+        left: 0;
     }
 
-    .first-container {
-        top: 160px;
-        left: 40px;
+    .first-container{
+        left: 30px
     }
 }
 
-@media (max-width: 360px) {
-    .content {
-        top: 305px;
-        left: 0px;
-    }
-}
-
-
-
-@media (max-width: 355px) {
-    .content {
-        top: 305px;
-        left: -22px;
-    }
-
-    .first-container {
-        top: 160px;
-        left: 10px;
-    }
-}
