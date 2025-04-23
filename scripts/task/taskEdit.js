@@ -120,7 +120,6 @@ function editTaskWriteContacts(DataContacts) {
         for (l = 0; l < 5; l++) {
           let name = DataContacts[l].name;
           let color = DataContacts[l].color;
-          console.log(color);
           element.innerHTML += taskContacInitialTemplate(
             contactColorAssignEdit(color),
             taskInitialLettersCreate(name)
@@ -182,7 +181,6 @@ function taskListMarkContact(DataContacts, contact) {
  * @returns
  */
 function contactColorAssignEdit(color) {
-  console.log("color", color);
   return contactColorArray[color];
 }
 

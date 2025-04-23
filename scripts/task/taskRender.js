@@ -64,7 +64,6 @@ function taskContacInitialRender(selectContact) {
  * @returns
  */
 function contactColorAssign(color) {
-  console.log(color);
   return contactColorArray[color];
 }
 
