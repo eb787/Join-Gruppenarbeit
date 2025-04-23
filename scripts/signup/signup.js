@@ -36,15 +36,26 @@ function enableSubmitButton() {
  * Checks the form validity and toggles the submit button accordingly.
  */
 function checkFormValidity() {
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("confirm_password").value;
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const confirmPassword = document.getElementById("confirm_password").value.trim();
   const checkbox = document.getElementById("privacy_checkbox").checked;
 
-  const isValid = name && email && password && confirmPassword && password === confirmPassword && checkbox;
+  const fieldsFilled = name && email && password && confirmPassword && password === confirmPassword;
+
+  // Zeige nur eine Fehlermeldung für die Checkbox, wenn alle anderen Felder korrekt ausgefüllt sind
+  if (fieldsFilled && !checkbox) {
+    showErrorMessage("Please accept the privacy policy.", "privacy_checkbox");
+  } else {
+    removeFieldError("privacy_checkbox");
+  }
+
+  const isValid = fieldsFilled && checkbox;
   document.getElementById("signup_btn").disabled = !isValid;
 }
+
+
 
 
 /**
@@ -196,42 +207,66 @@ async function saveContact(email, name, password) {
 
 
 /**
+ * Stores the current field-specific error messages.
+ * @type {Object.<string, string>}
+ */
+let fieldErrors = {};
+
+
+/**
+ * Displays an error message for a specific field.
+ * The message will appear in the global error display container.
+ *
+ * @param {string} message - The error message to show.
+ * @param {string} fieldId - The ID of the input field related to the error.
+ */
+function showErrorMessage(message, fieldId) {
+  fieldErrors[fieldId] = message;
+  updateErrorMessage();
+}
+
+
+/**
+ * Removes the error message for a specific field.
+ * If there are no remaining errors, the error container is hidden.
+ *
+ * @param {string} fieldId - The ID of the input field whose error should be removed.
+ */
+function removeFieldError(fieldId) {
+  delete fieldErrors[fieldId];
+  updateErrorMessage();
+}
+
+
+/**
+ * Updates the error display container in the UI based on the current field errors.
+ * Shows the first error message in the list or hides the container if there are none.
+ */
+function updateErrorMessage() {
+  const errorMessageElement = document.querySelector(".wrong_data_alert");
+  const firstErrorKey = Object.keys(fieldErrors)[0];
+
+  if (firstErrorKey) {
+    errorMessageElement.textContent = fieldErrors[firstErrorKey];
+    errorMessageElement.classList.add("show");
+    errorMessageElement.style.opacity = 1;
+  } else {
+    errorMessageElement.classList.remove("show");
+    errorMessageElement.style.opacity = 0;
+    errorMessageElement.textContent = "";
+  }
+}
+
+
+
+/**
  * Handles input validation UI and toggling of password visibility.
  * Sets up event listeners for various form inputs (name, email, password, confirm password).
  */
 document.addEventListener("DOMContentLoaded", function () {
-  let fieldErrors = {};
+  const checkbox = document.getElementById("privacy_checkbox");
+  checkbox.addEventListener("change", checkFormValidity);
 
-  
-  /**
-   * Updates the error message element based on the current field errors.
-   * Displays the first error message or hides it if no errors are present.
-   */
-  function updateErrorMessage() {
-    const errorMessageElement = document.querySelector(".wrong_data_alert");
-    const firstErrorKey = Object.keys(fieldErrors)[0];
-
-    if (firstErrorKey) {
-      errorMessageElement.textContent = fieldErrors[firstErrorKey];
-      errorMessageElement.classList.add("show");
-      errorMessageElement.style.opacity = 1;
-    } else {
-      errorMessageElement.classList.remove("show");
-      errorMessageElement.style.opacity = 0;
-      errorMessageElement.textContent = "";
-    }
-  }
-
-
-  /**
-   * Adds an error message for a specific field and triggers an update to the error message UI.
-   * @param {string} message - The error message to be shown.
-   * @param {string} fieldId - The ID of the field related to the error.
-   */
-  function showErrorMessage(message, fieldId) {
-    fieldErrors[fieldId] = message;
-    updateErrorMessage();
-  }
 
   /**
    * Removes the error message for a specific field and triggers an update to the error message UI.
@@ -241,6 +276,7 @@ document.addEventListener("DOMContentLoaded", function () {
     delete fieldErrors[fieldId];
     updateErrorMessage();
   }
+
 
   /**
    * Toggles password visibility and changes the icon accordingly for a given password field.
