@@ -7,8 +7,8 @@ let editTaskNr = 0;
 let selectedTaskContacts = [];
 let taskPrioSelect = "medium_prio";
 let currentTaskAdd = {};
-let inputsOK=[false,false,false];
-taskContacteArray
+let inputsOK = [false, false, false];
+taskContacteArray;
 window.onresize = showHelpIconMobile;
 
 /**
@@ -19,28 +19,25 @@ function init() {
   loadDataFirebase();
   checkAllRequiredData();
   subTaskListRender();
-  showHelpIconMobile()
+  showHelpIconMobile();
   document.getElementById("taskTitle").focus();
 }
-
 
 /**
  * function that displays the plus in subtask
  */
 function startAddTask() {
-  document.getElementById('subTaskAddIcon').classList.remove('ele_hide')
+  document.getElementById("subTaskAddIcon").classList.remove("ele_hide");
 }
-
 
 /**
  * This function logs out the user by removing the 'userLoggedIn' flag from localStorage
  * and resetting the greetingShown flag.
  */
 function logout() {
-  localStorage.removeItem('userLoggedIn');
-  localStorage.setItem('greetingShown', 'false');
+  localStorage.removeItem("userLoggedIn");
+  localStorage.setItem("greetingShown", "false");
 }
-
 
 /**
  * This function shows the help icon on mobile screens (below 1000px width).
@@ -48,120 +45,119 @@ function logout() {
 function showHelpIconMobile() {
   let helpLink = document.getElementById("mobile_help_link");
   if (window.innerWidth <= 1000) {
-    helpLink.style.display = "flex"; 
+    helpLink.style.display = "flex";
   } else {
-    helpLink.style.display = "none"; 
+    helpLink.style.display = "none";
   }
 }
-
 
 /**
  * function checks the correct input in the field title
  * @param {String} template for which template is the test
  */
-function requiredInputTitle(template){
-let entry = document.getElementById('taskTitle').value;
-if (entry.trim() ===""){
-  document.getElementById('taskTitle').classList.add('error_Input');
-  document.getElementById('error_Field_Title').innerHTML="This field is required";
-  inputsOK[0]=false;
- } else{
-  document.getElementById('taskTitle').classList.remove('error_Input');
-  document.getElementById('error_Field_Title').innerHTML='&nbsp;';
-    inputsOK[0]=true;
+function requiredInputTitle(template) {
+  let entry = document.getElementById("taskTitle").value;
+  if (entry.trim() === "") {
+    document.getElementById("taskTitle").classList.add("error_Input");
+    document.getElementById("error_Field_Title").innerHTML =
+      "This field is required";
+    inputsOK[0] = false;
+  } else {
+    document.getElementById("taskTitle").classList.remove("error_Input");
+    document.getElementById("error_Field_Title").innerHTML = "&nbsp;";
+    inputsOK[0] = true;
+  }
+  if (template === "edit") {
+    checkAllRequiredDataEdit();
+  } else {
+    checkAllRequiredData();
+  }
 }
-if(template==="edit"){
-  checkAllRequiredDataEdit()
- }else{
-  checkAllRequiredData();
- }
-} 
-
 
 /**
  * function checks the correct input in the field date
  * @param {String} template for which template is the test
  */
-function requiredInputDate(template){
- let entry = document.getElementById('taskDate').value;
- let date = new Date(entry);
- let today = new Date(entry);
- if (date instanceof Date && !isNaN(date)) {
-  let today = new Date();
-  if (date > today) {
-      document.getElementById('taskDate').classList.remove('error_Input');
-      document.getElementById('error_Field_Date').innerHTML='&nbsp;';
-      inputsOK[1]=true;
-      if(template==="edit"){inputsOK[1]=true;};
+function requiredInputDate(template) {
+  let entry = document.getElementById("taskDate").value;
+  let date = new Date(entry);
+  let today = new Date(entry);
+  if (date instanceof Date && !isNaN(date)) {
+    let today = new Date();
+    if (date > today) {
+      document.getElementById("taskDate").classList.remove("error_Input");
+      document.getElementById("error_Field_Date").innerHTML = "&nbsp;";
+      inputsOK[1] = true;
+      if (template === "edit") {
+        inputsOK[1] = true;
+      }
+    } else {
+      document.getElementById("taskDate").classList.add("error_Input");
+      document.getElementById("error_Field_Date").innerHTML =
+        "The date must be in the future";
+      inputsOK[1] = false;
+    }
   } else {
-      document.getElementById('taskDate').classList.add('error_Input');
-      document.getElementById('error_Field_Date').innerHTML="The date must be in the future";
-      inputsOK[1]=false;
+    document.getElementById("taskDate").classList.add("error_Input");
+    document.getElementById("error_Field_Date").innerHTML =
+      "This field is required";
+    inputsOK[1] = false;
   }
-} else {
-   document.getElementById('taskDate').classList.add('error_Input');
-   document.getElementById('error_Field_Date').innerHTML="This field is required";
-  inputsOK[1]=false;
+  if (template === "edit") {
+    checkAllRequiredDataEdit();
+  } else {
+    checkAllRequiredData();
+  }
 }
-if(template==="edit"){
-  checkAllRequiredDataEdit()
- }else{
-  checkAllRequiredData();
- }
-
-}
-
 
 /**
  * function checks the correct input in the field Catergory
  */
- function requiredInputCategory(){
-  let entry = document.getElementById('taskCatergory').value;
-    if(entry ===""){
-    inputsOK[2]=false;  
-    document.getElementById('taskCatergory').classList.add('error_Input');
-    document.getElementById('error_Field_Catergory').innerHTML="This field is required";
-   }else{
-   inputsOK[2]=true
-   document.getElementById('taskCatergory').classList.remove('error_Input');
-   document.getElementById('error_Field_Catergory').innerHTML='&nbsp;';
-   }
-   checkAllRequiredData();
+function requiredInputCategory() {
+  let entry = document.getElementById("taskCatergory").value;
+  if (entry === "") {
+    inputsOK[2] = false;
+    document.getElementById("taskCatergory").classList.add("error_Input");
+    document.getElementById("error_Field_Catergory").innerHTML =
+      "This field is required";
+  } else {
+    inputsOK[2] = true;
+    document.getElementById("taskCatergory").classList.remove("error_Input");
+    document.getElementById("error_Field_Catergory").innerHTML = "&nbsp;";
   }
-
+  checkAllRequiredData();
+}
 
 /**
  * function checks whether the entry in all three mandatory fields is correct
  */
-function checkAllRequiredData(){
-    const buttonsCreate =[
-    document.getElementById('btnCreateTask'),
-    document.getElementById('btnCreateTaskMobile')
+function checkAllRequiredData() {
+  const buttonsCreate = [
+    document.getElementById("btnCreateTask"),
+    document.getElementById("btnCreateTaskMobile"),
   ];
-  const enable = inputsOK.every(value=>value);
-  buttonsCreate.forEach(btn =>{
-    if(btn) {
-      btn.style.pointerEvents=enable? 'auto' : 'none';
-      btn.style.opacity = enable ? '1' : '0.5';
+  const enable = inputsOK.every((value) => value);
+  buttonsCreate.forEach((btn) => {
+    if (btn) {
+      btn.style.pointerEvents = enable ? "auto" : "none";
+      btn.style.opacity = enable ? "1" : "0.5";
     }
-  })
+  });
 }
-
 
 /**
  * function opens datepicker
  */
 function openDatePicker() {
-  let dateInput = document.getElementById('taskDate');
+  let dateInput = document.getElementById("taskDate");
   if (dateInput.showPicker) {
     dateInput.showPicker();
-    document.getElementById('taskDate').focus();
+    document.getElementById("taskDate").focus();
   } else {
     dateInput.focus();
   }
   dateInput.focus();
 }
-
 
 /**
  * function controls the priority option
@@ -169,23 +165,23 @@ function openDatePicker() {
  */
 function btnPrioSelect(btnPrio) {
   taskPrioSelect = "";
-  document.querySelectorAll(".prio_img").forEach(el => {
-    el.classList.remove('prio_img_with')
+  document.querySelectorAll(".prio_img").forEach((el) => {
+    el.classList.remove("prio_img_with");
   });
-  document.querySelectorAll('.btn_prio').forEach(button => {
+  document.querySelectorAll(".btn_prio").forEach((button) => {
     button.style.backgroundColor = "white";
     button.style.color = "black";
   });
   if (btnPrio == "urgent") {
-    btnPrioBtnSelect("button-urgent", "#FF3D00", 0)
+    btnPrioBtnSelect("button-urgent", "#FF3D00", 0);
     taskPrioSelect = "high_prio";
   }
   if (btnPrio == "medium") {
-    btnPrioBtnSelect("button_medium", "#FFA800", 1)
-    taskPrioSelect = "medium_prio"
+    btnPrioBtnSelect("button_medium", "#FFA800", 1);
+    taskPrioSelect = "medium_prio";
   }
   if (btnPrio == "low") {
-    btnPrioBtnSelect("button-low", "#7AE229", 2)
+    btnPrioBtnSelect("button-low", "#7AE229", 2);
     taskPrioSelect = "low_prio";
   }
 }
@@ -194,84 +190,80 @@ function btnPrioSelect(btnPrio) {
  * function controls PrioButton color
  * @param {String} auswahl selected button
  * @param {String} btnColor color of the button background
- * @param {Number} id 
+ * @param {Number} id
  */
 function btnPrioBtnSelect(auswahl, btnColor, id) {
   Object.assign(document.getElementsByClassName(auswahl)[0].style, {
     backgroundColor: btnColor,
     color: "white",
-  })
-  document.getElementsByClassName("prio_img")[id].classList.add('prio_img_with');
+  });
+  document
+    .getElementsByClassName("prio_img")
+    [id].classList.add("prio_img_with");
 }
-
 
 /**
  * function opens the list of SubTask
  * @param {Boolean} flag status of the list
  */
 function subTaskInputCheck(flag) {
-  let subTaskInput = document.getElementById('inputSubtask')
+  let subTaskInput = document.getElementById("inputSubtask");
   if (flag) {
     subTaskInput.value === null;
     subTaskInput.focus();
-  };
+  }
   if (subTaskInput) {
-    document.getElementById('subTaskAddIcon').classList.add('ele_hide')
-    document.getElementById('subTaskEditIocn').classList.remove('ele_hide')
+    document.getElementById("subTaskAddIcon").classList.add("ele_hide");
+    document.getElementById("subTaskEditIocn").classList.remove("ele_hide");
   } else {
-    document.getElementById('subTaskAddIcon').classList.remove('ele_hide')
-    document.getElementById('subTaskEditIocn').classList.add('ele_hide')
+    document.getElementById("subTaskAddIcon").classList.remove("ele_hide");
+    document.getElementById("subTaskEditIocn").classList.add("ele_hide");
   }
 }
-
 
 /**
  * function closes the subtask list
  */
 function subTaskClose() {
-  document.getElementById('subTaskAddIcon').classList.remove('ele_hide')
-  document.getElementById('subTaskEditIocn').classList.add('ele_hide')
-  document.getElementById('inputSubtask').value = "";
+  document.getElementById("subTaskAddIcon").classList.remove("ele_hide");
+  document.getElementById("subTaskEditIocn").classList.add("ele_hide");
+  document.getElementById("inputSubtask").value = "";
 }
-
 
 /**
  * function to create a new subtask
  */
 function taskCreateTask() {
-  let element = document.getElementById('inputSubtask');
+  let element = document.getElementById("inputSubtask");
   contents = element.value;
   element.focus();
   if (editIndex) {
-    taskSubTaskList[editTaskNr] = contents
+    taskSubTaskList[editTaskNr] = contents;
     editIndex = false;
     editTaskNr = 0;
   } else {
-    if(contents.trim()==""){      
-    return;
-    }
-    else{
-    taskSubTaskList.push(contents);
+    if (contents.trim() == "") {
+      return;
+    } else {
+      taskSubTaskList.push(contents);
     }
   }
   subTaskClose();
   subTaskListRender();
 }
 
-
 /**
  * function for processing a subtask
  * @param {Nummber} index position in the array
  */
 function editSubTask(index) {
-  let element = document.getElementById('inputSubtask');
+  let element = document.getElementById("inputSubtask");
   element.value = taskSubTaskList[index];
-  document.getElementById('subTaskAddIcon').classList.add('ele_hide')
-  document.getElementById('subTaskEditIocn').classList.remove('ele_hide')
+  document.getElementById("subTaskAddIcon").classList.add("ele_hide");
+  document.getElementById("subTaskEditIocn").classList.remove("ele_hide");
   editTaskNr = index;
   editIndex = true;
 }
-
 
 /**
  * function to delete a subtask
@@ -282,7 +274,6 @@ function deleteSubTask(index) {
   subTaskListRender();
 }
 
-
 /**
  * function to write the subtask into the array
  * @param {String} taskData Contents of the subtask
@@ -291,42 +282,49 @@ function taskReadinArrayTask(taskData) {
   taskId = Object.values(taskData).length;
 }
 
-
 /**
  * function writes the contacts into the array for the list
- * 
+ *
  * @param {*} DataContact data from FirebaseDB
  */
 function taskReadinArrayContact(DataContact) {
   let = index = 0;
-  document.getElementById('taskDropDownList').innerHTML = "";
-  taskContacteArray = Object.values(DataContact)
-    .flatMap(array => array.map(entry => ({
+  document.getElementById("taskDropDownList").innerHTML = "";
+  taskContacteArray = Object.values(DataContact).flatMap((array) =>
+    array.map((entry) => ({
       name: entry.name,
       email: entry.email,
-      color: entry.color || "10"
-    })));
+      color: entry.color || "10",
+    }))
+  );
   taskContacteArray.map((contact, index) => {
-    taskRenderContactList(index, contact.name, contact.color || "10", contact.email);
+    taskRenderContactList(
+      index,
+      contact.name,
+      contact.color || "10",
+      contact.email
+    );
   });
 }
-
-
 
 /**
  * function to open the contact list
  */
 function taskContactListDrobdown() {
-  document.getElementById('taskContactDrowdownMenue').classList.toggle('ele_show');
-  document.getElementById('initialeIconList').classList.toggle('icon_List_hide')
+  document
+    .getElementById("taskContactDrowdownMenue")
+    .classList.toggle("ele_show");
+  document
+    .getElementById("initialeIconList")
+    .classList.toggle("icon_List_hide");
 }
 
-
-function taskContactListDrobdownClose(){
-  document.getElementById('taskContactDrowdownMenue').classList.remove('ele_show');
-  document.getElementById('initialeIconList').classList.add('icon_List_hide')
+function taskContactListDrobdownClose() {
+  document
+    .getElementById("taskContactDrowdownMenue")
+    .classList.remove("ele_show");
+  document.getElementById("initialeIconList").classList.add("icon_List_hide");
 }
-
 
 /**
  * function to write the contacts into the list
@@ -334,7 +332,7 @@ function taskContactListDrobdownClose(){
 function taskContactFilterList() {
   let input = document.getElementById("taskDropDownInput").value.toLowerCase();
   let entries = document.querySelectorAll(".contact_Label_Item");
-  entries.forEach(entries => {
+  entries.forEach((entries) => {
     let labelText = entries.textContent.toLowerCase();
     if (labelText.includes(input)) {
       entries.style.display = "flex";
@@ -344,122 +342,115 @@ function taskContactFilterList() {
   });
 }
 
-
 /**
- *function that checks whether a contact has been selected 
+ *function that checks whether a contact has been selected
  */
 function contactCheckOKinArray() {
   selectedTaskContacts = [];
-  document.querySelectorAll(".contact_Label_Item").forEach((entry, contactID) => {
-    let checkbox = entry.querySelector("input[type='checkbox']")
-    if (checkbox && checkbox.checked) {
-      selectedTaskContacts.push(taskContacteArray[contactID]);
-      document.getElementById('initialeIconList').innerHTML = "";
-      taskContacInitialRender(selectedTaskContacts);
-    } else {
-      document.getElementById('initialeIconList').innerHTML = "";
-      taskContacInitialRender(selectedTaskContacts);
-    }
-  })
-  }
-
+  document
+    .querySelectorAll(".contact_Label_Item")
+    .forEach((entry, contactID) => {
+      let checkbox = entry.querySelector("input[type='checkbox']");
+      if (checkbox && checkbox.checked) {
+        selectedTaskContacts.push(taskContacteArray[contactID]);
+        document.getElementById("initialeIconList").innerHTML = "";
+        taskContacInitialRender(selectedTaskContacts);
+      } else {
+        document.getElementById("initialeIconList").innerHTML = "";
+        taskContacInitialRender(selectedTaskContacts);
+      }
+    });
+}
 
 /**
  * function to save the data
  * @param {String} template from which input does the data come
  */
 async function checkInputData(template) {
-        pushTaskToServer();
-        timePopUp(2000);
-       
-        inputsOK=[false,false,false];
-        if (template == "overlay") {
-            setTimeout(()=>{
-            loadTaskData();
-            dataFromFirebaseEdit();
-            closeOverlay('addTask_overlay')      
-          },1000);
-                
-      } else{
-        setTimeout(()=>{
-        window.location.href = "board.html"; 
-        },1000);
-      }
-         addTaskClear();  
-      
-         
-    }
- 
+  pushTaskToServer();
+  timePopUp(2000);
 
- /**
-  * function to display the popup data is saved
-  * @param {Number} duration time how long the popup is visible
-  */   
+  inputsOK = [false, false, false];
+  if (template == "overlay") {
+    setTimeout(() => {
+      loadTaskData();
+      dataFromFirebaseEdit();
+      closeOverlay("addTask_overlay");
+    }, 1000);
+  } else {
+    setTimeout(() => {
+      window.location.href = "board.html";
+    }, 1000);
+  }
+  addTaskClear();
+}
+
+/**
+ * function to display the popup data is saved
+ * @param {Number} duration time how long the popup is visible
+ */
 function timePopUp(duration) {
-  let notification = document.getElementById('notificationFinish');
+  let notification = document.getElementById("notificationFinish");
   notification.style.display = "flex";
   setTimeout(() => {
     notification.style.display = "none";
   }, duration);
- 
 }
-
 
 /**
  * function to collect the data which is then stored in the db
  */
 function collectData() {
   currentTaskAdd = {
-    title: document.getElementById('taskTitle').value,
-    description: document.getElementById('descriptionTask').value.trim(),
+    title: document.getElementById("taskTitle").value,
+    description: document.getElementById("descriptionTask").value.trim(),
     contacts: selectedTaskContacts,
-    deadline: dateConversion(document.getElementById('taskDate').value),
-    prio: taskPrioSelect, 
-    category: taskCatergoryRetrieve(document.getElementById('taskCatergory').value), 
+    deadline: dateConversion(document.getElementById("taskDate").value),
+    prio: taskPrioSelect,
+    category: taskCatergoryRetrieve(
+      document.getElementById("taskCatergory").value
+    ),
     subtasks: {
-      total: taskSubTaskList.length, 
-      number_of_finished_subtasks: 0, 
+      total: taskSubTaskList.length,
+      number_of_finished_subtasks: 0,
       subtasks_todo: subTasksObjects(),
     },
-    status: statusSave() 
-  }
+    status: statusSave(),
+  };
 }
-
 
 /**
  * function to convert the date
  * @param {String} dateOld date being converted
- * @returns 
+ * @returns
  */
 function dateConversion(dateOld) {
   let date = new Date(dateOld);
-  let day = String(date.getDate()).padStart(2, '0'); 
-  let month = String(date.getMonth() + 1).padStart(2, '0'); 
-  let year = String(date.getFullYear()).slice(-2); 
+  let day = String(date.getDate()).padStart(2, "0");
+  let month = String(date.getMonth() + 1).padStart(2, "0");
+  let year = String(date.getFullYear()).slice(-2);
   return `${day}/${month}/${year}`;
 }
 
-
 /**
  * function to check which category was selected
- * @param {Number} number 
- * @returns 
+ * @param {Number} number
+ * @returns
  */
 function taskCatergoryRetrieve(number) {
   if (number === "1") {
-    return "Technical Task";    
+    return "Technical Task";
   } else {
-    return "User Story"
+    return "User Story";
   }
 }
 
-
 /**
  * function to check in which card the data coming from OverlayTemplate is saved
- * @returns 
+ * @returns
  */
 function statusSave() {
-  let catergory = localStorage.getItem("category")
+  let catergory = localStorage.getItem("category");
   if (catergory) {
     localStorage.setItem("category", "");
     return catergory;
@@ -468,62 +459,59 @@ function statusSave() {
   }
 }
 
-
 /**
  * function to read status todo
- * @returns 
+ * @returns
  */
 function subTasksObjects() {
   let todoSatus = "todo";
   let subTasksTodo = {};
-  taskSubTaskList.forEach(task => {
+  taskSubTaskList.forEach((task) => {
     subTasksTodo[task] = todoSatus;
   });
   return subTasksTodo;
 }
 
-
 /**
  * error message when deleting any field
  * @param {string} tag id for the field
  */
-function errorFieldsFocus(tag){
-  document.getElementById(tag).innerHTML='&nbsp;';
+function errorFieldsFocus(tag) {
+  document.getElementById(tag).innerHTML = "&nbsp;";
 }
-
 
 /**
  * delete all error fields
  */
-function errorFieldsClear(){
-  document.getElementById('taskTitle').classList.remove('error_Input');
-  document.getElementById('error_Field_Title').innerHTML='&nbsp;';
-  document.getElementById('taskDate').classList.remove('error_Input');
-  document.getElementById('error_Field_Date').innerHTML='&nbsp;';
-  document.getElementById('taskCatergory').classList.remove('error_Input');
-  document.getElementById('error_Field_Catergory').innerHTML='&nbsp;';
- }
-
+function errorFieldsClear() {
+  document.getElementById("taskTitle").classList.remove("error_Input");
+  document.getElementById("error_Field_Title").innerHTML = "&nbsp;";
+  document.getElementById("taskDate").classList.remove("error_Input");
+  document.getElementById("error_Field_Date").innerHTML = "&nbsp;";
+  document.getElementById("taskCatergory").classList.remove("error_Input");
+  document.getElementById("error_Field_Catergory").innerHTML = "&nbsp;";
+}
 
 /**
  * function to delete the fields in the input mask
  */
 function addTaskClear() {
-  document.getElementById('taskTitle').value = "";
-  document.getElementById('descriptionTask').value = "";
+  document.getElementById("taskTitle").value = "";
+  document.getElementById("descriptionTask").value = "";
   loadDataFirebase();
-  document.getElementById('taskContactDrowdownMenue').classList.remove("ele_show");
+  document
+    .getElementById("taskContactDrowdownMenue")
+    .classList.remove("ele_show");
   selectedTaskContacts = [];
-  document.getElementById('initialeIconList').innerHTML = "";
-  document.getElementById('taskDate').value = "";
-  btnPrioSelect('medium');
-  document.getElementById('taskCatergory').value = "";
-  document.getElementById('inputSubtask').value = "";
+  document.getElementById("initialeIconList").innerHTML = "";
+  document.getElementById("taskDate").value = "";
+  btnPrioSelect("medium");
+  document.getElementById("taskCatergory").value = "";
+  document.getElementById("inputSubtask").value = "";
   subTaskClose();
   taskSubTaskList = [];
   subTaskClose();
   subTaskListRender();
   checkAllRequiredData();
-  errorFieldsClear(); 
+  errorFieldsClear();
 }
-

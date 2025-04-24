@@ -2,10 +2,10 @@
  * Function to write the subtask list as an HTML element
  * @param {String} subTaskdesignation data from the Firebase DB of the subtasks
  * @param {Number} index  position of the subtask in the list (array)
- * @returns 
+ * @returns
  */
 function SubtaskListTemplate(subTaskdesignation, index) {
-    return `
+  return `
     <div class="sub_task_item">
     <div class="sublist_text">
        <span class="bullet">•</span>
@@ -16,9 +16,8 @@ function SubtaskListTemplate(subTaskdesignation, index) {
        <img src="../assets/icons/delete.svg"onclick="deleteSubTask(${index})">
    </div>
 </div>
-`
+`;
 }
-
 
 /**
  * Function to write the contacts as HTML
@@ -27,10 +26,10 @@ function SubtaskListTemplate(subTaskdesignation, index) {
  * @param {Number} color Color number of the contact
  * @param {String} initials the initials of the contact
  * @param {String} email the contact's email address
- * @returns 
+ * @returns
  */
-function taskContacListTemplate(index, name, color, initials, email,check) {
-        return `
+function taskContacListTemplate(index, name, color, initials, email, check) {
+  return `
       <div class="contact_Label_Item">
      <label>
               <p class="initial_Letters_Contact" style="background-color: ${color};">${initials}</p>
@@ -38,24 +37,21 @@ function taskContacListTemplate(index, name, color, initials, email,check) {
               <input id="contactcheckbox(${index})" class="input_check" ${check} type="checkbox" onclick="contactCheckOKinArray(${index})">
      </label>
             </div>  
-     `
+     `;
 }
-
 
 /**
  * function to write the initials with HTML
- * @param {Number} color 
- * @param {String} initials 
- * @returns 
+ * @param {Number} color
+ * @param {String} initials
+ * @returns
  */
-function taskContacInitialTemplate(color, initials,numbers) {
-    return `
+function taskContacInitialTemplate(color, initials, numbers) {
+  return `
         
            <span class="initial_Letters_Contact" style="background-color:  ${color}; margin-left: -15px;"> 
            ${initials} 
            </span>
          
-           `
+           `;
 }
-
-
