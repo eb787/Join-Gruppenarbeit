@@ -44,23 +44,8 @@ function getContactDots(moreContacts) {
 }
 
 
-function getNoTasksToDoCard() {
-    return `<div id="no_task_toDo" class="no_tasks">No tasks To do</div>`
-}
-
-
-function getNoTasksInProgressCard() {
-    return `<div id="no_task_inProgress" class="no_tasks">No tasks In progress</div>`
-}
-
-
-function getNoTasksAwaitFeedbackCard() {
-    return `<div id="no_task_awaitFeedback" class="no_tasks">No tasks Await feedback</div>`
-}
-
-
-function getNoTasksDoneCard() {
-    return `<div id="no_task_done" class="no_tasks">No tasks Done</div>`
+function getNoTasksCard(id, text) {
+    return `<div id=${id} class="no_tasks">${text}</div>`
 }
 
 

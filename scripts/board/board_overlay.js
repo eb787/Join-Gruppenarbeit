@@ -229,16 +229,16 @@ function openCategoryOverlay(event, index) {
 */
 function adaptCategoryOverlay(index) {
     if (currentTasks[index].status == 'toDo') {
-        changeCategoryOverlayToDo(index);
+        changeCategoryOverlay(index, 'div_category_options_toDo', 'arrow_down_inProgress_', 'arrow_down_awaitFeedback_', 'arrow_down_done_');
     }
     if (currentTasks[index].status == 'inProgress') {
-        changeCategoryOverlayInProgress(index);
+        changeCategoryOverlay(index, 'div_category_options_inProgress', 'arrow_up_toDo_', 'arrow_down_awaitFeedback_', 'arrow_down_done_');
     }
     if (currentTasks[index].status == 'awaitFeedback') {
-        changeCategoryOverlayAwaitFeedback(index);
+        changeCategoryOverlay(index, 'div_category_options_awaitFeedback', 'arrow_up_toDo_', 'arrow_up_inProgress_', 'arrow_down_done_');
     }
     if (currentTasks[index].status == 'done') {
-        changeCategoryOverlayDone(index);
+        changeCategoryOverlay(index, 'div_category_options_done', 'arrow_up_toDo_', 'arrow_up_inProgress_', 'arrow_up_awaitFeedback_');
     }
 }
 
@@ -247,47 +247,11 @@ function adaptCategoryOverlay(index) {
  * This function adapts the overlay which shows the category options if the current element is assigned in the category "toDo"
  * @param {number} index - This parameter indicates the element that should be moved
 */
-function changeCategoryOverlayToDo(index) {
-    document.getElementById('div_category_options_toDo').classList.add('d_none');
-    document.getElementById('arrow_down_inProgress_' + index).classList.remove('d_none');
-    document.getElementById('arrow_down_awaitFeedback_' + index).classList.remove('d_none');
-    document.getElementById('arrow_down_done_' + index).classList.remove('d_none');
-}
-
-
-/** 
- * This function adapts the overlay which shows the category options if the current element is assigned in the category "inProgress"
- * @param {number} index - This parameter indicates the element that should be moved
-*/
-function changeCategoryOverlayInProgress(index) {
-    document.getElementById('div_category_options_inProgress').classList.add('d_none');
-    document.getElementById('arrow_up_toDo_' + index).classList.remove('d_none');
-    document.getElementById('arrow_down_awaitFeedback_' + index).classList.remove('d_none');
-    document.getElementById('arrow_down_done_' + index).classList.remove('d_none');
-}
-
-
-/** 
- * This function adapts the overlay which shows the category options if the current element is assigned in the category "awaitFeedback"
- * @param {number} index - This parameter indicates the element that should be moved
-*/
-function changeCategoryOverlayAwaitFeedback(index) {
-    document.getElementById('div_category_options_awaitFeedback').classList.add('d_none');
-    document.getElementById('arrow_up_toDo_' + index).classList.remove('d_none');
-    document.getElementById('arrow_up_inProgress_' + index).classList.remove('d_none');
-    document.getElementById('arrow_down_done_' + index).classList.remove('d_none');
-}
-
-
-/** 
- * This function adapts the overlay which shows the category options if the current element is assigned in the category "done"
- * @param {number} index - This parameter indicates the element that should be moved
-*/
-function changeCategoryOverlayDone(index) {
-    document.getElementById('div_category_options_done').classList.add('d_none');
-    document.getElementById('arrow_up_toDo_' + index).classList.remove('d_none');
-    document.getElementById('arrow_up_inProgress_' + index).classList.remove('d_none');
-    document.getElementById('arrow_up_awaitFeedback_' + index).classList.remove('d_none');
+function changeCategoryOverlay(index, firstElementToBeRemoved, secondElementToBeRemoved, thirdElementToBeRemoved, fourthElementToBeRemoved) {
+    document.getElementById(firstElementToBeRemoved).classList.add('d_none');
+    document.getElementById(secondElementToBeRemoved + index).classList.remove('d_none');
+    document.getElementById(thirdElementToBeRemoved + index).classList.remove('d_none');
+    document.getElementById(fourthElementToBeRemoved + index).classList.remove('d_none');
 }
 
 
@@ -309,65 +273,29 @@ function closeCategoryOverlay() {
 */
 function resetAdaptedClassesCategoryOverlay() {
     if (currentTasks[elementToBeDropped].status == 'toDo' ) {
-        resetToDoClassCategoryOverlay();
+        resetClassCategoryOverlay('div_category_options_toDo', 'arrow_down_inProgress_', 'arrow_down_awaitFeedback_', 'arrow_down_done_');
     }
     if (currentTasks[elementToBeDropped].status == 'inProgress' ) {
-        resetInProgressClassCategoryOverlay();
+        resetClassCategoryOverlay('div_category_options_inProgress', 'arrow_up_toDo_', 'arrow_down_awaitFeedback_', 'arrow_down_done_');
     }
     if (currentTasks[elementToBeDropped].status == 'awaitFeedback' ) {
-        resetAwaitFeedbackClassCategoryOverlay();
+        resetClassCategoryOverlay('div_category_options_awaitFeedback', 'arrow_up_toDo_', 'arrow_up_inProgress_', 'arrow_down_done_');
     }
     if (currentTasks[elementToBeDropped].status == 'done' ) {
-        resetDoneClassCategoryOverlay(); 
+        resetClassCategoryOverlay('div_category_options_done', 'arrow_up_toDo_', 'arrow_up_inProgress_', 'arrow_up_awaitFeedback_'); 
     }
 }
 
 
 /** 
- * This function resets the classes that have been adapted of the overlay of category options if the element was a "toDo"-element
+ * This function resets the classes that have been adapted of the overlay of category options
 */
-function resetToDoClassCategoryOverlay() {
-    document.getElementById('div_category_options_toDo').classList.remove('d_none');
+function resetClassCategoryOverlay(currentCategory, firstToBeRemoved, secondToBeRemoved, thirdToBeRemoved ) {
+    document.getElementById(currentCategory).classList.remove('d_none');
 
-    document.getElementById('arrow_down_inProgress_' + elementToBeDropped).classList.add('d_none');
-    document.getElementById('arrow_down_awaitFeedback_' + elementToBeDropped).classList.add('d_none');
-    document.getElementById('arrow_down_done_' + elementToBeDropped).classList.add('d_none');
-}
-
-
-/** 
- * This function resets the classes that have been adapted of the overlay of category options if the element was a "inProgress"-element
-*/
-function resetInProgressClassCategoryOverlay() {
-    document.getElementById('div_category_options_inProgress').classList.remove('d_none');
-
-    document.getElementById('arrow_up_toDo_' + elementToBeDropped).classList.add('d_none');
-    document.getElementById('arrow_down_awaitFeedback_' + elementToBeDropped).classList.add('d_none');
-    document.getElementById('arrow_down_done_' + elementToBeDropped).classList.add('d_none');
-}
-
-
-/** 
- * This function resets the classes that have been adapted of the overlay of category options if the element was an "awaitFeedback"-element
-*/
-function resetAwaitFeedbackClassCategoryOverlay() {
-    document.getElementById('div_category_options_awaitFeedback').classList.remove('d_none');
-
-    document.getElementById('arrow_up_toDo_' + elementToBeDropped).classList.add('d_none');
-    document.getElementById('arrow_up_inProgress_' + elementToBeDropped).classList.add('d_none');
-    document.getElementById('arrow_down_done_' + elementToBeDropped).classList.add('d_none');
-}
-
-
-/** 
- * This function resets the classes that have been adapted of the overlay of category options if the element was a "done"-element
-*/
-function resetDoneClassCategoryOverlay() {
-    document.getElementById('div_category_options_done').classList.remove('d_none');
-
-    document.getElementById('arrow_up_toDo_' + elementToBeDropped).classList.add('d_none');
-    document.getElementById('arrow_up_inProgress_' + elementToBeDropped).classList.add('d_none');
-    document.getElementById('arrow_up_awaitFeedback_' + elementToBeDropped).classList.add('d_none');
+    document.getElementById(firstToBeRemoved + elementToBeDropped).classList.add('d_none');
+    document.getElementById(secondToBeRemoved + elementToBeDropped).classList.add('d_none');
+    document.getElementById(thirdToBeRemoved + elementToBeDropped).classList.add('d_none');
 }
 
 
