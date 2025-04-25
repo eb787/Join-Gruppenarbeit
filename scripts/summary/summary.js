@@ -125,7 +125,7 @@ function countTasks(filter = {}) {
  */
 function getDeadlineDate() {
   const upcomingTask = currentTasks.find(task => task?.deadline);
-  return upcomingTask ? upcomingTask.deadline : "Keine Deadline festgelegt";
+  return upcomingTask ? upcomingTask.deadline : "No deadline set";
 }
 
 
