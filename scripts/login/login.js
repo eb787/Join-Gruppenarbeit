@@ -187,8 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
       showErrorMessage("Password is required.", "password");
     } else if (password.length < 4) {
       showErrorMessage(
-        "Password must be at least 4 characters long.",
-        "password"
+        "wrong password"
       );
     } else {
       removeErrorMessage("password");
