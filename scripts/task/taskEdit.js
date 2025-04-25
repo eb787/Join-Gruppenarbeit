@@ -282,7 +282,7 @@ function deleteSubTaskEdit(index) {
 async function TaskEditSave() {
   dataEditTaskChange(indexEdit);
   collectDataEdit();
-  await postTaskDataEdit(`/tasks/${parseInt(indexEdit)}`, currentTaskEdit);
+  postTaskDataEdit(`/tasks/${parseInt(indexEdit)}`, currentTaskEdit);
   await fetchTaskData();
   updateTaskBoard();
   closeOverlay("bg_overlay");
@@ -300,10 +300,9 @@ function collectDataEdit() {
     prio: DataTaskPrio,
     category: DataTaskEdit[indexEdit].category,
     subtasks: {
-      total: currentTasks[indexEdit].subtasks.total,
-      number_of_finished_subtasks:
-        currentTasks[indexEdit].subtasks.number_of_finished_subtasks,
+      number_of_finished_subtasks: currentTasks[indexEdit].number_of_finished_subtasks,
       subtasks_todo: currentTasks[indexEdit].subtasks.subtasks_todo,
+      total: currentTasks[indexEdit].subtasks.total,
     },
     status: DataTaskEdit[indexEdit].status,
   };
@@ -320,6 +319,7 @@ function dataEditTaskChange(index) {
   currentTasks[index].subtasks.total = DataSubTaskListEdit.length;
   currentTasks[index].number_of_finished_subtasks = subTaskReadytoFinish();
   currentTasks[index].subtasks.subtasks_todo = newDataSubTaskEdit;
+  console.log("FinisTasl", currentTasks[index].number_of_finished_subtasks)
 }
 
 /**
@@ -328,9 +328,11 @@ function dataEditTaskChange(index) {
  */
 function subTaskReadytoFinish() {
   let countTodo = 0;
-  countTodo = DataSubTaskListEdit.filter(
-    (todos) => todos.status === "done"
+  countTodo = DataSubTaskListEdit.filter(todos => todos.status === "done"
   ).length;
+  if (countTodo < 0) {
+    countTodo = 0;
+  }
   return countTodo;
 }
 
