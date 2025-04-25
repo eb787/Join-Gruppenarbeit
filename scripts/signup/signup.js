@@ -43,8 +43,6 @@ function checkFormValidity() {
   const checkbox = document.getElementById("privacy_checkbox").checked;
 
   const fieldsFilled = name && email && password && confirmPassword && password === confirmPassword;
-
-  // Zeige nur eine Fehlermeldung für die Checkbox, wenn alle anderen Felder korrekt ausgefüllt sind
   if (fieldsFilled && !checkbox) {
     showErrorMessage("Please accept the privacy policy.", "privacy_checkbox");
   } else {
