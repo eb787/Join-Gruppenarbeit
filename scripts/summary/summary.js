@@ -87,81 +87,45 @@ window.onresize = showHelpIconMobile;
 
 
 /**
- * This function updates the HTML content based on the current task data.
- * It updates various task-related statistics such as urgent tasks, to-do tasks, etc.
+ * Updates the HTML content based on task data.
  */
 function updateHTML() {
-  document.getElementById("content_urgent").innerHTML = getNumberUrgent();
-  document.getElementById("content_to_do").innerHTML = getNumberToDo();
-  document.getElementById("content_success").innerHTML = getNumberSuccess();
-  document.getElementById("content_date_div").innerHTML = getDeadlineDate();
-  document.getElementById("content_task_in_board").innerHTML = getNumberTaskInBoard();
-  document.getElementById("content_task_in_progress").innerHTML = getNumberTaskInProgress();
-  document.getElementById("content_awaiting_feedback").innerHTML = getNumberAwaitingFeedback();
+  const contentMap = {
+    content_urgent: () => countTasks({ prio: "high_prio" }),
+    content_to_do: () => countTasks({ status: "toDo" }),
+    content_success: () => countTasks({ status: "done" }),
+    content_date_div: getDeadlineDate,
+    content_task_in_board: () => countTasks(),
+    content_task_in_progress: () => countTasks({ status: "inProgress" }),
+    content_awaiting_feedback: () => countTasks({ status: "awaitFeedback" }),
+  };
+
+  for (const [id, fn] of Object.entries(contentMap)) {
+    document.getElementById(id).innerHTML = fn();
+  }
 }
 
 
 /**
- * This function returns the number of urgent tasks (tasks with high priority).
- * @returns {number} - The number of high-priority tasks.
+ * Returns the number of tasks matching the given criteria.
+ * If no criteria is given, returns the total number of valid tasks.
+ * @param {Object} filter - Optional filter by task properties (e.g., status or prio).
+ * @returns {number}
  */
-function getNumberUrgent() {
-  return currentTasks.filter(task => task && task.prio === "high_prio").length;
+function countTasks(filter = {}) {
+  return currentTasks.filter(task =>
+    task && Object.entries(filter).every(([key, value]) => task[key] === value)
+  ).length;
 }
 
 
 /**
- * This function returns the number of tasks with the "toDo" status.
- * @returns {number} - The number of tasks with the status "toDo".
- */
-function getNumberToDo() {
-  return currentTasks.filter(task => task && task.status === "toDo").length;
-}
-
-
-/**
- * This function returns the number of tasks that are marked as "done".
- * @returns {number} - The number of completed tasks.
- */
-function getNumberSuccess() {
-  return currentTasks.filter(task => task && task.status === "done").length;
-}
-
-
-/**
- * This function returns the deadline of the next upcoming task, or a default message if no deadline is set.
- * @returns {string} - The deadline of the next task or "No deadline set" if none exists.
+ * Returns the deadline of the next upcoming task or a default message.
+ * @returns {string}
  */
 function getDeadlineDate() {
-  const upcomingTask = currentTasks.find(task => task && task.deadline && task.deadline !== "");
+  const upcomingTask = currentTasks.find(task => task?.deadline);
   return upcomingTask ? upcomingTask.deadline : "Keine Deadline festgelegt";
-}
-
-
-/**
- * This function returns the total number of tasks in the system that are not null.
- * @returns {number} - The total number of valid tasks.
- */
-function getNumberTaskInBoard() {
-  return currentTasks.filter(task => task !== null).length;
-}
-
-
-/**
- * This function returns the number of tasks with the "inProgress" status.
- * @returns {number} - The number of tasks that are in progress.
- */
-function getNumberTaskInProgress() {
-  return currentTasks.filter(task => task && task.status === "inProgress").length;
-}
-
-
-/**
- * This function returns the number of tasks awaiting feedback.
- * @returns {number} - The number of tasks awaiting feedback.
- */
-function getNumberAwaitingFeedback() {
-  return currentTasks.filter(task => task && task.status === "awaitFeedback").length;
 }
 
 

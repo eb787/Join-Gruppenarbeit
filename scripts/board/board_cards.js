@@ -15,13 +15,13 @@ function updateTaskBoard() {
  * This function deletes all task cards from the board and places an indicator that there are no tasks in the column
 */
 function emptyBoard() {
-    document.getElementById("toDo").innerHTML = getNoTasksToDoCard();
+    document.getElementById("toDo").innerHTML = getNoTasksCard("no_task_toDo", "No tasks To do");
     document.getElementById("toDo").innerHTML += getPlaceholder();
-    document.getElementById("inProgress").innerHTML = getNoTasksInProgressCard();
+    document.getElementById("inProgress").innerHTML = getNoTasksCard("no_task_inProgress", "No tasks In progress");
     document.getElementById("inProgress").innerHTML += getPlaceholder();
-    document.getElementById("awaitFeedback").innerHTML = getNoTasksAwaitFeedbackCard();
+    document.getElementById("awaitFeedback").innerHTML = getNoTasksCard("no_task_awaitFeedback", "No tasks Await feedback");
     document.getElementById("awaitFeedback").innerHTML += getPlaceholder();
-    document.getElementById("done").innerHTML = getNoTasksDoneCard();
+    document.getElementById("done").innerHTML = getNoTasksCard("no_task_done", "No tasks Done");
     document.getElementById("done").innerHTML += getPlaceholder();
 }
 
