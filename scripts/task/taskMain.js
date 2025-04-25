@@ -164,7 +164,6 @@ function openDatePicker() {
  * @param {String} btnPrio function controls the priority option
  */
 function btnPrioSelect(btnPrio) {
-  taskPrioSelect = "";
   document.querySelectorAll(".prio_img").forEach((el) => {
     el.classList.remove("prio_img_with");
   });
@@ -172,19 +171,18 @@ function btnPrioSelect(btnPrio) {
     button.style.backgroundColor = "white";
     button.style.color = "black";
   });
-  if (btnPrio == "urgent") {
-    btnPrioBtnSelect("button-urgent", "#FF3D00", 0);
-    taskPrioSelect = "high_prio";
-  }
-  if (btnPrio == "medium") {
-    btnPrioBtnSelect("button_medium", "#FFA800", 1);
-    taskPrioSelect = "medium_prio";
-  }
-  if (btnPrio == "low") {
-    btnPrioBtnSelect("button-low", "#7AE229", 2);
-    taskPrioSelect = "low_prio";
+  const prioMap = {
+    urgent: { buttonId: "button-urgent", color: "#FF3D00", prioValue: "high_prio", index: 0, },
+    medium: { buttonId: "button_medium", color: "#FFA800", prioValue: "medium_prio", index: 1, },
+    low: { buttonId: "button-low", color: "#7AE229", prioValue: "low_prio", index: 2, },
+  };
+  const selected = prioMap[btnPrio];
+  if (selected) {
+    btnPrioBtnSelect(selected.buttonId, selected.color, selected.index);
+    taskPrioSelect = selected.prioValue;
   }
 }
+
 
 /**
  * function controls PrioButton color
@@ -199,7 +197,7 @@ function btnPrioBtnSelect(auswahl, btnColor, id) {
   });
   document
     .getElementsByClassName("prio_img")
-    [id].classList.add("prio_img_with");
+  [id].classList.add("prio_img_with");
 }
 
 /**
