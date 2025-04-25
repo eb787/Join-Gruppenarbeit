@@ -124,7 +124,6 @@
     justify-content: space-between;
     padding-right: 64px;
     gap: 26px;
-    height: 688px;
     max-height: calc(100vh - 324px);
     overflow-y: auto;
     scrollbar-width: none;
