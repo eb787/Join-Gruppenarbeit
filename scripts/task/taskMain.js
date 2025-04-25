@@ -176,10 +176,10 @@ function btnPrioSelect(btnPrio) {
     medium: { buttonId: "button_medium", color: "#FFA800", prioValue: "medium_prio", index: 1, },
     low: { buttonId: "button-low", color: "#7AE229", prioValue: "low_prio", index: 2, },
   };
-  const selected = prioMap[btnPrio];
-  if (selected) {
-    btnPrioBtnSelect(selected.buttonId, selected.color, selected.index);
-    taskPrioSelect = selected.prioValue;
+  const selectedPrioBtn = prioMap[btnPrio];
+  if (selectedPrioBtn) {
+    btnPrioBtnSelect(selectedPrioBtn.buttonId, selectedPrioBtn.color, selectedPrioBtn.index);
+    taskPrioSelect = selectedPrioBtn.prioValue;
   }
 }
 
