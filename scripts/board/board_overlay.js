@@ -26,7 +26,7 @@ function showSubtasksOnOverlay(index) {
             document.getElementById("tasks_box" + index).innerHTML += getTaskOverlay(index, i);
             updateCheckboxSubtasks(index, i);
         }
-    } 
+    }
 }
 
 
@@ -76,18 +76,18 @@ function closeOverlay(specifier) {
         document.getElementById(specifier).classList.add("brighter_background");
     }
     setTimeout(() => {
-            if (specifier == "bg_overlay") {
+        if (specifier == "bg_overlay") {
             document.getElementById('card_overlay').innerHTML = "";
-            }
-            document.getElementById(specifier).classList.add("d_none");
-        }, 200);
+        }
+        document.getElementById(specifier).classList.add("d_none");
+    }, 200);
 }
 
 
 /** 
  * This function is used to prevent the overlay from closing when clicking on the overlay card
 */
-function stopPropagation(event){
+function stopPropagation(event) {
     event.stopPropagation();
 }
 
@@ -98,9 +98,9 @@ function stopPropagation(event){
  * @param {number} index - This is the index number of the task in quetion
  * @param {number} i - This is the index number of the subtask in question
 */
-async function changeSubtaskCategory(index, i){
+async function changeSubtaskCategory(index, i) {
     document.getElementById('subtasks_box_overlay' + index).classList.add('disable');
-    let div =  document.getElementById("check_box_" + index + "_btn" + i);
+    let div = document.getElementById("check_box_" + index + "_btn" + i);
     let box = document.getElementById("check_box_" + index + "_info" + i);
     let task = Object.keys(currentTasks[index].subtasks.subtasks_todo)[i];
     newFinishedTasks = currentTasks[index].subtasks.number_of_finished_subtasks;
@@ -140,13 +140,13 @@ async function checkCurrentCategory(div, index, task, newFinishedTasks) {
  * @param {number} status - This is the status data which needs to be updated
 */
 async function changeTaskStatus(index, task, status) {
-            await fetch(Base_URL + `/tasks/${index}/subtasks/subtasks_todo/${task}` + ".json",{
-                method: "PUT",
-                header: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(status)
-            });
+    await fetch(Base_URL + `/tasks/${index}/subtasks/subtasks_todo/${task}` + ".json", {
+        method: "PUT",
+        header: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(status)
+    });
 }
 
 
@@ -156,14 +156,14 @@ async function changeTaskStatus(index, task, status) {
  * @param {number} newFinishedTasks - This is the index number of the subtasks marked as done
 */
 async function changeNumberOfFinishedTasks(index, newFinishedTasks) {
-            await fetch(Base_URL + `/tasks/${index}/subtasks/number_of_finished_subtasks` + ".json",{
-                method: "PUT",
-                header: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(newFinishedTasks)
-            });
-          }
+    await fetch(Base_URL + `/tasks/${index}/subtasks/number_of_finished_subtasks` + ".json", {
+        method: "PUT",
+        header: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newFinishedTasks)
+    });
+}
 
 
 /** 
@@ -174,14 +174,14 @@ async function deleteTask(index) {
     currentTasks[index] = {};
     await deleteTaskData(`/tasks/${index}`);
     location.reload();
-}    
+}
 
 
 /** 
  * This function is used to delete a task on the database
 */
 async function deleteTaskData(path = "") {
-    await fetch(Base_URL + path + ".json",{
+    await fetch(Base_URL + path + ".json", {
         method: "DELETE",
     });
 }
@@ -192,18 +192,18 @@ async function deleteTaskData(path = "") {
  * @param {string} category - This parameter indicates in which column the new task should appear
 */
 function showAddTaskOverlay(category) {
-    if(category){
-        localStorage.setItem("category", category); 
-         }
+    if (category) {
+        localStorage.setItem("category", category);
+    }
     if (window.innerWidth >= 1180) {
         document.getElementById("addTask_overlay").classList.remove("brighter_background");
         document.getElementById("addTask_card").classList.remove("slide-out");
-        document.getElementById("addTask_card").classList.add("slide-in"); 
-        document.getElementById("addTask_overlay").classList.remove("d_none"); 
+        document.getElementById("addTask_card").classList.add("slide-in");
+        document.getElementById("addTask_overlay").classList.remove("d_none");
         taskAddOverlayInit();
-    } else{            
+    } else {
         window.open('../HTML/task.html', '_self');
-    }    
+    }
 }
 
 
@@ -260,11 +260,11 @@ function changeCategoryOverlay(index, firstElementToBeRemoved, secondElementToBe
 */
 function closeCategoryOverlay() {
     resetAdaptedClassesCategoryOverlay();
-    
+
     document.getElementById('bg_category').classList.add('d_none');
     document.getElementById('change_category_btn_' + elementToBeDropped).innerHTML = "";
     document.getElementById('change_category_btn_' + elementToBeDropped).classList.remove('z99');
-    document.getElementById('change_category_btn_' + elementToBeDropped).innerHTML = getMobileDragger(elementToBeDropped); 
+    document.getElementById('change_category_btn_' + elementToBeDropped).innerHTML = getMobileDragger(elementToBeDropped);
 }
 
 
@@ -272,17 +272,17 @@ function closeCategoryOverlay() {
  * This function resets the classes that have been adapted of the overlay of category options based on their status
 */
 function resetAdaptedClassesCategoryOverlay() {
-    if (currentTasks[elementToBeDropped].status == 'toDo' ) {
+    if (currentTasks[elementToBeDropped].status == 'toDo') {
         resetClassCategoryOverlay('div_category_options_toDo', 'arrow_down_inProgress_', 'arrow_down_awaitFeedback_', 'arrow_down_done_');
     }
-    if (currentTasks[elementToBeDropped].status == 'inProgress' ) {
+    if (currentTasks[elementToBeDropped].status == 'inProgress') {
         resetClassCategoryOverlay('div_category_options_inProgress', 'arrow_up_toDo_', 'arrow_down_awaitFeedback_', 'arrow_down_done_');
     }
-    if (currentTasks[elementToBeDropped].status == 'awaitFeedback' ) {
+    if (currentTasks[elementToBeDropped].status == 'awaitFeedback') {
         resetClassCategoryOverlay('div_category_options_awaitFeedback', 'arrow_up_toDo_', 'arrow_up_inProgress_', 'arrow_down_done_');
     }
-    if (currentTasks[elementToBeDropped].status == 'done' ) {
-        resetClassCategoryOverlay('div_category_options_done', 'arrow_up_toDo_', 'arrow_up_inProgress_', 'arrow_up_awaitFeedback_'); 
+    if (currentTasks[elementToBeDropped].status == 'done') {
+        resetClassCategoryOverlay('div_category_options_done', 'arrow_up_toDo_', 'arrow_up_inProgress_', 'arrow_up_awaitFeedback_');
     }
 }
 
@@ -290,7 +290,7 @@ function resetAdaptedClassesCategoryOverlay() {
 /** 
  * This function resets the classes that have been adapted of the overlay of category options
 */
-function resetClassCategoryOverlay(currentCategory, firstToBeRemoved, secondToBeRemoved, thirdToBeRemoved ) {
+function resetClassCategoryOverlay(currentCategory, firstToBeRemoved, secondToBeRemoved, thirdToBeRemoved) {
     document.getElementById(currentCategory).classList.remove('d_none');
 
     document.getElementById(firstToBeRemoved + elementToBeDropped).classList.add('d_none');

@@ -25,6 +25,7 @@ function editTask(index) {
   document.getElementById("taskTitle").focus();
 }
 
+
 /**
  * Here the data is written into the overlay for Edit AddTask
  */
@@ -319,7 +320,6 @@ function dataEditTaskChange(index) {
   currentTasks[index].subtasks.total = DataSubTaskListEdit.length;
   currentTasks[index].number_of_finished_subtasks = subTaskReadytoFinish();
   currentTasks[index].subtasks.subtasks_todo = newDataSubTaskEdit;
-  console.log("FinisTasl", currentTasks[index].number_of_finished_subtasks)
 }
 
 /**

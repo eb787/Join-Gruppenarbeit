@@ -166,10 +166,8 @@ function getMobileDragger(index) {
 
 
 function editTaskTemplate(index) {
-
     return `
-    
-        <div class="card_overlay_header">
+          <div class="card_overlay_header">
             <div id="category_overlay${index}" class="task_category task_category_overlay  "></div>
            
            <div class="close_btn_overlay">
@@ -177,8 +175,7 @@ function editTaskTemplate(index) {
             </div>
         
         </div>
-             
-                <div class="section_title">
+                      <div class="section_title">
                     <h2 class="title">Title</h2>
                     <input id="taskTitle" class="input_title" type="text" onblur="requiredInputTitle('edit')" onmouseleave="requiredInputTitle('edit')" onfocus="errorFieldsFocus('error_Field_Title')" tabindex="1">
                      <span id="error_Field_Title" class="error_Field">&nbsp;</span>

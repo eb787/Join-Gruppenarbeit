@@ -17,7 +17,7 @@ let y = 0; /** This variable indicates the vertical mouseposition */
 async function loadTaskData() {
     await fetchTaskData();
     updateTaskBoard();
-    document.getElementById("full_content").innerHTML += getBgOverlay(); 
+    document.getElementById("full_content").innerHTML += getBgOverlay();
     document.getElementById("full_content").innerHTML += getAddTaskOverlay();
     document.getElementById('full_content').innerHTML += getBgCategory();
     adaptBoardHeight();
@@ -28,16 +28,16 @@ async function loadTaskData() {
 /** 
  * This function is used to save Data from the database into an array
 */
-async function fetchTaskData(){
+async function fetchTaskData() {
     currentTasks = [];
     let TaskResponse = await fetch(Base_URL + "/tasks/" + ".json");
-    TaskResponseToJson = await TaskResponse.json();  
+    TaskResponseToJson = await TaskResponse.json();
 
     for (let index = 0; index < TaskResponseToJson.length; index++) {
         if (TaskResponseToJson[index]) {
             currentTasks[index] = TaskResponseToJson[index];
         }
-    }  
+    }
 }
 
 
@@ -48,7 +48,7 @@ async function fetchTaskData(){
 function logout() {
     localStorage.removeItem('userLoggedIn');
     localStorage.setItem('greetingShown', 'false');
-  }
+}
 
 
 /**
@@ -57,12 +57,12 @@ function logout() {
 function showHelpIconMobile() {
     let helpLink = document.getElementById("mobile_help_link");
     if (window.innerWidth <= 1000) {
-      helpLink.style.display = "flex"; 
+        helpLink.style.display = "flex";
     } else {
-      helpLink.style.display = "none"; 
+        helpLink.style.display = "none";
     }
-  }
-  
+}
+
 
 window.onresize = showHelpIconMobile;
 
@@ -92,8 +92,8 @@ function adjustHeight() {
     });
     if (window.innerWidth >= 1370) {
         document.querySelectorAll(".board_content_box").forEach(el => {
-                el.style.minHeight = maxHeight + "px";
-            });
+            el.style.minHeight = maxHeight + "px";
+        });
     }
 }
 
@@ -169,7 +169,7 @@ async function moveTo(category, event) {
  * This function is used to change the category of the task and to show the new order at the board page
  * @param {string} category - This parameter indicates the category, meaning the column, where the card belongs to
 */
-async function moveCard(elementToBeDropped, category){
+async function moveCard(elementToBeDropped, category) {
     currentTasks[elementToBeDropped].status = category;
     currentTask = currentTasks[elementToBeDropped];
     await changeCategory(`/tasks/${elementToBeDropped}`, currentTask);
@@ -181,7 +181,7 @@ async function moveCard(elementToBeDropped, category){
  * This function is used to change the category of the task on the database
 */
 async function changeCategory(path = "", newObj) {
-    await fetch(Base_URL + path + ".json",{
+    await fetch(Base_URL + path + ".json", {
         method: "PUT",
         header: {
             "Content-Type": "application/json",
@@ -200,7 +200,7 @@ function startTyping() {
     document.getElementById('input_board').classList.add('input_board_searching');
     if (document.getElementById('inputfield_board').value == "") {
         refreshFoundResults();
-    } else{
+    } else {
         compareTitleWithCurrentTasks(0, document.getElementById('inputfield_board').value);
     }
 }
@@ -219,7 +219,7 @@ function findTask() {
         compareTitleWithCurrentTasks(counter, titleToFind);
         document.getElementById('inputfield_board').value = "";
     }
-    document.getElementById('input_board').classList.remove('input_board_searching'); 
+    document.getElementById('input_board').classList.remove('input_board_searching');
 }
 
 
@@ -240,7 +240,7 @@ function compareTitleWithCurrentTasks(counter, titleToFind) {
                 updateBoardBasedOnFindings(index);
             }
         }
-    } 
+    }
     showNoTaskFoundAlert(counter);
 }
 
@@ -295,7 +295,7 @@ function refreshFoundResults() {
     document.getElementById('search_icon').classList.remove('d_none');
     document.getElementById('inputfield_board').value = "";
     updateTaskBoard();
-    document.getElementById('input_board').classList.remove('input_board_searching'); 
+    document.getElementById('input_board').classList.remove('input_board_searching');
 }
 
 
