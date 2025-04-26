@@ -347,9 +347,9 @@
 
 @media (max-width: 390px) {
     .content {
-        top: 200px;
+        top: 220px;
         left: 10px;
-        overflow: hidden;
+        overflow: auto;
     }
 
     h1 {
