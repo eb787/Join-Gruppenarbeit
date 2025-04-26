@@ -283,9 +283,11 @@ function deleteSubTaskEdit(index) {
 async function TaskEditSave() {
   dataEditTaskChange(indexEdit);
   collectDataEdit();
-  postTaskDataEdit(`/tasks/${parseInt(indexEdit)}`, currentTaskEdit);
+  await postTaskDataEdit(`/tasks/${parseInt(indexEdit)}`, currentTaskEdit);
   await fetchTaskData();
-  updateTaskBoard();
+  setTimeout(function () {
+    updateTaskBoard();
+  }, 50);
   closeOverlay("bg_overlay");
 }
 
