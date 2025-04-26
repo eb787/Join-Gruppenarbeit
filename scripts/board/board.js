@@ -32,12 +32,7 @@ async function fetchTaskData() {
     currentTasks = [];
     let TaskResponse = await fetch(Base_URL + "/tasks/" + ".json");
     TaskResponseToJson = await TaskResponse.json();
-
-    for (let index = 0; index < TaskResponseToJson.length; index++) {
-        if (TaskResponseToJson[index]) {
-            currentTasks[index] = TaskResponseToJson[index];
-        }
-    }
+    currentTasks = Object.values(TaskResponseToJson);
 }
 
 
