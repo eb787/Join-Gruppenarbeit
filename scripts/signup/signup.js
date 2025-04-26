@@ -170,7 +170,9 @@ async function checkIfContactExists(email) {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    return data && Object.values(data).some((contact) => contact.email === email);
+    return data && Object.values(data).some(
+      (contact) => contact.email.toLowerCase() === email.toLowerCase()
+    );    
   } catch (error) {
     console.error("Error checking Firebase data:", error);
     return false;
@@ -319,7 +321,7 @@ document.addEventListener("DOMContentLoaded", function () {
    */
   nameInput.addEventListener("blur", () => {
     const name = nameInput.value.trim();
-    const nameRegex = /^[a-zA-Z\s'-]+$/;
+    const nameRegex = /^[a-zA-ZäöüÄÖÜß\s'-]+$/;
 
     if (name === "") {
       showErrorMessage("Please enter your name.", "name");

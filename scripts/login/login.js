@@ -1,14 +1,24 @@
 let errorMessageElement;
 const fieldErrors = {};
 
+
 /**
- * Displays an error message on the form.
+ * Displays an error message for a specific field.
  * @param {string} message - The message to display.
  * @param {string} fieldId - The field identifier.
  */
 function showErrorMessage(message, fieldId) {
   fieldErrors[fieldId] = message;
   updateErrorDisplay();
+
+  if (fieldId === "form") {
+    setTimeout(() => {
+      
+      if (fieldErrors["form"] === message) {
+        removeErrorMessage("form");
+      }
+    }, 2500); 
+  }
 }
 
 
@@ -23,7 +33,7 @@ function removeErrorMessage(fieldId) {
 
 
 /**
- * Updates the error message element with the first error.
+ * Updates the error display area with the first error message.
  */
 function updateErrorDisplay() {
   if (!errorMessageElement) return;
@@ -39,20 +49,66 @@ function updateErrorDisplay() {
 
 
 /**
- * Authenticates the user during login.
- * Stores login state and redirects on success.
+ * Validates the login form fields.
+ * Includes format checks and async user existence check.
+ * @returns {Promise<boolean>} - Returns true if valid, else false.
+ */
+/**
+ * Validates the login form fields.
+ * Includes format checks and async user existence check.
+ * @returns {Promise<boolean>} - Returns true if valid, else false.
+ */
+async function validateLoginForm() {
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  let isValid = true;
+
+  if (!email) {
+    removeErrorMessage("email");
+    isValid = false;
+  } else if (!email.includes("@")) {
+    showErrorMessage("Please enter a valid email address.", "email");
+    isValid = false;
+  } else if (!(await checkIfContactExists(email))) {
+    showErrorMessage("User not found.", "email");
+    isValid = false;
+  } else {
+    removeErrorMessage("email");
+  }
+
+  if (!password) {
+    removeErrorMessage("password");
+    isValid = false;
+  } else if (password.length < 4) {
+    showErrorMessage("Wrong password", "password");
+    isValid = false;
+  } else {
+    removeErrorMessage("password");
+  }
+
+  // If form is invalid, show a general alert
+  if (!isValid) {
+    showErrorMessage("Please correct the highlighted fields.", "form");
+  } else {
+    removeErrorMessage("form");
+  }
+
+  return isValid;
+}
+
+
+/**
+ * Logs in the user after validating the form.
  */
 async function userLogin() {
+  const isFormValid = await validateLoginForm();
+  if (!isFormValid) return;
+
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
   const userData = await checkIfContactExists(email);
 
-  if (!email || !password) {
-    return showErrorMessage("Please fill in all fields.", "form");
-  }
-  if (!userData) {
-    return showErrorMessage("User not found.", "form");
-  }
+  if (!userData) return showErrorMessage("User not found.", "form");
   if (userData.password !== password) {
     return showErrorMessage("Incorrect password.", "form");
   }
@@ -65,35 +121,34 @@ async function userLogin() {
 
 
 /**
- * Creates a user folder in the database.
- * @param {Object} userData - The user data to be stored.
+ * Stores the current user data in the database.
+ * @param {Object} userData - User data to save.
  */
 async function createUserFolder(userData) {
-  const Base_URL =
-    "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/";
-  const userFolderURL = `${Base_URL}/currentUser.json`;
-  const userFolderData = { email: userData.email, name: userData.name };
+  const url = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/currentUser.json";
+  const data = { email: userData.email, name: userData.name };
 
   try {
-    await fetch(userFolderURL, {
+    await fetch(url, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(userFolderData),
+      body: JSON.stringify(data),
     });
-  } catch (error) {}
+  } catch (error) {
+    console.error("Error saving user folder:", error);
+  }
 }
 
 
 /**
- * Checks if a contact with the given email exists.
- * @param {string} email - User's email address.
- * @returns {Promise<Object|null>}
+ * Checks if a user exists with the given email.
+ * @param {string} email - Email address to check.
+ * @returns {Promise<Object|null>} - Found user or null.
  */
 async function checkIfContactExists(email) {
-  const Base_URL =
-    "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/";
+  const url = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/logindata.json";
   try {
-    const res = await fetch(`${Base_URL}/logindata.json`);
+    const res = await fetch(url);
     const data = await res.json();
     return findUserByEmail(data, email);
   } catch {
@@ -103,25 +158,24 @@ async function checkIfContactExists(email) {
 
 
 /**
- * Finds user data by email in the dataset.
- * @param {Object} data - The user dataset.
- * @param {string} email - User's email address.
- * @returns {Object|null}
+ * Searches for a user in the dataset by email.
+ * @param {Object} data - User dataset from DB.
+ * @param {string} email - Email to find.
+ * @returns {Object|null} - Matching user or null.
  */
 function findUserByEmail(data, email) {
+  const lowerCaseEmail = email.toLowerCase();
   for (let id in data) {
-    if (data[id].email === email) return { ...data[id], userId: id };
+    if (data[id].email.toLowerCase() === lowerCaseEmail) {
+      return { ...data[id], userId: id };
+    }
   }
   return null;
 }
 
 
 /**
- * Initializes the event listeners once the DOM is fully loaded.
- *
- * Handles password input changes:
- * - Toggles visibility of lock and toggle icons.
- * - Removes password error if length >= 4.
+ * Initializes all required DOM elements and event listeners.
  */
 document.addEventListener("DOMContentLoaded", () => {
   const passwordInput = document.getElementById("password");
@@ -130,42 +184,55 @@ document.addEventListener("DOMContentLoaded", () => {
   const lockIcon = document.getElementById("lockIcon");
   errorMessageElement = document.querySelector(".wrong_data_alert");
 
-  passwordInput.addEventListener("input", () => {
-    const hasContent = passwordInput.value.length > 0;
-    lockIcon.style.display = hasContent ? "none" : "inline";
-    toggleIcon.style.display = hasContent ? "inline" : "none";
-
-    if (passwordInput.value.length >= 4) {
-      removeErrorMessage("password");
-    }
-  });
+  setupPasswordField(passwordInput, toggleIcon, lockIcon);
+  setupEmailValidation(emailInput);
+  setupPasswordValidation(passwordInput);
+});
 
 
-  /**
-   * Toggles the password visibility when the toggle icon is clicked.
-   * Also switches the icon between "visibility" and "visibility_off".
-   */
-  toggleIcon.addEventListener("click", () => {
-    const isPassword = passwordInput.type === "password";
-    passwordInput.type = isPassword ? "text" : "password";
-    toggleIcon.src = isPassword
-      ? "./assets/icons/visibility.svg"
-      : "./assets/icons/visibility_off.svg";
-  });
+/* @param {HTMLElement} input - The password input field.
+* @param {HTMLElement} toggleIcon - Icon for toggling visibility.
+* @param {HTMLElement} lockIcon - Icon showing lock.
+*/
+function setupPasswordField(input, toggleIcon, lockIcon) {
+ input.addEventListener("input", () => {
+   const value = input.value.trim();
+   const hasContent = value.length > 0;
 
-  
-  /**
-   * Validates the email input on blur (when user leaves the input):
-   * - Checks if email is entered.
-   * - Validates basic format.
-   * - Checks if the email exists in the system.
-   * - Shows or removes error messages accordingly.
-   */
-  emailInput.addEventListener("blur", async () => {
-    const email = emailInput.value.trim();
+   lockIcon.style.display = hasContent ? "none" : "inline";
+   toggleIcon.style.display = hasContent ? "inline" : "none";
+
+   if (!value) {
+     removeErrorMessage("password");
+   } else if (value.length < 4) {
+     showErrorMessage("Wrong password", "password");
+   } else {
+     removeErrorMessage("password");
+   }
+ });
+
+ toggleIcon.addEventListener("click", () => {
+   const isPassword = input.type === "password";
+   input.type = isPassword ? "text" : "password";
+   toggleIcon.src = isPassword
+     ? "./assets/icons/visibility.svg"
+     : "./assets/icons/visibility_off.svg";
+ });
+}
+
+
+/**
+ * Sets up blur validation for the email input field.
+ * @param {HTMLElement} input - The email input field.
+ */
+function setupEmailValidation(input) {
+  input.addEventListener("blur", async () => {
+    const email = input.value.trim();
     if (!email) {
-      showErrorMessage("Email is required.", "email");
-    } else if (!email.includes("@")) {
+      removeErrorMessage("email");
+      return;
+    }
+    if (!email.includes("@")) {
       showErrorMessage("Please enter a valid email address.", "email");
     } else if (!(await checkIfContactExists(email))) {
       showErrorMessage("User not found.", "email");
@@ -173,24 +240,30 @@ document.addEventListener("DOMContentLoaded", () => {
       removeErrorMessage("email");
     }
   });
+  input.addEventListener("input", () => {
+    if (input.value.trim() === "") {
+      removeErrorMessage("email");
+    }
+  });
+}
 
 
-  /**
-   * Validates the password input on blur:
-   * - Checks if password is entered.
-   * - Validates minimum length.
-   * - Shows or removes error messages accordingly.
-   */
-  passwordInput.addEventListener("blur", () => {
-    const password = passwordInput.value.trim();
+/**
+ * Sets up blur validation for the password input field.
+ * @param {HTMLElement} input - The password input field.
+ */
+function setupPasswordValidation(input) {
+  input.addEventListener("blur", () => {
+    const password = input.value.trim();
     if (!password) {
-      showErrorMessage("Password is required.", "password");
-    } else if (password.length < 4) {
-      showErrorMessage(
-        "wrong password"
-      );
+      removeErrorMessage("password");
+      return;
+    }
+
+    if (password.length < 4) {
+      showErrorMessage("Wrong password", "password");
     } else {
       removeErrorMessage("password");
     }
   });
-});
+}
