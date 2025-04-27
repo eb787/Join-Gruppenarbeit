@@ -1,149 +1,102 @@
 /**
- * Array of colors used to assign a contact avatar color randomly.
+ * Array of colors used for contact avatars.
  * @type {string[]}
  */
-let contactColorArray = [ 
-  "#FC71FF", // pink
-  "#6E52FF", // bluish-purple
-  "#9327FF", // light purple
-  "#FFBB2B", // yellow
-  "#FF4646", // red       
-  "#00BEE8", // light blue / mint
-  "#0038FF", // dark blue
-  "#FF7A00", // orange
-  "#1FD7C1", // turquoise
-  "#462F8A", // dark purple
-  "#f0eded", // grey
+const contactColorArray = [
+  "#FC71FF", "#6E52FF", "#9327FF", "#FFBB2B", "#FF4646",
+  "#00BEE8", "#0038FF", "#FF7A00", "#1FD7C1", "#462F8A", "#f0eded"
 ];
 
 
 /**
- * Disables the signup button initially and enables it
- * when all required fields are correctly filled out.
+ * Disables submit initially and listens for form input.
  */
 function enableSubmitButton() {
-  document.getElementById("signup_btn").disabled = true;
-  const inputs = document.querySelectorAll(
+  const btn = document.getElementById("signup_btn");
+  btn.disabled = true;
+  document.querySelectorAll(
     "#name, #email, #password, #confirm_password, #privacy_checkbox"
-  );
-  inputs.forEach((input) => {
-    input.addEventListener("input", checkFormValidity);
-  });
+  ).forEach(el => el.addEventListener("input", checkFormValidity));
 }
 
 
 /**
- * Checks the form validity and toggles the submit button accordingly.
+ * Validates form and toggles submit button.
  */
 function checkFormValidity() {
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value.trim();
-  const confirmPassword = document.getElementById("confirm_password").value.trim();
-  const checkbox = document.getElementById("privacy_checkbox").checked;
+  const name = val("name"), email = val("email");
+  const pw = val("password"), cpw = val("confirm_password");
+  const cb = document.getElementById("privacy_checkbox").checked;
+  const valid = name && email && pw && cpw && pw === cpw;
 
-  const fieldsFilled = name && email && password && confirmPassword && password === confirmPassword;
-  if (fieldsFilled && !checkbox) {
-    showErrorMessage("Please accept the privacy policy.", "privacy_checkbox");
-  } else {
-    removeFieldError("privacy_checkbox");
-  }
+  if (valid && !cb) showErrorMessage("Please accept the privacy policy.", "privacy_checkbox");
+  else removeFieldError("privacy_checkbox");
 
-  const isValid = fieldsFilled && checkbox;
-  document.getElementById("signup_btn").disabled = !isValid;
+  document.getElementById("signup_btn").disabled = !(valid && cb);
 }
 
 
-
-
 /**
- * Handles the user sign-up flow.
- * Validates input, checks email uniqueness, saves user data, and redirects to the home page.
+ * Handles sign-up: validates, checks duplicates, saves user.
  */
 async function addUserSignUp() {
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("confirm_password").value;
-  const checkbox = document.getElementById("privacy_checkbox").checked;
-  const userData = { email, name, password };
+  const name = val("name"), email = val("email");
+  const pw = val("password"), cpw = val("confirm_password");
+  const cb = document.getElementById("privacy_checkbox").checked;
 
-  if (!checkInput(name, email, password, confirmPassword, checkbox)) return;
-  if (await checkIfContactExists(email)) {
-    showErrorMessage("A contact with this email address already exists.", "email");
-    return;
-  }
+  if (!checkInput(name, email, pw, cpw, cb)) return;
+  if (await checkIfContactExists(email)) return showErrorMessage("Email already exists.", "email");
 
-  await saveContact(email, name, password);
-  await addContactLogin(userData);
+  await saveContact(email, name, pw);
+  await addContactLogin({ name, email, password: pw });
 
   document.getElementById("successful_signin_btn").style.display = "flex";
   resetFormFields();
-
-  setTimeout(() => {
-    window.location.href = "../index.html";
-  }, 2000);
+  setTimeout(() => location.href = "../index.html", 2000);
 }
 
 
 /**
- * Adds a user contact for login storage and saves to the server.
- * @param {Object|null} userData - Optional user data to save. If null, data is gathered from the form.
+ * Adds user to contact list & saves to server.
+ * @param {Object|null} userData
  */
 async function addContactLogin(userData = null) {
-  let newContact = userData ? {
-    name: userData.name || "No Name",
-    email: userData.email,
-    number: userData.phone || "",
-    color: globalIndex % contactColorArray.length
-  } : collectContactData();
+  const contact = userData ?? collectContactData();
+  contact.color = globalIndex % contactColorArray.length;
+  contact.name = contact.name || "No Name";
+  globalIndex++; saveGlobalIndex();
 
-  globalIndex++;
-  saveGlobalIndex();
+  const group = await getData("/contacts");
+  const letter = getFirstLetter(contact.name);
+  const id = Object.keys(group[letter] || {}).length;
 
-  const contactsData = await getData("/contacts");
-  const firstLetter = getFirstLetter(newContact.name);
-  const contactsGroup = contactsData[firstLetter] || {};
-  const newId = Object.keys(contactsGroup).length;
+  (group[letter] ||= {})[id] = contact;
+  await postData(`/contacts/${letter}`, group[letter]);
 
-  contactsGroup[newId] = newContact;
-  await postData(`/contacts/${firstLetter}`, contactsGroup);
-
-  if (!userData) {
-    clearInputsAndClose();
-    index = newId;
-    getUsersList();
-  }
+  if (!userData) clearInputsAndClose(), index = id, getUsersList();
 }
 
 
 /**
- * Validates user input before form submission.
- * @returns {boolean} - True if all inputs are valid, otherwise false.
+ * Validates user input for form.
+ * @returns {boolean}
  */
-function checkInput(name, email, password, confirmPassword, checkbox) {
-  if (!name || !email || !password || !confirmPassword) {
-    showErrorMessage("Please fill in all fields.", "name");
-    return false;
-  }
-  if (!email.includes("@")) {
-    showErrorMessage("Please enter a valid email address.", "email");
-    return false;
-  }
-  if (password.length < 4) {
-    showErrorMessage("Password must be at least 4 characters long.", "password");
-    return false;
-  }
-  if (password !== confirmPassword) {
-    showErrorMessage("Passwords do not match.", "confirm_password");
-    return false;
-  }
-  if (!checkbox) {
-    showErrorMessage("Please accept the privacy policy.", "privacy_checkbox");
-    return false;
-  }
+function checkInput(name, email, pw, cpw, cb) {
+  if (!name || !email || !pw || !cpw) return false;
+  if (!email.includes("@")) return false;
+  if (pw.length < 4) return false;
+  if (pw !== cpw) return false;
+  if (!cb) return false;
   return true;
 }
+
+
+/**
+ * Shorthand to get trimmed input value by ID.
+ * @param {string} id
+ * @returns {string}
+ */
+const val = id => document.getElementById(id).value.trim();
 
 
 /**
@@ -256,7 +209,6 @@ function updateErrorMessage() {
     errorMessageElement.textContent = "";
   }
 }
-
 
 
 /**
