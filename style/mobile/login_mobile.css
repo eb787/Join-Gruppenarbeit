@@ -172,13 +172,13 @@
 }
 
 
-@media (max-width: 380px) {
+@media (max-width: 400px) {
     .login_heading_div {
         width: 150px;
     }
 
     .login_logo img {
-        transform: translate(-5%, -50%);
+        transform: translate(-5%, -55%);
     }
    
 
@@ -191,11 +191,11 @@
     }
 
     .login_content {
-        padding-top: 90px;
+        padding-top: 80px;
     }
 
     .login_field {
-        height: 320px;
+        height: 300px;
         gap: 15px;
     }
 
