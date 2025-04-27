@@ -234,7 +234,7 @@ function editTaskTemplate(index) {
             <div class="section_Subtask">
                         <h2>Subtasks</h2>
                         <div class="input_wrapper">
-                            <input type="text" placeholder="Add new subtask"   id="inputSubtask" class="input_subtasks" oninput="subTaskInputCheck()">                                                
+                            <input type="text" placeholder=" Add new subtask"   id="inputSubtask" class="input_subtasks" oninput="subTaskInputCheck()">                                                
                        
                             <img src="../assets/icons/add.png" id="subTaskAddIcon" class="add_subtasks_new ele_hide" onclick="subTaskInputCheck(true)">
                             

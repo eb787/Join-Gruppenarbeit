@@ -1,105 +1,88 @@
 @media (max-width: 1183px) {
+  h2 {
+    font-size: 18px;
+  }
 
-   h2{
-    font-size: 16px;
-   } 
-    
-    .card_overlay{
-        display: flex;
-        padding: 5 0 0 5;
-        margin: 0;
-      }
+  .card_overlay {
+    display: flex;
+    padding: 5 0 0 5;
+    margin: 0;
+  }
 
-
-.section_title{
+  .section_title {
     width: 100%;
     height: 40px;
-   
-}
+  }
 
-.title{
+  .title {
     font-size: 16px;
-}
+  }
 
-.section_date_div{
+  .section_date_div {
     margin-top: 20px;
-}
+  }
 
-.input_title {
-    font-size: 16px;
-}
+  .input_title {
+    font-size: 18px;
+  }
 
-.textarea_description {
+  .textarea_description {
     width: 100%;
-}
+  }
 
-.textarea{
-    font-size: 16px;
-}
+  .textarea {
+    font-size: 18px;
+  }
 
+  .date_input {
+    font-size: 18px;
+    height: 40px;
+  }
 
-
-.date_input {  
-     font-size: 16px;
-     height: 40px;
-}
-
-
-.section_prio{
+  .section_prio {
     width: 100%;
-}
+  }
 
-.prio_buttons {
+  .prio_buttons {
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
     justify-content: space-between;
 
-
-     button {
-        display: flex;
-        flex-direction: row;
-        padding: 16px 6px 16px 6px;
-        width: 100px;
-       height: 40px;
-        font-size: 16px;
-        line-height: 24px;
-        border-radius: 10px;
-        border: 0.1px solid;
-        border-color: #D1D1D1;
+    button {
+      display: flex;
+      flex-direction: row;
+      padding: 16px 6px 16px 6px;
+      width: 100px;
+      height: 40px;
+      font-size: 18px;
+      line-height: 24px;
+      border-radius: 10px;
+      border: 0.1px solid;
+      border-color: #d1d1d1;
     }
-}
-   
+  }
 
-.assigned_title{
-    font-size: 16px;
-}
+  .assigned_title {
+    font-size: 18px;
+  }
 
-.task_input_section{
+  .task_input_section {
     height: 40px;
-}
+  }
 
-
-.initiale_Icon_ListEdit{
+  .initiale_Icon_ListEdit {
     font-size: 16px;
-}
+  }
 
+  .task_dropdown_input {
+    font-size: 18px;
+  }
 
-.task_dropdown_input{
-    font-size:16px ;
- }
-
-
-.section_Subtask{
-width: 100%;
-
-}
-
-.subtask_list{
+  .section_Subtask {
     width: 100%;
-  
-}
+  }
 
-
-
-
+  .subtask_list {
+    width: 100%;
+  }
 }
