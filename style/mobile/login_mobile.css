@@ -45,6 +45,7 @@
 
     .login_footer {
         padding-top: 65px;
+        position: initial;
     }
 }
 
@@ -178,9 +179,9 @@
     }
 
     .login_logo img {
-        transform: translate(-5%, -55%);
+        transform: translate(-5%, -50%);
     }
-   
+
 
     .heading_login {
         font-size: 42px;
@@ -191,17 +192,17 @@
     }
 
     .login_content {
-        padding-top: 80px;
+        padding-top: 90px;
     }
 
     .login_field {
-        height: 300px;
+        height: 320px;
         gap: 15px;
     }
 
     .mobile_login_field {
         padding-top: 20px;
-        padding-bottom: 30px;
+        padding-bottom: 20px;
     }
 
     .login_inputs {
@@ -214,6 +215,6 @@
     }
 
     .login_footer {
-        height: 50px;
+        padding-top: 0;
     }
 }
