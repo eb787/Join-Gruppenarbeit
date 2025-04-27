@@ -1,4 +1,3 @@
-let errorMessageElement;
 const fieldErrors = {};
 
 
@@ -33,60 +32,65 @@ function removeErrorMessage(fieldId) {
 
 
 /**
- * Updates the error display area with the first error message.
+ * Validates the email input field.
+ * Checks for presence, correct format, and user existence via async check.
+ *
+ * @param {string} email - The email address to validate.
+ * @returns {Promise<boolean>} - Resolves to true if valid, otherwise false.
  */
-function updateErrorDisplay() {
-  if (!errorMessageElement) return;
-  const firstKey = Object.keys(fieldErrors)[0];
-  if (firstKey) {
-    errorMessageElement.textContent = fieldErrors[firstKey];
-    errorMessageElement.classList.add("show");
+async function validateEmail(email) {
+  if (!email) {
+    removeErrorMessage("email");
+    return false;
+  } else if (!email.includes("@")) {
+    showErrorMessage("Please enter a valid email address.", "email");
+    return false;
+  } else if (!(await checkIfContactExists(email))) {
+    showErrorMessage("User not found.", "email");
+    return false;
   } else {
-    errorMessageElement.textContent = "";
-    errorMessageElement.classList.remove("show");
+    removeErrorMessage("email");
+    return true;
   }
 }
 
 
 /**
- * Validates the login form fields.
- * Includes format checks and async user existence check.
- * @returns {Promise<boolean>} - Returns true if valid, else false.
+ * Validates the password input field.
+ * Checks for presence and minimum length.
+ *
+ * @param {string} password - The password to validate.
+ * @returns {boolean} - Returns true if valid, otherwise false.
  */
-/**
- * Validates the login form fields.
- * Includes format checks and async user existence check.
- * @returns {Promise<boolean>} - Returns true if valid, else false.
- */
-async function validateLoginForm() {
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value.trim();
-  let isValid = true;
-
-  if (!email) {
-    removeErrorMessage("email");
-    isValid = false;
-  } else if (!email.includes("@")) {
-    showErrorMessage("Please enter a valid email address.", "email");
-    isValid = false;
-  } else if (!(await checkIfContactExists(email))) {
-    showErrorMessage("User not found.", "email");
-    isValid = false;
-  } else {
-    removeErrorMessage("email");
-  }
-
+function validatePassword(password) {
   if (!password) {
     removeErrorMessage("password");
-    isValid = false;
+    return false;
   } else if (password.length < 4) {
     showErrorMessage("Wrong password", "password");
-    isValid = false;
+    return false;
   } else {
     removeErrorMessage("password");
+    return true;
   }
+}
 
-  // If form is invalid, show a general alert
+
+/**
+ * Validates the login form by checking both email and password fields.
+ * If any errors are found, a general form error message is displayed.
+ *
+ * @returns {Promise<boolean>} - Resolves to true if the form is valid, otherwise false.
+ */
+async function validateLoginForm() {
+  let email = document.getElementById("email").value.trim();
+  let password = document.getElementById("password").value.trim();
+
+  let emailValid = await validateEmail(email);
+  let passwordValid = validatePassword(password);
+
+  let isValid = emailValid && passwordValid;
+
   if (!isValid) {
     showErrorMessage("Please correct the highlighted fields.", "form");
   } else {
@@ -94,6 +98,23 @@ async function validateLoginForm() {
   }
 
   return isValid;
+}
+
+
+/**
+ * Updates the error display area with the first error message from fieldErrors.
+ * Adds or removes the "show" class based on presence of errors.
+ */
+function updateErrorDisplay() {
+  if (!errorMessageElement) return;
+  let firstKey = Object.keys(fieldErrors)[0];
+  if (firstKey) {
+    errorMessageElement.textContent = fieldErrors[firstKey];
+    errorMessageElement.classList.add("show");
+  } else {
+    errorMessageElement.textContent = "";
+    errorMessageElement.classList.remove("show");
+  }
 }
 
 
