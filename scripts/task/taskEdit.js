@@ -13,6 +13,7 @@ subTaskArray = "";
 inputsOK = [true, true, true];
 dataFromFirebaseEdit();
 
+
 /**
  * This function retrieves the data from the record with the given index that was previously loaded via dataFromFirebase
  * @param {string} index -  the index of the passed task
@@ -45,6 +46,7 @@ function TaskEditOverlayRender() {
   editTaskWriteContacts(DataTaskContactsTask);
 }
 
+
 /**
  * function which converts the date from the passed data set into the format dd.mm.yyyy
  * @param {string} dateStr -Date passed with the format dd/mm/yyyy
@@ -57,6 +59,7 @@ function dateConversation(dateStr) {
   let year = "20" + parts[2];
   return `${year}-${month}-${day}`;
 }
+
 
 /**
  * function to determine the priority
@@ -97,6 +100,7 @@ function taskContactListDrobdownEditClose() {
     .classList.remove("ele_show");
   document.getElementById("initialeIconList").classList.add("icon_List_hide");
 }
+
 
 /**
  * function to write the contacts into the list
@@ -158,6 +162,7 @@ function taskReadinArrayContactEdit(DataContact, DataContacts) {
   });
 }
 
+
 /**
  * check which contacts match the saved ones
  * @param {*} DataContacts
@@ -200,6 +205,7 @@ function subTaskListLoadEdit() {
   }
 }
 
+
 /**
  * Function to render the data of the subtask list into an HTML element
  * @param {Array} taskSubList - Array where the subtasks are located
@@ -211,6 +217,7 @@ function subTaskListRenderEdit(DataSubTaskListEdit) {
     SubtaskListTemplateEdit(designation.name, index)
   ).join("");
 }
+
 
 /**
  * output the subtask list as an HTML template
@@ -255,6 +262,7 @@ function taskCreateTaskEdit() {
   subTaskListRenderEdit(DataSubTaskListEdit);
 }
 
+
 /**
  * Function that brings the subtask into the input field for processing
  * @param {Number} index index is the number of the subtask from list of to be processed
@@ -291,6 +299,7 @@ async function TaskEditSave() {
   closeOverlay("bg_overlay");
 }
 
+
 /**
  * function creates object to save in FirbaseDB
  */
@@ -324,6 +333,7 @@ function dataEditTaskChange(index) {
   currentTasks[index].subtasks.subtasks_todo = newDataSubTaskEdit;
 }
 
+
 /**
  * check which subtasks are completed
  * @returns
@@ -337,6 +347,7 @@ function subTaskReadytoFinish() {
   }
   return countTodo;
 }
+
 
 /**
  * function checks if contacts exist for this task and writes sisin object for transfer
@@ -377,6 +388,7 @@ async function dataFromFirebaseEdit() {
   DataTaskEdit = DataTask;
   DataContactsAll = DataContact;
 }
+
 
 /**
  * Loading data from FirebaseDB for the AddTask Edit template

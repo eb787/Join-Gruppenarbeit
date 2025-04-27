@@ -19,6 +19,7 @@ function SubtaskListTemplate(subTaskdesignation, index) {
 `;
 }
 
+
 /**
  * Function to write the contacts as HTML
  * @param {Number} index position of the contact in the list (array)

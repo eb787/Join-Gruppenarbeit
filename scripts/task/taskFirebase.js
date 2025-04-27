@@ -19,6 +19,7 @@ async function loadDataFirebase() {
   }
 }
 
+
 /**
  * Function writes the data from a task into the FirebaseDB when creating a new task
  */
@@ -26,6 +27,7 @@ function pushTaskToServer() {
   collectData();
   postTaskData(`/tasks/${taskId}`, currentTaskAdd);
 }
+
 
 /**
  * Function writes the data from a task to the FirebaseDB when a task changes

@@ -9,6 +9,7 @@ function subTaskListRender() {
     .join("");
 }
 
+
 /**
  * Function to render the contacts if any exist
  * @param {number} index Index of contacts
@@ -27,6 +28,7 @@ function taskRenderContactList(index, name, color, email, check) {
     check
   );
 }
+
 
 /**
  * Function to render the initials from a contact
@@ -58,6 +60,7 @@ function taskContacInitialRender(selectContact) {
   }
 }
 
+
 /**
  * function searches the matching color from the array to the corresponding number
  * @param {numberumber} color Color number from the DB
@@ -66,6 +69,7 @@ function taskContacInitialRender(selectContact) {
 function contactColorAssign(color) {
   return contactColorArray[color];
 }
+
 
 /**
  * Function that always takes the first letter of the first name and last name

@@ -11,6 +11,7 @@ let inputsOK = [false, false, false];
 taskContacteArray;
 window.onresize = showHelpIconMobile;
 
+
 /**
  * start function of addtask
  */
@@ -23,12 +24,14 @@ function init() {
   document.getElementById("taskTitle").focus();
 }
 
+
 /**
  * function that displays the plus in subtask
  */
 function startAddTask() {
   document.getElementById("subTaskAddIcon").classList.remove("ele_hide");
 }
+
 
 /**
  * This function logs out the user by removing the 'userLoggedIn' flag from localStorage
@@ -38,6 +41,7 @@ function logout() {
   localStorage.removeItem("userLoggedIn");
   localStorage.setItem("greetingShown", "false");
 }
+
 
 /**
  * This function shows the help icon on mobile screens (below 1000px width).
@@ -50,6 +54,7 @@ function showHelpIconMobile() {
     helpLink.style.display = "none";
   }
 }
+
 
 /**
  * function checks the correct input in the field title
@@ -73,6 +78,7 @@ function requiredInputTitle(template) {
     checkAllRequiredData();
   }
 }
+
 
 /**
  * function checks the correct input in the field date
@@ -110,6 +116,7 @@ function requiredInputDate(template) {
   }
 }
 
+
 /**
  * function checks the correct input in the field Catergory
  */
@@ -128,6 +135,7 @@ function requiredInputCategory() {
   checkAllRequiredData();
 }
 
+
 /**
  * function checks whether the entry in all three mandatory fields is correct
  */
@@ -145,6 +153,7 @@ function checkAllRequiredData() {
   });
 }
 
+
 /**
  * function opens datepicker
  */
@@ -158,6 +167,7 @@ function openDatePicker() {
   }
   dateInput.focus();
 }
+
 
 /**
  * function controls the priority option
@@ -199,6 +209,7 @@ function btnPrioBtnSelect(auswahl, btnColor, id) {
     .getElementsByClassName("prio_img")
   [id].classList.add("prio_img_with");
 }
+
 
 /**
  * function opens the list of SubTask
@@ -250,6 +261,7 @@ function taskCreateTask() {
   subTaskListRender();
 }
 
+
 /**
  * function for processing a subtask
  * @param {Nummber} index position in the array
@@ -272,6 +284,7 @@ function deleteSubTask(index) {
   subTaskListRender();
 }
 
+
 /**
  * function to write the subtask into the array
  * @param {String} taskData Contents of the subtask
@@ -279,6 +292,7 @@ function deleteSubTask(index) {
 function taskReadinArrayTask(taskData) {
   taskId = Object.values(taskData).length;
 }
+
 
 /**
  * function writes the contacts into the array for the list
@@ -305,6 +319,7 @@ function taskReadinArrayContact(DataContact) {
   });
 }
 
+
 /**
  * function to open the contact list
  */
@@ -317,12 +332,17 @@ function taskContactListDrobdown() {
     .classList.toggle("icon_List_hide");
 }
 
+
+/**
+ *closing the contactsbox
+ */
 function taskContactListDrobdownClose() {
   document
     .getElementById("taskContactDrowdownMenue")
     .classList.remove("ele_show");
   document.getElementById("initialeIconList").classList.add("icon_List_hide");
 }
+
 
 /**
  * function to write the contacts into the list
@@ -339,6 +359,7 @@ function taskContactFilterList() {
     }
   });
 }
+
 
 /**
  *function that checks whether a contact has been selected
@@ -359,6 +380,7 @@ function contactCheckOKinArray() {
       }
     });
 }
+
 
 /**
  * function to save the data
@@ -383,6 +405,7 @@ async function checkInputData(template) {
   addTaskClear();
 }
 
+
 /**
  * function to display the popup data is saved
  * @param {Number} duration time how long the popup is visible
@@ -394,6 +417,7 @@ function timePopUp(duration) {
     notification.style.display = "none";
   }, duration);
 }
+
 
 /**
  * function to collect the data which is then stored in the db
@@ -416,6 +440,7 @@ function collectData() {
     status: statusSave(),
   };
 }
+
 
 /**
  * function to convert the date
@@ -457,6 +482,7 @@ function statusSave() {
   }
 }
 
+
 /**
  * function to read status todo
  * @returns
@@ -478,6 +504,7 @@ function errorFieldsFocus(tag) {
   document.getElementById(tag).innerHTML = "&nbsp;";
 }
 
+
 /**
  * delete all error fields
  */
@@ -489,6 +516,7 @@ function errorFieldsClear() {
   document.getElementById("taskCatergory").classList.remove("error_Input");
   document.getElementById("error_Field_Catergory").innerHTML = "&nbsp;";
 }
+
 
 /**
  * function to delete the fields in the input mask
