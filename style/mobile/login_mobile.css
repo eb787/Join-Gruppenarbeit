@@ -159,6 +159,10 @@
         width: 200px;
     }
 
+    .login_inputs {
+        padding-bottom: 20px;
+    }
+
     .login_field {
         height: 400px;
     }

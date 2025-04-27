@@ -92,7 +92,7 @@ async function validateLoginForm() {
   let isValid = emailValid && passwordValid;
 
   if (!isValid) {
-    showErrorMessage("Please correct the highlighted fields.", "form");
+    showErrorMessage("Please fill in all fields.", "form");
   } else {
     removeErrorMessage("form");
   }
