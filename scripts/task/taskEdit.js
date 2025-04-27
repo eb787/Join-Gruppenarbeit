@@ -343,10 +343,10 @@ function subTaskReadytoFinish() {
  * @returns
  */
 function checkContacts() {
-  if (selectedTaskContacts.length > 0) {
+  if (selectedTaskContacts && selectedTaskContacts.length > 0) {
     return selectedTaskContacts;
   } else {
-    if (DataTaskContactsTask.length > 0) {
+    if (DataTaskContactsTask && DataTaskContactsTask.length > 0) {
       return DataTaskContactsTask;
     }
     return "";
