@@ -4,11 +4,13 @@
  */
 const Base_URL = "https://joinstorage-805e6-default-rtdb.europe-west1.firebasedatabase.app/";
 
+
 /**
  * Key for storing global index in localStorage.
  * @constant {string}
  */
 const colorIndexKey = "globalIndex";
+
 
 /**
  * Global index for assigning colors to contacts.
@@ -16,12 +18,14 @@ const colorIndexKey = "globalIndex";
  */
 let globalIndex = parseInt(localStorage.getItem(colorIndexKey)) || 0;
 
+
 /**
  * Saves the global index to localStorage.
  */
 function saveGlobalIndex() {
     localStorage.setItem(colorIndexKey, globalIndex);
 }
+
 
 /**
  * Sends data to the server using the PUT method.
@@ -41,6 +45,7 @@ async function postData(path = "", data = {}) {
     return await response.json();
 }
 
+
 /**
  * Retrieves data from the server using the GET method.
  * @async
@@ -54,6 +59,7 @@ async function getData(path = "") {
     });
     return await response.json();
 }
+
 
 /**
  * Collects the new contact data from the input fields.
@@ -71,6 +77,7 @@ function collectContactData() {
     saveGlobalIndex();
     return newContact;
 }
+
 
 /**
  * Adds a new contact to the database and updates the UI.
@@ -97,7 +104,6 @@ async function addContact() {
 }
 
 
-
 /**
  * Retrieves the list of contacts from the server and updates the UI.
  * @async
@@ -110,6 +116,7 @@ async function getUsersList() {
     showHelpIconMobile();
 }
 
+
 /**
  * Generates the full list of contacts, sorted by their first letter.
  * @param {Object} contacts - The contacts data to generate the list from.
@@ -119,6 +126,7 @@ function generateFullContactList(contacts, userContainer) {
     let sortedLetters = Object.keys(contacts).sort();
     sortedLetters.forEach(letter => generateContactList(contacts[letter], userContainer, letter));
 }
+
 
 /**
  * Clears the input fields and closes the contact form.
@@ -130,6 +138,7 @@ function clearInputsAndClose() {
     clearAllErrors()
 }
 
+
 /**
  * Gets the first letter of a name and returns it in uppercase.
  * @param {string} name - The name to extract the first letter from.
@@ -139,6 +148,7 @@ function getFirstLetter(name) {
     let letter = name.trim().charAt(0).toUpperCase();
     return /^[A-Z]$/.test(letter) ? letter : "#";
 }
+
 
 /**
  * Generates and displays a list of contacts, grouped by their first letter.
@@ -165,6 +175,7 @@ function generateContactList(contacts, userContainer, letter) {
         userContainer.innerHTML += contactCardScrollList(user, contactsId, color, letter);
     });
 }
+
 
 /**
  * Deletes a contact from the database and updates with getUsersList

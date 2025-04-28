@@ -31,6 +31,7 @@ async function openContactBigMiddle(contactsId, letter) {
   }
 }
 
+
 /**
  * Highlights the currently active contact when it's clicked.
  * @param {string} contactsId - The contact's ID.
@@ -49,6 +50,7 @@ function highlightActiveContact(contactsId) {
   checkScreenSize();
 }
 
+
 /**
  * Retrieves the element for the contact details section.
  * @returns {HTMLElement|null} - The contact detail element.
@@ -59,6 +61,7 @@ function getContactElement() {
   return contactMiddle;
 }
 
+
 /**
  * Parses the contact's ID to extract the first letter and contact index.
  * @param {string} contactsId - The contact's ID.
@@ -68,6 +71,7 @@ function parseContactId(contactsId) {
   let [firstLetter, contactIndex] = contactsId.split("-");
   return { firstLetter, contactIndex };
 }
+
 
 /**
  * Fetches the user data based on the first letter and contact index.
@@ -84,6 +88,7 @@ async function fetchUser(firstLetter, contactIndex) {
     return null;
   }
 }
+
 
 /**
  * Retrieves the color for a user based on their contact ID, and stores it in localStorage.
@@ -104,6 +109,7 @@ function getUserColor(contactsId, letter) {
   }
 }
 
+
 /**
  * Generates a hash code for a string.
  * @param {string} str - The string to generate the hash for.
@@ -112,6 +118,7 @@ function getUserColor(contactsId, letter) {
 function hashCode(str) {
   return str.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
 }
+
 
 /**
  * Renders the contact details into the contact detail section.
@@ -125,6 +132,7 @@ function renderContact(contactMiddle, user, contactIndex, firstLetter, color) {
   contactMiddle.innerHTML = contactCardMiddle(user, contactIndex, firstLetter, color);
 }
 
+
 /**
  * Closes the contact details section.
  */
@@ -134,6 +142,7 @@ function closeContactBigMiddle() {
     contactMiddle.style.display = "none";
   }
 }
+
 
 /**
  * Opens the contact editing form with the current contact's data.
@@ -152,16 +161,15 @@ async function editContact(contactsId, firstLetter, color) {
     document.getElementById('name_input').value = contact.name;
     document.getElementById('email_input').value = contact.email;
     document.getElementById('tel_input').value = contact.number;
-
     let saveButton = document.getElementById('save-button');
     updatePicture(contact, color);
     disabledButton();
-
     saveButton.onclick = async function () {
       await saveEditedContact(contactsId, firstLetter, color);
     };
   }
 }
+
 
 /**
  * Saves the edited contact data and updates the UI.
@@ -171,19 +179,16 @@ async function editContact(contactsId, firstLetter, color) {
 async function saveEditedContact(contactsId, firstLetter) {
   const email = document.getElementById('email_input').value;
   if (!validateInputs(email)) return;
-
   let index = parseInt(localStorage.getItem(`${contactsId}_index`)) || 0;
   saveGlobalIndex();
   let existingUser = await fetchUser(firstLetter, index);
   let updatedContact = getUpdatedContact(existingUser);
   let newLetter = updatedContact.name.charAt(0).toUpperCase();
-
   if (newLetter !== firstLetter) {
     await handleContactMove(firstLetter, newLetter, contactsId, updatedContact);
   } else {
     await handleContactUpdate(firstLetter, contactsId, updatedContact);
   }
-
   clearInputsAndClose();
   closeEditMobile();
 }
@@ -206,10 +211,10 @@ async function handleContactUpdate(letter, id, contact) {
   closeContactBig();
 }
 
+
 /**
  * Handles moving a contact to a different letter group (e.g., due to name change).
  * Recalculates contact IDs, updates localStorage, and refreshes the UI.
- *
  * @param {string} oldLetter - The original letter group.
  * @param {string} newLetter - The new letter group.
  * @param {string} oldId - The contact's original ID.
@@ -217,15 +222,14 @@ async function handleContactUpdate(letter, id, contact) {
  */
 async function handleContactMove(oldLetter, newLetter, oldId, contact) {
   await recalculateContactIds(oldLetter, newLetter, oldId, contact);
-
   let newSection = contactsData[newLetter];
   let newId = Object.keys(newSection).find(id => newSection[id].email === contact.email);
   if (!newId) return;
-
   localStorage.setItem(`${newId}_index`, newId);
   updateContactUI(newId, contact, newLetter);
   openContactBigMiddle(`${newLetter}-${newId}`, newLetter);
 }
+
 
 /**
  * Updates the contact's information in the UI after saving the edit.
@@ -259,30 +263,21 @@ async function recalculateContactIds(oldLetter, newLetter, contactsId, updatedCo
   try {
     let oldContacts = contactsData[oldLetter] || {};
     let newContacts = contactsData[newLetter] || {};
-
     if (oldContacts[contactsId]) delete oldContacts[contactsId];
-
     let newIndex = Object.keys(newContacts).length;
     newContacts[newIndex] = updatedContact;
-
-    // Reorder old contacts
     let reorderedOld = {}, i = 0;
     for (let id in oldContacts) {
       reorderedOld[i++] = oldContacts[id];
     }
-
-    // Reorder new contacts
     let reorderedNew = {}, j = 0;
     for (let id in newContacts) {
       reorderedNew[j++] = newContacts[id];
     }
-
     await postData(`/contacts/${oldLetter}`, reorderedOld);
     await postData(`/contacts/${newLetter}`, reorderedNew);
-
     contactsData[oldLetter] = reorderedOld;
     contactsData[newLetter] = reorderedNew;
-
     globalIndex = Math.max(i, j);
     saveGlobalIndex();
     getUsersList();
@@ -306,6 +301,7 @@ function getInitials(name) {
   return initials;
 }
 
+
 /**
  * Disables the save button if required fields are not filled.
  */
@@ -322,6 +318,7 @@ function disabledButton() {
   emailInput.addEventListener('input', disabledButton);
 }
 
+
 /**
  * Returns the updated contact data.
  * @param {Object} existingUser - The current contact data.
@@ -336,6 +333,7 @@ function getUpdatedContact(existingUser) {
     "color": color
   };
 }
+
 
 /**
  * Updates the contact picture based on the contact's initials and color.
@@ -359,6 +357,7 @@ function updatePicture(contact, color) {
   `;
 }
 
+
 /**
  * Resets the contact picture to its original state if the old picture is available.
  * Restores the picture editing option if the picture is reset.
@@ -373,6 +372,7 @@ function resetPicture() {
     }
   }
 }
+
 
 /**
  * Opens the contact detail modal and displays the contact's information.
@@ -389,6 +389,7 @@ function openContactBig() {
   contactcardHeadline();
 }
 
+
 /**
  * Closes the contact detail modal when clicked outside the modal or on the close button.
  * Optionally accepts an event to detect if the close action is triggered from outside the modal.
@@ -403,6 +404,7 @@ function closeContactBig(event = null) {
   backgroundDiv.classList.remove('card_contact_background');
   document.getElementById('content-card-big').style.display = 'none';
 }
+
 
 /**
  * Updates the text and action of the cancel button based on whether the input fields are filled or not.
@@ -425,4 +427,3 @@ function updateCancelButton() {
     cancelButton.setAttribute("onclick", "deleteData()");
   }
 }
-

@@ -9,8 +9,10 @@ function checkScreenSize() {
   }
 }
 
+
 // Listens for window resizing to apply changes based on screen size.
 window.addEventListener("resize", checkScreenSize);
+
 
 /**
  * Closes the detailed contact view on mobile screens when the width is below 1000px and shows the contact list again.
@@ -18,9 +20,10 @@ window.addEventListener("resize", checkScreenSize);
  */
 window.addEventListener('resize', () => {
   if (window.innerWidth > 1000) {
-      closeWindowMobile();
+    closeWindowMobile();
   }
 });
+
 
 /**
  * Closes the detailed contact view on mobile and shows the contact list again.
@@ -37,6 +40,7 @@ function closeContactBigMiddleMobil() {
   }
 }
 
+
 /**
  * Shows the contact list on the screen.
  * @function
@@ -47,6 +51,7 @@ function showContactList() {
     contactList.style.display = "block";
   }
 }
+
 
 /**
  * Hides the contact list from the screen.
@@ -59,6 +64,7 @@ function hideContactList() {
   }
 }
 
+
 /**
  * Toggles between creating and editing contact details on mobile.
  * @function
@@ -70,15 +76,14 @@ function toggleEditMobile(isEditing) {
   const saveButton = document.getElementById('save-button');
   const deleteButton = document.getElementById('cancel-button');
   const emailInput = document.getElementById('email_input');
-  
   if (window.innerWidth > 1000) return;
-  
   contactDetail.classList.add('show');
   if (createButton) createButton.style.display = isEditing ? "none" : "flex";
   if (saveButton) saveButton.style.display = isEditing ? "flex" : "none";
   if (deleteButton) deleteButton.style.display = isEditing ? "flex" : "none";
   if (!isEditing && emailInput) clearError(emailInput);
 }
+
 
 /**
  * Enables the editing mode for a contact on mobile.
@@ -88,6 +93,7 @@ function editContactMobile() {
   toggleEditMobile(true);
 }
 
+
 /**
  * Disables the editing mode and reverts to the original contact details.
  * @function
@@ -95,6 +101,7 @@ function editContactMobile() {
 function closeEditMobile() {
   toggleEditMobile(false);
 }
+
 
 /**
  * Opens a mobile window with options to edit or delete a contact.
@@ -106,7 +113,7 @@ function closeEditMobile() {
 function openWindowMobile(contactIndex, firstLetter, color) {
   let mobileWindow = document.getElementById('mobile_window');
   mobileWindow.innerHTML =
-      `
+    `
 <div class="mobile_options_div" id = "window_options">
   <div class="edit_mobile" onclick = "editContact('${contactIndex}', '${firstLetter}','${color}')">
       <img src="../assets/icons/edit.svg" alt="">
@@ -118,6 +125,7 @@ function openWindowMobile(contactIndex, firstLetter, color) {
   </div>
 </div>`;
 }
+
 
 /**
  * Closes the mobile window by clearing its content.
