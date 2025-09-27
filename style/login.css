@@ -222,10 +222,9 @@ body {
 }
 
 .privacy_check:hover {
-    cursor: pointer;
-
     .check_box_btn {
         background-image: url(../assets/icons/checked_hover.png);
+        cursor: pointer;
     }
 }
 
